@@ -1,0 +1,60 @@
+<?xml version='1.0'?>
+ 
+<cc_info>
+	<billing_data> 
+	  <account_number />
+	  <bill_number />
+	  <source_code_index />
+	  <fund />
+	  <department_id />
+	  <bill_date />
+	  <due_date />
+		<item_id />
+	  <item_quantity />
+	  <item_amount />
+	  <total_amount_due />
+	  <partial_payment_flag />
+		<receipt_present_flag />
+	   <payer_name />
+	   <payer_address />
+	   <payer_city />
+	   <payer_state />
+	   <payer_zip_code />
+	   <additional_reference_1 />
+	   <additional_reference_2 />
+	   <additional_reference_3 />
+	   <additional_reference_4 />
+	   <additional_reference_5 />
+	</billing_data>
+
+	<payment_data> 
+	  <account_number />
+	  <bill_number />
+	  <source_code_index />
+	  <fund />
+	  <department_id />
+	  <bill_date />
+	  <due_date />
+		<item_id />
+	  <item_quantity />
+	  <item_amount />
+	  <total_amount_due />
+	  <partial_payment_flag />
+		<receipt_present_flag />
+	   <payer_name />
+	   <payer_address />
+	   <payer_city />
+	   <payer_state />
+	   <payer_zip_code />
+	   <additional_reference_1 />
+	   <additional_reference_2 />
+	   <additional_reference_3 />
+	   <additional_reference_4 />
+	   <additional_reference_5 />
+	   <merchant_id />
+	   <amount_paid />
+	   <authorization_flag />
+	   <authorization_response />
+	   <transaction_id_code />
+	</payment_data>
+</cc_info>

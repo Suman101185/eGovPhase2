@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
+<head>
+
+<style>
+	.inpNormal, .inpReadOnlyRt, .inpError { text-align: right; }
+</style>
+</head>
+
+<BODY onload=LoadError("WrkA")>
+<DIV id=NPT_WrkA style="DISPLAY: none; VISIBILTY: hidden" Name="NPT_WrkA">
+<TABLE class=tblShowBorder id=TABLE1 style="MARGIN-LEFT: 4%" cellSpacing=0 
+cellPadding=0 width="90%" border=0>
+  
+  <TR height=0>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD></TR>
+  <TR class=rowDataEven>
+    <TD colSpan=20><LABEL class=lblInstrNormal><U>Worksheet A: Business Income (Loss) for Residents</U></LABEL></TD>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>1.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Net Income (Loss)</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtNPT_WrkA_1 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("WrkA")></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>2.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Federal Form 1065, Schedule K-1 and other adjustments</LABEL> </TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtNPT_WrkA_2 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("WrkA")></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>3.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Other taxable income</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtNPT_WrkA_3 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("WrkA")></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>4.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>Taxable Resident Net Income (Loss)</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Add lines 1 through 3]&nbsp;</LABEL></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkA_4 
+      style="WIDTH: 100%"></LABEL></TD></TR>
+</TABLE>
+<P></P>
+<TABLE style="MARGIN-LEFT: 4%" width="90%" border=0>
+  <TR>
+    <TD><INPUT language=javascript id=btnGoToPage1 onclick=ShowPage("Page1","WrkA") type=button value="Return to Page 1"></TD>
+  </TR>
+</TABLE>
+</DIV><!--NPT_WrkA-->
+</BODY>
+</HTML>

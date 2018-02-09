@@ -1,0 +1,67 @@
+﻿
+
+<html>
+	<head>
+	
+		<title></title>
+        <link href="../Content/Styles/framestyle.css" rel="stylesheet" type="text/css" />
+<script src="../Content/Scripts/JqueryMin.js" type="text/javascript" language="javascript"></script>
+<script src ="../Content/Scripts/ispFunctions.js" type="text/javascript" language="javascript"></script>
+<script src ="../Content/Scripts/ispXmlProc.js" type="text/javascript" language="javascript"></script>
+<script src ="../Content/Scripts/Accounting.js" type="text/javascript" language="javascript"></script>
+		<script language="javascript" type="text/javascript">
+		    //EOGVWEB-53 EDD Added if statement for calling print coupon from Tobacco
+		    function ReturnToSelection() {
+		        var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+		        var sCurrReturnYear = '';
+		        for (var i = 0; i < url.length; i++) {
+		            var urlparam = url[i].split('=');
+
+		            if (urlparam[0] == 'year') {
+		                sCurrReturnYear = urlparam[1];
+		                break;
+		            }
+		        }
+		        sCurrReturnYear = sCurrReturnYear.replace('-', '=');
+		        debugger;
+		        parent.setFrameUrl(sCurrReturnYear);
+		    }
+
+		    function resolvedIframeheight() {
+		        var iframe = window.parent.document.getElementById('ifrmDocwin');
+		        var container = $('#LogCoupon').css("height");
+		        iframe.style.height = container;
+		        var url1 = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+		        var sCurrReturnYear = '';
+		        for (var i = 0; i < url1.length; i++) {
+		            var urlparam1 = url1[i].split('=');
+		            CouponCnclBtn
+		            if (urlparam1[0] == 'page') {
+		                document.getElementById("CouponCnclBtn").value = "Return to " + urlparam1[1] + " Select";
+		                //sCurrReturnYear = urlparam1[1];
+		                break;
+		            }
+		        }
+		    }
+		</script>		
+	
+	</head>
+
+  <body style="height:470px !important;" onload="resolvedIframeheight()">
+        <table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px; width: 100%; height: 430px !important; top: 0px; overflow-x:hidden" id="topPayCoupon">
+
+            <tr>
+                <td align="center" style="font-size: 14pt; height: .25in; padding-top:10px; padding-bottom:10px" id="coup2">
+                    <input id="CouponCnclBtn" onclick="ReturnToSelection()" type="button" value="Return to Account Select" style=" display:block; padding:6px 18px;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <iframe id="ifrPdfView" src="{PDFFILE}" height="100%" width="70%" style="margin-left:200px !important;"></iframe>
+                </td>
+            </tr>
+        </table>
+    </body></html> 

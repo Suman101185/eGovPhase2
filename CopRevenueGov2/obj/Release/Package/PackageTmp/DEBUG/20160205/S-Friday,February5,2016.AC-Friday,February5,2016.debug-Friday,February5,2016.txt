@@ -1,0 +1,6 @@
+<DEBUGINFO>
+<REQUSET><c1match><Message /><Closeness /><Address1>ertet</Address1><Address2></Address2><City /><State /><Zip>ertet</Zip><Zip4 /><houseno /><direction /><designation /><DPC /><DPBC /><CRT /><street /></c1match></REQUSET>
+
+
+<RESPONSE><?xml version="1.0" encoding="utf-16"?><c1match xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Message>There was no endpoint listening at http://dotapptest01.city.phila.local/code1.service/service1.asmx that could accept the message. This is often caused by an incorrect address or SOAP action. See InnerException, if present, for more details.</Message><Closeness /><Address1 /><Address2 /><City /><State /><Zip /><Zip4 /><houseno /><direction /><designation /><DPC /><DPBC /><CRT /><street /></c1match></RESPONSE>
+</DEBUGINFO>

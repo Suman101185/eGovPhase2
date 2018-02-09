@@ -1,0 +1,1716 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Styles/framestyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" language="javascript" src="../Scripts/JqueryMin.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/global.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/ispXmlProc.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/jquery-1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".tab_content:first").show(); //Show first tab content
+            $('#NPT_Page1').css("visibility", "visible");
+            $('#NPT_Page1').css("display", "block");
+        });
+
+        function ShowPage(iPage) {
+            $('#NPT_Page1').css("visibility", "hidden");
+            $('#NPT_Page1').css("display", "none");
+
+            $('#NPT_WrkA').css("visibility", "hidden");
+            $('#NPT_WrkA').css("display", "none");
+
+            $('#NPT_WrkB').css("visibility", "hidden");
+            $('#NPT_WrkB').css("display", "none");
+
+            $('#NPT_WrkC').css("visibility", "hidden");
+            $('#NPT_WrkC').css("display", "none");
+
+            $('#NPT_WrkD').css("visibility", "hidden");
+            $('#NPT_WrkD').css("display", "none");
+
+            $('#NPT_WrkE').css("visibility", "hidden");
+            $('#NPT_WrkE').css("display", "none");
+
+            $('#NPT_WrkK').css("visibility", "hidden");
+            $('#NPT_WrkK').css("display", "none");
+
+            $('#NPT_Page4').css("visibility", "hidden");
+            $('#NPT_Page4').css("display", "none");
+
+
+            switch (iPage) {
+                case "Page1":
+                    $('#NPT_Page1').css("visibility", "visible");
+                    $('#NPT_Page1').css("display", "block");
+                    parent.iframeLoaded();
+                    //$('#btnNPTSubmit').removeAttr("disabled");
+
+                    break;
+
+                case "WrkA":
+                    $('#NPT_WrkA').css("visibility", "visible");
+                    $('#NPT_WrkA').css("display", "block");
+                    parent.iframeLoaded();
+                    //$('#btnNPTSubmit').attr("disabled", "disabled");
+                    break;
+
+                case "WrkB":
+                    $('#NPT_WrkB').css("visibility", "visible");
+                    $('#NPT_WrkB').css("display", "block");
+                    parent.iframeLoaded();
+                    //$('#btnNPTSubmit').attr("disabled", "disabled");
+                    break;
+
+                case "WrkC":
+                    $('#NPT_WrkC').css("visibility", "visible");
+                    $('#NPT_WrkC').css("display", "block");
+                    parent.iframeLoaded();
+                    //$('#btnNPTSubmit').attr("disabled", "disabled");
+                    break;
+
+                case "WrkD":
+                    $('#NPT_WrkD').css("visibility", "visible");
+                    $('#NPT_WrkD').css("display", "block");
+                    parent.iframeLoaded();
+                    // $('#btnNPTSubmit').attr("disabled", "disabled");
+                    break;
+
+                case "WrkE":
+                    $('#NPT_WrkE').css("visibility", "visible");
+                    $('#NPT_WrkE').css("display", "block");
+                    parent.iframeLoaded();
+                    //$('#btnNPTSubmit').attr("disabled", "disabled");
+                    break;
+
+                case "WrkK":
+                    $('#NPT_WrkK').css("visibility", "visible");
+                    $('#NPT_WrkK').css("display", "block");
+                    parent.iframeLoaded();
+                    //$('#btnNPTSubmit').attr("disabled", "disabled");
+                    break;
+
+                case "Page4":
+                    $('#NPT_Page4').css("visibility", "visible");
+                    $('#NPT_Page4').css("display", "block");
+                    parent.iframeLoaded();
+                    //$('#btnNPTSubmit').attr("disabled", "disabled");
+                    break;
+            } //switch
+        }
+
+        
+    </script>
+</head>
+<body>
+    <div class="tab_Tcontainer">
+        <div class="tab_container">
+            <div style="display: block;" id="tab1" class="tab_content">
+                <h2>Tax Payer Information  |   <span>NPT tax return for 2013</span>  </h2>
+
+                <div class="thankyou">
+                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries</h4>
+
+                    <div class="school_form">
+
+
+                        <form class="school_page_form">
+
+                            <!--<div class="greytopbox">
+                    	<div class="bluetxt">Name :</div>
+                        <div class="bluetxt">SSN :</div>
+                        <div class="bluetxt">Address :</div>
+                        
+                        <div class="clear"></div>
+                    </div>-->
+
+
+
+                            <div class="account_greybox">
+
+                                <p>
+                                    <strong>Name :</strong>
+                                    <label>Michael Adams</label>
+                                </p>
+
+                                <p><strong>SSN :</strong> &nbsp; </p>
+                                <div class="clear"></div>
+                                <p><strong>Address :</strong> &nbsp; </p>
+
+                                <div class="clear"></div>
+
+                            </div>
+                                                       
+
+                            <!--Page1 declaration goes here-->
+                            <div id="NPT_Page1" style="display: none">
+                                 <!--SubHeader section declaration goes here-->
+                            <div class="form_segment">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabularform">
+                                    <tr>
+                                        <th width="22%" scope="col" valign="middle" align="left" class="here_input_table">
+                                            <input type="checkbox" />
+                                            Check if amended return. </th>
+                                    </tr>
+                                    <tr>
+                                        <th width="78%" scope="col" valign="middle" align="left" class="here_input_table">If your business terminated in 
+				<script>document.write(sCurrYear - 1)</script>
+                                            ,
+					enter the termination date here:</th>
+
+                                        <th width="22%" scope="col" align="right">
+                                            <input maxlength="10" type="text" />
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th width="22%" scope="col" valign="middle" align="left" class="here_input_table">
+                                            <input type="checkbox" />
+                                            Check if amended return. </th>
+                                    </tr>
+                                    <tr>
+                                        <th width="78%" scope="col" valign="middle" align="left" class="here_input_table">If applicable, enter percentage from
+					Worksheet D, Line 3:</br><label id="lnkWrkD" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="if($(this).attr('disabled')!='disabled'){ShowPage('WrkD')}">Click here for Worksheet D</label></th>
+
+                                        <th width="22%" scope="col" align="right">
+                                            <input maxlength="10" type="text" />
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--SubHeader section declaration ends here-->
+                                <!--Form section declaration goes here-->
+                                <div class="form_segment">
+                                    <table summary="Employee Pay Sheet" id="hor-zebra">
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td width="70%">1. Residents Taxable Income or Loss from Page 2, Worksheet A, Line 4
+                                                    <label id="lnkWrkA" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="if($(this).attr('disabled')!='disabled'){ShowPage('WrkA')}">Click here for Worksheet A</label>
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2. Line 1 X ###
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <div>
+                                                        <label id="lblNPT2" style="WIDTH: 100%"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">3. Non-Residents Taxable Income or Loss from Page 2, Worksheet B, Line 6
+                                                    <label id="lnkWrkB" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="if($(this).attr('disabled')!='disabled'){ShowPage('WrkB')}">Click here for Worksheet B</label>
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4. Line 3 X ###</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT4" style="WIDTH: 100%"></label>
+                                                </td>
+
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">5. Tax Due (Line 2 plus Line 4)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT5" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>6a. 60% Business Income & Receipts Tax credit</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT6a" style="WIDTH: 100%">
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6b. Estimated payments and other credits from	Worksheet E, Line 4
+                                                    <label id="lnkWrkE" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="if($(this).attr('disabled')!='disabled'){ShowPage('WrkE')}">Click here for Worksheet E</label></td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>6c. Total payments and credits (Line 6a plus Line 6b)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT6c" style="width: 100%"></label>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">7. Net Tax Due (Line 5 minus Line 6c)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT7" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>8. Interest and Penalty (Cumulative % from Instruction Sheet multiplied by Line 7)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" /></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">9. <u>TOTAL DUE</u> including Interest and Penalty (Line 7 plus Line 8)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT9" style="WIDTH: 100%"></label>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>10. Tax Overpaid (Line 6c is greater than Line 5)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT10" style="WIDTH: 100%"></label>
+                                            </tr>
+                                            <tr>
+                                                <td>11. Enter 50% of Worksheet C, Line 3.<br>
+                                                    <b>This line is <u>not</u> used to remit estimated payments</b>
+                                                    <label id="lnkWrkC" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="if($(this).attr('disabled')!='disabled'){ShowPage('WrkC')}">Click here for Worksheet C</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. <u>OVERPAYMENT OPTIONS</u> If Line 10 is greater than Line 11, 
+					enter the amount to be:</td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;&nbsp;A. Refunded. <b>Do not file separate Refund Petition</b></td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">&nbsp;&nbsp;B. Applied, to the 2013 Business Income & Receipts Tax Return</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;&nbsp;C. Applied to the 2014	Net Profits Tax</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+
+                                </div>
+                                <!--Form section declaration ends here-->
+
+                                <!--Preparer section declaration goes here-->
+                                <div class="form_segment lessspac_element">
+
+                                    <label>Filled by *</label>
+                                    <div class="small_divs">
+                                        <input type="radio" name="n1" />
+                                        Tax Payer
+                                    </div>
+                                    <div class="small_divs">
+                                        <input type="radio" name="n2" checked="" />
+                                        Prepayer
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                </div>
+
+                                <div class="form_segment lessspac_element">
+
+                                    <label>Filler Name *</label>
+                                    <span class="small_divs2">&nbsp;</span>
+
+                                    <div class="here_input_table">
+                                        Filler Phone *
+                                    <input type="text" class="input_size7" /><input type="text" class="input_size7" /><input type="text" class="input_size7" />
+                                        <span class="here_alert">Ext : </span>
+                                        <input type="text" class="input_size7" />
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                </div>
+
+                                <div class="form_segment lessspac_element">
+
+                                    <label>Filler Name *</label>
+
+                                    <div class="here_input_table">
+                                        <input type="text" class="input_size9" />
+                                    </div>
+
+                                    <div class="clear"></div>
+                                </div>
+
+
+                                <div class="form_segment">
+
+
+
+                                    <div class="here_input_table">
+                                        <input type="checkbox" class="" />
+                                    </div>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+                    
+                     <div class="clear"></div>
+                                </div>
+
+
+                                <div class="form_segment here_input_table" align="right">
+                                    <input type="submit" value="Print" class="submit_button_light" />
+                                    <input type="submit" value="Submit" class="submit_button" />
+                                </div>
+                                <!--Preparer section declaration ends here-->
+                            </div>
+                            <!--Page1 declaration ends here-->
+
+                            <!--SchA starts here-->
+                            <div id="NPT_WrkA" style="display: none">
+                                <div class="form_segment">
+                                    <table summary="Employee Pay Sheet" id="hor-zebra">
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td width="70%">
+                                                    <b><u>Worksheet A: Business Income (Loss) for Residents</u></b><br>
+                                                </td>
+
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>1. Net Income (Loss)
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2.  Federal Form 1065, Schedule K-1 and other adjustments
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. Other taxable income</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">4. Taxable Resident Net Income (Loss) [Calculated - Add lines 1 through 3]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT_WrkA_4" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+
+                                            <!--<tr>
+                                                <td>5. Income (Loss) to be apportioned [Calculated - Line 1 minus 2, 3, and 4]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchA_5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6. Average of Apportionment Factors (from 
+                                                    <label id="Label13" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage('SchdC1')">Click here for Schedule C-1, Line 12</label>
+                                                    <label class="lblInstrNormal" style="float: none">).</label></td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchA_6" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>7. Income (Loss) apportioned to Philadelphia [Calculated - Multiply Line 5 by Line 6]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchA_7" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">8. Nonbusiness Income (Loss) allocated to Philadelphia</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>9. Current year Income (Loss) [Calculated - Line 7 plus Line 8]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchA_9" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">10. Loss  Carry Forward, if any. (<u><font style="cursor: pointer;" onclick="parent.MenuWin.InstructionLinks()">See Instruction Sheet IV</font></u>)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>11. Taxable Income (Loss) [Calculated - Line 9 minus Line 10]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchA_11" style="WIDTH: 100%"></label>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. <b>TAX DUE</b> (Multiply Line 11 by ###) If Line 11 is a loss, enter zero</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchA_12" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <td>3. ADJUSTED NET INCOME(Loss) [Calculated - Line 2f minus Line 2j]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label5" style="width: 100%;"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">4. Total Nonbusiness Income(Loss)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label6" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6. Average of Apportionment Factors (from 
+                                                    <label id="Label7" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage(SchdC1)">Click here for Schedule C-1, Line 12</label></td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label8" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>7. Income (Loss) apportioned to Philadelphia [Calculated - Multiply Line 5 by Line 6]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label9" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">8. Nonbusiness Income (Loss) allocated to Philadelphia</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>9. Current Year Income (Loss) [Calculated - Line 7 plus Line 8]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label10" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">10. Loss carry foward, if any. (<u><font style="cursor: pointer;" onclick="parent.MenuWin.InstructionLinks()">See Instruction Sheet IV</font></u>)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11. Taxable Income (Loss) [Calculated - Line 9 minus Line 10]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label11" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. <b>TAX DUE</b> (Multiply Line 11 by ###) If Line 11 is a loss, enter zero</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label12" style="width: 100%"></label>
+                                                </td>
+                                            </tr>-->
+                                            <!--<tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+                                           
+
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+                                    <div class="" align="right" style="padding: 0 35px 10px 0px; background: #FFFFFF; border: 1px solid #fff;">
+                                        <input type="button" class="submit_button2" value="GOTO Page 1" onclick="ShowPage('Page1')" />
+                                    </div>
+                                    <!--<input id="btnGoToPage1" type="button" value="Go to Page 1" LANGUAGE=javascript onclick="ShowPage(1)">-->
+
+                                    <div class="clear"></div>
+                                    <br />
+
+                                </div>
+                            </div>
+                            <!--SchA ends here-->
+
+                            <!--SchB starts here-->
+                            <div id="NPT_WrkB" style="display: none">
+                                <div class="form_segment">
+                                    <table summary="Employee Pay Sheet" id="hor-zebra">
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td width="70%">
+                                                    <b><u>Worksheet B: Business Income (Loss) for Non-Residents</u>
+                                                        <br>
+                                                        Non-residents of Philadelphia that need to apportion their income on <b>Worksheet NR-3</b> cannot
+    file electronically<br></td>
+
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>1. Net Income (Loss)
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2. Federal Form 1065, Schedule K-1 and other adjustments
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. Other taxable income</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">4. Total Net Income (Loss</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT_WrkB_4" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>5. Net Income apportioned outside Philadelphia from Page 4, Line 14,
+    Worksheet NR-3</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT_WrkB_5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6. Taxable Non-Residents Net Income (Loss) [Calculated - Subtract Line 5 from Line 4]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkB_6" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <!--<tr>
+                                                <td>2e. Receipts by corporations of dividends, interest and royalties
+				received from other corporations in the same affiliated group and/or from other corporations of which
+				the receiving corporation owns at least 20% of the stock and/or BIRT Regulation §404(G) adjustments
+				(Reg. 302(14)).</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" /></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2f. Line 1 minus Lines 2a through 2e</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_2F" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2g. All other receipts from other corporations of the same
+    		affiliated group. (Reg. 302(14)).</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" /></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2h. Gross Receipts per BIRT Regulation §404(2)(E)(V).</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>2i. Divide Line 2g by Line 2h</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_2I" style="WIDTH: 100%"></label>
+                                            </tr>
+                                            <!--<tr>
+                                                <td>
+                                                    <u><b>TOTAL DUE</b></u> including Interest and Penalty<br>
+                                                    <b>Use payment coupon. Make check payable to: "City of Philadelphia" [Calculated - add line 7 and 8]&nbsp;
+                                                </td>
+                                                <td>
+                                                    <label id="Label13" style="WIDTH: 100%">
+                                                </td>
+                                            </tr>-->
+                                           <!-- <tr class="odd">
+                                                <td width="70%">2j. Multiply Line 2f by Line 2i</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_2J" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. ADJUSTED NET INCOME(Loss) [Calculated - Line 2f minus Line 2j]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_3" style="width: 100%;"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">4. Total Nonbusiness Income(Loss)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6. Average of Apportionment Factors (from 
+                                                    <label id="lnkSchC1" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage('SchdC1')">Click here for Schedule C-1, Line 12</label>
+                                                    <label class="lblInstrNormal" style="float: none">).</label>
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_6" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>7. Income (Loss) apportioned to Philadelphia [Calculated - Multiply Line 5 by Line 6]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_7" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">8. Nonbusiness Income (Loss) allocated to Philadelphia</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>9. Current Year Income (Loss) [Calculated - Line 7 plus Line 8]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_9" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">10. Loss carry foward, if any. (<u><font style="cursor: pointer;" onclick="parent.MenuWin.InstructionLinks()">See Instruction Sheet IV</font></u>)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11. Taxable Income (Loss) [Calculated - Line 9 minus Line 10]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_11" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. <b>TAX DUE</b> (Multiply Line 11 by ###) If Line 11 is a loss, enter zero</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_12" style="width: 100%"></label>
+                                                </td>
+                                            </tr>-->
+                                            
+                                            <!--<tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+                                    <div class="" align="right" style="padding: 0 35px 10px 0px; background: #FFFFFF; border: 1px solid #fff;">
+                                        <input type="button" class="submit_button2" value="GOTO Page 1" onclick="ShowPage('Page1')" />
+                                    </div>
+                                    <!--<input id="btnGoToPage1" type="button" value="Go to Page 1" LANGUAGE=javascript onclick="ShowPage(1)">-->
+
+                                    <div class="clear"></div>
+                                    <br />
+
+                                </div>
+                            </div>
+                            <!--SchB ends here-->
+
+                            <!--SchC starts here-->
+                            <div id="NPT_WrkC" style="display: none">
+                                <div class="form_segment">
+                                    <table summary="Employee Pay Sheet" id="hor-zebra">
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td width="70%">
+                                                    <u>Worksheet C: Computation Of Estimated Tax Base</u>
+                                                    <br>
+                                                    If the amount on Line 3 is $100 or less, estimated payments are NOT required. If the amount on Line 3
+    is greater than $100, enter 25% of the amount on Line 3 on the first estimated coupon (ENP-1), Line 1 and
+    the second estimated coupon (ENP-2), Line 1. If Net Profits Tax estimated payments are required, there
+    are two payments due. The 1st estimated tax payment is due April 15, 2014 and the 2nd estimated tax payment is due June 15, 2014. <b>Estimated tax payments are not required on September 15, 2014 or January 15, 2014.</b>
+                                                </td>
+
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>1. Net Profits Liability from Page 1, Line 5
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkC_1" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2. Business Income & Receipts Tax Credit from Page 1, Line 6a 
+    Worksheet D, Line 8
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkC_2" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. Estimated Payment Base [Calculated - Subtract Line 2 from Line 1]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkC_3"
+                                                        style="WIDTH: 100%">
+                                                    </label>
+                                                </td>
+
+                                            </tr>
+                                            <!--<tr class="odd">
+                                                <td width="70%">4. Total Net Income (Loss</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label1" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>5. Net Income apportioned outside Philadelphia from Page 4, Line 14,
+    Worksheet NR-3</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label2" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6. Taxable Non-Residents Net Income (Loss) [Calculated - Subtract Line 5 from Line 4]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="Label3" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2e. Receipts by corporations of dividends, interest and royalties
+				received from other corporations in the same affiliated group and/or from other corporations of which
+				the receiving corporation owns at least 20% of the stock and/or BIRT Regulation §404(G) adjustments
+				(Reg. 302(14)).</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" /></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2f. Line 1 minus Lines 2a through 2e</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_2F" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2g. All other receipts from other corporations of the same
+    		affiliated group. (Reg. 302(14)).</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" /></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2h. Gross Receipts per BIRT Regulation §404(2)(E)(V).</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>2i. Divide Line 2g by Line 2h</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchB_2I" style="WIDTH: 100%"></label>
+                                            </tr>
+                                            <!--<tr>
+                                                <td>
+                                                    <u><b>TOTAL DUE</b></u> including Interest and Penalty<br>
+                                                    <b>Use payment coupon. Make check payable to: "City of Philadelphia" [Calculated - add line 7 and 8]&nbsp;
+                                                </td>
+                                                <td>
+                                                    <label id="Label13" style="WIDTH: 100%">
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2j. Multiply Line 2f by Line 2i</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label4" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. ADJUSTED NET INCOME(Loss) [Calculated - Line 2f minus Line 2j]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label5" style="width: 100%;"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">4. Total Nonbusiness Income(Loss)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label6" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6. Average of Apportionment Factors (from 
+                                                    <label id="Label7" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage('SchdC1')">Click here for Schedule C-1, Line 12</label>
+                                                    <label class="lblInstrNormal" style="float: none">).</label>
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label8" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>7. Income (Loss) apportioned to Philadelphia [Calculated - Multiply Line 5 by Line 6]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label9" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">8. Nonbusiness Income (Loss) allocated to Philadelphia</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>9. Current Year Income (Loss) [Calculated - Line 7 plus Line 8]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label10" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">10. Loss carry foward, if any. (<u><font style="cursor: pointer;" onclick="parent.MenuWin.InstructionLinks()">See Instruction Sheet IV</font></u>)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11. Taxable Income (Loss) [Calculated - Line 9 minus Line 10]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label11" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. <b>TAX DUE</b> (Multiply Line 11 by ###) If Line 11 is a loss, enter zero</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label12" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            -->
+                                            <!--<tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+                                    <div class="" align="right" style="padding: 0 35px 10px 0px; background: #FFFFFF; border: 1px solid #fff;">
+                                        <input type="button" class="submit_button2" value="GOTO Page 1" onclick="ShowPage('Page1')" />
+                                    </div>
+                                    <!--<input id="btnGoToPage1" type="button" value="Go to Page 1" LANGUAGE=javascript onclick="ShowPage(1)">-->
+
+                                    <div class="clear"></div>
+                                    <br />
+
+                                </div>
+                            </div>
+                            <!--SchC ends here-->
+
+                            <!--SchD starts here-->
+                            <div id="NPT_WrkD" style="display: none">
+                                <div class="form_segment">
+                                    <table summary="Employee Pay Sheet" id="hor-zebra">
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td width="70%">
+                                                    <b><u>Worksheet D:</u> Allocation of Business Income & Receipts Tax credit for partnerships, etc., with corporate members (this schedule is to be used only by partnerships, joint ventures and associations which are composed of one or more corporate partners, corporate joint ventures, or corporate associates.)</b>
+                                                </td>
+
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>1. Enter the portion of taxable income on which 2013 Business Income & Receipts Tax has been paid, AND which represents the distributive shares of ALL CORPORATE MEMBERS
+                                                    business capital assests.                                  </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2. Enter the total taxable income of the taxpayer on which 2013 BIRT has been paid
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. Divide Line 1 by 2 and enter the percentage here and on Page 1</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT_WrkD_3" style="width: 100%"></label>
+                                                </td>
+
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">4. Enter the amount from Page 3, Worksheet K, Line 2 
+                                                    <label class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage('WrkK')">Click here for Worksheet K</label></td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblNPT_WrkD_4" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>5.  Multiply the amount on Line 4 by the percentage on Line 3</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_5" style="WIDTH: 100%">
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6. Subtract Line 5 from Line 4
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_6" style="WIDTH: 100%">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>7. Enter the amount from Page 1, Line 5</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_7" style="WIDTH: 100%">
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">8. <b>Business Income & Receipts Tax Credit allowed.</b> Enter
+    the lesser of Line 6 or Line 7 here, and on Page 1, Line 6a</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_8" style="WIDTH: 100%">
+                                                </td>
+                                            </tr>
+                                            <!--<tr>
+                                                <td>5d. Other</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6. Net Taxable Receipts [Calculated - Line 4 minus Lines 5a through 5d]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchD_6" style="width: 100%"></label>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>7. Less Receipts on which tax is to be computed by the Alternate Method</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">8. Receipts subject to tax at the regular rate [Calculated - Line 6 minus Line 7]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchD_8" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>9. <b>TAX DUE</b> at regular rate [Calculated - Multiply Line 8 by ###]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchD_9" style="width: 100%;"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">10. <b>TAX DUE</b> using the Alternate Method (from
+                                                <label class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage('SchdE')">Schedule E, Line 15</label>
+                                                    <label class="lblInstrNormal" style="float: none">).</label></td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchD_10" style="width: 100%;"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11. <b>TOTAL TAX DUE [Calculated - Sum Line 9 and Line 10]&nbsp;</b></td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchD_11" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+                                            <!--<tr class="odd">
+                                                <td width="70%">6. Average of Apportionment Factors (from 
+                                                    <label id="Label7" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage(SchdC1)">Click here for Schedule C-1, Line 12</label></td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label8" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>7. Income (Loss) apportioned to Philadelphia [Calculated - Multiply Line 5 by Line 6]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label9" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">8. Nonbusiness Income (Loss) allocated to Philadelphia</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>9. Current Year Income (Loss) [Calculated - Line 7 plus Line 8]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label10" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">10. Loss carry foward, if any. (<u><font style="cursor: pointer;" onclick="parent.MenuWin.InstructionLinks()">See Instruction Sheet IV</font></u>)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11. Taxable Income (Loss) [Calculated - Line 9 minus Line 10]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label11" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. <b>TAX DUE</b> (Multiply Line 11 by ###) If Line 11 is a loss, enter zero</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label12" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+                                                <tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+                                    <div class="" align="right" style="padding: 0 35px 10px 0px; background: #FFFFFF; border: 1px solid #fff;">
+                                        <input type="button" class="submit_button2" value="GOTO Page 1" onclick="ShowPage('Page1')" />
+                                    </div>
+                                    <!--<input id="btnGoToPage1" type="button" value="Go to Page 1" LANGUAGE=javascript onclick="ShowPage(1)">-->
+
+                                    <div class="clear"></div>
+                                    <br />
+
+                                </div>
+                            </div>
+                            <!--SchD ends here-->
+
+                            <!--SchE starts here-->
+                            <div id="NPT_WrkE" style="display: none">
+                                <div class="form_segment">
+                                    <table summary="Employee Pay Sheet" id="hor-zebra">
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td width="70%">
+                                                    <u>Worksheet E: Summary of Payments and Other Credits</u>
+                                                </td>
+
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>1. 2013 Estimated Net Profits Tax Payments
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">2. Payments of 2013 Net Profits Tax made with Application for Extension of Time to File
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3. Overpayment of 2013 Business Income & Receipts Tax or 2011 Net Profits Tax to be applied to this tax return</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">4. Total of lines 1 through 3. Enter here and on Page 1, Line 6b [Calculated - Add lines 1 through 3]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkE_4"
+                                                        style="WIDTH: 100%">
+                                                </td>
+                                            </tr>
+
+                                            <!--<tr>
+                                                <td>3. TAX BASE [Calculated - Line 1 minus Line 2]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_3" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">4. TAX DUE  [Calculated - Multiply Line 3 by ###]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_4" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <br>
+                                                    <b>Wholesalers:</b></td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>5. Receipts on which tax is to be computed by the Alternate 
+    Method</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>&nbsp;&nbsp;&nbsp;Applicable Cost of Goods:</b></td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6a. Cost of material</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>6b. Cost of labor</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">7. TOTAL APPLICABLE COST OF GOODS [Calculated - Line 6a plus Line 6b]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_7" style="width: 100%"></label>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>8. TAX BASE [Calculated - Line 5 minus Line 7]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_8" style="width: 100%"></label>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">9. <b>TAX DUE</b> [Calculated - Multiply Line 8 by ###]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_9" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <br>
+                                                    <b>Retailers:</b></td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>10. Receipts on which tax is to be computed by the Alternate Method</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>&nbsp;&nbsp;&nbsp;Applicable Cost of Goods:</b></td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">11a. Cost of material</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11b. Cost of labor</b></td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. TOTAL APPLICABLE COST OF GOODS [Calculated - Line 11a plus Line 11b]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_12" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>13. TAX BASE [Calculated - Line 10 minus Line 12]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_13" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">14. TAX DUE [Calculated - Multiply Line 13 by ###]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_14" style="WIDTH: 100%"></label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>15. TOTAL TAX DUE [Calculated - Sum Lines 4, 9 and 14]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_15" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+                                            <!-- <tr class="odd">
+                                                <td width="70%">10. Loss carry foward, if any. (<u><font style="cursor: pointer;" onclick="parent.MenuWin.InstructionLinks()">See Instruction Sheet IV</font></u>)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11. Taxable Income (Loss) [Calculated - Line 9 minus Line 10]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label11" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. <b>TAX DUE</b> (Multiply Line 11 by ###) If Line 11 is a loss, enter zero</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label12" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+                                                <tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+                                    <div class="" align="right" style="padding: 0 35px 10px 0px; background: #FFFFFF; border: 1px solid #fff;">
+                                        <input type="button" class="submit_button2" value="GOTO Schedule D" onclick="ShowPage('Page1')" />
+                                    </div>
+                                    <!--<input id="btnGoToPage1" type="button" value="Go to Page 1" LANGUAGE=javascript onclick="ShowPage(1)">-->
+
+                                    <div class="clear"></div>
+                                    <br />
+
+                                </div>
+                            </div>
+                            <!--SchE ends here-->
+
+                            <!--SchK starts here-->
+                            <div id="NPT_WrkK" style="display: none">
+                                <div class="form_segment">
+                                    <table summary="Employee Pay Sheet" id="hor-zebra">
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td width="70%">
+                                                    <u>Worksheet K: 60% Business Income & Receipts Tax Credit</u>
+                                                </td>
+
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>1. Enter the amount from Page 1, Line 1 of the 2013 BIRT-EZ return or
+    the Summary Page, Line 1 of the 2013 Business Income & Receipts Tax return
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">
+                                                    <input id="chkCorpMembers" type="checkbox" onclick="chkCorpMembers_onclick()">
+                                                    Check if entity has Corporate Members
+                                                </td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2. Enter 60% of the amount on Line 1. If your entity has corporate members <b>Stop Here</b> and go to Page 3, Worksheet D -
+                                                    <label class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick='ShowPage("WrkD")'>Click here Worksheet D</label>
+                                                </td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkK_2"
+                                                        style="WIDTH: 100%">
+                                                </td>
+
+                                            </tr>
+                                            <tr id="CorpMembers_1" class="odd" style="DISPLAY: block; VISIBILTY: visible">
+                                                <td width="70%">3. Enter the amount from Page 1, Line 5 of the 2013 Net Profits Tax Return</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_WrkK_3" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+
+                                            <tr id="CorpMembers_2" style="DISPLAY: block; VISIBILTY: visible">
+                                                <td>4. Business Income & Receipts Tax credit allowed. Enter the lesser of Line 2 or Line 3 here and on Page 1, Line 6a</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_3" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <!--<tr class="odd">
+                                                <td width="70%">4. TAX DUE  [Calculated - Multiply Line 3 by ###]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_4" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <br>
+                                                    <b>Wholesalers:</b></td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>5. Receipts on which tax is to be computed by the Alternate 
+    Method</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>&nbsp;&nbsp;&nbsp;Applicable Cost of Goods:</b></td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">6a. Cost of material</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>6b. Cost of labor</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">7. TOTAL APPLICABLE COST OF GOODS [Calculated - Line 6a plus Line 6b]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_7" style="width: 100%"></label>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>8. TAX BASE [Calculated - Line 5 minus Line 7]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_8" style="width: 100%"></label>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">9. <b>TAX DUE</b> [Calculated - Multiply Line 8 by ###]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_9" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <br>
+                                                    <b>Retailers:</b></td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>10. Receipts on which tax is to be computed by the Alternate Method</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>&nbsp;&nbsp;&nbsp;Applicable Cost of Goods:</b></td>
+                                                <td align="center" class="no_border_right"></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">11a. Cost of material</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11b. Cost of labor</b></td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. TOTAL APPLICABLE COST OF GOODS [Calculated - Line 11a plus Line 11b]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_12" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>13. TAX BASE [Calculated - Line 10 minus Line 12]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_13" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">14. TAX DUE [Calculated - Multiply Line 13 by ###]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_14" style="WIDTH: 100%"></label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>15. TOTAL TAX DUE [Calculated - Sum Lines 4, 9 and 14]&nbsp;</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="lblBPT_SchE_15" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+                                            <!-- <tr class="odd">
+                                                <td width="70%">10. Loss carry foward, if any. (<u><font style="cursor: pointer;" onclick="parent.MenuWin.InstructionLinks()">See Instruction Sheet IV</font></u>)</td>
+                                                <td align="center" class="no_border_right">
+                                                    <input type="text" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11. Taxable Income (Loss) [Calculated - Line 9 minus Line 10]</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label11" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td width="70%">12. <b>TAX DUE</b> (Multiply Line 11 by ###) If Line 11 is a loss, enter zero</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label12" style="width: 100%"></label>
+                                                </td>
+                                            </tr>
+                                                <tr>
+                                                <td>5. Income(Loss) to be apportioned</td>
+                                                <td align="center" class="no_border_right">
+                                                    <label id="Label5" style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>-->
+
+                                        </tbody>
+                                    </table>
+                                    <div class="clear"></div>
+                                    <div class="" align="right" style="padding: 0 35px 10px 0px; background: #FFFFFF; border: 1px solid #fff;">
+                                        <input type="button" class="submit_button2" value="GOTO Page 1" onclick="ShowPage('Page1')" />
+                                    </div>
+                                    <!--<input id="btnGoToPage1" type="button" value="Go to Page 1" LANGUAGE=javascript onclick="ShowPage(1)">-->
+
+                                    <div class="clear"></div>
+                                    <br />
+
+                                </div>
+                            </div>
+                            <!--SchK ends here-->
+
+                            <!--Page4 starts here-->
+                            <div id="NPT_Page4" style="display: none">
+                                <div class="account_greybox_new">
+
+                                    <p>
+                                        <strong>Worksheet NR-3:</strong><br />
+                                        <br />
+
+                                        Computation of apportionment factors to be
+    applied to apportionable net income of certain <u>non-residents</u> of Philadelphia.
+                                    </p>
+                                    
+                                    <div class="clear"></div>
+                                    <table id="hor-zebra" summary="Employee Pay Sheet" class="no_magin_bothside">
+
+                                        <tbody>
+
+                                            <tr class="even">
+                                                <td colspan="2"><strong>Calculation of Average Values of Real and Tangible Property
+    Used in Business:</strong></td>
+                                                <td width="20%" align="center"><strong>Column A<br />
+                                                    Within Philadelphia</strong></td>
+                                                <td width="20%" align="center"><strong>Column B<br />
+                                                    Total Everywhere</strong></td>
+                                            </tr>
+
+
+                                            <tr class="odd">
+                                                <td width="4%">1.</td>
+                                                <td width="56%">Inventories of Raw Materials, Work in Process and Finished Goods </td>
+                                                <td width="20%" align="center">
+                                                    <input type="text"></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text"></td>
+
+                                            </tr>
+                                            <tr class="even">
+                                                <td width="4%">2.</td>
+                                                <td width="56%">Land and Buildings Owned (at average orginal cost)  </td>
+                                                <td width="20%" align="center">
+                                                    <input type="text"></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text"></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>3.</td>
+                                                <td>Machinery and Equipment Owned (at average orginal cost) Finished Goods</td>
+                                                <td width="20%" align="center">
+                                                    <input type="text"></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text"></td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>4.</td>
+                                                <td>Other Tangiable Assets Owned (at average orginal cost) </td>
+                                                <td width="20%" align="center">
+                                                    <input type="text"></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text"></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>5.</td>
+                                                <td>Rented Property (at 8 times the net annual rental)</td>
+                                                <td width="20%" align="center">
+                                                    <input type="text"></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text"></td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>6.</td>
+                                                <td>Total average value of Property used WITHIN PHILADELPHIA</td>
+                                                <td width="20%" align="center">
+                                                    <input type="text"></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text"></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>7.</td>
+                                                <td>Total average value of Property used EVERYWHERE</td>
+                                                <td width="20%" align="center">
+                                                    <input type="text"></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text"></td>
+                                            </tr>
+
+                                            <tr class="even">
+                                                <td colspan="4"><strong>Computation of Apportionment Factors: </strong></td>
+                                            </tr>
+
+                                            <tr class="odd">
+                                                <td>8a.</td>
+                                                <td colspan="2">Total Average Value of Philadelphia Property from Column A, Line 6 above <span class="text_right">assdads</span></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text">
+                                                    <div class="clear"></div>
+                                                </td>
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>8b.</td>
+                                                <td colspan="2">Total Average Value of Property Everywhere from Column B, Line 7 above<span class="text_right">&nbsp;</span></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text">
+                                                    <div class="clear"></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>8c.</td>
+                                                <td colspan="2">Philadelphia Property Factor <span class="text_right">[Calculated - Line 8a Divided by Line 8b]</span></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text">
+                                                    <div class="clear"></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>9a.</td>
+                                                <td colspan="2">Philadelphia Payroll <span class="text_right">&nbsp;</span></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text">
+                                                    <div class="clear"></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>9b.</td>
+                                                <td colspan="2">Payroll Everywhere <span class="text_right">&nbsp;</span></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text">
+                                                    <div class="clear"></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>9c.</td>
+                                                <td colspan="2">Philadelphia Payroll Factor  <span class="text_right">[Calculated - Line 9a Divided by Line 9b]</span></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <input type="text">
+                                                    <div class="clear"></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>10a.</td>
+                                                <td colspan="2">Philadelphia Receipts </td>
+                                                <td class="no_border_right" align="center">
+                                                    <input type="text">
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>10b.</td>
+                                                <td colspan="2">Gross Receipts Everywhere</td>
+                                                <td class="no_border_right" align="center">
+                                                    <input type="text">
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>10c.</td>
+                                                <td colspan="2">Philadelphia Receipts Factor <span class="text_right">[Calculated - Line 10a Divided by Line 1013]</span></td>
+                                                <td class="no_border_right" align="center">
+                                                    <input type="text">
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>11.</td>
+                                                <td colspan="2">TOTAL FACTORS (Total of Lines 8C, 9C, and 10C)</td>
+                                                <td class="no_border_right" align="center">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_Page4_11" 
+      style="WIDTH: 100%"></label>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>12.</td>
+                                                <td colspan="2">Philadelphia apportionment factor (Line 11 divided by applicable number of factors)<br /> Enter factor on Worksheet B, Line 5</td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_Page4_12" 
+      style="WIDTH: 100%"></label>
+                                                    <div class="clear"></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>13.</td>
+                                                <td colspan="2">Enter factor on Worksheet B, Line 5</span></td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_Page4_13" 
+      style="WIDTH: 100%"></label>
+                                                    <div class="clear"></div>
+                                                </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>12.</td>
+                                                <td colspan="2">Multiply Line 13 times Line 12. Enter here and on Worksheet B, Page 2, Line 5</td>
+                                                <td width="20%" class="no_border_right" align="center">
+                                                    <label class="inpReadOnlyRt" id="lblNPT_Page4_14" style="WIDTH: 100%"></label>
+                                                    <div class="clear"></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <!--Page4 ends here-->
+
+                        </form>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="quicklink_btm_gen"></div>
+
+
+        </div>
+    </div>
+</body>
+</html>

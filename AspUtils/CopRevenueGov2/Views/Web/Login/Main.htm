@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+
+<TITLE></TITLE>
+<script ID="clientEventHandlersJS" language="javascript" type="text/javascript">
+   
+
+function DisplayMain() {
+
+	LogMain.style.display = 'block'
+	$('#AppHeader').html('Online Services');  //+	txtHeader + '<Font class=hdrMeduim>|General</Font>'
+	parent.MenuWin.gsInstructionItem = '';
+}		//DisplayMain
+
+
+function MainLinks123() {
+
+
+    gsLoginPage = '';
+
+
+	switch (event.srcElement.id) {
+		case 'lnkProfile': 
+		case 'lnkSIT':
+		case 'lnkWage':
+		case 'lnkBPTez':
+		case 'lnkBPTlf':
+		case 'lnkNPT':
+		case 'lnkU&O':
+		case 'lnkTOB':
+		case 'lnkDelPay':
+		    if (event.srcElement.id == 'lnkProfile') {
+		        gsLoginPage = 'PROFILE';
+		    } else if (event.srcElement.id == 'lnkSIT') {
+		        gsLoginPage = 'SIT';
+		    } else if (event.srcElement.id == 'lnkWage') {
+		        gsLoginPage = 'WAGE';
+		    } else if (event.srcElement.id == 'lnkBPTez') {
+		        gsLoginPage = 'BPTez';
+		    } else if (event.srcElement.id == 'lnkBPTlf') {
+		        gsLoginPage = 'BPTlf';
+		    } else if (event.srcElement.id == 'lnkNPT') {
+		        gsLoginPage = 'NPT';
+		    } else if (event.srcElement.id == 'lnkU&O') {
+		        gsLoginPage = 'U&O';
+		    } else if (event.srcElement.id == 'lnkTOB') {
+		        gsLoginPage = 'TOB';
+		    } else if (event.srcElement.id == 'lnkDelPay') {
+		        gsLoginPage = 'DELPAY';
+		    } 	//if
+		    parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuLogLogon);
+		    ShowForm('LogLogin');
+		    break;
+		case 'lnkPIN':
+		    parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuLogPinApply);
+		    ShowForm('LogPinApply');
+		    break;
+		case 'lnkID':
+		    parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuLogNewAcct);
+		    ShowForm('LogApplyFirst');
+		    break;
+		case 'lnkCoupon':
+		case 'lnkNTL':
+		    parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuLogPayCoupon)
+		    if (event.srcElement.id == 'lnkNTL') {
+		        bNtlOnly = 'TRUE';
+		    } 	//if
+		    ShowForm('LogCoupon');
+		    //			parent.DocWin.location.href = '../PayCoupon/Login_paycoupon.asp'
+		    break;
+	}		//switch
+} 	//MainLinks
+function MainLinks() {
+   
+    var evt = window.event || arguments.callee.caller.arguments[0];
+    var source = evt.target || evt.srcElement;
+    sourceid = source.id;
+    gsLoginPage = '';
+	
+    switch (sourceid) {
+        case 'lnkProfile':
+        case 'lnkSIT':
+        case 'lnkWage':
+        case 'lnkBPTez':
+        case 'lnkBPTlf':
+        case 'lnkNPT':
+        case 'lnkU&O':
+        case 'lnkTOB':
+        case 'lnkDelPay':
+            if (sourceid == 'lnkProfile') {
+                gsLoginPage = 'PROFILE';
+            } else if (sourceid == 'lnkSIT') {
+
+                gsLoginPage = 'SIT';
+            } else if (sourceid == 'lnkWage') {
+                gsLoginPage = 'WAGE';
+            } else if (sourceid == 'lnkBPTez') {
+                gsLoginPage = 'BPTez';
+            } else if (sourceid == 'lnkBPTlf') {
+                gsLoginPage = 'BPTlf';
+            } else if (sourceid == 'lnkNPT') {
+                gsLoginPage = 'NPT';
+            } else if (sourceid == 'lnkU&O') {
+                gsLoginPage = 'U&O';
+            } else if (sourceid == 'lnkTOB') {
+                gsLoginPage = 'TOB';
+            } else if (sourceid == 'lnkDelPay') {
+                gsLoginPage = 'DELPAY';
+            }
+            $('#mnuLogLogon').css("cursor", "pointer");
+            $('#mnuLogLogon').css("color", "blue");
+            // parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuLogLogon)
+
+            ShowForm('LogLogin');
+            break;
+        case 'lnkPIN':
+            $('#mnuLogPinApply').css("cursor", "pointer");
+            $('#mnuLogPinApply').css("color", "blue");
+            //  parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuLogPinApply)
+            ShowForm('LogPinApply');
+            break;
+        case 'lnkID':
+            //   parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuLogNewAcct)
+
+            $('#mnuLogNewAcct').css("cursor", "pointer");
+            $('#mnuLogNewAcct').css("color", "blue");
+            ShowForm('LogApplyFirst');
+            break;
+        case 'lnkCoupon':
+        case 'lnkNTL':
+            $('#mnuLogPayCoupon').css("cursor", "pointer");
+            $('#mnuLogPayCoupon').css("color", "blue");
+            // parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuLogPayCoupon)
+            if (sourceid == 'lnkNTL') {
+                bNtlOnly = 'TRUE';
+            } 	//if
+            ShowForm('LogCoupon');
+            //			parent.DocWin.location.href = '../PayCoupon/Login_paycoupon.asp'
+            break;
+    } 	//switch
+} 	//MainLinks
+
+</script>
+
+</HEAD>
+<BODY>
+<DIV style="DISPLAY: block; VISIBILTY: visible" Id="LogMain" Name="LogMain">
+	<table cellSpacing="0" cellPadding="0" width="525" border=0 style="MARGIN-TOP: 5px; MARGIN-LEFT: 4%">
+		<tr>
+      <td width="525"> <p class="lblTextBlack"> 
+          <!--Replaced per Tom 11.12.2003
+						Presently, the Philadelphia Revenue Department offers the opportunity to
+						file the Application for a Business Tax Account Number, the 2002 School Income
+						Tax Return and the 2002 Annual Wage Tax Reconciliation Return online. To use these
+						services, you need a Philadelphia Tax Account Number and a Philadelphia Revenue
+						Department Personal Identification Number (PIN).</p> -->
+<!--          Three functionalities are available online: file and pay for a School 
+          Income Tax return, file and pay for a Wage Tax Reconciliation return, 
+          and register for a tax Account Number and pay for the Business Privilege 
+          License. <br>
+          <strong>Note: You cannot file or pay for periodic Wage Tax filings online.</strong><br>
+        </p>-->
+<!--EGOVWEB-44 EDD Removed label-->
+				<p class="lblTextBlack" style="MARGIN-TOP: 10px">
+						For Instructions and Frequently Asked Questions, click 
+						<a id=lnkInstruction class="lblLink" onclick="parent.MenuWin.InstructionLinks()"><u>here.</u></a></p>
+
+				<p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-BOTTOM: 1px"><strong>
+						1. <a id=lnkID class="lblLink" onclick="MainLinks()">Register for a tax account number</a></strong></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">After successful 
+						registration, you will receive an e-mail confirmation that includes your account number and PIN.</p>
+
+				<p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-BOTTOM: 1px"><strong>2. File and Pay the following: 
+						</strong></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">
+						<IMG id=img2 align=center height=6px src="../Content/Images/ispDot.gif" width=6px style="MARGIN-RIGHT: 5px">
+						<a id=lnkSIT class="lblLink" onclick="MainLinks()" >School Income Tax</a></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">
+						<IMG id=img2 align=center height=6px src="../Content/Images/ispDot.gif" width=6px style="MARGIN-RIGHT: 5px">
+						<a id=lnkWage class="lblLink" onclick="MainLinks()">Wage Tax Annual Reconciliation</a></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">
+						<IMG id=img2 align=center height=6px src="../Content/Images/ispDot.gif" width=6px style="MARGIN-RIGHT: 5px">
+						<a id=lnkBPTez class="lblLink" onclick="MainLinks()">Business Income and Receipts EZ Return</a></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">
+						<IMG id=img2 align=center height=6px src="../Content/Images/ispDot.gif" width=6px style="MARGIN-RIGHT: 5px">
+						<a id=lnkBPTlf class="lblLink" onclick="MainLinks()">Business Income and Receipts Tax Long Form</a></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">
+						<IMG id=img2 align=center height=6px src="../Content/Images/ispDot.gif" width=6px style="MARGIN-RIGHT: 5px">
+						<a id=lnkNPT class="lblLink" onclick="MainLinks()">Net Profits Tax Return</a></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">
+						<IMG id=img4 align=center height=6px src="../Content/Images/ispDot.gif" width=6px style="MARGIN-RIGHT: 5px">
+						<a id=lnkU&O class="lblLink" onclick="MainLinks()">Use & Occupancy Tax Return</a></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">
+						<IMG id=img1 align=center height=6px src="../Content/Images/ispDot.gif" width=6px style="MARGIN-RIGHT: 5px">
+						<a id=lnkTOB class="lblLink" onclick="MainLinks()">Tobacco Tax Return</a></p>
+<!--EGOVWEB-108-->
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">
+						<IMG id=img3 align=center height=6px src="../Content/Images/ispDot.gif" width=6px style="MARGIN-RIGHT: 5px">
+						<a id="lnkDelPay" class="lblLink" onclick="MainLinks()">Pay Delinquent Tax Bill</a></p>
+
+				<!--<p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-BOTTOM: 1px">Tax due on these returns or bill can be paid with a credit card or E-Check. A 2.49% user fee will be added to the amount due when paying by credit card or a flat fee of parent.$1.50 when paying by E-Check up to parent.$100,000. You will receive a confirmation number after filing a return. Please print a copy of your records.</p>-->
+				<p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-BOTTOM: 1px">Tax due on these returns or bill can be paid with a credit card or E-Check. A 2.49% user fee will be added to the amount due when paying by credit card or a flat fee of parent.$1.50 when paying by E-Check up to parent.$500,000. There will be a user fee of parent.$3.95 for delinquent tax payments when paying by VISA Debit card. You will receive a confirmation number after filing a return. Please 
+				print a copy of your records.</p>
+												
+				<p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-BOTTOM: 1px"><i>This option requires a Philadelphia
+						Tax account number and a Revenue Department Personal Identification Number (PIN). If you have forgotten
+						your PIN or need to apply for a PIN, click <a id=lnkPIN class="lblLink" onclick="MainLinks()">here.<a>
+						<b>NOTE: You cannot file and pay periodic wage tax payments online.</b></i></p>
+
+				<p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-BOTTOM: 1px"><strong>
+						3. <a id=lnkCoupon class="lblLink" onclick="MainLinks()">Print a Payment coupon</a></strong></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">You must be registered 
+						for the tax type in order to print a coupon. School Income Tax and Earnings Tax coupons require
+						a PIN number.</p>
+
+				<p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-BOTTOM: 1px"><strong>
+						4. <a id=lnkNTL class="lblLink" onclick="MainLinks()">Report no tax liability for a wage tax period</a></strong></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; MARGIN-LEFT: 20px">If you do not have
+						payroll for a reporting period, you must file a coupon indicating no tax due to prevent a non-
+						filer notice.</p>
+
+<!--				<p class="lblTextBlack" style="MARGIN-TOP: 10px">What would you like to do?</p>
+        <p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-LEFT: 20px"> If 
+          you already have a PIN, you can:</p>
+				<p class="lblTextBlack" style="LINE-HEIGHT: 0; MARGIN-LEFT: 30px">
+						<a id=lnkSITold class="lblLink" onclick="MainLinks()">
+								File a School Income Tax Return.</a></p>
+				<p class="lblTextBlack" style="LINE-HEIGHT: 0px; MARGIN-LEFT: 30px">
+						<a id=lnkWageOld class="lblLink" onclick="MainLinks()">
+								File a Wage Tax Reconciliation Return.</a></p>
+				<p class="lblTextBlack" style="LINE-HEIGHT: 0px; MARGIN-LEFT: 30px">
+						<a id=lnkBPTezOld class="lblLink" onclick="MainLinks()">
+								File a Business Privilege Tax - EZ Return and/or a Net Profits Tax Return.</a></p>
+				<p class="lblTextBlack" style="LINE-HEIGHT: 0px; MARGIN-LEFT: 30px">
+						<a id=lnkProfile class="lblLink" onclick="MainLinks()">
+								Update Profile.</a></p>
+	      <p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-LEFT: 20px">
+	      		<a id=lnkPIN class="lblLink" onclick="MainLinks()">Apply for a PIN (or re-apply
+	      		if you have forgotten your PIN)</a></p>
+	      <p class="lblTextBlack" style="MARGIN-TOP: 10px; MARGIN-LEFT: 20px">
+						<a id=lnkIDold class="lblLink" onclick="MainLinks()">Apply for a Tax Account Number</a></p>
+	      <p class="lblTextBlack" style="LINE-HEIGHT: 0px; MARGIN-TOP: 10px; MARGIN-LEFT: 20px">
+						<a id=lnkCouponOld class="lblLink" onclick="MainLinks()">    Print a Payment Coupon</a></p>
+	      <p class="lblTextBlack" style="LINE-HEIGHT: 0px; MARGIN-LEFT: 20px">
+						<a id=lnkNTLOld class="lblLink" onclick="MainLinks()">    File Wage No Tax Liability for a Period</a></p>
+				<p class="lblTextBlack" style="MARGIN-TOP: 10px">
+						After successfully registering for an account number or filing a tax return,
+						you will receive an e-mail confirmation for your records.</p>
+        <p class="lblTextBlack" style="MARGIN-TOP: 10px"> You can pay what is 
+          due via credit card. <strong>A user fee will be added to the amount 
+          due when paying by credit card.</strong></p>-->
+			</td>
+	  </tr>
+	</table>
+</DIV></BODY></HTML>

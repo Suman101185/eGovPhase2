@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
+<head>
+
+<style>
+	.inpNormal, .inpReadOnlyRt, .inpError { text-align: right; }
+</style>
+</head>
+
+<BODY onload='LoadError("WrkC")'>
+<DIV id=NPT_WrkC style="DISPLAY: none; VISIBILTY: hidden" Name="NPT_WrkC">
+<TABLE class=tblShowBorder id=TABLE1 style="MARGIN-LEFT: 4%" cellSpacing=0 
+cellPadding=0 width="90%" border=0>
+  
+  <TR height=0>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD></TR>
+  <TR class=rowDataEven>
+    <TD colSpan=20><LABEL class=lblInstrNormal><U>Worksheet C: Computation Of Estimated Tax Base</U>
+    <br>If the amount on Line 3 is $100 or less, estimated payments are NOT required. If the amount on Line 3
+    is greater than $100, enter 25% of the amount on Line 3 on the first estimated coupon (ENP-1), Line 1 and
+    the second estimated coupon (ENP-2), Line 1. If Net Profits Tax estimated payments are required, there
+    are two payments due. The 1st estimated tax payment is due April 17, 2012 and the 2nd estimated tax payment is due June 15, 2012. <b>Estimated tax payments are not required on September 15, 2012 or January 15, 2013.</b>
+    </LABEL></TD> 
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>1.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Net Profits Liability from Page 1, Line 5</LABEL></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkC_1 style="WIDTH: 100%"></LABEL></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>2.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Business Privilege Tax Credit from Page 1, Line 6a 
+    Worksheet D, Line 8</LABEL> </TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkC_2 style="WIDTH: 100%"></LABEL></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>3.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>Estimated Payment Base</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Subtract Line 2 from Line 1]&nbsp;</LABEL></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkC_3 
+      style="WIDTH: 100%"></LABEL></TD></TR>
+</TABLE>
+<P></P>
+<TABLE style="MARGIN-LEFT: 4%" width="90%" border=0>
+  <TR>
+    <TD><INPUT language=javascript id=btnGoToPage1 onclick='ShowPage("Page1","WrkC")' type=button value="Return to Page 1"></TD>
+  </TR>
+</TABLE>
+</DIV><!--NPT_WrkC-->
+</BODY>
+</HTML>

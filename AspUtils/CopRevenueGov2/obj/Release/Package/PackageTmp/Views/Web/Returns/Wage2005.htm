@@ -1,0 +1,957 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=unicode">
+<meta NAME="GENERATOR" Content="MSHTML 5.50.4134.600"  >
+<script ID="clientEventHandlersJS" LANGUAGE="javascript">
+
+var arrNumWage05Err = new Array()
+var arrWage05Err = new Array()
+var txtHeader = 'Taxpayer Information'
+var dResTax_A, dResTax_B, dNonResTax_A, dNonResTax_B
+
+function AdjustNameDisplay(incName)
+{
+	var sEntityName = incName
+	var lName = "", fName = "", mName = "", newName = ""
+		
+	if (sEntityName.indexOf("*") != -1)
+	{//If name contains *'s
+		sEntityName = sEntityName.split("*")
+		lName = (sEntityName[0].substr(0,1)) + (sEntityName[0].substr(1).toLowerCase())
+		if (sEntityName[1]) 
+		{
+			fName = (sEntityName[1].substr(0,1)) + (sEntityName[1].substr(1).toLowerCase())
+		}		//if
+		
+		if (sEntityName[2]) 
+		{
+			mName = sEntityName[2].substr(0,1).toUpperCase()
+		}
+		sEntityName = fName + " " + mName + " " + lName
+	}		//if
+		return sEntityName
+}//AdjustNameDisplay
+
+
+function DisplayWage05Return() {
+	if (parent.MenuWin.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT = 1]")) {
+		parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuWageYear05)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 'INQ', 'WAGE_INFO/RETURN_STATUS', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 
+				ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO/ENTITY_ID', "", 0),
+				'WAGE_INFO/ENTITY_ID', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 
+				ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO/ACCOUNT_ID', "", 0),
+				'WAGE_INFO/ACCOUNT_ID', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '12/31/2005', 'WAGE_INFO/PERIOD', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'DEBUG', '', 0)
+ 		ispCallXMLForm(parent.MenuWin.xmlWage, parent.MenuWin.xmlWage, "../WageReturn.asp","")
+		ispHideProgress()
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'ERROR_INFO/ERROR', "", 0) != 0) {
+			parent.RightFrame.rows = '*,0'
+			WageReturn_05.style.display = 'block'
+			AppHeader.innerHTML = txtHeader + 
+					'<Font class=hdrMedium>|wage tax reconciliation return</Font>'
+			PopulateWage05Header()
+			FieldLock_05(true)
+			AppError.innerText = ispXmlGetFieldVal(parent.MenuWin.xmlWage,
+					'ERROR_INFO/MESSAGE', "", 0)
+			btnWage05Submit.disabled = true
+			chkAmended_05.disabled = true
+			return
+		}		//if
+		if (parent.MenuWin.divAcctInfo.style.display == 'none') {
+			parent.MenuWin.divAcctInfo.style.display = 'block'
+			parent.MenuWin.divAccount.style.display = 'none'
+		}		//if
+	}	else {
+		parent.MenuWin.ispMenu_onclick(parent.MenuWin.mnuAcctInfo)
+	}		//if
+
+//EHD for testing		
+//		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '$6,130.00', 'AMT_INFO/TAX_PAID', '', 0)
+//		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '$6,130.00', 'AMT_INFO/TAX_OVERPAID', '', 0)		
+
+	parent.RightFrame.rows = '*,0'
+	WageReturn_05.style.display = 'block'
+
+	AppHeader.innerHTML = txtHeader + 
+			'<Font class=hdrMedium>|wage tax reconciliation return for 2005</Font>'	
+	parent.MenuWin.gsInstructionItem = '#WageReturn'
+	AppMessage.innerHTML = parent.MenuWin.gsInstructionText +
+			'<BR>The Reconciliation of Wage Tax for 2005 is due Feburary 28, 2006.'
+	InstructionText.innerHTML = ' for Instructions on filing this return'
+			
+	LoadWage05Error()
+	RightAlignText()
+	CheckWage05XML()
+	SetWage05Fields()
+	PopulateWage05Header()
+	PopulateWage05Data()
+	AppError.innerText = ""
+//	txtWageNoA_05.select()
+}		//DisplayWage05Return
+
+
+function SetWage05Fields() {
+	FieldLock_05(false)
+	chkAmended_05.disabled = true
+//	btnWage05Submit.title = ''
+//	btnWage05Submit.disabled = false
+	chkAgreement_05.checked = false
+	chkAmended_05.checked = false
+	
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/VERSION', '', 0) != '') {
+		chkAmended_05.disabled = false
+		FieldLock_05(true)
+	}		//if
+	
+//	if (new Date() <= new Date('07/01/2005')) {
+//		txtWageNo6_05.disabled = true
+//		txtWageNo10_05.disabled = true
+//	}		//if
+	
+/*	if (chkAgreement_05.checked == false) {
+		btnWage05Submit.title = 'Check the disclaimer\n to activate the Submit Button'
+		btnWage05Submit.disabled = true
+	}		//if		*/
+}		//SetWage05Fields
+
+
+function FieldLock_05(bDisabled) {
+
+	txtWageNoA_05.disabled = bDisabled
+	txtWageNoB_05.disabled = bDisabled
+	txtWageNoC_05.disabled = bDisabled
+	txtWageNoD_05.disabled = bDisabled
+	txtWageNo1_05.disabled = bDisabled
+	txtWageNo2_05.disabled = bDisabled
+	lblWageNo3_05.disabled = bDisabled
+	txtWageNo4_05.disabled = bDisabled
+	lblWageNo5_05.disabled = bDisabled
+	txtWageNo6_05.disabled = bDisabled
+	lblWageNo7_05.disabled = bDisabled
+//	txtWageNo8_05.disabled = bDisabled
+	lblWageNo8_05.disabled = bDisabled
+	lblWageNo9_05.disabled = bDisabled
+	lblWageNo10_05.disabled = bDisabled
+	lblWageNo11_05.disabled = bDisabled
+//	lblWageNo12_05.disabled = bDisabled
+//	lblWageNo13_05.disabled = bDisabled
+//	lblWageNo14_05.disabled = bDisabled
+//	lblWageNo15_05.disabled = bDisabled
+	chkAgreement_05.disabled = bDisabled
+}		//FieldLock_05
+
+
+function CheckWage05XML() {
+var bPeriodExist = true
+//	return
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/PERIOD', '', 0) != '' &&
+			new Date(ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/PERIOD', '', 0)) < 
+			new Date('01/01/2005')) {
+		bPeriodExist = false
+	}		//if
+
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/PERIOD', '', 0) == '') {
+		bPeriodExist = false
+	}		//if
+
+	if (bPeriodExist == false) {
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'ERROR_INFO/PROGRAM', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'ERROR_INFO/ERROR', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'ERROR_INFO/LINE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'ERROR_INFO/MESSAGE', '', 0)
+			
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '12/31/2005', 'WAGE_INFO/PERIOD', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'WAGE_INFO/VERSION', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'WAGE_INFO/DOCUMENT_CONTROL', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'WAGE_INFO/SEQUENCE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'WAGE_INFO/LAST_UPD_DATE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'WAGE_INFO/RETURN_STATUS', '', 0)
+
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'WAGE_INFO/NO_OF_RESIDENTS', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'WAGE_INFO/NO_OF_NONRESIDENTS', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'WAGE_INFO/TOTAL_EMPLOYEES', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'WAGE_INFO/PHILA_EMPLOYEES', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/GROSS_COMP', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/NON_TAXABLE_COMP', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/NET_COMP', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/RESIDENT_PAYROLL_A', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/RESIDENT_TAX_DUE_A', '', 0)
+//		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/RESIDENT_PAYROLL_B', '', 0)
+//		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/RESIDENT_TAX_DUE_B', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/NON_RES_PAYROLL_A', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/NON_RES_TAX_DUE_A', '', 0)
+//		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/NON_RES_PAYROLL_B', '', 0)
+//		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/NON_RES_TAX_DUE_B', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/TOTAL_GROSS_TAX_DUE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/TAX_PAID', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/TAX_DUE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, 0, 'AMT_INFO/TAX_OVERPAID', '', 0)		
+	}		//if
+}		//CheckWage05XML
+
+
+function PopulateWage05Header() {
+var addrIdx
+
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO/ENTITY_ID', '', 0) != '') {
+		lblAcctId_05.innerText = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO/ACCOUNT_ID', '', 0)
+		lblEntityId_05.innerText = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO/ENTITY_ID', '', 0)
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO/TYPE', '', 0) == 1) {
+			lblEntityType_05.innerText = 'EIN:'
+			lblEntityId_05.innerText = ' ' + lblEntityId_05.innerText.substr(0,2) + '-'	+ 
+					lblEntityId_05.innerText.substr(2)
+		} else {
+			lblEntityType_05.innerText = 'SSN:'
+			lblEntityId_05.innerText = ' ' + lblEntityId_05.innerText.substr(0,3) + '-'	+ 
+					lblEntityId_05.innerText.substr(3,2) + '-' + lblEntityId_05.innerText.substr(5)
+		}		//if
+		addrIdx = LocatePrimaryAddr()
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/TRADE_NAME', '', addrIdx) != '') {
+			lblName_05.innerText = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/TRADE_NAME', '', addrIdx)
+		} else {
+			lblName_05.innerText = AdjustNameDisplay(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/NAME', '', addrIdx))
+		}		//if
+		lblAddress_05.innerText = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/ADDRESS1', '', addrIdx) +
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/ADDRESS2', '', addrIdx) +
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/CITY', '', addrIdx) +
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/STATE', '', addrIdx) +
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/ZIP', '', addrIdx)
+	}		//if
+}		//PopulateWage05Header
+
+
+function PopulateWage05Data() {
+
+	dResTax_A = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/RESTAX_A', '', 0)
+//	dResTax_B = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/RESTAX_B', '', 0)
+	dNonResTax_A = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/NONRESTAX_A', '', 0)
+//	dNonResTax_B = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/NONRESTAX_B', '', 0)
+
+	txtWageNoA_05.value = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/NO_OF_RESIDENTS', '', 0)
+	txtWageNoB_05.value = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/NO_OF_NONRESIDENTS', '', 0)
+	txtWageNoC_05.value = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/TOTAL_EMPLOYEES', '', 0)
+	txtWageNoD_05.value = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/PHILA_EMPLOYEES', '', 0)
+	txtWageNo1_05.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/GROSS_COMP', '', 0), 0)
+	txtWageNo2_05.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/NON_TAXABLE_COMP', '', 0), 0)
+	lblWageNo3_05.innerText = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/NET_COMP', '', 0), 0)
+	txtWageNo4_05.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/RESIDENT_PAYROLL_A', '', 0), 0)
+	lblWageNo5_05.innerText = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/RESIDENT_TAX_DUE_A', '', 0), 0)
+//	txtWageNo6_05.value = ispFormatMoney(
+//			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/RESIDENT_PAYROLL_B', '', 0), 0)
+//	lblWageNo7_05.innerText = ispFormatMoney(
+//			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/RESIDENT_TAX_DUE_B', '', 0), 0)
+	txtWageNo6_05.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/NON_RES_PAYROLL_A', '', 0), 0)
+	lblWageNo7_05.innerText = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/NON_RES_TAX_DUE_A', '', 0), 0)
+//	txtWageNo10_05.value = ispFormatMoney(
+//			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/NON_RES_PAYROLL_B', '', 0), 0)
+//	lblWageNo11_05.innerText = ispFormatMoney(
+//			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/NON_RES_TAX_DUE_B', '', 0), 0)
+	lblWageNo8_05.innerText = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/TOTAL_GROSS_TAX_DUE', '', 0), 0)
+	lblWageNo9_05.innerText = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/TAX_PAID', '', 0), 0)
+	lblWageNo10_05.innerText = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/TAX_DUE', '', 0), 0)
+	lblWageNo11_05.innerText = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/TAX_OVERPAID', '', 0), 0)
+}		//PopulateWage05Data
+
+
+function PopulateWage05XML() {
+var d = new Date()
+var lYear = String(d.getFullYear())
+var lMonth = String(d.getMonth() + 1)
+lMonth = lMonth.length == 1 ? '0' + lMonth : lMonth
+var lDate = String(d.getDate())
+lDate = lDate.length == 1 ? '0' + lDate : lDate
+
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'AMT_INFO/POSTING_DATE', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, lMonth + '/' + lDate + '/' + lYear, 'AMT_INFO/FILING_DATE', '', 0)
+
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, txtWageNoA_05.value, 'WAGE_INFO/NO_OF_RESIDENTS', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, txtWageNoB_05.value, 'WAGE_INFO/NO_OF_NONRESIDENTS', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, txtWageNoC_05.value, 'WAGE_INFO/TOTAL_EMPLOYEES', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, txtWageNoD_05.value, 'WAGE_INFO/PHILA_EMPLOYEES', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(txtWageNo1_05.value), 'AMT_INFO/GROSS_COMP', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(txtWageNo2_05.value), 'AMT_INFO/NON_TAXABLE_COMP', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo3_05.innerText), 'AMT_INFO/NET_COMP', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(txtWageNo4_05.value), 'AMT_INFO/RESIDENT_PAYROLL_A', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo5_05.innerText), 'AMT_INFO/RESIDENT_TAX_DUE_A', '', 0)
+//	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(txtWageNo6_05.value), 'AMT_INFO/RESIDENT_PAYROLL_B', '', 0)
+//	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo7_05.innerText), 'AMT_INFO/RESIDENT_TAX_DUE_B', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(txtWageNo6_05.value), 'AMT_INFO/NON_RES_PAYROLL_A', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo7_05.innerText), 'AMT_INFO/NON_RES_TAX_DUE_A', '', 0)
+//	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(txtWageNo10_05.value), 'AMT_INFO/NON_RES_PAYROLL_B', '', 0)
+//	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo11_05.innerText), 'AMT_INFO/NON_RES_TAX_DUE_B', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo8_05.innerText), 'AMT_INFO/TOTAL_GROSS_TAX_DUE', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo9_05.innerText), 'AMT_INFO/TAX_PAID', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo10_05.innerText), 'AMT_INFO/TAX_DUE', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, ispStripCurrency(lblWageNo11_05.innerText), 'AMT_INFO/TAX_OVERPAID', '', 0)
+
+	ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'DEBUG', '', 0)
+}		//PopulateWage05XML
+
+
+function RightAlignText(){
+var ObjSelected
+	txtWageNoA_05.style.textAlign = 'right'
+	txtWageNoB_05.style.textAlign = 'right'
+	txtWageNoC_05.style.textAlign = 'right'
+	txtWageNoD_05.style.textAlign = 'right'
+	txtWageNo1_05.style.textAlign = 'right'
+	txtWageNo2_05.style.textAlign = 'right'
+	txtWageNo4_05.style.textAlign = 'right'
+	txtWageNo6_05.style.textAlign = 'right'
+//	txtWageNo8_05.style.textAlign = 'right'
+//	txtWageNo10_05.style.textAlign = 'right'
+//	lblWageNo13_05.style.textAlign = 'right'
+}		//RightAlignText
+
+
+function LoadWage05Error() {
+	var i=0
+
+	arrWage05Err[i++] = [txtWageNo1_05, 'txtWageNo1_05.value == ""', 'Answer Question 1']
+	arrWage05Err[i++] = [txtWageNo1_05, 'ispValue(txtWageNo1_05.value) == false', 'Value for Question 1 Number must be numeric']
+	arrWage05Err[i++] = [txtWageNo1_05, 'ispNegativeNumber(txtWageNo1_05.value) == false', 'Value for Question 1 must NOT be negative']
+
+	arrWage05Err[i++] = [txtWageNo2_05, 'txtWageNo2_05.value == ""', 'Answer Question 2']
+	arrWage05Err[i++] = [txtWageNo2_05, 'ispValue(txtWageNo2_05.value) == false', 'Value for Question 2 Number must be numeric']
+	arrWage05Err[i++] = [txtWageNo2_05, 'ispNegativeNumber(txtWageNo2_05.value) == false', 'Value for Question 2 must NOT be negative']
+
+	arrWage05Err[i++] = [txtWageNo4_05, 'txtWageNo4_05.value == ""', 'Answer Question 4']
+	arrWage05Err[i++] = [txtWageNo4_05, 'ispValue(txtWageNo4_05.value) == false', 'Value for Question 4 Number must be numeric']
+	arrWage05Err[i++] = [txtWageNo4_05, 'ispNegativeNumber(txtWageNo4_05.value) == false', 'Value for Question 4 must NOT be negative']
+
+	arrWage05Err[i++] = [txtWageNo6_05, 'txtWageNo6_05.value == ""', 'Answer Question 6']
+	arrWage05Err[i++] = [txtWageNo6_05, 'ispValue(txtWageNo6_05.value) == false', 'Value for Question 6 Number must be numeric']
+	arrWage05Err[i++] = [txtWageNo6_05, 'ispNegativeNumber(txtWageNo6_05.value) == false', 'Value for Question 6 must NOT be negative']
+
+//	arrWage05Err[i++] = [txtWageNo8_05, 'txtWageNo8_05.value == ""', 'Answer Question 8']
+//	arrWage05Err[i++] = [txtWageNo8_05, 'ispValue(txtWageNo8_05.value) == false', 'Value for Question 8 Number must be numeric']
+//	arrWage05Err[i++] = [txtWageNo8_05, 'ispNegativeNumber(txtWageNo8_05.value) == false', 'Value for Question 8 must NOT be negative']
+
+//	arrWage05Err[i++] = [txtWageNo10_05, 'txtWageNo10_05.value == ""', 'Answer Question 10']
+//	arrWage05Err[i++] = [txtWageNo10_05, 'ispValue(txtWageNo10_05.value) == false', 'Value for Question 10 Number must be numeric']
+//	arrWage05Err[i++] = [txtWageNo10_05, 'ispNegativeNumber(txtWageNo10_05.value) == false', 'Value for Question 10 must NOT be negative']
+
+	arrWage05Err[i++] = [chkAgreement_05, '(chkAgreement_05.checked) == false', 'Signature box must be checked before submitting the Wage Tax Form']
+	
+i=0 //Reset
+//	arrNumWage05Err[i++] = [txtWageNoA_05, 'txtWageNoA_05.value == ""', 'Answer Question A']
+	arrNumWage05Err[i++] = [txtWageNoA_05, 'ispValue(txtWageNoA_05.value) == false', 'Value for Question A Number must be numeric']
+//	arrNumWage05Err[i++] = [txtWageNoB_05, 'txtWageNoB_05.value == ""', 'Answer Question B']
+	arrNumWage05Err[i++] = [txtWageNoB_05, 'ispValue(txtWageNoB_05.value) == false', 'Value for Question B Number must be numeric']
+//	arrNumWage05Err[i++] = [txtWageNoC_05, 'txtWageNoC_05.value == ""', 'Answer Question C']
+	arrNumWage05Err[i++] = [txtWageNoC_05, 'ispValue(txtWageNoC_05.value) == false', 'Value for Question C Number must be numeric']
+//	arrNumWage05Err[i++] = [txtWageNoD_05, 'txtWageNoD_05.value == ""', 'Answer Question D']
+	arrNumWage05Err[i++] = [txtWageNoD_05, 'ispValue(txtWageNoD_05.value) == false', 'Value for Question D Number must be numeric']
+}		//LoadWage05Error
+
+
+function ValidateWage05Number() {
+	AppError.innerText = ""
+	
+	if (document.activeElement.value == '') {
+		document.activeElement.value = 0
+	}		//if
+
+	AppError.innerText = ispSetInputErr(arrNumWage05Err)
+
+	if (AppError.innerText != ''){
+		AppError.scrollIntoView(true)
+	}		//if	
+}		//ValidateWage05Number
+
+
+function ValidateWage05Return() {
+var sId = document.activeElement.id
+var ObjSelected
+
+	AppError.innerText = ''
+
+	if (AppError.innerText == ''){
+		txtWageNo1_05.className = 'inpNormal'
+		if (sId != "") {
+			ObjSelected = document.getElementById(sId)
+			ObjSelected.value = ispFormatMoney(ObjSelected.value , 0)
+		}		//if
+	
+		AppError.innerText = ispSetInputErr(arrWage05Err)
+
+		if (AppError.innerText == ''){
+			Calc1Minus2()
+			TaxDueLine5(dResTax_A)
+			TaxDueLine7(dNonResTax_A)
+			TaxDueLine8()
+			TaxDueLine10_11()
+			if (AppError.innerText == ''){
+				CalcGrossComp()
+			}		//if
+			CheckLine4_6()
+		} else {
+			AppError.scrollIntoView(true)
+		}		//if
+	}		//if
+}		//ValidateWage05Number
+
+
+function btnWage05Print_onclick() {
+
+	btnWage05Print.style.visibility = 'hidden'
+	btnWage05Submit.style.visibility = 'hidden'
+	AppError.innerText = ''
+	
+	if (txtWageNo1_05.disabled == true) {
+		FieldLock_05(false)
+		window.print()
+		FieldLock_05(true)
+	}	else {
+		window.print()
+	}		//if
+
+	btnWage05Print.style.visibility = 'visible'
+	btnWage05Submit.style.visibility = 'visible'
+}		//btnWage05Print_onclick
+
+
+function test1() {
+		WageReturn_05.style.display = 'none'		//edd
+		divProcessing.style.display = 'block'		//edd
+}		//test1
+
+
+var tempXML = new ActiveXObject("MSXML.DOMDocument")
+
+function btnWage05Submit_onclick() {
+	if (AppError.innerText == ""){
+		ispXmlSetFieldVal(parent.MenuWin.xmlWage, '', 'WAGE_INFO/RETURN_STATUS', '', 0)
+		PopulateWage05XML()
+//alert(parent.MenuWin.xmlWage.xml)
+//return
+		
+//		WageReturn_05.style.visibility = 'hidden'		//edd
+//		divProcessing.style.visibility = 'visible'		//edd
+		parent.DocWin.ispCallXMLForm(parent.MenuWin.xmlWage, tempXML, "../WageReturn.asp","")
+		ispHideProgress()
+		if (ispXmlGetFieldVal(tempXML, 'ERROR_INFO/PROGRAM', '', 0) == '') {		
+			parent.MenuWin.xmlWage.loadXML(tempXML.xml)
+			WageReturn_05.style.display = 'none'
+			DisplayWageThankYou()
+//			divWageThankYou.style.display = 'block'
+		} else {
+//			divProcessing.style.display = 'none'		//edd
+//			WageReturn_05.style.display = 'block'		//edd
+			AppError.innerText = ispXmlGetFieldVal(tempXML, 'ERROR_INFO/MESSAGE', '', 0)
+		}		//if
+
+/*		CheckWage05XML()
+		SetWage05Fields()
+		PopulateWage05Data()
+		chkAgreement_05_onclick()*/
+	} else {
+	ispHideProgress()
+	}		//if
+}		//btnWage05Submit_onclick
+
+
+function chkAgreement_05_onclick() {
+	
+	ValidateWage05Number()
+
+	if (AppError.innerText == ''){
+		ValidateWage05Return()
+	}		//if
+/*	if (chkAgreement_05.checked == true) {
+		btnWage05Submit.disabled = false
+	} else {
+		btnWage05Submit.disabled = true
+	}		//if		*/
+}		//chkAgreement_05
+
+
+function chkAmended_05_onclick() {
+
+	if (chkAmended_05.checked == true) {
+		btnWage05Submit.disabled = false
+		FieldLock_05(false)
+	} else {
+		btnWage05Submit.disabled = true
+		chkAgreement_05.checked = false
+		FieldLock_05(true)
+	}		//if
+}		//chkAmended_05_onclick
+
+
+function ReadOnlySetFocus() {
+
+//	if (document.getElementById(document.activeElement.id).className == 'inpReadOnlyRt') {
+		switch (document.activeElement.id) {
+			case 'txtWageNo6_05':
+//alert('Here');
+//				(txtWageNo6_05.className == 'inpReadOnlyRt') ? lblWageNo5_05.select() : txtWageNo6_05.select()
+				break
+			case 'lblWageNo13_05':
+				txtWageNo1_05.select()
+//	} else {
+			default:
+				document.activeElement.select()
+		}		//switch
+//	}		//if
+}		//ReadOnlySetFocus
+
+
+function LocatePrimaryAddr() {
+var iMaxIdx = ispXmlGetRecCount(parent.MenuWin.xmlAccount, 'NAME_ADDRESS', '')
+//	Node = parent.MenuWin.xmlNAIC.documentElement.selectSingleNode("//*/TCLASS[./@NAICCODE='" & code & "']")  
+
+	for (idx=0; idx<iMaxIdx; i++) {
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/ADDRESS_TYPE', '', idx) == '60') {
+			if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/RELATIONSHIP_CODE', '', idx) == '0') {
+				return idx
+			}		//if
+		} else {
+		//alert ('primary addr not found')
+			return 0
+		}		//if
+	}		//for
+}		//locatePrimaryAddr
+
+
+function PreviousPaid() {
+		showModalDialog('HelpPreviousPaidTax.htm', 0, 
+				'dialogWidth:420px;dialogHeight:325px;dialogLeft:550px;')
+}
+</script>
+
+<SCRIPT language=vbscript>
+function CheckLine4_6()
+	if cdbl(lblWageNo7_05.innerText) <> 0 or _
+			cdbl(lblWageNo8_05.innerText) <> 0 or _
+			cdbl(lblWageNo9_05.innerText) <> 0 then
+		if AppError.innerText = "" then
+			txtWageNo4_05.className = "inpNormal"
+			txtWageNo6_05.className = "inpNormal"
+			if cdbl(txtWageNo4_05.value) = 0 and _
+					cdbl(txtWageNo6_05.value) = 0 then
+				AppError.innerText = "Line 4 or 6 can not equal 0"
+				txtWageNo4_05.className = "inpError"
+				txtWageNo6_05.className = "inpError"
+			end if
+		end if	
+	end if
+end function
+
+
+function Calc1Minus2() 
+	if txtWageNo1_05.value <> "" and txtWageNo2_05.value <> ""  then
+		lblWageNo3_05.innerText = _
+				ispFormatMoney(CDbl(txtWageNo1_05.value) - CDbl(txtWageNo2_05.value), 0)
+	end if
+end function
+
+
+function CalcGrossComp()
+
+	if Cdbl(txtWageNo1_05.value) <> CDbl(txtWageNo2_05.value) + CDbl(txtWageNo4_05.value) + _
+			CDbl(txtWageNo6_05.value) then
+		txtWageNo1_05.className = "inpError"
+		AppError.innerText = "Line 1 is not equal to the sum of lines 2,4 & 6"
+		AppError.scrollIntoView(true)
+	else
+		txtWageNo1_05.className = "inpNormal"
+		AppError.innerText = ""
+	end if
+end function
+
+
+function TaxDueLine5(dTax)
+
+	if txtWageNo4_05.value <> "" then
+'window.status "Here"
+		lblWageNo5_05.innerText = ispFormatMoney(CDbl(CDbl(txtWageNo4_05.value) * cdbl(dTax)), 0)
+	end if
+end function
+
+
+function TaxDueLine7(dTax)
+
+	if txtWageNo6_05.value <> "" then
+		lblWageNo7_05.innerText = ispFormatMoney(CDbl(CDbl(txtWageNo6_05.value) * cdbl(dTax)), 0)
+	end if
+end function
+
+
+'function TaxDueLine9(dTax)
+'
+'	if txtWageNo8_05.value <> "" then
+'		lblWageNo9_05.innerText = ispFormatMoney(CDbl(CDbl(txtWageNo8_05.value) * cdbl(dTax)), 0)
+'	end if
+'end function
+
+
+'function TaxDueLine11(dTax)
+'
+'	if txtWageNo10_05.value <> "" then
+'		lblWageNo11_05.innerText = ispFormatMoney(CDbl(CDbl(txtWageNo10_05.value) * cdbl(dTax)), 0)
+'	end if
+'end function
+
+
+function TaxDueLine8()
+
+	if lblWageNo5_05.innerText <> "" and lblWageNo7_05.innerText <> "" then
+		lblWageNo8_05.innerText = _
+				ispFormatMoney(CDbl(lblWageNo5_05.innerText) + CDbl(lblWageNo7_05.innerText), 0)
+	end if
+end function
+
+
+function TaxDueLine10_11()
+
+	if lblWageNo8_05.innerText <> "" and lblWageNo9_05.innerText <> "" then
+		if CDbl(lblWageNo8_05.innerText) > CDbl(lblWageNo9_05.innerText) then
+			lblWageNo10_05.innerText = _
+					ispFormatMoney(CDbl(lblWageNo8_05.innerText) - CDbl(lblWageNo9_05.innerText), 0)
+			lblWageNo11_05.innerText = ispFormatMoney(0, 0)
+		else
+			lblWageNo10_05.innerText = ispFormatMoney(0, 0)
+			lblWageNo11_05.innerText = _
+					ispFormatMoney(CDbl(lblWageNo9_05.innerText) - CDbl(lblWageNo8_05.innerText), 0)
+		end if
+	end if
+end function
+
+</script>
+<title></title>
+</head>
+<body onload="ispDisplayProgress('DisplayWage05Return()','Retrieving 2005 wage tax information')">
+<DIV style="DISPLAY: block; VISIBILTY: visible" Id="WageReturn_05" Name="WageReturn_05"><!--<table width="90%" cellSpacing="0" cellPadding="0" border=0 style  ="MARGIN-LEFT: 4%">
+  <tr align ="left">
+    <td><label class="lblTextBlack">       
+			The City of Philadelphia Annual Reconciliation of Wage Tax for 2005 is 
+			due Feburary 28, 2005.</label></td>
+  </tr>
+</table>	-->
+   
+<table class=tblShowBorder width="90%" bgcolor="whitesmoke" style="MARGIN-LEFT: 4%" border=0
+		 cellSpacing=0 cellPadding=0 id=TABLE1>
+  <tr>
+    <td WIDTH="2%"></td>
+    <td WIDTH="8%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td></tr>
+  <tr>
+		<td >&nbsp;</td>
+		<td colspan=2>
+			<label class="lblInstrNormal">Account Id:&nbsp;</label>
+		</td>
+		<td colspan=4>
+			<label id=lblAcctId_05 class="lblTextBlack"></label></td>
+		<td colspan=2 align=right>
+			<label id=lblEntityType_05 class="lblInstrNormal">EIN:&nbsp;</label></td>
+		<td colspan=5>
+			<label id=lblEntityId_05 class="lblTextBlack"></label></td>
+	</tr>
+  <tr>
+		<td >&nbsp;</td>
+		<td colspan=2>
+			<label class="lblInstrNormal">Name:&nbsp;</label>
+		</td>
+		<td colspan=20>
+			<label id=lblName_05 class="lblTextBlack"></label></td>
+	</tr>
+  <tr>
+		<td >&nbsp;</td>
+		<td colspan=2>
+			<label class="lblInstrNormal">Address:&nbsp;</label>
+		</td>
+		<td colspan=17>
+			<label id=lblAddress_05 class="lblTextBlack"></label></td>
+	</tr>
+</table>
+
+<table style="LEFT: 43px; MARGIN-LEFT: 4%; TOP: 205px" border=0 width="90%">
+  <tr>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td></tr>
+  <tr>
+		<td align=left colspan=10 nowrap>
+			<INPUT id=chkAmended_05 type=checkbox onclick="chkAmended_05_onclick()">
+				<label class="lblTextBlacksmall">Check if amended return.</label></td>
+	</tr>
+</table>
+
+<table class=tblShowBorder cellSpacing=0 cellPadding=0 border=0 style="MARGIN-LEFT: 4%" id=TABLE1 width="90%">
+  <tr>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">A.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Enter the number of Philadelpha Residents for whom 
+				wage tax was remitted for the pay period including March 12, 2005.</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNoA_05 onchange="ValidateWage05Number()"
+				 onfocus="ReadOnlySetFocus()" maxlength=10 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal" style="vAlign: TOP">B.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Enter the number of non-residents (employees living 
+				outside Philadelphia city limits) for whom wage tax was remitted for pay 
+				period including March 12, 2005.</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNoB_05 onchange="ValidateWage05Number()"
+				 onfocus="ReadOnlySetFocus()" maxlength=10 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">C.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Total number of employees for all company locations 
+				reported on the Employer's Federal Quarterly Tax Return for the first 
+				quarter of 2005 (for the pay period including March 12, 2005).</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNoC_05 onchange="ValidateWage05Number()" 
+				onfocus="ReadOnlySetFocus()" maxlength=10 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">D.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Number of employees working at company locations within
+				Philadelphia city limits, for the pay period including March 12, 2005.</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNoD_05 onchange="ValidateWage05Number()"
+				 onfocus="ReadOnlySetFocus()" maxlength=10 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">1.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Gross Compensation per W-2 forms for all employees</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNo1_05 onchange="ValidateWage05Return()" 
+				onfocus="ReadOnlySetFocus()" maxlength=20 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">2.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Non-Taxable Compensation include in line 1
+				(Paid to non-residents working outside of Philadelphia)</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNo2_05 onchange="ValidateWage05Return()"
+				 onfocus="ReadOnlySetFocus()" maxlength=20 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">3.</label></td>
+		<td colspan=10>
+			<label class="lblInstrNormal">Net Compensation per W-2 forms on 
+				which Philadelphia Wage Tax was withheld or due</label></td>
+		<td colspan=6 align=right>
+			<label class="lblInstrNormal">[Calculated - line 1 less line 2]</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo3_05 style="WIDTH: 100%"></label></td></tr>
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">4.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Total Taxable Compensation paid to residents of 
+				Philadelphia (1/1/2005 to 12/31/2005)</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNo4_05 onchange="ValidateWage05Return()"
+				 onfocus="ReadOnlySetFocus()" maxlength=20 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">5.</label></td>
+		<td colspan=8>
+			<label class="lblInstrNormal">Tax Due</label></td>
+		<td colspan=8 align=right>
+			<label class="lblInstrNormal">[Calculated - line 4 X .04331]</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo5_05 style="WIDTH: 100%"></label></td></tr>
+<!--
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">6.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Total Taxable Compensation paid to residents of 
+				Philadelphia (7/1/2005 to 12/31/2005)</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNo6_05 onchange="ValidateWage05Return()"
+				 onfocus="ReadOnlySetFocus()" maxlength=20 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">7.</label></td>
+		<td colspan=8>
+			<label class="lblInstrNormal">Tax Due</label></td>
+		<td colspan=8 align=right>
+			<label class="lblInstrNormal">[Calculated - line 6 X .04331]</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo7_05 style="WIDTH: 100%"></label></td></tr>
+-->
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">6.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Total Taxable Compensation paid to non-residents of 
+				Philadelphia (1/1/2005 to 12/31/2005)</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNo6_05 onchange="ValidateWage05Return()"
+				 onfocus="ReadOnlySetFocus()" maxlength=20 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">7.</label></td>
+		<td colspan=8>
+			<label class="lblInstrNormal">Tax Due</label></td>
+		<td colspan=8 align=right>
+			<label class="lblInstrNormal">[Calculated - line 6 X .038197]</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo7_05 style="WIDTH: 100%"></label></td></tr>
+<!--
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">10.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Total Taxable Compensation paid to non-residents of 
+				Philadelphia (7/1/2005 to 12/31/2005)</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtWageNo10_05 onchange="ValidateWage05Return()"
+				 onfocus="ReadOnlySetFocus()" maxlength=20 style="WIDTH: 100%"></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">11.</label></td>
+		<td colspan=8>
+			<label class="lblInstrNormal">Tax Due</label></td>
+		<td colspan=8 align=right>
+			<label class="lblInstrNormal">[Calculated - line 10 X .048801]</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo11_05 style="WIDTH: 100%"></label></td></tr>
+-->
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">8.</label></td>
+		<td colspan=8>
+			<label class="lblInstrNormal">Total Tax Due</label></td>
+		<td colspan=8 align=right>
+			<label class="lblInstrNormal">[Calculated - lines 5 and 7]</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo8_05 style="WIDTH: 100%"></label></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">9.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal" onclick=PreviousPaid() style="CURSOR: hand">
+				<u>Tax previously paid for 2005</u> - <label style="FONT-WEIGHT: normal; COLOR: red">
+						This amount may not yet include	your most recent payment.
+						<br>Click on link for more information.</label></label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo9_05 style="WIDTH: 100%"></label></td></tr>
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">10.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">ADDITIONAL TAX DUE If line 8 is greater than line 9,
+				enter the amount here</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo10_05 style="WIDTH: 100%"></label></td></tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">11.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">If line 8 is less than line 9,
+				enter the amount of TAX OVERPAID.</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblWageNo11_05 style="WIDTH: 100%"></label></td></tr>
+</table>
+
+<table style="MARGIN-LEFT: 4%" border=0  width="90%">
+  <TR>
+    <td width ="80%">
+			<label class="lblTextBlackSmall">
+				<INPUT id=chkAgreement_05 type=checkbox style="WIDTH: 13px; HEIGHT: 20px" size=13
+						 onclick="chkAgreement_05_onclick()">&nbsp;Signature box: 
+					Under penalties of perjury, as set forth in 18 Pa. C.S. §§ 4904-4904 as amended, 
+					I swear or affirm that I have reviewed this return and to the best of my knowledge
+					and belief, it is true and complete.</label></td>
+		<td width ="20%" align=right nowrap><p style="MARGIN-TOP: 5px">
+			<input id="btnWage05Print" type="button" value="Print" onclick="btnWage05Print_onclick()">
+			<input id="btnWage05Submit" type="button" value="Submit" 
+					onclick="ValidateWage05Number();ValidateWage05Return();
+							ispDisplayProgress('btnWage05Submit_onclick()','Submitting 2005 wage tax information')"></p></td></TR>
+	<TR>
+		<td colspan=2><label class="lblTextBlack">
+				Note: <b>DO NOT FILE THIS RETURN if you have no taxable activity. If you registered for 
+				this tax and you no longer have taxable activity, complete a 
+				<a href=http://www.phila.gov/revenue/Change_Form.pdf target=_blank>Change Form<a> to cancel
+				your account.</b></label></td>
+	</TR>
+
+</table>
+</DIV><!--<div style="DISPLAY:none VISIBILTY: hidden" Id="divProcessing" Name="divProcessing">
+	<p id=Processing style="VISIBILTY: inherit">Please wait while we process your submission. This may take a minute.</p>
+</div>-->
+</body>
+</html>

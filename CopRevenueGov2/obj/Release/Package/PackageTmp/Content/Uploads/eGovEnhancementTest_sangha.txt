@@ -1,0 +1,17 @@
+CalcPage2Line7
+
+function ShowPage(
+
+ValidateBPTezReturn
+
+ CheckPage2Line3();
+            CalcPage2Line4();
+            CalcPage2Line5(dBPTezNetRate);
+            CalcPage2Line7();
+            CalcPage2Line8(dBPTezGrossRate);
+
+
+
+
+
+btnGoToPage1

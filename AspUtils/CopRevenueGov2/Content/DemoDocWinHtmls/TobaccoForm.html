@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Styles/framestyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" language="javascript" src="../Scripts/JqueryMin.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/global.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/ispXmlProc.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/jquery-1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".tab_content:first").show(); //Show first tab content
+        });
+    </script>
+</head>
+<body>
+    <div class="tab_Tcontainer">
+        <div class="tab_container">
+            <div style="display: block;" id="tab1" class="tab_content">
+                <h2>Tax Payer Information  |   <span>tobacco tax return for 2013</span>  </h2>
+
+                <div class="thankyou">
+                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries</h4>
+
+                    <div class="school_form">
+
+
+                        <form class="school_page_form">
+
+                            <!--<div class="greytopbox">
+                    	<div class="bluetxt">Name :</div>
+                        <div class="bluetxt">SSN :</div>
+                        <div class="bluetxt">Address :</div>
+                        
+                        <div class="clear"></div>
+                    </div>-->
+
+
+
+                            <div class="account_greybox">
+
+                                <p>
+                                    <strong>Name :</strong>
+                                    <label>Michael Adams</label>
+                                </p>
+
+                                <p><strong>SSN :</strong> &nbsp; </p>
+                                <div class="clear"></div>
+                                <p><strong>Address :</strong> &nbsp; </p>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+
+
+                            <!--Header section declaration goes here-->
+                            <div class="form_segment">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabularform">
+                                    <tr>
+                                        <th width="22%" scope="col" valign="middle" align="left" class="here_input_table">
+                                            <input type="checkbox" />
+                                            Check if amended return. </th>
+                                        <th width="53%" scope="col" align="right">All decimals will be rounded to the nearest whole number</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--Header section declaration ends here-->
+
+                            <!--Form section declaration goes here-->
+                            <div class="form_segment">
+                                <table summary="Employee Pay Sheet" id="hor-zebra">
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td width="70%"><b>1. Tobacco and tobacco-related products that consists of individual items rolled for smoking (e.g., cigars)</b></td>
+                                            <td align="center" class="no_border_right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1a. Number of individual tobacco and tobacco-related items sold January 1 through December 31, 2013.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">1b. Number of items delivered to bona fida customer locations outside Philadelphia.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1c. Number of items sold to customers within Philadelphia. [Calculated - line 1a minus line 1b]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo1c" style="WIDTH: 100%"></label>
+                                            </td>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">1d. TAX DUE [Calculated - line 1c * ### per item]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo1d" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><b>2. All other tobacco and tobacco-related products (e.g., smokeless tobacco, pipe tobacco, loose tobacco)</b></td>
+                                            <td align="center" class="no_border_right"></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">2a. Total number of ounces of all tobacco and tobacco-related items sold January 1 through December 31, 2013.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2b. Total ounces delivered to bona fida customer locations outside Philadelphia.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">2c. Ounces of products sold to customers within Philadelphia. [Calculated - line 2a minus line 2b]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo2c" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2d. TAX DUE  [Calculated - line 1c * ### per item]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo2d" style="WIDTH: 100%">$50000</label></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%"><b>3. Rolling Papers</b></td>
+                                            <td align="center" class="no_border_right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3a. Total number of packs sold January 1 through December 31, 2013.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">3b. Total number of packs delivered to bona fida customer locations outside Philadelphia.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3c. Number of packs sold to customers within Philadelphia. [Calculated - line 3a minus line 3b]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo3c" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">3d. Tax Due [Calculated - line 3c * ### per pack]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo3d" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4. Tax due by January 31, 2014 [Calculated - add lines 1d, 2d and 3d]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo4" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">5. Tax previously paid for tax year 2013 and other credits</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6. Net Tax Due [Calculated - line 4 minus line 5]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo6" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">7. Interest and Penalty</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>8. <b><u>Total Due</u></b> including Interest and Penalty [Calculated - line 6 plus line 7]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo8" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">9a. If Line 5 is greater than Line 8, enter the amount to be <b><i>refunded</i></b> or  skip to Line 9b.</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo9a" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>9b. Amount of overpayment to be applied to the 2014 Tobacco and Tobacco-Related Products Tax.</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo9b" style="WIDTH: 100%"></label>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="clear"></div>
+
+                            </div>
+                            <!--Form section declaration ends here-->
+
+                            <!--Preparer section declaration goes here-->
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filled by *</label>
+                                <div class="small_divs">
+                                    <input type="radio" name="n1" />
+                                    Tax Payer
+                                </div>
+                                <div class="small_divs">
+                                    <input type="radio" name="n2" checked="" />
+                                    Prepayer
+                                </div>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filler Name *</label>
+                                <span class="small_divs2">&nbsp;</span>
+
+                                <div class="here_input_table">
+                                    Filler Phone *
+                                    <input type="text" class="input_size7" /><input type="text" class="input_size7" /><input type="text" class="input_size7" />
+                                    <span class="here_alert">Ext : </span>
+                                    <input type="text" class="input_size7" />
+                                </div>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filler Name *</label>
+
+                                <div class="here_input_table">
+                                    <input type="text" class="input_size9" />
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+
+
+                            <div class="form_segment">
+
+
+
+                                <div class="here_input_table">
+                                    <input type="checkbox" class="" />
+                                </div>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+                    
+                     <div class="clear"></div>
+                            </div>
+
+
+                            <div class="form_segment here_input_table" align="right">
+                                <input type="submit" value="Print" class="submit_button_light" />
+                                <input type="submit" value="Submit" class="submit_button" />
+                            </div>
+                            <!--Preparer section declaration ends here-->
+                        </form>
+
+
+                    </div>
+
+                </div>
+                <div class="quicklink_btm_gen"></div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+
+<script  type="text/javascript" language="javascript" >
+    var arrChangePinErr = new Array()
+
+    function DisplayChangePin() {
+        /*LogChangePin.style.display = 'block'
+        AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|change pin</Font>'	
+        txtPcOldPin.value = ''
+        txtPcNewPin1.value = ''
+        txtPcNewPin2.value = ''
+        */
+        $('#LogChangePin').css("display", "block");
+        $('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|change pin</Font>');
+        $('#txtPcOldPin').val('');
+        $('#txtPcNewPin1').val('');
+        $('#txtPcNewPin2').val('');
+        LoadChangePinError();
+        //txtPcOldPin.focus()
+        $('#txtPcOldPin').focus();
+    } 	//DisplayLogin
+
+
+    function LoadChangePinError() {
+        var i = 0;
+
+        arrChangePinErr[i++] = [txtPcOldPin, 'txtPcOldPin.value == ""', 'Enter Old PIN'];
+        arrChangePinErr[i++] = [txtPcOldPin, 'regInteger.exec(txtPcOldPin.value) != txtPcOldPin.value', 'Old PIN must be an Integer'];
+        arrChangePinErr[i++] = [txtPcOldPin, 'regInteger.exec(txtPcOldPin.value) == 0', 'Old PIN must not be zero'];
+        arrChangePinErr[i++] = [txtPcOldPin, 'txtPcOldPin.value != ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ENTITY_INFO PIN", "", 0)', 'Old PIN does not match Current PIN'];
+
+        arrChangePinErr[i++] = [txtPcNewPin1, 'txtPcNewPin1.value == ""', 'Enter New PIN'];
+        arrChangePinErr[i++] = [txtPcNewPin1, 'regInteger.exec(txtPcNewPin1.value) != txtPcNewPin1.value', 'New PIN must be an Integer'];
+        arrChangePinErr[i++] = [txtPcNewPin1, 'regInteger.exec(txtPcNewPin1.value) == 0', 'New PIN must not be zero'];
+
+        arrChangePinErr[i++] = [txtPcNewPin2, 'txtPcNewPin2.value == ""', 'Enter Confirm PIN'];
+        arrChangePinErr[i++] = [txtPcNewPin2, 'regInteger.exec(txtPcNewPin2.value) != txtPcNewPin2.value', 'Confirm PIN must be an Integer'];
+        arrChangePinErr[i++] = [txtPcNewPin2, 'regInteger.exec(txtPcNewPin2.value) == 0', 'Confirm PIN must not be zero'];
+        arrChangePinErr[i++] = [txtPcNewPin2, 'txtPcNewPin1.value != txtPcNewPin2.value', 'Confirm PIN does not match New PIN'];
+
+    } 	//LoadChangePinError
+
+
+    function ValidateChangePin() {
+		//alert('ValidateChangePin');
+        // AppError.innerText = ispSetInputErr(arrChangePinErr)
+        var changepin = ispSetInputErr(arrChangePinErr);
+		//alert(changepin);
+        $('#AppError').text(changepin);
+    } 	//ValidateChangePin
+
+	
+	var oAcctInfo = parent.MenuWin.getXmlDocObj();
+    function DoChangePin() {
+
+       // var oAcctInfo = parent.MenuWin.xmlAccount;
+        ValidateChangePin();
+
+        if ($('#AppError').text() == '') {
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, '3', "ENTITY_INFO FUNCTION_CODE", '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, txtPcNewPin1.value, "ENTITY_INFO PIN", '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, 'Y', "ENTITY_INFO FORCEPINCHG", '', 0);
+
+            ispCallXMLForm(parent.MenuWin.xmlAccount, oAcctInfo, "../AccountInfo", "")
+			
+			//alert((new XMLSerializer()).serializeToString(oAcctInfo.xml));
+
+			parent.MenuWin.xmlAccount = oAcctInfo;
+
+			//alert((new XMLSerializer()).serializeToString(parent.MenuWin.xmlAccount.xml));
+
+            if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ERROR_INFO MESSAGE', "", 0) == "") {
+                //parent.MenuWin.xmlAccount.loadXML(oAcctInfo.xml)
+                
+                parent.DocWin.location.href = '../Acct/ApplyMain';
+            } else {
+                //  AppError.innerText = ispXmlGetFieldVal(oAcctInfo, 'ERROR_INFO MESSAGE', "", 0)
+                //  txtPcOldPin.focus();
+                var errmsg = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ERROR_INFO MESSAGE', "", 0);
+                $('#AppError').text(errmsg);
+                $('#AppError').focus();
+
+            } 	//if
+        } else {
+            //  if ((AppError.innerText.search("New") != -1) && (AppError.innerText.search("Confirm") == -1)) {
+            // txtPcNewPin1.focus()
+            var apperr = $('#AppError').text();
+            if ((apperr.indexOf("New") != -1) && (apperr.indexOf("Confirm") != -1)) {
+                $('#txtPcNewPin1').focus();
+            } else {
+                Confirm
+                //if (AppError.innerText.search("Confirm") != -1) {
+                // txtPcNewPin2.focus()
+                if (apperr.indexOf("Confirm") != -1) {
+                    $('#txtPcNewPin2').focus();
+
+                } else {
+                    // txtPcOldPin.focus()
+                    $('#txtPcOldPin').focus();
+                } 	//if
+            } 	//if
+        } 	//if
+    } 	//DoChangePin
+</script>
+<html>
+<head>
+    <meta name="GENERATOR" content="Microsoft Visual Studio 6.0">
+    <title></title>
+    <script>
+    </script>
+</head>
+<body>
+    <div style="display: none; visibilty: visible" id="LogChangePin" name="LogChangePin">
+        <table cellspacing="0" cellpadding="0" width="60%" border="0" style="margin-top: 5px;
+            margin-left: 4%">
+          
+            <tr valign="top" align="left">
+                <td>
+                    <p class="lblTextBlack">
+                        Your PIN was generated by the Philadelphia Department of Revenue. For security purposes
+                        we are requiring you to change your PIN.<br>
+                        <font class="lblTextRed">* </font>Required Field</p>
+                </td>
+            </tr>
+        </table>
+        <table cellspacing="0" cellpadding="0" width="95%" border="0" style="margin-top: 5px;
+            margin-left: 4%">
+            <tr style="height: 0px">
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p class="lblInstrNormal">
+                        Old PIN&nbsp;&nbsp;</p>
+                </td>
+                <td align="right" class="lblTextRed">
+                    *
+                </td>
+                <td colspan="8">
+                    <input type="PASSWORD" id="txtPcOldPin" name="txtPcOldPin" maxlength="13" class="inpNormal"
+                        onchange="ValidateChangePin()">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p class="lblInstrNormal">
+                        New PIN&nbsp;&nbsp;</p>
+                </td>
+                <td align="right" class="lblTextRed">
+                    *
+                </td>
+                <td colspan="8">
+                    <input type="PASSWORD" id="txtPcNewPin1" name="txtPcNewPin1" maxlength="13" class="inpNormal"
+                        onchange="ValidateChangePin()">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p class="lblInstrNormal">
+                        Confirm PIN&nbsp;&nbsp;</p>
+                </td>
+                <td align="right" class="lblTextRed">
+                    *
+                </td>
+                <td colspan="8">
+                    <input type="PASSWORD" id="txtPcNewPin2" name="txtPcNewPin2" maxlength="13" class="inpNormal"
+                        onchange="ValidateChangePin()">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <p>
+                        &nbsp;</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <p align="center">
+                        <input id="btnApply" name="btnApply" type="submit" onclick="DoChangePin()" class="btnNormal"
+                            size="48" value="Submit"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

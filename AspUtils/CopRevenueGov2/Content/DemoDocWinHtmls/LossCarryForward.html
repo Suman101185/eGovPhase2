@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Styles/framestyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" language="javascript" src="../Scripts/JqueryMin.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/global.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/ispXmlProc.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/jquery-1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".tab_content:first").show(); //Show first tab content
+        });
+    </script>
+</head>
+<body>
+    <div class="tab_Tcontainer">
+
+   
+    <div class="tab_container">
+        <div style="display: block;" id="tab1" class="tab_content">
+            <h2>Tax Payer Information  |   <span>Loss Carry Forward Form</span>  </h2>
+           	
+            <div class="ploss">
+           
+            <h6><strong>TAX Filling Information</strong></h6>
+            
+            <h5><label class="lblInstrNormal" id="lblAccountName"><b>John Q Sample</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label class="lblInstrNormal"><b>Account #: </b>
+					<label class="lblInstrNormal" id="lblAccountNumber"><b>9999999</b></label></label></h5>
+            
+            <p>Loss carry forward available for the <label class="lblNormal" id="lblYearCurrent">2012 Business Income and Receipts Tax</label> return:</p>
+            
+            <h5><strong><label class="lblInstrNormal" id="lblLcfAmount">$0.00</label></strong> </h5>
+            
+            <div class="clear"></div>
+           
+           
+            <p>This figure is based on the income / loss reported on the following <label class="lblNormal" id="lblIncomeLoss">BIRT</label> returns:</p> 
+                
+                       
+             <h5><strong><label class="lblInstrNormal" id="lblYearMinus1">2011 BIRT</label>Return:
+                 <label class="lblInstrNormal" id="lblYearMinus1Amount">$0.00</label></strong><br />
+
+                 <strong><label class="lblInstrNormal" id="lblYearMinus2">2010 BIRT</label>Return:
+                 <label class="lblInstrNormal" id="Label2">$0.00</label></strong><br />
+
+                 <strong><label class="lblInstrNormal" id="lblYearMinus3">2009 BIRT</label>Return:
+                 <label class="lblInstrNormal" id="Label4">$0.00</label></strong><br />
+           
+				</h5>
+            
+            <p>Losses  may be carried forward for only 3 years.  Losses reported on <label class="lblNormal" id="lblYearMinus4">2008</label> and prior returns have expired.</p>
+            
+            <p>Estimated Business Income and reciepts tax payment on file to be included on line 6B.</p>
+
+               <h5><strong><label class="lblInstrNormal" id="lblEstimatedTax">$0.00</label></strong></h5>
+
+            <p>If the payment on file does not agree with your records, send an e-mail to revenue@phila.gov or call 215-686-6600</p>
+            
+            
+          
+            <br />
+                <div align="right" style="padding:0 35px 10px 0px; background:#FFFFFF; border:1px solid #fff;" class="">
+                                        <input type="button"  value="Print" class="submit_button2"></div>
+<br />
+
+            
+            </div>
+            <div class="quicklink_btm_gen"></div>
+        </div>
+     	
+    </div>
+</div>
+</body>
+</html>

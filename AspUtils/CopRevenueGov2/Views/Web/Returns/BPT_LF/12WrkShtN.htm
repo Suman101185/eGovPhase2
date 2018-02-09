@@ -1,0 +1,129 @@
+﻿<script type="text/javascript">
+
+    function DisplayWrkShtN() {
+        PerformCalcsBPTlfWrkShtN()
+        $('#BPT_WrkShtN').css('display', 'block');
+    } 	//DisplayWrkShtN
+
+    function PerformCalcsBPTlfWrkShtN() {
+        $('#lblWrkShtN_1').text(GetSchdA_SchdBvalues());
+        $('#lblWrkShtN_3').text(GetSchdDValues());
+        if ($('#btnYes').is(':checked') == true) {
+		
+            $('#lblWrkShtN_2').text('$0');
+            $('#lblWrkShtN_4').text('$0');
+        } else {
+		
+            $('#lblWrkShtN_2').text($('#lblBPT_SchA_12').text());
+            $('#lblWrkShtN_4').text($('#lblBPT_SchD_11').text());
+        } 	//if
+    } 	//PerformCalcsBPTlfWrkShtN
+
+    function GetSchdA_SchdBvalues() {
+        if (PrepForMath($('#lblBPT_SchA_11').text()) != 0) {
+            return $('#lblBPT_SchA_11').text();
+        } else if (PrepForMath($('#lblBPT_SchB_11').text()) != 0) {
+            return $('#lblBPT_SchB_11').text();
+        } else {
+            return '$0'
+        } 	//if
+    } 	//GetSchdA_SchdBvalues
+
+    function GetSchdDValues() {
+        if (PrepForMath($('#lblBPT_SchD_6').text()) != 0) {
+            return $('#lblBPT_SchD_6').text();
+        } else {
+            return '$0'
+        } 	//if
+    }		//GetSchdDValues
+</script>
+
+<div id="BPT_WrkShtN" style="display: none" name="BPT_WrkShtN"><br>
+	<table class=tblShowBorder id=tblWrkShtN style="MARGIN-LEFT: 4%" cellSpacing=0 cellPadding=0 width="90%" border=0>
+		<tr height=0>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+		</tr>
+		<tr class="rowDataEven">
+			<td colSpan="20">
+				<label class="lblInstrNormal"><b><u>2012 BIRT Worksheet N: New Business and Employment Worksheet (Philadelphia Code 19-3800)</u></b><br>To be used by taxpayers who are claiming new business status under Philadelphia code 19-3800.<br><br></label>
+			</td>
+		</tr>
+		<tr class=rowDataOdd>
+			<td colspan=20>
+				<div id="divMsg19_3800"></div>
+			</td>
+		</tr>
+		<tr class=rowDataEven>
+			<td colspan=20>
+				<label class="lblInstrNormal"><br><u><b>COMPUTATION OF TAX ON NET INCOME</b></u></label>
+			</td>
+		</tr>
+		<tr class=rowDataOdd>
+			<td><label class="lblInstrNormal">1.</label></td>
+			<td colspan=16>
+				<label class="lblInstrNormal">Amount of taxable income (from </label>
+				<label id="lblLnkNSchdB" class="lblLink" style="FONT-SIZE: 7pt" onclick=ShowPage('SchdB')>Schedule B, Line 11</label>
+				<label class="lblInstrNormal"> or </label>
+				<label id="lblLnkNSchdA" class="lblLink" style="FONT-SIZE: 7pt" onclick=ShowPage('SchdA')>Schedule A, Line 11</label>
+				<label class="lblInstrNormal">).</label>
+			</td>
+			<td colspan=3>
+				<label class=inpReadOnlyRt id=lblWrkShtN_1 style="WIDTH: 100%"></label></td>
+		</tr>
+		<tr class=rowDataEven>
+			<td>
+				<label class="lblInstrNormal">2.</label></td>
+			<td colspan=16>
+				<label class="lblInstrNormal">Tax Due as computed for new business</label>
+			</td>
+			<td colspan=3>
+				<label class=inpReadOnlyRt id=lblWrkShtN_2 style="WIDTH: 100%"></label></td>
+		</tr>
+		<tr class=rowDataOdd>
+			<td colspan=20>
+				<label class="lblInstrNormal"><br><u><b>COMPUTATION OF TAX ON GROSS RECEIPTS</b></u></label>
+			</td>
+		</tr>
+		<tr class=rowDataEven>
+			<td><label class="lblInstrNormal">3.</label></td>
+			<td colspan=16>
+				<label class="lblInstrNormal">Amount of taxable gross receipts (from </label>
+				<label id="Label1" class="lblLink" style="FONT-SIZE: 7pt" onclick=ShowPage('SchdD')>Schedule D, Line 6</label>
+				<label class="lblInstrNormal">).</label>
+			</td>
+			<td colspan=3>
+				<label class=inpReadOnlyRt id=lblWrkShtN_3 style="WIDTH: 100%"></label></td>
+		</tr>
+		<tr class=rowDataOdd>
+			<td>
+				<label class="lblInstrNormal">4.</label></td>
+			<td colspan=16>
+				<label class="lblInstrNormal">Tax Due as computed for new business</label>
+			</td>
+			<td colspan=3>
+				<label class=inpReadOnlyRt id=lblWrkShtN_4 style="WIDTH: 100%"></label></td>
+		</tr>
+    <tr>
+	    <td colspan=20 align=middle><br><input language=javascript id=btnNGoTo onclick=ShowPage("Pg1") type=button value="Return to Page 1" /></td>
+	  </tr>
+	</table>
+</div>

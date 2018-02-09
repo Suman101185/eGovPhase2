@@ -1,0 +1,408 @@
+<script type="text/jscript">
+//EGOVWEB-81 - 2011-04-08 - New for eCheck to be displayed for BPT EZ and LF and NPT
+var ispCCWin
+
+function DoCreditCard() {
+	parent.MenuFrameSet.cols = '158,*'			//0,*
+	var sAmount
+	var sToday, sMonth, sDate
+	sToday = new Date()
+	sMonth = sToday.getMonth() + 1
+	sDate = sToday.getDate()
+//EGOVWEB-34 - 2010-09-15 - Changed < 9 to <=9 for both Month and Date - 9 was not getting padded with a 0
+	if (sMonth <= 9) {
+		sMonth = '0' + sMonth
+	}	//if
+
+	if (sDate <= 9) {
+		sDate = '0' + sDate
+	}	//if
+	
+	ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'AccountNumber', '', 0)
+	ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'BillNumber', '', 0)
+	ispXmlSetFieldVal(xmlCC, '' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'StatementNumber', '', 0)
+	ispXmlSetFieldVal(xmlCC, '123', 'DepartMentId', '', 0)	//DOR
+	ispXmlSetFieldVal(xmlCC, sToday.getFullYear() + '-' + sMonth + '-' + sDate, 'PaymentDate', '', 0)
+
+	var addrIdx
+	addrIdx = LocatePrimaryAddr()
+	if (addrIdx == -1){addrIdx = 0}	//if
+//EGOVWEB-56 - EDD - Changed for Ampersand
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/TRADE_NAME', '', addrIdx) != '') {
+		ispXmlSetFieldVal(xmlCC, '<![CDATA[' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/TRADE_NAME', '', addrIdx) + ']]>', 'Customers/Customer/FirstName', '', 0)
+	} else {
+		if (window.AdjustNameDisplay) {
+			ispXmlSetFieldVal(xmlCC, '<![CDATA[' + AdjustNameDisplay(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/NAME', '', addrIdx)) + ']]>', 'Customers/Customer/FirstName', '', 0)
+		} else {
+			ispXmlSetFieldVal(xmlCC, '<![CDATA[' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/NAME', '', addrIdx) + ']]>', 'Customers/Customer/FirstName', '', 0)
+		}		//if
+	}		//if
+
+	ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/ADDRESS1', '', addrIdx), 'Customers/Customer/BillingAddress/Address/AddressLine1' , '', 0)
+	ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/CITY', '', addrIdx), 'Customers/Customer/BillingAddress/Address/City' , '', 0)
+	ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/STATE', '', addrIdx), 'Customers/Customer/BillingAddress/Address/State' , '', 0)
+//EGOVWEB-37 Added work phone number to buffer
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/WORK_PHONE', '', addrIdx) != '') {
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/WORK_PHONE', '', addrIdx), 'Customers/Customer/PhoneNumber' , '', 0)
+	} else {
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/OTHER_PHONE', '', addrIdx), 'Customers/Customer/PhoneNumber' , '', 0)
+	}		//if	
+
+//BP License Fee Payment Section
+//EGOVWEB-36 Not used anymore goes thru L&I's website
+	if (typeof(AcctThankYou) !== 'undefined') {
+		ispXmlSetFieldVal(xmlCC, '<%= Session("CC_BP_Lic_ePay_ID")%>', 'ApplicationID', '', 0)
+//		ispXmlSetFieldVal(xmlCC, parent.gBPT_SourceCodeIndex, 'account_number', '', 0)
+//		ispXmlSetFieldVal(xmlCC, 
+//				ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0)
+//				, 'source_code_index', '', 0)
+	ispXmlSetFieldVal(xmlCC, 'BP' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'StatementNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, sToday.getFullYear() + '-' + sMonth + '-' + sDate, 'BillingDate', '', 0)
+		ispXmlSetFieldVal(xmlCC, sToday.getFullYear() + '-' + sMonth + '-' + sDate, 'DueDate', '', 0)
+		ispXmlSetFieldVal(xmlCC, parent.gBPT_LicenseFee, 'ItemAmount', '', 0)
+		ispXmlSetFieldVal(xmlCC, parent.gBPT_LicenseFee, 'TotalDue', '', 0)
+		ispXmlSetFieldVal(xmlCC, parent.gBPT_LicenseFee, 'TotalAmountdue', '', 0)
+//		ispXmlSetFieldVal(xmlCC, '0', 'partial_payment_flag', '', 0)
+		ispXmlSetFieldVal(xmlCC, parent.gBPT_LicenseFee, '/Details/BillingStatementDetail/Charges', '', 0)
+		ispXmlSetFieldVal(xmlCC, 'Commercial Activity License Fee', '/Details/BillingStatementDetail/ItemDescription', '', 0)
+	}	//AcctThankYou 
+
+//School Tax Payment Section
+	else if (typeof(divSchoolThankYou) !== 'undefined'){
+		ispXmlSetFieldVal(xmlCC, '<%= Session("CC_School_ePay_ID")%>', 'ApplicationID', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_ID', '', 0), 'AccountNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_ID', '', 0), 'BillNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'SCHOOL_INFO/ADJUSTMENT_REF_NO', '', 0), 'StatementNumber', '', 0)
+		a = ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'SCHOOL_INFO/PERIOD', '', 0)
+//EGOVWEB-41
+		ispXmlSetFieldVal(xmlCC, '29', 'OtherAttributes/Attribute/Value', '', 0)	//TaxType
+		ispXmlSetFieldVal(xmlCC, '12', 'OtherAttributes/Attribute/Value', '', 1)	//TaxPeriod
+		ispXmlSetFieldVal(xmlCC, a.substr(8,2), 'OtherAttributes/Attribute/Value', '', 2)	//TaxYear
+
+		ispXmlSetFieldVal(xmlCC, a.substr(6,4) + '-' + a.substr(0,2) + '-' + a.substr(3,2), 'BillingDate', '', 0)
+		ispXmlSetFieldVal(xmlCC, (Number(a.substr(6,4)) + 1) + '-' + '04' + '-' + '15', 'DueDate', '', 0)
+		sAmount = ispStripCurrency(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO/TAX_DUE', '', 0), 0)).replace('$','')
+		if (sAmount == "") {sAmount = '0'}
+		ispXmlSetFieldVal(xmlCC, sAmount, 'ItemAmount', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalDue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalAmountdue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, '/Details/BillingStatementDetail/Charges', '', 0)
+		ispXmlSetFieldVal(xmlCC, 'School Income Tax for ' + a.substr(6,4), '/Details/BillingStatementDetail/ItemDescription', '', 0)
+	}//divSchoolThankYou 
+
+//Tobacco Tax Payment Section
+	else if (typeof(divTobaccoThankYou) !== 'undefined'){
+		ispXmlSetFieldVal(xmlCC, '<%= Session("CC_Tobacco_ePay_ID")%>', 'ApplicationID', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO/ACCOUNT_ID', '', 0), 'AccountNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO/ACCOUNT_ID', '', 0), 'BillNumber', '', 0)
+//		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO/ADJUSTMENT_REF_NO', '', 0), 'StatementNumber', '', 0)
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO/ADJUSTMENT_REF_NO', '', 0) != '') {										ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO/ADJUSTMENT_REF_NO', '', 0), 'StatementNumber', '', 0)
+		} else {
+			ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'StatementNumber', '', 0)		
+		}		//if Adjustment reference number
+		a = ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO/PERIOD', '', 0)
+//EGOVWEB-41
+		ispXmlSetFieldVal(xmlCC, '27', 'OtherAttributes/Attribute/Value', '', 0)	//TaxType
+		ispXmlSetFieldVal(xmlCC, '12', 'OtherAttributes/Attribute/Value', '', 1)	//TaxPeriod
+		ispXmlSetFieldVal(xmlCC, a.substr(8,2), 'OtherAttributes/Attribute/Value', '', 2)	//TaxYear
+
+		ispXmlSetFieldVal(xmlCC, a.substr(6,4) + '-' + a.substr(0,2) + '-' + a.substr(3,2), 'BillingDate', '', 0)
+		ispXmlSetFieldVal(xmlCC, (Number(a.substr(6,4)) + 1) + '-' + '01' + '-' + '31', 'DueDate', '', 0)
+
+		sAmount = ispStripCurrency(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'AMT_INFO/TOTAL_AMOUNT_DUE', '', 0), 0)).replace('$','')
+		if (sAmount == "") {sAmount = '0'}
+		ispXmlSetFieldVal(xmlCC, sAmount, 'ItemAmount', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalDue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalAmountdue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, '/Details/BillingStatementDetail/Charges', '', 0)
+		ispXmlSetFieldVal(xmlCC, 'Tobacco Tax for ' + a.substr(6,4), '/Details/BillingStatementDetail/ItemDescription', '', 0)
+	}//divTobaccoThankYou 
+	
+//Wage Tax Payment Section
+	else if (typeof(divWageThankYou) !== 'undefined'){
+		ispXmlSetFieldVal(xmlCC, '<%= Session("CC_Wage_ePay_ID")%>', 'ApplicationID', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/ACCOUNT_ID', '', 0), 'AccountNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/ACCOUNT_ID', '', 0), 'BillNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/ADJ_REFNO_CONTROL', '', 0), 'StatementNumber', '', 0)
+		var lFreq = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/FREQUENCY', '', 0)
+		if (lFreq == 'W'){
+			lFreq = '53'
+		}else if(lFreq == 'S'){
+			lFreq = '78'
+		}else if(lFreq == 'M'){
+			lFreq = '91'
+		}else if(lFreq == 'Q'){
+			lFreq = '96'
+		}else{
+			lFreq = '97'
+		}		//if
+		a = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/PERIOD', '', 0)
+//EGOVWEB-41
+		ispXmlSetFieldVal(xmlCC, '01', 'OtherAttributes/Attribute/Value', '', 0)	//TaxType
+		ispXmlSetFieldVal(xmlCC, lFreq, 'OtherAttributes/Attribute/Value', '', 1)	//TaxPeriod
+		ispXmlSetFieldVal(xmlCC, a.substr(8,2), 'OtherAttributes/Attribute/Value', '', 2)	//TaxYear
+
+		ispXmlSetFieldVal(xmlCC, a.substr(6,4) + '-' + a.substr(0,2) + '-' + a.substr(3,2), 'BillingDate', '', 0)
+		var sDueDate
+		sDueDate = ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO/DUE_DATE', '', 0)
+		ispXmlSetFieldVal(xmlCC, sDueDate.substr(6,4) + '-' + sDueDate.substr(0,2) + '-' + sDueDate.substr(3,2), 'DueDate', '', 0)
+		sAmount = ispStripCurrency(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'AMT_INFO/TAX_DUE', '', 0), 0)).replace('$','')
+		if (sAmount == "") {sAmount = '0'}
+		ispXmlSetFieldVal(xmlCC, sAmount, 'ItemAmount', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalDue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalAmountdue', '', 0)
+		ispXmlSetFieldVal(xmlCC, 'Wage Tax for ' + a.substr(6,4), '/Details/BillingStatementDetail/ItemDescription', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, '/Details/BillingStatementDetail/Charges', '', 0)
+	}//divWageThankYou
+
+//Net Profits Tax Payment Section
+	else if (typeof(divNPTThankYou) !=='undefined') {
+		ispXmlSetFieldVal(xmlCC, '<%= Session("CC_NPT_ePay_ID")%>', 'ApplicationID', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO/ACCOUNT_ID', '', 0), 'AccountNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO/ACCOUNT_ID', '', 0), 'BillNumber', '', 0)
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO/ADJUSTMENT_REF_NO', '', 0) != '') {									ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO/ADJUSTMENT_REF_NO', '', 0), 'StatementNumber', '', 0)
+		} else {
+			ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'StatementNumber', '', 0)		
+		}		//if Adjustment reference number
+		a = ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO/PERIOD', '', 0)
+//EGOVWEB-41
+		ispXmlSetFieldVal(xmlCC, '03', 'OtherAttributes/Attribute/Value', '', 0)	//TaxType
+		ispXmlSetFieldVal(xmlCC, '12', 'OtherAttributes/Attribute/Value', '', 1)	//TaxPeriod
+		ispXmlSetFieldVal(xmlCC, a.substr(8,2), 'OtherAttributes/Attribute/Value', '', 2)	//TaxYear
+
+		ispXmlSetFieldVal(xmlCC, a.substr(6,4) + '-' + a.substr(0,2) + '-' + a.substr(3,2), 'BillingDate', '', 0)
+		ispXmlSetFieldVal(xmlCC, (Number(a.substr(6,4)) + 1) + '-' + '04' + '-' + '15', 'DueDate', '', 0)
+		sAmount = ispStripCurrency(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1/TOTAL_DUE', '', 0), 0)).replace('$','')
+		if (sAmount == "") {sAmount = '0'}
+		ispXmlSetFieldVal(xmlCC, sAmount, 'ItemAmount', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalDue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalAmountdue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, '/Details/BillingStatementDetail/Charges', '', 0)	
+		ispXmlSetFieldVal(xmlCC, 'Net Profits Tax for ' + a.substr(6,4), '/Details/BillingStatementDetail/ItemDescription', '', 0)	
+	}//divNPTThankYou
+
+//Business Income and Receipts Tax EZ Payment Section
+	else if (typeof(divBPTThankYou) !=='undefined') {
+		ispXmlSetFieldVal(xmlCC, '<%= Session("CC_BPT_ePay_ID")%>', 'ApplicationID', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_INFO/ACCOUNT_ID', '', 0), 'AccountNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_INFO/ACCOUNT_ID', '', 0), 'BillNumber', '', 0)
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_INFO/ADJUSTMENT_REF_NO', '', 0) != '') {
+			ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_INFO/ADJUSTMENT_REF_NO', '', 0), 'StatementNumber', '', 0)
+		} else {
+			ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'StatementNumber', '', 0)
+		}		//if Adjustment reference number
+		a = ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_INFO/PERIOD', '', 0)
+//EGOVWEB-41
+		ispXmlSetFieldVal(xmlCC, '24', 'OtherAttributes/Attribute/Value', '', 0)	//TaxType
+		ispXmlSetFieldVal(xmlCC, '12', 'OtherAttributes/Attribute/Value', '', 1)	//TaxPeriod
+		ispXmlSetFieldVal(xmlCC, a.substr(8,2), 'OtherAttributes/Attribute/Value', '', 2)	//TaxYear
+
+		ispXmlSetFieldVal(xmlCC, a.substr(6,4) + '-' + a.substr(0,2) + '-' + a.substr(3,2), 'BillingDate', '', 0)
+		ispXmlSetFieldVal(xmlCC, (Number(a.substr(6,4)) + 1) + '-' + '04' + '-' + '15', 'DueDate', '', 0)
+//EGOVWEB-39 Changed field from TAX_DUE to AMOUNT_OWED
+		sAmount = ispStripCurrency(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_PG1/AMOUNT_OWED', '', 0), 0)).replace('$','')
+		if (sAmount == "") {sAmount = '0'}
+		ispXmlSetFieldVal(xmlCC, sAmount, 'ItemAmount', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalDue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalAmountdue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, '/Details/BillingStatementDetail/Charges', '', 0)
+		ispXmlSetFieldVal(xmlCC, 'Business Income and Receipts Tax for ' + a.substr(6, 4), '/Details/BillingStatementDetail/ItemDescription', '', 0)	
+	}//divBPTThankYou
+
+//Business Income and Receipts Tax Long Form Payment Section
+	else if (typeof(divBPTlfThankYou) !=='undefined') {
+		ispXmlSetFieldVal(xmlCC, '<%= Session("CC_BPT_ePay_ID")%>', 'ApplicationID', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, 'BPT_INFO/ACCOUNT_ID', '', 0), 'AccountNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, 'BPT_INFO/ACCOUNT_ID', '', 0), 'BillNumber', '', 0)
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, 'BPT_INFO/ADJUSTMENT_REF_NO', '', 0) != '') {
+			ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, 'BPT_INFO/ADJUSTMENT_REF_NO', '', 0), 'StatementNumber', '', 0)
+		} else {
+			ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'StatementNumber', '', 0)
+		}		//if Adjustment reference number
+		a = ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, 'BPT_INFO/PERIOD', '', 0)
+//EGOVWEB-41
+		ispXmlSetFieldVal(xmlCC, '24', 'OtherAttributes/Attribute/Value', '', 0)	//TaxType
+		ispXmlSetFieldVal(xmlCC, '12', 'OtherAttributes/Attribute/Value', '', 1)	//TaxPeriod
+		ispXmlSetFieldVal(xmlCC, a.substr(8,2), 'OtherAttributes/Attribute/Value', '', 2)	//TaxYear
+
+		ispXmlSetFieldVal(xmlCC, a.substr(6,4) + '-' + a.substr(0,2) + '-' + a.substr(3,2), 'BillingDate', '', 0)
+		ispXmlSetFieldVal(xmlCC, (Number(a.substr(6,4)) + 1) + '-' + '04' + '-' + '15', 'DueDate', '', 0)
+		sAmount = ispStripCurrency(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, 'BPT_PG1/AMOUNT_OWED', '', 0), 0)).replace('$','')
+		if (sAmount == "") {sAmount = '0'}
+		ispXmlSetFieldVal(xmlCC, sAmount, 'ItemAmount', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalDue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalAmountdue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, '/Details/BillingStatementDetail/Charges', '', 0)
+		ispXmlSetFieldVal(xmlCC, 'Business Income and Receipts Tax for ' + a.substr(6, 4), '/Details/BillingStatementDetail/ItemDescription', '', 0)	
+	}//divBPTlfThankYou
+
+	//Use and Occupancy Tax Payment Section
+	else if (typeof (divUOThankYou) !== 'undefined') {
+		ispXmlSetFieldVal(xmlCC, '<%= Session("CC_UO_ePay_ID")%>', 'ApplicationID', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'AccountNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0), 'BillNumber', '', 0)
+		ispXmlSetFieldVal(xmlCC, ispXmlGetFieldVal(oUOForm, 'UO_ACCT/ADJUSTMENT_REF_NO', '', 0), 'StatementNumber', '', 0)
+		var lFreq = ispXmlGetFieldVal(oUOForm, 'UO_ACCT/FREQUENCY', '', 0)
+//		if (lFreq == 'W') {
+//			lFreq = '53'
+//		} else if (lFreq == 'S') {
+//			lFreq = '78'
+//		} else if (lFreq == 'M') {
+//			lFreq = '91'
+//		} else if (lFreq == 'Q') {
+//			lFreq = '96'
+//		} else {
+//			lFreq = '97'
+//		} 	//if
+		a = ispXmlGetFieldVal(oUOForm, 'UO_ACCT/PERIOD', '', 0)
+		//EGOVWEB-41
+		ispXmlSetFieldVal(xmlCC, '84', 'OtherAttributes/Attribute/Value', '', 0)	//TaxType
+		ispXmlSetFieldVal(xmlCC, lFreq, 'OtherAttributes/Attribute/Value', '', 1)	//TaxPeriod
+		ispXmlSetFieldVal(xmlCC, a.substr(8, 2), 'OtherAttributes/Attribute/Value', '', 2)	//TaxYear
+
+		ispXmlSetFieldVal(xmlCC, a.substr(6, 4) + '-' + a.substr(0, 2) + '-' + a.substr(3, 2), 'BillingDate', '', 0)
+		var sDueDate
+		sDueDate = ispXmlGetFieldVal(oUOForm, 'UO_ACCT/DUE_DATE', '', 0)
+		ispXmlSetFieldVal(xmlCC, sDueDate.substr(6, 4) + '-' + sDueDate.substr(0, 2) + '-' + sDueDate.substr(3, 2), 'DueDate', '', 0)
+		sAmount = ispStripCurrency(ispFormatMoney(ispXmlGetFieldVal(oUOForm, 'UO_AMTS/TOTAL_DUE', '', 0), 0)).replace('$', '')
+		if (sAmount == "") { sAmount = '0' }
+		ispXmlSetFieldVal(xmlCC, sAmount, 'ItemAmount', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalDue', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, 'TotalAmountdue', '', 0)
+		ispXmlSetFieldVal(xmlCC, 'Use and Occupancy Tax for ' + a.substr(6, 4), '/Details/BillingStatementDetail/ItemDescription', '', 0)
+		ispXmlSetFieldVal(xmlCC, sAmount, '/Details/BillingStatementDetail/Charges', '', 0)
+	} //divWageThankYou
+	
+//Earnings Tax Payment Section (Currently not used)
+	else if (typeof(divERNThankYou) !=='undefined') {
+		ispXmlSetFieldVal(xmlCC, 
+				ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT_ID', '', 0)
+				, 'account_number', '', 0)
+		ispXmlSetFieldVal(xmlCC, 
+				ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/ADJUSTMENT_REF_NO', '', 0)
+				, 'bill_number', '', 0)	
+		a = ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/PERIOD', '', 0)
+//EGOVWEB-41
+		ispXmlSetFieldVal(xmlCC, '02', 'OtherAttributes/Attribute/Value', '', 0)	//TaxType
+		ispXmlSetFieldVal(xmlCC, '12', 'OtherAttributes/Attribute/Value', '', 1)	//TaxPeriod
+		ispXmlSetFieldVal(xmlCC, a.substr(8,2), 'OtherAttributes/Attribute/Value', '', 2)	//TaxYear
+
+		ispXmlSetFieldVal(xmlCC, '12' + a.substr(8,2), 'bill_date', '', 0)
+		ispXmlSetFieldVal(xmlCC, (Number(a.substr(6,4)) + 1) + '04' + '15', 'due_date', '', 0)
+		
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/ADD_TAX_DUE', '', 0) != 0)
+		{
+			ispXmlSetFieldVal(xmlCC, ispStripCurrency(
+					ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/ADD_TAX_DUE', '', 0)).replace('$','')
+					, 'item_amount', '', 0)
+			ispXmlSetFieldVal(xmlCC, ispStripCurrency(
+					ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'ERN_PG1/ADD_TAX_DUE', '', 0)).replace('$','')
+					, 'total_amount_due', '', 0)
+		}
+		else
+		{//ADD_TAX_DUE = 0
+			ispXmlSetFieldVal(xmlCC, ispStripCurrency(
+					ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/NET_TAX_DUE', '', 0)).replace('$','')
+					, 'item_amount', '', 0)
+			ispXmlSetFieldVal(xmlCC, ispStripCurrency(
+					ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'ERN_PG1/NET_TAX_DUE', '', 0)).replace('$','')
+					, 'total_amount_due', '', 0)
+		}//if		
+		ispXmlSetFieldVal(xmlCC, 'Employee Earnings Tax for ' + a.substr(6,4), 'additional_reference_5', '', 0)	
+	}//divERNThankYou	//if
+
+	var encodeCCXML = xmlCC.xml
+	encodeCCXML = encodeCCXML.replace(/</g, '&lt;')
+	encodeCCXML = encodeCCXML.replace(/>/g, '&gt;')
+	encodeCCXML = encodeCCXML.replace(/"/g, '&quot;')
+	encodeCCXML = encodeCCXML.replace(/\t/g, '')
+	encodeCCXML = encodeCCXML.replace(/\r\n/g, '')
+
+	if (parent.gEnvironment == 'U') {
+		clipboardData.setData ('Text', encodeCCXML)		//xmlCC.xml)
+//		alert('Data being sent to MylocalGov...\n\n' + encodeCCXML)
+//		return
+	}		//if
+	frmePay.action = '<%= Session("CC_SiteName")%>'
+	frmePay.BillStmt.value = encodeCCXML
+	frmePay.submit()
+
+/*	var lWidth = screen.width - 100
+	var lHeight = screen.height - 100
+	if (typeof(divNPTThankYou) !=='undefined') {
+		ispCCWin = open('../../CreditCard/Initialize.asp?a=  ' + 
+				xmlCC.xml,'CCWin','top=50,left=50,width=' + lWidth + ',height=  ' + lHeight+',resizable=yes,//location=no,scrollbars=yes')
+	} else {
+		ispCCWin = open('../CreditCard/Initialize.asp?a=  ' + 
+				xmlCC.xml,'CCWin','top=50,left=50,width=' + lWidth + ',height=  ' + lHeight+',resizable=yes,location=no,scrollbars=yes')
+	}		//if	*/
+}		//DoCreditCard
+
+function DoIspCreditCard() {
+		txaComments.innerText = ""
+	parent.MenuFrameSet.cols = '158,*'			//0,*
+	var lWidth = screen.width - 100
+	var lHeight = screen.height - 100
+	var a = "<DATA><ITEM1>Hello</ITEM1><ITEM2>World</ITEM2></DATA>"
+	if (typeof(divNPTThankYou) !=='undefined') {
+		ispCCWin = open('../../CreditCard/IspInitialize.asp?a=   ' +a,'CCWin','top=50,left=50,width=600,height=500')
+	} else {
+		ispCCWin = open('../CreditCard/IspInitialize.asp?a=   ' +a,'CCWin','top=50,left=50,width=600,height=500')
+
+	}		//if
+}
+
+var bReturnFromMLG = false
+
+function ReturnFromMLG(lReturnVal) {
+	if (bReturnFromMLG == true) {
+		bReturnFromMLG = false
+		return
+	}
+
+	if (lReturnVal != '') {
+		parent.MenuFrameSet.cols = '158,*'
+//		xmlCC.loadXML(ispCCWin.mlgCCXML.xml)
+//	alert('Data being returned by MylocalGov...\n\n' + xmlCC.xml)
+		txaComments.innerText = lReturnVal
+	} else {
+		txaComments.innerText = "Credit Card Canceled by user..."
+	}		//if
+//	ispHideProgress()
+	bReturnFromMLG = true
+	ispCCWin.close()
+
+}		//DisplayCCxml
+
+/*
+function DisplayCCxml(lReturnVal) {
+	parent.MenuFrameSet.cols = '158,*'
+	xmlCC.loadXML(ispCCWin.mlgCCXML.xml)
+	alert('Data being returned by MylocalGov...\n\n' + xmlCC.xml)
+//	xmlCC.loadXML(xmlCCTemplate.xml)
+	txaComments.innerText = xmlCC.xml
+	ispHideProgress()
+	ispCCWin.close()
+}		//DisplayCCxml
+*/
+
+</script>
+
+<xml id="xmlCC" src="../xml/CCBilling.xml"></xml>
+<xml id="xmlCCTemplate" src="../xml/CCBilling.xml"></xml>
+
+<!--<p><font color=red><b>Pay by Credit Card is Currently under construction</b></font></p>-->
+<!--EGOVWEB-81 Change logo and wording -->
+<form id='frmePay' method="post" target="_blank">
+<input type="hidden" name='BillStmt' />
+<p class="lblTextBlack" style="MARGIN-TOP: 15px"><b>Credit Card / eCheck</b> -
+<!--		<input class="btnNormal" id="btnCreditCard" name="btnCreditCard" type="button" value="Pay by Credit Card" onclick="DoCreditCard()" >-->
+<input class="btnNormal" id="btnCreditCard" name="btnCreditCard" type="button" value="Pay by Credit Card or eCheck (ePay)" onclick="DoCreditCard()" />
+
+	<img id="imgCards" alt="American Express, Discover, MasterCard, VISA or eCheck excepted" height="30" src="../Images/ePay.gif" width="175" /> 
+	You can pay by American Express, Discover, MasterCard, VISA or eCheck. <label id="ccFeeText1">A 2.49% user fee will be added to the amount due when paying by credit card or a flat fee of $1.50 when paying by E-Check up to $100,000.</label><br /><label id="ccFeeText" style="display:none"></label>
+	<br /><font color="red"><b><U>Note:</U></b></font> Pop-up Blockers may prevent access to the 
+	Credit Card Processing Center. If the Credit Card Processing Center screen does not appear when 
+	the "Pay By Credit Card" button is selected, consult your Pop-up Blocker software for 
+	instructions on adding <b>https://revenue.phila.gov</b> to the Pop-up allowed list.</p>
+</form>

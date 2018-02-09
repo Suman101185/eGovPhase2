@@ -1,0 +1,165 @@
+<html>
+<head>
+<TITLE></TITLE>
+<script ID="clientEventHandlersJS" LANGUAGE="javascript" type="text/javascript">
+
+var arrLoginErr = new Array();
+var ispCCWin;
+var txtBPL = 'obtain your CAL by completing the CAL application found at http://www.phila.gov/revenue/bpt.html   and mail it, a copy of your forthcoming BIR account confirmation email';
+
+function DisplayThankYou() {
+	$('#AcctThankYou').css('display','block'); //'style.display = 'block'
+	//AcctExistThankYou.style.display = 'none'
+	$('#AcctExistThankYou').css('display','none');
+	//AcctNewThankYou.style.display = 'none'
+	$('#AcctNewThankYou').css('display','none');
+	//divBPTAccount.style.display = 'none'
+	$('#divBPTAccount').css('display','none');
+	//divBPTExemption.style.display = 'none'
+	$('#divBPTExemption').css('display','none');
+	//divBPTNoExemption.style.display = 'none'
+	$('#divBPTNoExemption').css('display','none');
+//	lblUpdateMsg.style.display = 'none'
+	txaComments.value = '';
+
+	var icount
+	var scode
+	if (parent.MenuWin.sNew == true) {
+		//AcctNewThankYou.style.display = 'block'
+		$('#AcctNewThankYou').css('display','block');
+		iCount = ispXmlGetRecCount(parent.MenuWin.xmlAccount, 'TAX_ACCT', '');
+		for (i = 0; i < iCount; i++) {
+			sCode = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT', '', i);
+			if (sCode == '24') {
+				//divBPTAccount.style.display = 'block'
+				$('#divBPTAccount').css('display','block');
+				sExemptionRequest = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'UOL_BRT', '', i).substr(0,1);
+				sExemptionQuailified = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'UOL_BRT', '', i).substr(8, 1);
+				if (sExemptionQuailified == 'A') {		//Accepted
+					//divBPTExemption.style.display = 'block';
+					$('#divBPTExemption').css('display','block');
+				} else {
+					//divBPTNoExemption.style.display = 'block';
+					$('#divBPTNoExemption').css('display','block');
+				}		//if
+				break
+			} 	//if
+		}		//for
+	} else {
+		//AcctExistThankYou.style.display = 'block';
+		$('#AcctExistThankYou').css('display','block');
+		//lblUpdateMsg.style.display = 'block';
+		$('#lblUpdateMsg').css('display','block');
+	}		//if
+	this.focus()
+	$('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|thank you</Font>');
+	$('#AppMessage').html('');
+	//parent.RightFrame.rows = '*,0';
+	$(parent.RightFrame).attr('rows','*.0');
+}		//DisplayThankyou
+
+function DoThankYou() {
+var sEmailMsg;
+	if (txaComments.value != '') {
+		sEmailMsg = '<p align=middle><strong>Comments and Feedback</strong></p>';
+		sEmailMsg += '<p>The following comments or feedback was submitted by: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS NAME', '', 0) + '</p>';
+		sEmailMsg += '<p>Company: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS TRADE_NAME', '', 0) + '</p>';
+		sEmailMsg += '<p>E-mail address: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS EMAIL', '', 0) + '</p><br>';
+		sEmailMsg += '<p><strong>Message: </strong></p>';
+		sEmailMsg += '<p>' + txaComments.value + '</p>';
+		
+		sEmailMsg = ispReplace(sEmailMsg, '>', '&GT&');
+		sEmailMsg = ispReplace(sEmailMsg, '<', '&LT&');
+		
+		ispXmlSetFieldVal(oEmail, 'COMMENT', 'FUNCTION', '', 0);
+		ispXmlSetFieldVal(oEmail, sEmailMsg, 'DATA', '', 0);
+//	ispXmlSetFieldVal(oEmail, 'edd@is-partner.com, larryh@is-partner.com', 'ADDRESS', '', 0)
+//	ispXmlSetFieldVal(oEmail, 'Comments and Feedback', 'SUBJECT', '', 0)
+		ispCallXMLForm(oEmail, oEmail, '../MailPIN', '');
+	}		//if
+	
+	if ($('#AcctNewThankYou').css('display') == 'block') {	
+		$(parent.MenuWin.document).find('#mnuLogLogout').first().trigger('click');
+	} else {
+		parent.MenuWin.sNew = false;
+		InitNavButtons();
+		ShowForm('AcctProfile');
+	}		//if
+//	parent.DocWin.location.href = '../Login/Main.asp'
+}		//DoThankYou
+
+</script>
+</head>
+<BODY>
+	<div Id="AcctThankYou" Name="AcctThankYou" style="DISPLAY: block; VISIBILTY: visible">
+		<div Id="AcctNewThankYou" Name="AcctNewThankYou" style="DISPLAY: none; VISIBILTY: visible">
+			<table cellSpacing="0" cellPadding="1" width="95%" border="0"
+					 style="MARGIN-BOTTOM: 5px; MARGIN-LEFT: 4%"></TR>
+				<tr vAlign="top" align="left">
+					<td width="75%">
+						<p id="hdrThankYou" name="hdrThankYou" class="lblTextBlack">
+							The Tax Account Application is now being processed. Shortly, you will receive via	email the Philadelphia Revenue Personal Identification Number (PIN) for this tax account. You need the PIN to access your account on-line where you can make changes to your account and file and pay your current year business taxes on-line.</p></td>
+				<td></td></tr>
+			</table>
+		</div>
+
+		<div Id="AcctExistThankYou" Name="AcctExistThankYou" style="DISPLAY: none; VISIBILTY: visible">
+			<table cellSpacing="0" cellPadding="1" width="95%" border="0"
+					 style="MARGIN-BOTTOM: 5px; MARGIN-LEFT: 4%"></TR>
+				<tr vAlign="top" align="left">
+					<td width="75%">
+						<p id="hdrThankYou" name="hdrThankYou" class="lblTextBlack">
+							The Taxpayer Information changes are now being processed. Thank you for using the City 
+							of Philadelphia's e-Government System.</p></td>
+				<td></td></tr>
+				</table>
+		</div>
+
+<table cellSpacing="0" cellPadding="0" width="80%" border="0" style="MARGIN-TOP: 15px; MARGIN-LEFT: 4%">	
+  <tr height=40>
+		<td>
+			<div id="divBPTAccount">
+				<div id="divBPTNoExemption">
+					<p class='lblTextBlack'>If you registered for a Business Income and Receipts Tax (BIR) account you must also obtain a Commercial Activity License (CAL) from the Department of Licenses & Inspections (L&I). You can apply on-line at the <a href="https://secure.phila.gov/li/licenses/" target="_blank">Licenses and Inspections Web Site</a>. When you pay for the Commercial Activity License by credit card on-line, you will get your license in the mail within 2 weeks.<br /><br />You may also obtain obtain your CAL by completing the CAL application found at <a href="http://www.phila.gov/revenue/bpt.html" target="_blank">http://www.phila.gov/revenue/bpt.html</a> and mail it, a copy of your forthcoming BIR account confirmation email and a $300 check made payable to the City of Philadelphia to:</p>
+				</div>
+				<div id="divBPTExemption">
+					<p class='lblTextBlack'>Since you registered for a Business Income and Receipts Tax (BIR) account you must also obtain a Commercial Activity License (CAL) from the Department of Licenses & Inspections (L&I).  By qualifying for “New Business” status the CAL fee is waived. To obtain obtain your CAL by completing the CAL application found at <a href="http://www.phila.gov/revenue/bpt.html" target="_blank">http://www.phila.gov/revenue/bpt.html</a> and mail it, a copy of your forthcoming BIR account confirmation email to:</p>
+				</div>
+				<p class='lblTextBlack' style="MARGIN-TOP: 15px; MARGIN-LEFT: 30px">
+					Philadelphia Department	of Licenses and Inspection<br />
+					License Issuance Unit<br />
+					P.O. Box 1942<br />
+					Philadelphia, PA 19105-1942</p>
+				<p class='lblTextBlack'>You may also visit L&I in person at the above address.  Please be sure to bring the aforementioned documents. You may be required to get an additional location based license depending on your business operation.  You may also check the Business Services Center website at <a href="https://business.phila.gov/Pages/Home.aspx" target="_blank">https://business.phila.gov/Pages/Home.aspx</a> to determine your licensing and permitting requirements. For any questions concerning licenses call 311 from the City Of Philadelphia, 215-686-8686 from outside the city or email <a href="mailto:license.issuance@phila.gov">license.issuance@phila.gov</a>.</p>
+				<p class='lblTextBlack'>If you have any questions concerning your tax account, e-mail us at <a href="mailto:revenue@phila.gov">revenue@phila.gov</a> or visit us on-line at <a href="http://www.phila.gov/revenue" target="_blank">www.phila.gov/revenue</a>.</p>
+			</div>
+			
+<!--			<center><p class='lblTextBlack' style="MARGIN-TOP: 15px"><b>Payment Options</b></p></center>	
+<!--EGOVWEB-36 Removed the Credit Card include and added link to L&I-->
+<!--file="../CreditCard/CCPage.htm"-->
+<!--			<p class='lblTextBlack' style="MARGIN-TOP: 15px"><b><a href="https://secure.phila.gov/li/licenses" target="_blank">License and Inspection Web Site</a></b> - By clicking on the link you can pay for your Business Privilege License by credit card using the License and Inspection web site:</p>
+			<p class='lblTextBlack' style="MARGIN-TOP: 15px; MARGIN-LEFT: 30px"></p>
+			<p class='lblTextBlack' style="MARGIN-TOP: 15px"><b>Other</b> - Mail a print out of the email
+					and your $300 license fee, payable to the "City of Philadelphia" to:</p>
+			<p class='lblTextBlack' style="MARGIN-TOP: 15px; MARGIN-LEFT: 30px">
+					Philadelphia Department	of Licenses &amp; Inspection<br>
+					P.O. Box 1942<br>
+					Philadelphia, PA 19105-1942</p>
+			</div>-->
+			<p class="lblTextBlack">We would appreciate your comments / feedback concerning your online
+					experience.<br>Please enter your comments / feedback below:</p><TEXTAREA id="txaComments" style="WIDTH: 80%; HEIGHT: 80px" name=txaComments></TEXTAREA>
+			</td></tr>
+  <tr height=40 valign="bottom">
+		<td>
+			<p id="lblUpdateMsg" class="lblTextBlack">
+					  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					  Click "Thank You" to continue.&nbsp;&nbsp;&nbsp;
+			<input class="btnNormal" id="btnThankYou" name="btnThankYou"
+					 type="submit" value ="Thank You" onclick="DoThankYou()" /></p></td></tr>
+</table>
+</div>
+</BODY>
+</html>

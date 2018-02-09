@@ -1,0 +1,10 @@
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb

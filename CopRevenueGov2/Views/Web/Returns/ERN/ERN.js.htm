@@ -1,0 +1,825 @@
+<!--<script language="javascript">-->
+
+var arrPage1Err = new Array()
+
+var txtHeader = 'Taxpayer Information'
+var hasCorpMembers = false
+var dERNResidentRate /*= 0.04331*/ //Resident and NonResident Rates change yearly set via XML
+var dERNNonResidentRate /*= 0.038197*/
+var negTaxDue = false
+var amntNegDue = 0
+
+
+function AdjustNameDisplay(incName)
+{
+	var sEntityName = incName
+	var lName = "", fName = "", mName = "", newName = ""
+			
+	if (sEntityName.indexOf("*") != -1)
+	{//If name contains *'s
+		sEntityName = sEntityName.split("*")
+		lName = (sEntityName[0].substr(0,1)) + (sEntityName[0].substr(1).toLowerCase())
+		if (sEntityName[1]) 
+		{
+			fName = (sEntityName[1].substr(0,1)) + (sEntityName[1].substr(1).toLowerCase())
+		}		//if
+			
+		if (sEntityName[2]) 
+		{
+			mName = sEntityName[2].substr(0,1).toUpperCase()
+		}
+		newName = fName + " " + mName + " " + lName
+		return newName
+	} else {
+		return sEntityName
+	}		//if
+}//AdjustNameDisplay
+
+
+function DisplayERNReturn() {
+
+	if (parent.$g.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT = 2]")) {
+		parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuReERN)
+		ERN.style.display = 'block'
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 'INQ', 'ERN_INFO/RETURN_STATUS', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 
+				parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO/ENTITY_ID', "", 0),
+				'ERN_INFO/ACCOUNT_ID', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '12/31/2005', 'ERN_INFO/PERIOD', '', 0)	
+		ispCallXMLForm(parent.MenuWin.xmlERN, parent.MenuWin.xmlERN, "ERNReturn.asp","")
+		
+///alert(parent.MenuWin.xmlERN.xml)		
+///parent.MenuWin.xmlERN.loadXML(parent.MenuWin.xmlERNTemplate.xml)
+		
+		if (parent.MenuWin.divAcctInfo.style.display == 'none') {
+			parent.MenuWin.divAcctInfo.style.display = 'block'
+			parent.MenuWin.divAccount.style.display = 'none'
+		}		//if
+	}	else {
+		parent.MenuWin.xmlERN.loadXML(parent.MenuWin.xmlERNTemplate.xml)
+		parent.MenuWin.ispMenu_onclick(parent.MenuWin.mnuAcctInfo)
+	}		//if
+
+	AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|employee earnings tax for </Font>' +
+							'<Font class=hdrMedium>' + currentYear + '</Font>'	
+	parent.MenuWin.gsInstructionItem = '#ERNReturn'
+	AppMessage.innerHTML = parent.MenuWin.gsInstructionText +
+			'<BR>The Employee Earnings Tax for ' + (currentYear - 1) + ' is due April 15, ' + currentYear
+	InstructionText.innerHTML = ' for Instructions on filing this return'
+
+	parent.RightFrame.rows = '*,0'
+	LoadError("Page1")
+	CheckERNXML()
+	SetERNFields()
+	PopulateERNHeader()
+	PopulateERNData()
+	AppError.innerText = ""
+
+}		//DisplayERNReturn
+
+function CheckERNXML(){
+var bPeriodExist = true
+
+	if (parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/PERIOD', '', 0) != '' &&
+			new Date(parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/PERIOD', '', 0)) < 
+			new Date('01/01/2005')) {
+		bPeriodExist = false
+	}		//if
+
+	if (parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/PERIOD', '', 0) == '') {
+		bPeriodExist = false
+	}		//if
+
+	if (bPeriodExist == false) {
+		//error_info
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERROR_INFO/PROGRAM', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERROR_INFO/ERROR', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERROR_INFO/LINE', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERROR_INFO/MESSAGE', '', 0)
+		
+		//ERN_info	
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '12/31/2005', 'ERN_INFO/PERIOD', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERN_INFO/VERSION', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERN_INFO/RETURN_STATUS', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERN_INFO/LAST_UPD_DATE', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERN_INFO/RECORDING_DATE', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERN_INFO/EXTENSION_DATE', '', 0)
+
+		//ERN_pg1
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/GROSS_COMP', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/NON_TAXABLE_COMP', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/NET_TAXABLE_COMP', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/RES_TAXABLE_COMP', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/RES_TAX_DUE', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/NON_RES_TAXABLE_COMP', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/NON_RES_TAX_DUE', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/TOTAL_TAX_DUE', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/WAGE_TAX_WITHHELD', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/NET_TAX_DUE', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/TAX_PREV_PAID', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/ADD_TAX_DUE', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/REFUND', '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, 0, 'ERN_PG1/ERN_OVERPAY', '', 0)
+	}		//if
+}		//CheckERNXML
+
+
+function SetERNFields() {
+	chkAgreement.checked = false
+	chkAmended.checked = false
+
+	if (parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/VERSION', '', 0) == '') {
+		FieldLock(false)
+		chkAmended.disabled = true
+	} else {
+		chkAmended.disabled = false
+		FieldLock(true)
+	}		//if
+}		//SetERNFields
+
+function PopulateERNHeader() {
+var addrIdx
+
+	if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO/ENTITY_ID', '', 0) != '') {
+		lblAccountId.innerText = parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO/ACCOUNT_ID', '', 0)
+		lblAccountId.innerText = parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO/ENTITY_ID', '', 0)
+		lblEntityId.innerText = parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO/ENTITY_ID', '', 0)
+		if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO/TYPE', '', 0) == 1) {
+			lblEntityType.innerText = 'EIN:'
+			lblEntityId.innerText = ' ' + lblEntityId.innerText.substr(0,2) + '-'	+ 
+					lblEntityId.innerText.substr(2)
+		} else {
+			lblEntityType.innerText = 'SSN:'
+			lblEntityId.innerText = ' ' + lblEntityId.innerText.substr(0,3) + '-'	+ 
+					lblEntityId.innerText.substr(3,2) + '-' + lblEntityId.innerText.substr(5)
+		}		//if
+		addrIdx = LocatePrimaryAddr()
+		
+		lblName.innerText = AdjustNameDisplay(parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/NAME', '', addrIdx))
+
+		lblAddress.innerText = parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/ADDRESS1', '', addrIdx) +
+				' ' + parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/ADDRESS2', '', addrIdx) +
+				' ' + parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/CITY', '', addrIdx) +
+				' ' + parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/STATE', '', addrIdx) +
+				' ' + parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/ZIP', '', addrIdx)
+	}		//if
+}		//PopulateERNHeader
+
+function PopulateERNData() {
+	//Page 1
+	dERNResidentRate = parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/RESIDENT_RATE', '', 0)
+	dERNNonResidentRate = parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/NON_RES_RATE', '', 0)
+	
+	txtERN1.value = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/GROSS_COMP', '', 0), 0)
+	txtERN2.value = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/NON_TAXABLE_COMP', '', 0), 0)
+	lblERN3.innerText = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/NET_TAXABLE_COMP', '', 0), 0)
+	txtERN4.value = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/RES_TAXABLE_COMP', '', 0), 0)
+	lblERN5.innerText = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/RES_TAX_DUE', '', 0), 0)
+	txtERN6.value = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/NON_RES_TAXABLE_COMP', '', 0), 0)
+	lblERN7.innerText = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/NON_RES_TAX_DUE', '', 0), 0)
+	lblERN8.innerText = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/TOTAL_TAX_DUE', '', 0), 0)
+	txtERN9.value = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/WAGE_TAX_WITHHELD', '', 0), 0)
+	lblERN10.innerText = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/NET_TAX_DUE', '', 0), 0)
+	txtERN11.value = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/TAX_PREV_PAID', '', 0), 0)
+	lblERN12.innerText = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/ADD_TAX_DUE', '', 0), 0)
+	lblERN13a.innerText = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/REFUND', '', 0), 0)
+	lblERN13b.innerText = ispFormatMoney(
+			parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_PG1/ERN_OVERPAY', '', 0), 0)
+	if (lblERN13a.innerText != "$0" && lblERN13a.innerText != "") { radERN13a(0).checked = true }
+		else if (lblERN13b.innerText != "$0" && lblERN13b.innerText != "") { radERN13(1).checked = true }
+}		//PopulateERNData
+
+
+function FieldLock(bDisabled) {
+
+	///txtTermDate.disabled = bDisabled
+	txtERN1.disabled = bDisabled
+	txtERN2.disabled = bDisabled
+	lblERN3.disabled = bDisabled
+	txtERN4.disabled = bDisabled
+	lblERN5.disabled = bDisabled
+	txtERN6.disabled = bDisabled
+	lblERN7.disabled = bDisabled
+	lblERN8.disabled = bDisabled
+	txtERN9.disabled = bDisabled
+	lblERN10.disabled = bDisabled
+	txtERN11.disabled = bDisabled
+	lblERN12.disabled = bDisabled
+	//radERN13(0).disabled = bDisabled
+	//lblERN13a.disabled = bDisabled
+	//radERN13(1).disabled = bDisabled	
+	//lblERN13b.disabled = bDisabled
+	chkAgreement.disabled = bDisabled
+}		//FieldLock
+
+function SetFocus() {
+	document.activeElement.select()
+}		//SetFocus
+
+function btnERNPrint_onclick() {
+var objCurrDisplayed
+
+	btnERNPrint.style.visibility = 'hidden'
+	btnERNSubmit.style.visibility = 'hidden'
+	
+	if (ERN.style.display = 'block') {
+		objCurrDisplayed = ERN
+	}
+
+	AppError.innerText = ''
+
+	window.print()
+
+	btnERNPrint.style.visibility = 'visible'
+	btnERNSubmit.style.visibility = 'visible'
+	
+}		//btnERNPrint_onclick
+
+function btnERNSubmit_onclick() {
+	var tempXML = new ActiveXObject("MSXML.DOMDocument")
+	AppError.innerText = ""
+	ValidateWorksheet("Page1")
+
+	if(!radERN13(0).disabled && (radERN13(0).checked || radERN13(1).checked))
+	{//Question 13 applies and an answer selected
+			if (AppError.innerText == "" && chkAgreement.checked)
+			{
+				parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERN_INFO/RETURN_STATUS', '', 0)
+				PopulateERNXML()
+				parent.DocWin.ispCallXMLForm(parent.MenuWin.xmlERN, tempXML, "ERNReturn.asp", "")
+				//alert(tempXML.xml)					
+				if (parent.$x.ispXmlGetFieldVal(tempXML, 'ERROR_INFO/PROGRAM', '', 0) == '') 
+				{
+///
+///alert(parent.MenuWin.xmlERN.xml)			
+					parent.MenuWin.xmlERN.loadXML(tempXML.xml)
+					ERN.style.display = 'none'
+					DisplayERNThankYou()
+				} 
+				else 
+				{
+					AppError.innerText = parent.$x.ispXmlGetFieldVal(tempXML, 'ERROR_INFO/MESSAGE', '', 0)
+				}//if
+			}
+			else if (chkAgreement.checked == false) 
+			{
+				AppError.innerText = 'Signature box must be checked before submitting the Employee Earnings Tax Form'
+			}//if
+	}
+	else if (radERN13(0).disabled)
+	{//Question 13 does not apply
+		if (chkAgreement.checked)
+		{
+			parent.$x.ispXmlSetFieldVal(parent.MenuWin.xmlERN, '', 'ERN_INFO/RETURN_STATUS', '', 0)
+			PopulateERNXML()
+			parent.DocWin.ispCallXMLForm(parent.MenuWin.xmlERN, tempXML, "ERNReturn.asp", "")				
+			if (parent.$x.ispXmlGetFieldVal(tempXML, 'ERROR_INFO/PROGRAM', '', 0) == '') 
+			{
+///
+///alert(parent.MenuWin.xmlERN.xml)				
+				parent.MenuWin.xmlERN.loadXML(tempXML.xml)
+				ERN.style.display = 'none'
+				DisplayERNThankYou()
+			} 
+			else 
+			{
+				AppError.innerText = parent.$x.ispXmlGetFieldVal(tempXML, 'ERROR_INFO/MESSAGE', '', 0)
+			}//if
+		}
+		else if (chkAgreement.checked == false) 
+		{
+			AppError.innerText = 'Signature box must be checked before submitting the Employee Earnings Tax Form'
+		}//if
+	}		
+	else 
+	{//Question 13 applies but no answer selected
+		AppError.innerText = 'Please Select an option for Question 13.'
+	}//if	
+}		//btnERNSubmit_onclick
+
+function DisplayERNThankYou() {
+	frmePay.imgCards.src = '../../Images/lockup_ADMV175x30.gif'
+//	imgMC.src = '../../Images/mastercardlogo.gif'
+	xmlCC.src = '../../xml/CCBilling.xml'
+	xmlCCTemplate.src = '../../xml/CCBilling.xml'
+
+	ERN.style.visibility = "hidden"
+	ERN.style.display = "none"
+	ERN_Page1.style.visibility = "hidden"
+	ERN_Page1.style.display = "none"	
+
+	///if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlWage, 'ERN_INFO/PERIOD', '', 0) ==	'12/31/2005') {
+		lblThankYouName.innerText = lblName.innerText
+	///}		//if
+	
+	lblAcctNo.innerText = parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO/ENTITY_ID', '', 0)
+	if (parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/ADJUSTMENT_REF_NO', '', 0) != '') {
+		lblConfirmNo.innerText = 
+				parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlERN, 'ERN_INFO/ADJUSTMENT_REF_NO', '', 0)
+	} else {
+		lblConfirmNo.innerText = parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO/ACCOUNT_ID', '', 0)
+	}		//if Adjustment reference number
+
+	divERNThankYou.style.display = 'block'
+	this.focus()
+	AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|thank you</Font>'
+}		//DisplayThankyou
+
+function DoThankYou() {
+var sEmailMsg
+	if (txaComments.value != '') {
+		sEmailMsg = '<p align=middle><strong>Comments and Feedback</strong></p>'
+		sEmailMsg += '<p>The following comments or feedback was submitted by: '
+		sEmailMsg += parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/NAME', '', 0) + '</p>'
+		sEmailMsg += '<p>Company: '
+		sEmailMsg += parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/TRADE_NAME', '', 0) + '</p>'
+		sEmailMsg += '<p>E-mail address: '
+		sEmailMsg += parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/EMAIL', '', 0) + '</p><br>'
+		sEmailMsg += '<p><strong>Message: </strong></p>'
+		sEmailMsg += '<p>' + txaComments.value + '</p>'
+		
+		sEmailMsg = ispReplace(sEmailMsg, '>', '&GT&')
+		sEmailMsg = ispReplace(sEmailMsg, '<', '&LT&')
+		
+		parent.$x.ispXmlSetFieldVal(oEmail, 'COMMENT', 'FUNCTION', '', 0)
+		parent.$x.ispXmlSetFieldVal(oEmail, sEmailMsg, 'DATA', '', 0)
+
+		ispCallXMLForm(oEmail, oEmail, '../../MailPIN.asp', '')
+	}		//if
+
+	parent.DocWin.location.href = '../../Acct/ApplyMain.asp'
+}		//DoThankYou
+/*
+function txtTermDate_onblur() {
+	if (AppError.innerText == "" && txtTermDate.value != ""){
+		var strBD = ispValidateDate(txtTermDate.value)
+		
+		if (strBD == false){
+			AppError.innerText = 'Invalid termination date'
+			txtTermDate.className = 'inpError'
+			blnErr = true
+		}else{
+			txtTermDate.className = 'inpNormal'
+			txtTermDate.value = strBD
+		}		//if
+	} else {
+		txtTermDate.className = 'inpNormal'
+	}		//if
+}		//txtToDate_onblur
+*/
+function chkAgreement_onclick() {
+	ValidateWorksheet("Page1")
+}		//chkAgreement
+
+function chkAmended_onclick() {
+
+	if (chkAmended.checked == true) {
+		parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuReERN)
+		ERN.style.display = 'block'
+		btnERNSubmit.disabled = false
+		FieldLock(false)
+		txtERN1.focus()
+	} else {
+		parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuReERN)
+		ERN.style.display = 'block'
+		btnERNSubmit.disabled = true
+		chkAgreement.checked = false
+		FieldLock(true)
+	}		//if
+}		//chkAmended_onclick
+
+function LocatePrimaryAddr() {
+var iMaxIdx = parent.$x.ispXmlGetRecCount(parent.$g.xmlAccount, 'NAME_ADDRESS', '')
+
+	for (idx=0; idx<iMaxIdx; i++) {
+		if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/ADDRESS_TYPE', '', idx) == '60') {
+			if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS/RELATIONSHIP_CODE', '', idx) == '0') {
+				return idx
+			}		//if
+		} else {
+		//alert ('primary addr not found')
+			return 0
+		}		//if
+	}		//for
+}		//locatePrimaryAddr
+
+function PopulateERNXML() {
+	var d = new Date()
+	var lYear = String(d.getFullYear())
+	var lMonth = String(d.getMonth() + 1)
+	lMonth = lMonth.length == 1 ? '0' + lMonth : lMonth
+	var lDate = String(d.getDate())
+	lDate = lDate.length == 1 ? '0' + lDate : lDate
+	
+		with (parent.MenuWin) {
+			//Page 1
+			parent.$x.ispXmlSetFieldVal(
+					xmlERN, lMonth + '/' + lDate + '/' + lYear, 'ERN_INFO/RECORDING_DATE', '', 0)
+
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(txtERN1.value), 'ERN_PG1/GROSS_COMP', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(txtERN2.value), 'ERN_PG1/NON_TAXABLE_COMP', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(lblERN3.innerText), 'ERN_PG1/NET_TAXABLE_COMP', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(txtERN4.value), 'ERN_PG1/RES_TAXABLE_COMP', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(lblERN5.innerText), 'ERN_PG1/RES_TAX_DUE', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(txtERN6.value), 'ERN_PG1/NON_RES_TAXABLE_COMP', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(lblERN7.innerText), 'ERN_PG1/NON_RES_TAX_DUE', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(lblERN8.innerText), 'ERN_PG1/TOTAL_TAX_DUE', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(txtERN9.value), 'ERN_PG1/WAGE_TAX_WITHHELD', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(lblERN10.innerText), 'ERN_PG1/NET_TAX_DUE', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(txtERN11.value), 'ERN_PG1/TAX_PREV_PAID', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(lblERN12.innerText), 'ERN_PG1/ADD_TAX_DUE', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(lblERN13a.innerText), 'ERN_PG1/REFUND', '', 0)
+			parent.$x.ispXmlSetFieldVal(xmlERN, ispStripCurrency(lblERN13b.innerText), 'ERN_PG1/ERN_OVERPAY', '', 0)
+		
+			parent.$x.ispXmlSetFieldVal(xmlERN, '', 'DEBUG', '', 0)
+		}		//with
+}		//PopulateERNXML
+
+function ShowPage(iPage,iWrk) {
+	ERN.style.visibility = "visible"
+	ERN.style.display = "block"
+	
+	ERN_Page1.style.visibility = "hidden"
+	ERN_Page1.style.display = "none"	
+	
+	switch (iPage)
+	{
+		case "Page1":
+			///parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuBPTezYear05Page2)
+			//parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuReNPT)
+			ERN_Page1.style.visibility = "visible"
+			ERN_Page1.style.display = "block"
+		
+			btnERNSubmit.disabled = false
+			FieldLock(false)
+			break
+	}//switch
+	AppError.innerText = ""
+	PerformCalcs(iPage)
+	LoadError(iPage)
+	ValidateWorksheet(iPage)
+}//ShowPage
+
+
+function LoadError(formId)
+{
+	var i=0
+	
+	switch(formId)
+	{
+		case "Page1":
+			///arrPage1Err[i++] = [txtTermDate, 'txtTermDate.value != "" & ispValidateDate(txtTermDate.value) == false', 'Invalid to termination date']
+
+			
+			arrPage1Err[i++] = [txtERN1, 'txtERN1.value == ""', 'Answer Question 1']
+			arrPage1Err[i++] = [txtERN1, 'ispValue(txtERN1.value) == false', 'Value for Question 1 must be numeric']
+			arrPage1Err[i++] = [txtERN1, 'ispNegativeNumber(txtERN1.value) == false', 'Value for Question 1 must NOT be negative']
+
+			arrPage1Err[i++] = [txtERN2, 'txtERN2.value == ""', 'Answer Question 2']
+			arrPage1Err[i++] = [txtERN2, 'ispValue(txtERN2.value) == false', 'Value for Question 2 must be numeric']
+			arrPage1Err[i++] = [txtERN2, 'ispNegativeNumber(txtERN2.value) == false', 'Value for Question 2 must NOT be negative']
+			
+			arrPage1Err[i++] = [txtERN4, 'txtERN4.value == ""', 'Answer Question 4']
+			arrPage1Err[i++] = [txtERN4, 'ispValue(txtERN4.value) == false', 'Value for Question 4 must be numeric']
+			arrPage1Err[i++] = [txtERN4, 'ispNegativeNumber(txtERN4.value) == false', 'Value for Question 4 must NOT be negative']
+		
+			arrPage1Err[i++] = [txtERN6, 'txtERN6.value == ""', 'Answer Question 6']
+			arrPage1Err[i++] = [txtERN6, 'ispValue(txtERN6.value) == false', 'Value for Question 6 must be numeric']
+			arrPage1Err[i++] = [txtERN6, 'ispNegativeNumber(txtERN6.value) == false', 'Value for Question 6 must NOT be negative']
+
+			arrPage1Err[i++] = [txtERN9, 'txtERN9.value == ""', 'Answer Question 9']
+			arrPage1Err[i++] = [txtERN9, 'ispValue(txtERN9.value) == false', 'Value for Question 9 must be numeric']
+			arrPage1Err[i++] = [txtERN9, 'ispNegativeNumber(txtERN9.value) == false', 'Value for Question 9 must NOT be negative']
+
+			arrPage1Err[i++] = [txtERN11, 'txtERN11.value == ""', 'Answer Question 11']
+			arrPage1Err[i++] = [txtERN11, 'ispValue(txtERN11.value) == false', 'Value for Question 11 must be numeric']
+			arrPage1Err[i++] = [txtERN11, 'ispNegativeNumber(txtERN11.value) == false', 'Value for Question 11 must NOT be negative']
+
+			if (!radERN13(0).disabled)
+			{
+				arrPage1Err[i++] = [radERN13(0), 'radERN13(0).checked == false && radERN13(1).checked == false',
+							 'Please Select an option for Question 13.']
+				arrPage1Err[i++] = [radERN13(1), 'radERN13(0).checked == false && radERN13(1).checked == false',
+							 'Please Select an option for Question 13.']
+			}//if
+
+			///arrPage1Err[i++] = [chkAgreement, 'ERN_Page1.style.display == "block" && chkAgreement.checked == false', 'Signature box must be checked before submitting the Employee Earnings Tax Form']			
+			//	arrPage1Err[i++] = [radERN12(0), '', '']
+			//	arrPage1Err[i++] = [radERN12(1), '', '']
+			//	arrPage1Err[i++] = [radERN12(2), '', '']
+			break
+	}//Switch
+}//LoadError
+
+function ValidateWorksheet(formId) 
+{
+	var sId = document.activeElement.id
+	var ObjSelected
+	
+	AppError.innerText = ""
+	
+	if (sId != "")
+	{
+		ObjSelected = document.getElementById(sId)
+		ObjSelected.value = ispFormatMoney(ObjSelected.value, 0)
+	}//if
+	
+///	switch(formId)
+///	{
+///		case "Page1":
+			AppError.innerText = ispSetInputErr(arrPage1Err)			
+///		break	
+///	}//Switch
+	
+	if (AppError.innerText == "")
+	{
+		PerformCalcs(formId)
+	} 
+	else 
+	{
+		AppError.scrollIntoView(true)
+	}		//if
+}	//ValidateWorksheet			
+
+function PerformCalcs(formId)
+{
+	switch(formId)
+	{
+		case "Page1":
+			CalcPage1Line3()
+			CalcPage1Line5(dERNResidentRate)	
+			CalcPage1Line7(dERNNonResidentRate)
+			CalcPage1Line8()
+			///CalcPage1Line9()
+			CalcPage1Line10()
+			CalcPage1Line12()
+			CalcPage1Line13()	
+			break		
+	}//Switch
+}//PerformCalcs
+
+//Begin Calculations
+
+function PrepForMath(numString)
+{//Removes $ and , from the string and forces the string into a number
+	var temp
+	temp = numString
+	if (temp.indexOf("(") == -1)
+	{//Positive Value
+		return temp = (1* (temp.replace(/[,$]/g,"")))
+	}
+	else
+	{//Negative Value
+		temp = temp.replace(/[,$()]/g,"")
+		temp = (-1) * temp
+		return temp
+	}		
+}//PrepForMath
+
+//*****Page 1*****
+function CalcPage1Line3()
+{//Net Taxable compensation (Line 1 Minus Line2)
+	if(txtERN1.value != "" && txtERN2.value != "")
+	{
+		lblERN3.innerText = ispFormatMoney((PrepForMath(txtERN1.value) - PrepForMath(txtERN2.value)),0)
+	}//if
+}//CalcPage1Line3
+
+function CalcPage1Line5(rRate)
+{//Tax Due (Line 4 times Resident Rate)
+	if(txtERN4.value != "")
+	{
+		lblERN5.innerText = ispFormatMoney((PrepForMath(txtERN4.value) * rRate),0)
+	}//if
+}//CalcPage1Line5
+
+function CalcPage1Line7(nrRate)
+{//Tax Due (Line 6 times Non-Resident Rate)
+	if(txtERN6.value != "")
+	{
+		lblERN7.innerText = ispFormatMoney((PrepForMath(txtERN6.value) * nrRate),0)
+	}//if
+}//CalcPage1Line7
+
+function CalcPage1Line8()
+{//Line 5 plus 7
+	if(lblERN5.innerText != "" && lblERN7.innerText != "")
+	{
+		lblERN8.innerText = ispFormatMoney((PrepForMath(lblERN5.innerText) + PrepForMath(lblERN7.innerText)),0)
+	}//if
+}//CalcPage1Line8
+
+function CalcPage1Line10() {		//Net Tax Due (Line 8 minus Line 9)
+	if(lblERN8.innerText != "" && txtERN9.value != "")	{			
+		lblERN10.innerText = ispFormatMoney((PrepForMath(lblERN8.innerText) - PrepForMath(txtERN9.value)), 0)
+	}		//if
+}//CalcPage1Line10
+
+function CalcPage1Line12()
+{//If Line 10 is > Line 11, enter difference here
+	if(lblERN10.innerText != "" && txtERN11.value != "")
+	{
+		if(PrepForMath(lblERN10.innerText) > PrepForMath(txtERN11.value))
+		{
+			lblERN12.innerText = ispFormatMoney((PrepForMath(lblERN10.innerText) - PrepForMath(txtERN11.value)),0)
+		}
+		else
+		{//Line 10 <= Line 11
+			lblERN12.innerText = ""
+		}//if
+	}//if
+}//CalcPage1Line12
+
+function CalcPage1Line13()
+{//If Line 10 < Line 11 or Tax Amount Due is Negative, enable radio buttons and enter amount in selected field	
+	if (PrepForMath(lblERN10.innerText) < PrepForMath(txtERN11.value)) {
+		val13 = ispFormatMoney((PrepForMath(txtERN11.value) - PrepForMath(lblERN10.innerText)), 0)		
+			
+		radERN13(0).disabled = false
+		radERN13(1).disabled = false		
+
+		lblERN13a.disabled = false
+		lblERN13b.disabled = false
+
+		if (radERN13(0).checked == false && radERN13(1).checked == false) {
+			radERN13(0).checked = true
+		}		//if
+		
+		if (radERN13(0).checked) { 
+			lblERN13a.innerText = val13
+			lblERN13b.innerText = ""
+		}	else if(radERN13(1).checked) { 
+			lblERN13a.innerText = ""
+			lblERN13b.innerText = val13
+		}		//if
+	}	else {		//Line 10 > Line 11
+		radERN13(0).checked = false
+		radERN13(1).checked = false
+		
+		radERN13(0).disabled = true
+		radERN13(1).disabled = true
+
+		lblERN13a.disabled = true
+		lblERN13b.disabled = true
+		
+		lblERN13a.innerText = ""
+		lblERN13b.innerText = ""
+	}		//if
+}		//CalcPage1Line13
+
+
+
+/*
+function CalcPage1Line9()
+{//If Line 8 = Line 9 STOP
+	if(lblERN8.innerText != "" && lblERN8.innerText != 0 && txtERN9.value != "" && txtERN9.value != 0)
+	{
+		if(PrepForMath(lblERN8.innerText) == PrepForMath(txtERN9.value))
+		{//STOP
+			lblERN10.innerText = "N/A"
+			lblERN10.disabled = true
+			
+			txtERN11.value = "N/A"
+			txtERN11.diabled = true
+			
+			lblERN12.innerText = ""
+			lblERN12.disabled = true
+			
+			radERN13(0).disabled = true
+			radERN13(1).disabled = true	
+			
+			lblERN13a.innerText = ""
+			lblERN13b.innerText = ""
+		}//if
+	}//if
+}//CalcPage1Line9			
+*/			
+
+function CalcPage1Line10_ehd()
+{//Net Tax Due (Line 8 minus Line 9)
+	if(lblERN8.innerText != "" && txtERN9.value != "")
+	{			
+		if((PrepForMath(lblERN8.innerText) - PrepForMath(txtERN9.value))< 0)
+		{//Line 10 is Negative	
+			negTaxDue = true
+			amntNegDue = ispFormatMoney((PrepForMath(lblERN8.innerText) - PrepForMath(txtERN9.value)),0)
+			lblERN10.innerText = ispFormatMoney(0,0)		//"N/A"
+			
+			//radERN13(0).disabled = false
+			//radERN13(1).disabled = false	
+
+			//radERN13(0).checked = true
+			//radERN13(1).checked = false
+
+			//lblERN13a.innerText = amntNegDue
+			//lblERN13b.innerText = ""				
+		}
+		else if((PrepForMath(lblERN8.innerText) - PrepForMath(txtERN9.value))> 0)
+		{//Line 10 is Positive
+			negTaxDue = false
+			lblERN10.innerText = ispFormatMoney((PrepForMath(lblERN8.innerText) - PrepForMath(txtERN9.value)),0)
+		}//if
+		else
+		{//Line 10 is 0, shouldn't get here
+			lblERN10.innerText = (PrepForMath(lblERN8.innerText) - PrepForMath(txtERN9.value))
+		}	
+	}//if
+}//CalcPage1Line10_ehd
+
+function CalcPage1Line13_ehd()
+{//If Line 10 < Line 11 or Tax Amount Due is Negative, enable radio buttons and enter amount in selected field	
+	if(!negTaxDue)
+	{//Positive Tax Due
+		if(PrepForMath(lblERN10.innerText) < PrepForMath(txtERN11.value))
+		{
+			val13 = ispFormatMoney((PrepForMath(txtERN11.value) - PrepForMath(lblERN10.innerText)),0)		
+			
+			radERN13(0).disabled = false
+			radERN13(1).disabled = false		
+
+			lblERN13a.disabled = false
+			lblERN13b.disabled = false
+		
+			if(radERN13(0).checked)
+			{ 
+				lblERN13a.innerText = val13
+				lblERN13b.innerText = ""
+			}
+			else if(radERN13(1).checked)
+			{ 
+				lblERN13a.innerText = ""
+				lblERN13b.innerText = val13
+			}//if
+		}
+		else
+		{//Line 10 > Line 11
+			radERN13(0).checked = false
+			radERN13(1).checked = false
+		
+			radERN13(0).disabled = true
+			radERN13(1).disabled = true
+
+			lblERN13a.disabled = true
+			lblERN13b.disabled = true
+		
+			lblERN13a.innerText = ""
+			lblERN13b.innerText = ""
+		}//if
+	}
+	else
+	{//Negative Tax Due
+		if(PrepForMath(amntNegDue) < PrepForMath(txtERN11.value))
+		{
+			val13 = ispFormatMoney((PrepForMath(txtERN11.value) - PrepForMath(amntNegDue)),0)		
+			
+			radERN13(0).disabled = false
+			radERN13(1).disabled = false		
+			
+			lblERN13a.disabled = false
+			lblERN13b.disabled = false			
+			
+			if(radERN13(0).checked)
+			{ 
+				lblERN13a.innerText = val13
+				lblERN13b.innerText = ""
+			}
+			else if(radERN13(1).checked)
+			{ 
+				lblERN13a.innerText = ""
+				lblERN13b.innerText = val13
+			}//if
+		}
+		else
+		{//Line 10 > Line 11
+			radERN13(0).checked = false
+			radERN13(1).checked = false
+		
+			radERN13(0).disabled = true
+			radERN13(1).disabled = true
+
+			lblERN13a.disabled = true
+			lblERN13b.disabled = true
+		
+			lblERN13a.innerText = ""
+			lblERN13b.innerText = ""
+		}//if
+	}//if
+}//CalcPage1Line13_ehd
+
+//*****End Page 1*****
+
+//End Calculations
+<!--</script>-->

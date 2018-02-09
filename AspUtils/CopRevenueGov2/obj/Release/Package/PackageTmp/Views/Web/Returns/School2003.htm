@@ -1,0 +1,1056 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
+<head>
+
+<META http-equiv=Content-Type content="text/html; charset=unicode">
+<meta NAME="GENERATOR" Content="MSHTML 5.50.4134.600"  >
+
+<script src="../js/JqueryMin.js" type="text/javascript"></script>
+<script id="clientEventHandlersJS" language="javascript" type="text/javascript">
+$(document).ready(function(){
+	$('.inpReadOnlyRt').parent().css("text-align","right");
+	});
+var arrSchool03Err = new Array()
+var txtHeader = 'Taxpayer Information'
+var dSchoolTaxRate
+var gUserAddr = '<%response.write Request.ServerVariables("REMOTE_ADDR")%>'
+var tempXML =  parent.MenuWin.getXmlDocObj();
+
+function AdjustNameDisplay(incName) {
+	var sEntityName = incName
+	var lName = "", fName = "", mName = "", newName = ""
+		
+	if (sEntityName.indexOf("*") != -1)	{//If name contains *'s
+		sEntityName = sEntityName.split("*")
+		lName = (sEntityName[0].substr(0,1)) + (sEntityName[0].substr(1).toLowerCase())
+		if (sEntityName[1]) {
+			fName = (sEntityName[1].substr(0,1)) + (sEntityName[1].substr(1).toLowerCase())
+		}		//if
+		
+		if (sEntityName[2]) {
+			mName = sEntityName[2].substr(0,1).toUpperCase()
+		}		//if
+		sEntityName = fName + " " + mName + " " + lName
+	}		//if
+	return sEntityName
+}//AdjustNameDisplay
+
+ $(document).ready(function () {
+	 parent.MenuWin.loadXmlAsync('../XML/SchoolReturn.xml', parent.MenuWin.parseXml_xmlSchoolTemplate);
+            });
+
+function DisplaySchool03Return() {
+	
+	//alert(XMLToString(parent.MenuWin.xmlSchoolTemplate));
+
+	if ($(parent.MenuWin.xmlAccount).find("TAX_ACCT").find("ACCOUNT:contains('29')")) {
+	//if (parent.MenuWin.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT = 29]")) {
+		parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuSchoolYear03);
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 'INQ', 'SCHOOL_INFO RETURN_STATUS', '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 
+				ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ENTITY_ID', "", 0),
+				'SCHOOL_INFO ACCOUNT_ID', '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '12/31/2003', 'SCHOOL_INFO PERIOD', '', 0)
+		//alert(XMLToString(parent.MenuWin.xmlSchool));
+
+		//alert(XMLToString(parent.MenuWin.xmlSchool));
+
+		ispCallXMLForm(parent.MenuWin.xmlSchool, tempXML, "../SchoolReturn.asp","");
+		
+		//alert(XMLToString(tempXML));
+
+		parent.MenuWin.xmlSchool = tempXML ;		
+
+		
+		ispHideProgress();
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'ERROR_INFO ERROR', "", 0) != 0) {
+		//	parent.RightFrame.rows = '*,0'
+		 $(parent.RightFrame).attr("rows","*,0");
+			//SchoolReturn_03.style.display = 'block'
+			 $('#SchoolReturn_03').css("display","block");
+			//AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|school income tax return for 2010</Font>'
+			$('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|school income tax return for 2003</Font>');
+			PopulateSchool03Header();
+			FieldLock_03(true);
+			//AppError.innerText = ispXmlGetFieldVal(parent.MenuWin.xmlSchool,
+					//'ERROR_INFO MESSAGE', "", 0)
+
+			$('#AppHeader').text(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'ERROR_INFO MESSAGE', "", 0));
+			//btnSchool03Submit.disabled = true
+			//chkAmended_03.disabled = true
+			$('#btnSchool03Submit').attr('disabled','disable'); 
+			$('#chkAmended_03').attr('disabled','disable'); 
+			return
+		}		//if
+		//if (parent.MenuWin.divAcctInfo.style.display == 'none') {
+		if ($(parent.MenuWin.divAcctInfo).css("display") == 'none') {
+			//parent.MenuWin.divAcctInfo.style.display = 'block'
+			//parent.MenuWin.divAccount.style.display = 'none'
+			$(parent.MenuWin.divAcctInfo).css("display","block");
+			 $(parent.MenuWin.divAccount).css("display","none");
+		}		//if
+	}	else {
+		//parent.MenuWin.xmlSchool.loadXML(parent.MenuWin.xmlSchoolTemplate.xml) //xmlSchoolTemplate
+		
+		parent.MenuWin.xmlSchool=parent.MenuWin.xmlSchoolTemplate
+		parent.MenuWin.ispMenu_onclick(parent.MenuWin.mnuAcctInfo)
+	}		//if
+	//parent.RightFrame.rows = '*,0'
+	 $(parent.RightFrame).attr("rows","*,0");
+	//SchoolReturn_03.style.display = 'block'
+	 $('#SchoolReturn_03').css("display","block");
+
+	//AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|school income tax return for 2011</Font>'
+	
+	$('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|school income tax return for 2003</Font>');
+	parent.MenuWin.gsInstructionItem = '#SchoolReturn';
+	$('#AppMessage').html( parent.MenuWin.gsInstructionText +
+			'<BR>The School Income Tax for 2003 is due April 17, 2004.');
+	//InstructionText.innerHTML 
+	$('#InstructionText').html( ' for Instructions on filing this return');
+
+	LoadSchool03Error();
+	RightAlignText();
+	CheckSchool03XML();
+	SetSchool03Fields();
+	PopulateSchool03Header();
+	PopulateSchool03Data();
+	$('#AppError').text( "");
+}		//DisplaySchool03Return
+
+
+function SetSchool03Fields() {
+	FieldLock_03(false)
+	chkAmended_03.disabled = true
+	chkAgreement_03.checked = false
+	chkAmended_03.checked = false
+	//chkTaxpayer.checked = false
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'SCHOOL_INFO VERSION', '', 0) != '') {
+		chkAmended_03.disabled = false
+		FieldLock_03(true)
+	}		//if
+}		//SetSchool03Fields
+
+
+function FieldLock_03(bDisabled) {
+	/*
+	txtToDate_03.disabled = bDisabled
+	txtFromDate_03.disabled = bDisabled
+	txtSchoolNo1_03.disabled = bDisabled
+	txtSchoolNo2_03.disabled = bDisabled
+	txtSchoolNo3_03.disabled = bDisabled
+	txtSchoolNo4_03.disabled = bDisabled
+	txtSchoolNo5_03.disabled = bDisabled
+	txtSchoolNo6_03.disabled = bDisabled
+	txtSchoolNo7_03.disabled = bDisabled
+	txtSchoolNo8_03.disabled = bDisabled
+	lblSchoolNo9_03.disabled = bDisabled
+	txtSchoolNo10_03.disabled = bDisabled
+	lblSchoolNo11_03.disabled = bDisabled
+	lblSchoolNo12_03.disabled = bDisabled
+	txtSchoolNo13_03.disabled = bDisabled
+	lblSchoolNo14_03.disabled = bDisabled
+	txtSchoolNo15a_03.disabled = bDisabled
+	txtSchoolNo15b_03.disabled = bDisabled
+	*/
+
+	if(bDisabled == true){
+
+			$('#txtToDate_03').attr('disabled','disable'); 
+			$('#txtFromDate_03').attr('disabled','disable'); 
+			$('#txtSchoolNo1_03').attr('disabled','disable'); 
+			$('#txtSchoolNo2_03').attr('disabled','disable'); 
+			$('#txtSchoolNo3_03').attr('disabled','disable'); 
+			$('#txtSchoolNo4_03').attr('disabled','disable'); 
+			$('#txtSchoolNo5_03').attr('disabled','disable'); 
+			$('#txtSchoolNo6_03').attr('disabled','disable'); 
+			$('#txtSchoolNo7_03').attr('disabled','disable'); 
+			$('#txtSchoolNo8_03').attr('disabled','disable'); 
+			$('#lblSchoolNo9_03').attr('disabled','disable'); 
+			$('#txtSchoolNo10_03').attr('disabled','disable'); 
+			$('#lblSchoolNo11_03').attr('disabled','disable'); 
+			$('#lblSchoolNo12_03').attr('disabled','disable'); 
+			$('#txtSchoolNo13_03').attr('disabled','disable'); 
+			$('#lblSchoolNo14_03').attr('disabled','disable'); 
+			$('#lblSchoolNo15_03').attr('disabled','disable'); 
+			
+			
+	}
+	else
+	{
+		
+		$('#txtToDate_03').removeAttr('disabled'); 
+		$('#txtFromDate_03').removeAttr('disabled'); 
+		$('#txtSchoolNo1_03').removeAttr('disabled');  
+		$('#txtSchoolNo2_03').removeAttr('disabled');  
+		$('#txtSchoolNo3_03').removeAttr('disabled');  
+		$('#txtSchoolNo4_03').removeAttr('disabled');  
+		$('#txtSchoolNo5_03').removeAttr('disabled');  
+		$('#txtSchoolNo6_03').removeAttr('disabled');  
+		$('#txtSchoolNo7_03').removeAttr('disabled');  
+		$('#txtSchoolNo8_03').removeAttr('disabled');  
+		$('#lblSchoolNo9_03').removeAttr('disabled');  
+		$('#txtSchoolNo10_03').removeAttr('disabled');  
+		$('#lblSchoolNo11_03').removeAttr('disabled');  
+		$('#lblSchoolNo12_03').removeAttr('disabled');  
+		$('#txtSchoolNo13_03').removeAttr('disabled');  
+		$('#lblSchoolNo14_03').removeAttr('disabled');  
+		$('#lblSchoolNo15_03').removeAttr('disabled');  
+		 
+
+	}
+/*EGOVWEB-60 - Removed
+	chk15a_03.disabled = bDisabled
+	chk15b_03.disabled = bDisabled	*/
+/*	chkTaxpayer.disabled = bDisabled	
+	txtPreparerName.disabled = bDisabled	
+	txtPrepAreaCode.disabled = bDisabled	
+	txtPrepPhone1.disabled = bDisabled	
+	txtPrepPhone2.disabled = bDisabled	
+	txtPrepPhoneExt.disabled = bDisabled
+	txtPreparerEmail.disabled = bDisabled
+	chkAgreement_03.disabled = bDisabled	
+	DisablePreparer(bDisabled)*/
+}		//FieldLock_03
+
+
+function CheckSchool03XML(){
+var bPeriodExist = true
+
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'SCHOOL_INFO PERIOD', '', 0) != '' &&
+			new Date(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'SCHOOL_INFO PERIOD', '', 0)) < 
+			new Date('01/01/2003')) {
+		bPeriodExist = false
+	}		//if
+
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'SCHOOL_INFO PERIOD', '', 0) == '') {
+		bPeriodExist = false
+	}		//if
+
+	if (bPeriodExist == false) {
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'ERROR_INFO PROGRAM', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'ERROR_INFO ERROR', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'ERROR_INFO LINE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'ERROR_INFO MESSAGE', '', 0)
+			
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '12/31/2003', 'SCHOOL_INFO PERIOD', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'SCHOOL_INFO VERSION', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'SCHOOL_INFO RETURN_STATUS', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'SCHOOL_INFO LAST_UPD_DATE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'SCHOOL_INFO RECORDING_DATE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'SCHOOL_INFO EXTENSION_DATE', '', 0)
+		//ClearPreparerXML(parent.MenuWin.xmlSchool, 'SCHOOL_INFO')
+		
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO NET_TAX_DIVIDENDS', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO TAXABLE_INTEREST', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO S_CORP_DISTRIBUTIONS', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO PARTNERSHIP_INCOME', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO BENEFICIARY_INCOME', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO SHORT_TERM_GAINS', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO NET_RENTAL_INCOME', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO OTHER_TAXABLE_INCOME', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO TOTAL_TAXABLE_INCOME', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO DEDUCTIBLE_EXPENSES', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO NET_TAXABLE_INCOME', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO GROSS_TAX_DUE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO CREDITS', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO TAX_DUE', '', 0)
+		ispXmlSetFieldVal(parent.MenuWin.xmlSchool, 0, 'AMT_INFO TAX_OVERPAID', '', 0)		
+	}		//if
+}		//CheckSchool03XML
+
+function PopulateSchool03Header() {
+var addrIdx
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ENTITY_ID', '', 0) != '') {
+		$('#lblEntityId_03').text( ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ENTITY_ID', '', 0))
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO TYPE', '', 0) == 1) {
+			$('#lblEntityType_03') .text('EIN:');
+			 $('#lblEntityId_03') .text( ' ' + $('#lblEntityId_03') .text().substr(0,2) + '-'	+ 
+					$('#lblEntityId_03') .text().substr(2));
+		} else {
+			$('#lblEntityType_03') .text('SSN:');
+			 $('#lblEntityId_03') .text( ' ' + $('#lblEntityId_03').text().substr(0,3) + '-'	+ 
+					$('#lblEntityId_03').text().substr(3,2) + '-' + $('#lblEntityId_03').text().substr(5));
+		}		//if
+		addrIdx = LocatePrimaryAddr()
+		$('#lblName_03') .text( AdjustNameDisplay(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS NAME', '', addrIdx)));
+	$('#lblAddress_03') .text( ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS ADDRESS1', '', addrIdx) +
+				/*' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/ADDRESS2', '', addrIdx) +	*/
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS CITY', '', addrIdx) +
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS STATE', '', addrIdx) +
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS ZIP', '', addrIdx));
+	}		//if
+}		//PopulateSchool03Header
+
+function PopulateSchool03Data() {
+	dSchoolTaxRate = ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'SCHOOL_INFO RATE', '', 0);
+	txtSchoolNo1_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO NET_TAX_DIVIDENDS', '', 0), 0);
+	txtSchoolNo2_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO TAXABLE_INTEREST', '', 0), 0);
+	txtSchoolNo3_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO S_CORP_DISTRIBUTIONS', '', 0), 0);
+	txtSchoolNo4_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO PARTNERSHIP_INCOME', '', 0), 0);
+	txtSchoolNo5_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO BENEFICIARY_INCOME', '', 0), 0);
+	txtSchoolNo6_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO SHORT_TERM_GAINS', '', 0), 0);
+	txtSchoolNo7_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO NET_RENTAL_INCOME', '', 0), 0);
+	txtSchoolNo8_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO OTHER_TAXABLE_INCOME', '', 0), 0);
+	//lblSchoolNo9_03.innerText = ispFormatMoney(
+			//ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO TOTAL_TAXABLE_INCOME', '', 0), 0)
+
+	$('#lblSchoolNo9_03').text( ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO TOTAL_TAXABLE_INCOME', '', 0), 0));
+	txtSchoolNo10_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO DEDUCTIBLE_EXPENSES', '', 0), 0);
+	$('#lblSchoolNo11_03').text( ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO NET_TAXABLE_INCOME', '', 0), 0));
+	$('#lblSchoolNo12_03').text(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO GROSS_TAX_DUE', '', 0), 0));
+	txtSchoolNo13_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO CREDITS', '', 0), 0);
+	$('#lblSchoolNo14_03').text(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO TAX_DUE', '', 0), 0));
+	//txtSchoolNo15a_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO TAX_REFUND', '', 0), 0);
+	//txtSchoolNo15b_03.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO TAX_OVERPAID', '', 0), 0);
+	//$('#lblSchoolNo15_03').text(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO TAX_REFUND', '', 0), 0));
+	$('#lblSchoolNo15_03').text(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO TAX_OVERPAID', '', 0), 0));
+
+	//PopulatePreparer(parent.MenuWin.xmlSchool, 'SCHOOL_INFO');
+/*EGOVWEB-60 - Removed
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO/TAX_REFUND', '', 0) != 0) {
+		chk15a_03.checked = true
+		chk15b_03.checked = false
+	}	else if (ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'AMT_INFO/TAX_OVERPAID', '', 0) != 0) {
+		chk15a_03.checked = false
+		chk15b_03.checked = true
+	}		//if
+*/
+/*EGOVWEB-60 - Modified*/
+	CalcLine14_15()
+	/*CalcLine14();
+	CalcLine15();*/
+}		//PopulateSchool03Data
+
+function PopulateSchool03XML() {
+var d = new Date()
+var lYear = String(d.getFullYear())
+var lMonth = String(d.getMonth() + 1)
+lMonth = lMonth.length == 1 ? '0' + lMonth : lMonth
+var lDate = String(d.getDate())
+lDate = lDate.length == 1 ? '0' + lDate : lDate
+//alert(lMonth + '/' + lDate + '/' + lYear);
+	ispXmlSetFieldVal(
+			parent.MenuWin.xmlSchool, lMonth + '/' + lDate + '/' + lYear, 'SCHOOL_INFO RECORDING_DATE', '', 0)
+
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo1_03.value), 'AMT_INFO NET_TAX_DIVIDENDS', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo2_03.value), 'AMT_INFO TAXABLE_INTEREST', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo3_03.value), 'AMT_INFO S_CORP_DISTRIBUTIONS', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo4_03.value), 'AMT_INFO PARTNERSHIP_INCOME', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo5_03.value), 'AMT_INFO BENEFICIARY_INCOME', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo6_03.value), 'AMT_INFO SHORT_TERM_GAINS', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo7_03.value), 'AMT_INFO NET_RENTAL_INCOME', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo8_03.value), 'AMT_INFO OTHER_TAXABLE_INCOME', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency($('#lblSchoolNo9_03').text()), 'AMT_INFO TOTAL_TAXABLE_INCOME', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo10_03.value), 'AMT_INFO DEDUCTIBLE_EXPENSES', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency($('#lblSchoolNo11_03').text() ), 'AMT_INFO NET_TAXABLE_INCOME', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency($('#lblSchoolNo12_03').text()), 'AMT_INFO GROSS_TAX_DUE', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency(txtSchoolNo13_03.value), 'AMT_INFO CREDITS', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, ispRemoveMoney($('#lblSchoolNo14_03').text()), 'AMT_INFO TAX_DUE', '', 0)
+	//ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency($('#lblSchoolNo15a_03').text()), 'AMT_INFO TAX_REFUND', '', 0)
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, stripCurrency($('#lblSchoolNo15_03').text()), 'AMT_INFO TAX_OVERPAID', '', 0)
+//alert(ispRemoveMoney($('#lblSchoolNo14_03').text()));
+//alert(XMLToString(parent.MenuWin.xmlSchool));
+	PopulatePreparerXML(parent.MenuWin.xmlSchool, 'SCHOOL_INFO')
+	ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'DEBUG', '', 0)	
+}		//PopulateSchool03XML
+
+
+function RightAlignText(){
+	ispAlignRight(txtSchoolNo1_03);
+	ispAlignRight(txtSchoolNo2_03);
+	ispAlignRight(txtSchoolNo3_03);
+	ispAlignRight(txtSchoolNo4_03);
+	ispAlignRight(txtSchoolNo5_03);
+	ispAlignRight(txtSchoolNo6_03);
+	ispAlignRight(txtSchoolNo7_03);
+	ispAlignRight(txtSchoolNo8_03);
+	ispAlignRight(lblSchoolNo9_03);
+	ispAlignRight(txtSchoolNo10_03);
+	ispAlignRight(lblSchoolNo11_03);
+	ispAlignRight(lblSchoolNo12_03);
+	ispAlignRight(txtSchoolNo13_03);
+	ispAlignRight(lblSchoolNo14_03);
+	ispAlignRight(lblSchoolNo15_03);
+	//ispAlignRight(lblSchoolNo15b_03);
+	/*txtSchoolNo1_03.style.textAlign = 'right'
+	txtSchoolNo2_03.style.textAlign = 'right'
+	txtSchoolNo3_03.style.textAlign = 'right'
+	txtSchoolNo4_03.style.textAlign = 'right'
+	txtSchoolNo5_03.style.textAlign = 'right'
+	txtSchoolNo6_03.style.textAlign = 'right'
+	txtSchoolNo7_03.style.textAlign = 'right'
+	txtSchoolNo8_03.style.textAlign = 'right'
+	lblSchoolNo9_03.style.textAlign = 'right'
+	txtSchoolNo10_03.style.textAlign = 'right'
+	lblSchoolNo11_03.style.textAlign = 'right'
+	lblSchoolNo12_03.style.textAlign = 'right'
+	txtSchoolNo13_03.style.textAlign = 'right'
+	lblSchoolNo14_03.style.textAlign = 'right'
+	txtSchoolNo15a_03.style.textAlign = 'right'
+	txtSchoolNo15b_03.style.textAlign = 'right'*/
+}		//RightAlignText
+
+
+function LoadSchool03Error() {
+	var i=0
+	
+	arrSchool03Err[i++] = [txtSchoolNo1_03, 'txtSchoolNo1_03.value == ""', 'Answer Question 1']
+	arrSchool03Err[i++] = [txtSchoolNo1_03, 'ispValue(txtSchoolNo1_03.value) == false', 'Value for Question 1 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo1_03, 'ispNegativeNumber(txtSchoolNo1_03.value) == false', 'Value for Question 1 must NOT be negative']
+
+	arrSchool03Err[i++] = [txtSchoolNo2_03, 'txtSchoolNo2_03.value == ""', 'Answer Question 2']
+	arrSchool03Err[i++] = [txtSchoolNo2_03, 'ispValue(txtSchoolNo2_03.value) == false', 'Value for Question 2 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo2_03, 'ispNegativeNumber(txtSchoolNo2_03.value) == false', 'Value for Question 2 must NOT be negative']
+
+	arrSchool03Err[i++] = [txtSchoolNo3_03, 'txtSchoolNo3_03.value == ""', 'Answer Question 3']
+	arrSchool03Err[i++] = [txtSchoolNo3_03, 'ispValue(txtSchoolNo3_03.value) == false', 'Value for Question 3 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo3_03, 'ispNegativeNumber(txtSchoolNo3_03.value) == false', 'Value for Question 3 must NOT be negative']
+
+	arrSchool03Err[i++] = [txtSchoolNo4_03, 'txtSchoolNo4_03.value == ""', 'Answer Question 4']
+	arrSchool03Err[i++] = [txtSchoolNo4_03, 'ispValue(txtSchoolNo4_03.value) == false', 'Value for Question 4 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo4_03, 'ispNegativeNumber(txtSchoolNo4_03.value) == false', 'Value for Question 4 must NOT be negative']
+
+	arrSchool03Err[i++] = [txtSchoolNo5_03, 'txtSchoolNo5_03.value == ""', 'Answer Question 5']
+	arrSchool03Err[i++] = [txtSchoolNo5_03, 'ispValue(txtSchoolNo5_03.value) == false', 'Value for Question 5 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo5_03, 'ispNegativeNumber(txtSchoolNo5_03.value) == false', 'Value for Question 5 must NOT be negative']
+
+	arrSchool03Err[i++] = [txtSchoolNo6_03, 'txtSchoolNo6_03.value == ""', 'Answer Question 6']
+	arrSchool03Err[i++] = [txtSchoolNo6_03, 'ispValue(txtSchoolNo6_03.value) == false', 'Value for Question 6 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo6_03, 'ispNegativeNumber(txtSchoolNo6_03.value) == false', 'Value for Question 6 must NOT be negative']
+
+	arrSchool03Err[i++] = [txtSchoolNo7_03, 'txtSchoolNo7_03.value == ""', 'Answer Question 7']
+	arrSchool03Err[i++] = [txtSchoolNo7_03, 'ispValue(txtSchoolNo7_03.value) == false', 'Value for Question 7 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo7_03, 'ispNegativeNumber(txtSchoolNo7_03.value) == false', 'Value for Question 7 must NOT be negative']
+
+	arrSchool03Err[i++] = [txtSchoolNo8_03, 'txtSchoolNo8_03.value == ""', 'Answer Question 8']
+	arrSchool03Err[i++] = [txtSchoolNo8_03, 'ispValue(txtSchoolNo8_03.value) == false', 'Value for Question 8 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo8_03, 'ispNegativeNumber(txtSchoolNo8_03.value) == false', 'Value for Question 8 must NOT be negative']
+
+	arrSchool03Err[i++] = [txtSchoolNo10_03, 'txtSchoolNo10_03.value == ""', 'Answer Question 10']
+	arrSchool03Err[i++] = [txtSchoolNo10_03, 'ispValue(txtSchoolNo10_03.value) == false', 'Value for Question 10 must be numeric']
+	arrSchool03Err[i++] = [txtSchoolNo10_03, 'ispNegativeNumber(txtSchoolNo10_03.value) == false', 'Value for Question 10 must NOT be negative']
+
+/*EGOVWEB-60 - Removed*/
+	//arrSchool03Err[i++] = [chk15a_03, '$("#lblSchoolNo15_03").text() !== "$0" && (chk15a_03.checked == false && chk15b_03.checked == false)', 'Select one of the Refund Options']	
+		arrSchool03Err[i++] = [chkAgreement_03, 'chkAgreement_03.checked == false', 'Signature box must be checked before submitting the School Tax Form']
+}		//LoadSchool03Error
+
+
+function ValidateSchool03Return() {
+var evt = window.event || arguments.callee.caller.arguments[0];
+var source = parent.MenuWin.getEventSource(evt);
+//alert(evt.type);
+//alert(source);
+//var sId = source.id;
+//alert(sId);
+var ObjSelected
+	 $('#AppError').text('');
+
+	
+	if(source!=null)
+	{
+		var sId = source.id;
+		ObjSelected = document.getElementById(sId)
+	
+		if(ObjSelected!=null)
+		{
+			//alert(sId);
+			if (sId == "txtToDate_03" || sId == "txtFromDate_03" || source.type == 'button'){
+				//alert('sId : ' + sId);
+			}else{
+				//alert(ObjSelected.value);
+				ObjSelected.value = ispFormatMoney(ObjSelected.value, 0)
+			}		//if
+		}
+	}
+	
+	 $('#AppError').text(ispSetInputErr(arrSchool03Err)	);
+	if ( $('#AppError').text() == ''){
+		CalcLine9();
+		CalcLine11();
+		CalcLine12(dSchoolTaxRate);
+/*EGOVWEB-60 - Modified */
+		CalcLine14_15()
+		/*CalcLine14();
+		CalcLine15();*/
+	} else {
+		AppError.scrollIntoView(true);
+	}		//if
+}		//ValidateSchool03Return
+
+
+function btnSchool03Print_onclick() {
+
+	//btnSchool03Print.style.visibility = 'hidden'
+	//btnSchool03Submit.style.visibility = 'hidden'
+
+	$('#btnSchool03Print').css('visibility','hidden');
+	$('#btnSchool03Submit').css('visibility','hidden');
+
+	
+	$('#AppError').text('') ;
+	
+	if (txtSchoolNo1_03.disabled == true) {
+		FieldLock_03(false)
+		window.print()
+		FieldLock_03(true)
+	} else {
+		window.print()
+	}		//if
+
+	//btnSchool03Print.style.visibility = 'visible'
+	//btnSchool03Submit.style.visibility = 'visible'
+	$('#btnSchool03Print').css('visibility','visible');
+	$('#btnSchool03Submit').css('visibility','visible');
+	
+}		//btnSchool03Print_onclick
+
+function btnSchoolValidate() {
+	ValidateSchool03Return();
+	if ($('#AppError').text()  == ''){
+		ValidateSchool03Return();
+	}		//if
+	if ($('#AppError').text()  == ''){
+		$('#AppError').text( ValidatePreparer());
+	}		//if
+}		//btnWageValidate
+
+
+
+function btnSchool03Submit_onclick() {
+	//alert('btnSchool03Submit_onclick');
+	if ($('#AppError').text()  == ''){
+		txtFromDate_03_onblur()
+		txtToDate_03_onblur()
+		if ($('#AppError').text()  == ''){
+			//alert('before XML : ' + XMLToString(parent.MenuWin.xmlSchool));
+			ispXmlSetFieldVal(parent.MenuWin.xmlSchool, '', 'SCHOOL_INFO RETURN_STATUS', '', 0)
+			PopulateSchool03XML()
+			parent.DocWin.ispCallXMLForm(parent.MenuWin.xmlSchool, tempXML, "../SchoolReturn.asp", "")
+			//alert('Server XML : ' + XMLToString(tempXML));
+			ispHideProgress()
+			if (ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'ERROR_INFO PROGRAM', '', 0) == '') {
+				//parent.MenuWin.xmlSchool.xml = tempXML
+				parent.MenuWin.xmlSchool.loadXML(tempXML.xml);
+				//SchoolReturn_03.style.display = 'none'
+				$('#SchoolReturn_03').css('display','none');
+				DisplaySchoolThankYou()
+			} else {
+				//alert('Error XML : ' + XMLToString(parent.MenuWin.xmlSchool));
+				$('#AppError').text( ispXmlGetFieldVal(parent.MenuWin.xmlSchool, 'ERROR_INFO MESSAGE', '', 0));
+			}		//if
+		}		//if
+	} else {
+		ispHideProgress()	
+	}		//if
+}		//btnSchool03Submit_onclick
+
+
+function txtToDate_03_onblur() {
+	if ($('#AppError').text() == '' && txtToDate_03.value != ""){
+		var strBD = ispValidateDate(txtToDate_03.value)
+		
+		if (strBD == false){
+			AppError.innerText = 'Invalid to date'
+			txtToDate_03.className = 'inpError'
+			blnErr = true
+		}else{
+			txtToDate_03.className = 'inpNormal'
+			txtToDate_03.value = strBD
+		}		//if
+	} else {
+		txtToDate_03.className = 'inpNormal'
+	}		//if
+}		//txtToDate_03_onblur
+
+
+function txtFromDate_03_onblur() {
+	if (AppError.innerText == "" && txtFromDate_03.value != ""){
+		var strBD = ispValidateDate(txtFromDate_03.value)
+		
+		if (strBD == false){
+			AppError.innerText = 'Invalid from date'
+			txtFromDate_03.className = 'inpError'
+			blnErr = true
+		}else{
+			txtFromDate_03.className = 'inpNormal'
+			txtFromDate_03.value = strBD
+		}		//if
+	} else {
+		txtFromDate_03.className = 'inpNormal'
+	}		//if
+}		//txtFromDate_03
+
+function chkAgreement_03_onclick() {
+
+	ValidateSchool03Return()
+
+/*	if (chkAgreement_03.checked == true) {
+		btnSchool03Submit.disabled = false
+	} else {
+		btnSchool03Submit.disabled = true
+	}		//if		*/
+}		//chkAgreement_03
+
+
+function chkAmended_03_onclick() {
+
+	if (chkAmended_03.checked == true) {
+		//btnSchool03Submit.disabled = false
+		$('#btnSchool03Submit').removeAttr('disabled'); 
+		FieldLock_03(false)
+		ClearPreparer()
+	} else {
+		//btnSchool03Submit.disabled = true
+		$('#btnSchool03Submit').attr('disabled','disable');
+		FieldLock_03(true)
+		//PopulatePreparer(parent.MenuWin.xmlSchool, 'SCHOOL_INFO')
+	}		//if
+}		//chkAmended_03_onclick
+
+
+function LocatePrimaryAddr() {
+var iMaxIdx = ispXmlGetRecCount(parent.MenuWin.xmlAccount, 'NAME_ADDRESS', '')
+
+	for (idx=0; idx<iMaxIdx; i++) {
+		if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS ADDRESS_TYPE', '', idx) == '60') {
+			if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS RELATIONSHIP_CODE', '', idx) == '0') {
+				return idx
+			}		//if
+		} else {
+		//alert ('primary addr not found')
+			return 0
+		}		//if
+	}		//for
+}		//locatePrimaryAddr
+
+
+function SetFocus() {
+
+	//document.activeElement.select()
+
+	var evt = window.event || arguments.callee.caller.arguments[0];
+		var source = parent.MenuWin.getEventSource(evt);
+		source.select();
+}		//SetFocus
+
+
+
+//########## VBSCRIPT CONVERTED TO JAVASCRIPT #####################
+function CalcLine9()
+{
+	// alert('hello');
+
+	 if (txtSchoolNo1_03.value != "" && txtSchoolNo2_03.value  != "" && txtSchoolNo3_03.value  != "" &&
+					txtSchoolNo4_03.value  != "" && txtSchoolNo5_03.value != "" && txtSchoolNo6_03.value != "" 
+					&& txtSchoolNo7_03.value != "" && txtSchoolNo8_03.value != "" ) {
+		   
+		// alert('hi');
+		   $('#lblSchoolNo9_03').text(ispFormatMoney(ispRemoveMoney( txtSchoolNo1_03.value) + ispRemoveMoney(txtSchoolNo2_03.value)
+				   + ispRemoveMoney(txtSchoolNo3_03.value) + ispRemoveMoney(txtSchoolNo4_03.value) + ispRemoveMoney(txtSchoolNo5_03.value) + ispRemoveMoney(txtSchoolNo6_03.value)
+				   + ispRemoveMoney(txtSchoolNo7_03.value) + ispRemoveMoney(txtSchoolNo8_03.value), 0));
+
+				  // alert($('#lblSchoolNo9_03').text())
+		}
+}
+function CalcLine11()
+{
+	//alert('CalcLine11');
+	if ($('#lblSchoolNo9_03').text() != '' && txtSchoolNo10_03.value != "" ) {
+		$('#lblSchoolNo11_03').text(ispFormatMoney( ispRemoveMoney( $('#lblSchoolNo9_03').text()) - ispRemoveMoney(txtSchoolNo10_03.value), 0));
+		}
+
+}
+
+	function CalcLine12(dTax)
+	{
+	//alert('CalcLine12');
+		
+
+		if ($('#lblSchoolNo12_03').text() == '' )
+		{
+				/* $('#lblSchoolNo12_03').text(ispFormatMoney(0,0));
+			}*/
+
+			var dvalue = ispRemoveMoney($('#lblSchoolNo11_03').text());
+			if (dvalue <0 ) {
+				$('#lblSchoolNo12_03').text(ispFormatMoney(0,0));
+			}
+			else
+			{
+				$('#lblSchoolNo12_03').text(ispFormatMoney(ispRemoveMoney($('#lblSchoolNo11_03').text()) * dTax,0));
+			}
+
+		
+		}
+	}
+/*
+	// 'EGOVWEB-60 - Created CalcLine14
+function CalcLine14(){
+	//alert('CalcLine14');
+	if (txtSchoolNo13_03.value ==''){ 
+		$('#txtSchoolNo13_03').text( ispFormatMoney(0, 0));
+	}
+
+	var val_12 = ispRemoveMoney($('#lblSchoolNo12_03').text()) ;
+	var val_13 = ispRemoveMoney(txtSchoolNo13_03.value);
+
+	
+	$('#lblSchoolNo14_03').text(ispFormatMoney(val_12 - val_13,0));
+	
+}
+
+//'EGOVWEB-60 - Created CalcLine15
+function CalcLine15()
+{
+	//alert('CalcLine15');
+	if (txtSchoolNo15a_03.value == '') {
+		$('#txtSchoolNo15a_03').text( ispFormatMoney(0, 0));
+		}
+	
+	if  (txtSchoolNo15b_03.value =='') {
+		$('#txtSchoolNo15b_03').text(ispFormatMoney(0,0));		
+	}
+	var dvalue = ispRemoveMoney($('#lblSchoolNo14_03').text());
+	if  (dvalue < 0 ) {
+	
+		if ((ispRemoveMoney(txtSchoolNo15a_03.value) + ispRemoveMoney(txtSchoolNo15b_03.value))	!=Math.abs(ispRemoveMoney ($('#lblSchoolNo14_03').text())))
+		{
+			$('#AppError').text("Lines 15a and 15b must equal Line 14");
+				
+		}
+	}
+}
+*/
+	//'EGOVWEB-60 -  CalcLine14_15
+function CalcLine14_15()
+{
+	//alert('CalcLine14_15_old');
+	if ($('#txtSchoolNo15b_03').text() == '') {
+		$('#txtSchoolNo13_03').text(ispFormatMoney(0, 0));
+	}
+
+   if ($('#lblSchoolNo12_03').text() == '')
+	{
+		$('#lblSchoolNo12_03').text(ispFormatMoney(0, 0));
+	}
+	if ($('#txtSchoolNo13_03').text() == '')
+	 {
+		$('#lblSchoolNo14_03').text() = $('#lblSchoolNo12_03').text() ;
+
+		$('#lblSchoolNo15_03').text( ispFormatMoney(0, 0));
+		//$('#lblSchoolNo15b_03').text(ispFormatMoney(0, 0));
+	}
+	else if  ((lblSchoolNo12_03.value) >= (lblSchoolNo12_03.value))  {
+		$('#lblSchoolNo14_03').text( ispFormatMoney(ispRemoveMoney($('#lblSchoolNo12_03').text()) - ispRemoveMoney($('#txtSchoolNo13_03').text()), 0));
+		$('#lblSchoolNo15_03').text(ispFormatMoney(0, 0));
+		/*$('#lblSchoolNo15b_038').text( ispFormatMoney(0, 0));
+		chk15a_03.checked = false;
+		chk15b_03.checked = false;*/
+		}
+	
+	else
+	{
+		$('#lblSchoolNo14_03').text( ispFormatMoney(0, 0));
+		$('#lblSchoolNo15_03').text(ispFormatMoney((ispRemoveMoney($('#txtSchoolNo13_03').value) - ispRemoveMoney($('#lblSchoolNo12_03').value)), 0))
+		
+	}
+}
+
+</script>
+
+<title></title>
+</head>
+<body onload="ispDisplayProgress('DisplaySchool03Return()', 'Retrieving 2003 school tax information')">
+<DIV style="DISPLAY: none; VISIBILTY: visible" Id="SchoolReturn_03" Name="SchoolReturn_03">
+<!--<table width="90%" cellSpacing="0" cellPadding="0" border=0 style="MARGIN-LEFT: 4%">
+  <tr align ="left">
+    <td>
+			<p class="lblTextBlack" style="line-height: 0">* Click here for Instructions on filing this return</p>
+			<p class="lblTextBlack" style="line-height: 0">The City of Philadelphia School Income Tax for 2003 is due April 15, 2004.</p></td>
+  </tr>
+</table>	-->
+   
+<table class=tblShowBorder width="90%" bgcolor="whitesmoke" style="MARGIN-LEFT: 4%" border=0
+		 cellSpacing=0 cellPadding=0 id=TABLE1>
+  <tr>
+    <td WIDTH="2%"></td>
+    <td WIDTH="8%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+  </tr>
+  
+  <tr>
+		<td >&nbsp;</td>
+		<td colspan=2>
+			<label class="lblInstrNormal">Name:&nbsp;</label>
+		</td>
+		<td colspan=5>
+			<label id=lblName_03 class="lblTextBlack" nowrap></label></td>
+		<td colspan=2 align=right>
+			<label id=lblEntityType_03 class="lblInstrNormal">EIN: &nbsp;</label></td>
+		<td colspan=5>
+			<label id=lblEntityId_03 class="lblTextBlack"></label></td>
+		<td colspan=5></td>
+	</tr>
+  
+  <tr>
+		<td >&nbsp;</td>
+		<td colspan=2>
+			<label class="lblInstrNormal">Address:&nbsp;</label>
+		</td>
+		<td colspan=17>
+			<label id=lblAddress_03 class="lblTextBlack"></label></td>
+	</tr>
+</table>
+
+<table style="LEFT: 43px; MARGIN-LEFT:  4%; TOP: 205px" border=0 width="90%">
+  <tr>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    </tr>
+  <tr>
+	<td align=left colspan=10 nowrap>
+		<INPUT id=chkAmended_03 type=checkbox onclick="chkAmended_03_onclick()">
+			<label class="lblTextBlacksmall">Check if amended return.</label></td>
+	<td align=right colspan=10 nowrap>
+		<label class="lblTextBlacksmall">Partial Resident</LABEL>&nbsp; 
+		<label class="lblInstrNormal">From</label>
+		<input class=inpNormal id=txtFromDate_03 onchange="ValidateSchool03Return()" maxlength=10 
+			onfocus="SetFocus()" onblur="return txtFromDate_03_onblur()" 
+      style="WIDTH: 68px; HEIGHT: 22px" size=9>
+		<label class="lblInstrNormal">To </label>
+		<input class=inpNormal width="50%" id=txtToDate_03 onchange="ValidateSchool03Return()" 
+			onfocus="SetFocus()" maxlength=10 onblur="return txtToDate_03_onblur()" 
+      style="WIDTH: 68px; HEIGHT: 22px" size=9></td>
+	</tr>
+</table>
+
+<table class=tblShowBorder cellSpacing=0 cellPadding=0 border=0 style="MARGIN-LEFT: 4%" id=TABLE1  width="90%">
+  <tr height=0>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    </tr>
+  <tr class=rowDataEven>
+		<td><label class="lblInstrNormal">1.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Net Taxable Dividends</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo1_03 onchange="ValidateSchool03Return()" 
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">2.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Taxable Interest</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo2_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">3.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">"Subchapter S" Corporation (if loss, enter "0")</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo3_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td>
+			<label class="lblInstrNormal">4.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Limited Partnership Income (if loss, enter "0")</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo4_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td>
+			<label class="lblInstrNormal">5.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Taxable Income received as a Beneficiary from a Estate or Trust</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo5_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">6.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			NetShort Term 
+			Capital Gains (Held 6 months or less) (if loss, enter "0")</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo6_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td ><label class="lblInstrNormal">7.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			    Net Rental Income (if loss, enter "0")</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo7_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">8.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			        Other Taxable Income</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo8_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td >
+			<label class="lblInstrNormal">9.</label></td>
+		<td colspan=8>
+			<label class="lblInstrNormal">Total Taxable Income</label>
+		</td>
+		<td colspan=8 align=right>
+			<label class="lblInstrNormal">[Calculated - add lines 1 through 8]&nbsp;</label>
+		</td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblSchoolNo9_03 style="WIDTH: 100%"></label></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td >
+			<label class="lblInstrNormal">10.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Deductible Expenses</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo10_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td >
+			<label class="lblInstrNormal">11.</label></td>
+		<td colspan=8>
+			<label class="lblInstrNormal">Total Taxable Income</label></td>
+		<td colspan=8 align=right>
+			<label class="lblInstrNormal">[Calculated - line 9 minus 10]&nbsp;</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblSchoolNo11_03 style="WIDTH: 100%"></label></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td >
+			<label class="lblInstrNormal">12.</label></td>
+		<td colspan=8>
+			<label class="lblInstrNormal">Gross Tax Due</label></td>
+		<td colspan=8 align=right>
+			<label class="lblInstrNormal">[Calculated - line 11 X .044625]&nbsp;</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblSchoolNo12_03 style="WIDTH: 100%"></label></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td >
+			<label class="lblInstrNormal">13.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">Credits or Tax previously paid with an extension coupon</label></td>
+		<td colspan=3>
+			<input class=inpNormal id=txtSchoolNo13_03 onchange="ValidateSchool03Return()"
+			onfocus="SetFocus()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td >
+			<label class="lblInstrNormal">14.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">TAX DUE</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblSchoolNo14_03 style="WIDTH: 100%"></label></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td >
+			<label class="lblInstrNormal">15.</label></td>
+		<td colspan=16>
+			<label class="lblInstrNormal">TAX OVERPAYMENT</label></td>
+		<td colspan=3>
+			<label class=inpReadOnlyRt id=lblSchoolNo15_03 style="WIDTH: 100%"></label></td>
+	</tr>
+</table>
+<table style="MARGIN-LEFT: 4%" border=0  width="90%">
+  <TR>
+    <td width ="80%"><label class="lblTextBlackSmall">
+    <INPUT id=chkAgreement_03 type=checkbox style="WIDTH: 13px; HEIGHT: 20px" size=13
+			 onclick="chkAgreement_03_onclick()">&nbsp;Signature box: 
+			Under penalties of perjury, as set forth in 18 Pa. C.S. §§ 4903-4903 as amended, 
+			I swear or affirm that I have reviewed this return and to the best of my knowledge
+			and belief, it is true and complete.</label></td>
+		<td  width ="20%" align=right nowrap><p style="MARGIN-TOP: 5px">
+		<input id="btnSchool03Print" type="button" value="Print" 
+				onclick="return btnSchool03Print_onclick()">
+		<input id="btnSchool03Submit" type="button" value="Submit" 
+				onclick="ValidateSchool03Return();
+				ispDisplayProgress('btnSchool03Submit_onclick()','Submitting 2003 school tax information')"></p>
+		</td>
+	</TR>
+	<TR>
+		<td colspan=2><label class="lblTextBlack">
+				Note: <b>DO NOT FILE THIS RETURN if you have no taxable activity. If you registered for 
+				this tax and you no longer have taxable activity, complete a Change Form to cancel
+				your account.</b></label></td>
+	</TR>
+</table>
+</DIV>
+</body>
+</html>
+

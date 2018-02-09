@@ -1,0 +1,255 @@
+<!--<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+</HEAD>-->
+<body>
+
+<div style="display: block; visibility: visible; vertical-align: bottom" id="LogCoupon" name="LogCoupon">
+	<table cellspacing="0" cellpadding="0"  border="0" style="margin-left: 0px; width: 7in; height: 10in; top: 0px" id="topPayCoupon">
+<!--		<tr height="2">-->
+		<tr style ="FONT-SIZE: 10pt; FONT-FAMILY: Arial" id="coup1" >
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>																																		
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td></tr>	
+		<tr style ="FONT-SIZE: 14pt; height: .25in" id="coup2" >
+			<td colspan="4"><p>&nbsp;</p></td>
+			<td colspan="3"><p><input id="CPrintCouponBtn" onclick="SubmitCoupon()" type="button" value="Print Coupon" style=" display:none" /></p></td>
+			<td colspan="4"><p>&nbsp;</p></td>
+			<td colspan="3"><p><input id="CouponCnclBtn" onclick="ReturnToSelection()" type="button" value="Cancel" style=" display:none" /></p></td>
+   		<td colspan="6"><p>&nbsp;</p></td></tr>
+
+		<tr style ="font-size: 12pt;  font-family: Arial" id="coup3">
+			<td colspan="20"><p>&nbsp;</p></td></tr>
+
+<!--	<tr style ="FONT-SIZE: 11pt;  FONT-FAMILY: Arial" >
+		<td colspan="20">
+			<table id=tblBillHeader>
+				<tr style ="FONT-SIZE: 10pt; FONT-FAMILY: Arial">
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>																																		
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td>
+					<td width="5%"><p></p></td></tr>	-->	
+				<tr>
+					<td><p>&nbsp;</p></td>
+					<td nowrap= colspan="3"><p id="sPOBox" class="label">P.O. Box {BOX}</p></td>
+					<td colspan="7" rowspan="5" align="right"><p id="cityseal"><img id="IMG2" src="http://is-partner.com/wage/images/cityseal.gif" style="WIDTH: 1in; HEIGHT: 1in"></p></td>
+					<td colspan="6" align="right"><p>&nbsp;</p></td>
+					<td nowrap colspan="3"><p class="label">City Of Philadelphia</p></td>
+					<td>&nbsp;</td></tr>
+				<tr style ="FONT-SIZE: 11pt;  FONT-FAMILY: Arial">
+					<td ><p>&nbsp;</p></td>
+					<td nowrap colspan="3"><p id="sPhillyZip" class="label">Philadelphia, PA 19105</p></td>
+					<td colspan="6"><p>&nbsp;</p></td>
+					<td nowrap colspan="3"><p class="label">Department of Revenue</p></td>
+					<td>&nbsp;</td></tr>
+				<tr style ="FONT-SIZE: 11pt;  FONT-FAMILY: Arial">
+					<td colspan="4"><p>&nbsp;</p></td>
+					<td colspan="6"><p>&nbsp;</p></td>
+					<td nowrap colspan="3" align="left"><p id="sPhone" class="label">Phone: {PHONE}</p></td>
+					<td>&nbsp;</td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="20"><p>&nbsp;</p></td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="20"><p>&nbsp;</p></td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="15"><p>&nbsp;</p></td>
+					<td colspan="3" align="left"><p id="sTodayDate" class="label">{Date}</p></td>
+					<td>&nbsp;</td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="20"><p>&nbsp;</p></td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="3"><p>&nbsp;</p></td>
+					<td colspan="17"><p id="sName" class="label">{NAME}</p></td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="3"><p>&nbsp;</p></td>
+					<td colspan="17"><p id="sAddr1" class="label">{ADDR1}</p></td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="3"><p>&nbsp;</p></td>
+					<td colspan="17"><p id="sAddr2" class="label">{ADDR2}</p></td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="3"><p>&nbsp;</p></td>
+					<td colspan="17"><p id="sAddr3" class="label">{ADDR3}</p></td></tr>
+				<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial">
+					<td colspan="3"><p>&nbsp;</p></td>
+					<td colspan="17"><p id="sAddr4" class="label">{ADDR4}</p></td></tr>
+<!--			</table></td></tr>  -->
+
+	<tr style="height: 3.625in">
+		<td colspan="3"></td>
+		<td colspan="14">
+			<div id="divPrintMsg" style="display:none">
+				<br /><label class=lblInstrBold>Printing Note:</label>
+				<br /><br/ ><label class=lblInstrNormal>This page must print on a single sheet of paper. To accomplish this make sure your browser's
+						Printer Margins are set to the following sizes:</label>
+				<br /><br/ ><label class=lblInstrNormal>Top: 0.50",&nbsp;&nbsp;&nbsp;Bottom: 0.50",&nbsp;&nbsp;&nbsp;Left: 0.50",
+						&nbsp;&nbsp;&nbsp;Right: 0.50"</label>
+				<br /><br/ ><label class=lblInstrNormal>To set the margins.</label>
+				<br /><ol><li class=lblInstrNormal>Go to File &gt; Page Setup... and set the Margins. Click OK.</li>
+						<li class=lblInstrNormal>Print page. All information should fit on one page. </li></ol></div></td>
+		<td colspan="3"></td></tr>
+
+	<tr style ="FONT-SIZE: 12pt;  FONT-FAMILY: Arial" id="coup4">
+		<td colspan="20"><p style="HEIGHT: .8in"></p></td></tr>	
+<!-- </table>
+
+<table cellSpacing="0" cellPadding="0"  border="0" 
+	style="MARGIN-LEFT: 0; TOP: 0px; HEIGHT: 10in; width: 7.4in" id=frmPayCoupon>
+	<tr style ="FONT-SIZE: 10pt; FONT-FAMILY: Arial; HEIGHT: 6.5in" >
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+	</tr>		-->
+<!--	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=20  ><p>&nbsp;</p></td>
+	<tr>
+		<td colspan=20  ><p>&nbsp;</p></td>-->
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=20 align=middle style="FONT-SIZE: 10pt">
+		- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --  Detach Here  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -</td></tr>
+	<tr style ="FONT-SIZE: 8pt; FONT-FAMILY: Arial">
+		<td colspan=20 ><p>&nbsp;</p></td></tr>
+	<tr style ="FONT-SIZE: 10pt; FONT-FAMILY: Arial">
+		<td colspan=20 align=middle>Please return this portion with your payment</td></tr>
+	<tr style ="FONT-SIZE: 8pt; FONT-FAMILY: Arial">
+		<td colspan=20 ><p>&nbsp;</p></td></tr>
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=3 ><p>&nbsp;</p></td>
+		<td colspan=6 align=left border="1" borderColor=black style="BORDER-RIGHT: thin 
+			solid; BORDER-TOP: thin solid; FONT-SIZE: 12pt; BORDER-LEFT: thin solid">
+			&nbsp;Account Number:</td>
+		<td colspan=8 align=left border="1" borderColor=black style="BORDER-RIGHT: thin solid; 
+			BORDER-TOP: thin solid; FONT-SIZE: 12pt; TEXT-ALIGN: center" class=lbltext 
+			name="PrtCoupAcctID" >{AcctID} - {AcctNum}</td>
+   		<td colspan=3 ><p>&nbsp;</p></td></tr>
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=3 ><p>&nbsp;</p></td>
+		<td colspan=6 align=left border="1" borderColor=black style="BORDER-RIGHT: thin solid; BORDER-TOP: thin 
+			solid; FONT-SIZE: 12pt; BORDER-LEFT: thin solid"> &nbsp;Period:</td>
+		<td colspan=8 align=left border="1" borderColor=black style="BORDER-RIGHT: thin solid;
+			 BORDER-TOP: thin solid; TEXT-ALIGN: center"> <p>&nbsp;{Date}</p></td>
+   		<td colspan=3 width="5%"><p>&nbsp;</p></td></tr>
+
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=3 ><p>&nbsp;</p></td>
+		<td colspan=6 align=left borderColor=black border="1" style="BORDER-RIGHT: thin solid; 
+			BORDER-TOP: thin solid; FONT-SIZE: 12pt; BORDER-LEFT: thin solid; 
+			BORDER-BOTTOM: thin solid">&nbsp;Amount Enclosed:</td>
+		<td colspan=8 align=left border="1" borderColor=black style="BORDER-RIGHT: thin solid; 
+			BORDER-TOP: thin solid; BORDER-BOTTOM: thin solid" ><p>&nbsp;</p></td>
+   		<td colspan=3><p>&nbsp;</p></td></tr>
+
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=3 ><p>&nbsp;</p></td>
+		<td colspan=6 align=left style="FONT-SIZE: 12pt; WIDTH: 250px; BORDER-TOP-STYLE: none;
+			 BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 18px; BORDER-BOTTOM-STYLE: none"
+			  type="lbltext" size="36" name="PrtEntityName" class=lbltext>{Entity Name}</td>
+		<td colspan=8 align=left style="FONT-SIZE: 12pt; WIDTH: 250px; BORDER-TOP-STYLE: none;
+			 BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 18px; BORDER-BOTTOM-STYLE: none"
+			  type ="lbltext" size="36" name="PrtEntityAddr" class=lbltext>{Entity Street}</td>
+		<td colspan=3  ><p>&nbsp;</p></td></tr>
+			  
+    <TR style ="FONT-SIZE: 6pt; FONT-FAMILY: Arial">
+		<td colspan=20 align=left>&nbsp;</td></TR>
+	
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=5 ><p>&nbsp;</p></td>
+		<td colspan=6 align=left height=10 style="FONT-SIZE: 12pt">Make checks payable to: </td>
+		<td colspan=9 align=left height=10 style="FONT-WEIGHT: bold; FONT-SIZE: 12pt">City of Philadelphia</td></tr>
+	
+	<tr style ="FONT-SIZE: 10pt; FONT-FAMILY: Arial">
+		<td colspan=20 width="5%"><p>&nbsp;</p></td></tr>
+	
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=5 ><p>&nbsp;</p></td>
+		<td colspan=15 align=left style="FONT-SIZE: 12pt">Department of Revenue</td></tr>
+
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=5 ><p>&nbsp;</p></td>
+		<td colspan=15 align=left style="FONT-SIZE: 12pt">P.O. Box {BOX}</td></tr>
+
+	<tr style ="FONT-SIZE: 12pt; FONT-FAMILY: Arial">
+		<td colspan=5 ><p>&nbsp;</p></td>
+		<td colspan=15 align=6 style="FONT-SIZE: 12pt">Phila, PA 19105</td></tr>
+
+	<tr style ="FONT-SIZE: 18pt; FONT-FAMILY: Arial">		
+		<td colspan=20 ><p>&nbsp;</p></td></tr>
+		
+	<tr style ="FONT-SIZE: 12pt">
+		<td colspan=1><p>&nbsp;</p></td>
+<!--		<td colspan=19 align=left class=lblText id ='CoupScanLine' name="CoupScanLine"
+		 style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; BORDER-TOP-STYLE: none;
+		  FONT-FAMILY: IDAutomationOCRa; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+   			33398082811000021582051108030000000000000000000000000000000000000003</td><!-- FONT-FAMILY: P08OBA; IDAutomationOCRa> -->
+<!--		<td colspan=19 align=left class=lblText id ='CoupScanLine' name="CoupScanLine"
+		 style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; BORDER-TOP-STYLE: none;
+		  FONT-FAMILY: IDAutomationOCRa; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+   			33328080211000000008111262000000000000000000000000309000000000000001</td><!-- FONT-FAMILY: P08OBA; IDAutomationOCRa> -->
+		<td colspan=19 align=left class=lblText id ='CoupScanLine' name="CoupScanLine"
+		 style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; BORDER-TOP-STYLE: none;
+		  FONT-FAMILY: IDAutomationOCRa; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+   			33303080211000000006076418000000000000000000000001202000000000000008</td><!-- FONT-FAMILY: P08OBA; IDAutomationOCRa> -->
+			</tr>
+	<tr style ="FONT-SIZE: 10pt; FONT-FAMILY: Arial; HEIGHT: .38in" >
+		<td colspan=20><p>&nbsp;</p></td> 
+<!--		<td colspan=19 align=left class=lblText id ='CoupScanLine' name="CoupScanLine"
+		 style="FONT-WEIGHT: bold; FONT-SIZE: 10pt; WIDTH: 6.5in; BORDER-TOP-STYLE: none;
+		  FONT-FAMILY: IDAutomationOCRa; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+   			{Scan Line}</td><!-- FONT-FAMILY: P08OBA; IDAutomationOCRa> -->
+<!--		 <td width="5%" ><p>&nbsp;</p></td></tr>		-->
+
+ </table>
+ </div>
+
+</body>
+<!--</HTML>-->

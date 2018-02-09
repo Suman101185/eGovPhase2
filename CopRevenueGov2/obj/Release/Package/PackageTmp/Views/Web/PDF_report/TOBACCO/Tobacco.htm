@@ -1,0 +1,208 @@
+﻿<html>
+<head>
+<meta name="GENERATOR" content="Microsoft Visual Studio 6.0">
+<title></title>
+<script src="../js/JqueryMin.js" type="text/javascript"></script>
+<script language="javascript" src='../Inc/ispFunctions.js.htm' type="text/javascript"></script>
+<script language="javascript" src='../Inc/ispXmlProc.js.htm' type="text/javascript"></script>
+</head>
+
+<body style="margin: .375in .375in .375in .375in">
+
+<div style="display: block; vertical-align: bottom; top: 0px; height:10.25in; width: 7.75in;border:none 1px" id="LogCoupon">
+
+    <table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px; width: 100%; top: 0px; display:block" id="topPayCoupon">
+        <tr >
+            <td>&nbsp;</td>
+            <td align="center" style="padding-left:10%"><p id="cityseal"><img id="IMG2" src="../images/cityseal.gif" style="WIDTH: 1in; HEIGHT: 1in"></p></td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+<div class="blue_base_box">
+<h2>Tax Payer Information  |  Tobacco Tax return for {year} <span id="AppHeader"></span>  </h2>
+    <div>&nbsp;</div>
+
+    <div >
+       <table border="1" style="margin-left: 0px; width: 100%; top: 0px; display: block; FONT-SIZE: 12pt; FONT-FAMILY: Arial" id="Table1">
+            <!--<tr style="FONT-SIZE: 14pt; height: .25in" id="coup2">-->
+            <!--<tr style="FONT-SIZE: 10pt; height: .25in;width:100%" id="coup2" >
+                <td style="width:10%">&nbsp;</td>
+                <td style="width:50%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+            </tr>-->
+            <tr >
+                <td style="text-align:left"  width="70%">&nbsp;<b>Name:&nbsp;&nbsp;&nbsp;&nbsp;</b><span>&nbsp;{name}</span></td>
+                
+                <td align="left" >&nbsp;<b>Account No:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">{acc_id}</span></td>
+            </tr>
+            <tr >
+                <td width="70%" align="left">&nbsp;<b>Address:</b><span>&nbsp;{address}</span></td>
+                <td align="left">&nbsp;<b>{ssn_label}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">{ssn_value}</span></td>
+            </tr>
+        </table>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <table cellpadding="0" cellspacing="0" style="width:100%" border="0">
+            <tr style="height: .25in">
+                <td width="5%">&nbsp;</td>
+                <td width="85%">&nbsp;</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+
+             <tr style="font-size: 10pt; font-family:sans-serif">
+                <th colspan="3" style="text-align:left"><b>Tobacco and tobacco-related products that consists of individual items rolled for smoking (e.g., cigars) </b></th>
+            </tr>
+            
+            <tr>
+                <td >1a.</td>
+                <td class="text-left">Taxable interest</td>
+                <td class="text-left" align="right">{ITEM_TOTAL} </td>
+            </tr>
+            <tr>
+                <td>1b.</td>
+                <td class="text-left">Number of items delivered to bona fida customer locations outside Philadelphia. </td>
+                <td class="text-left" align="right">{ITEM_NOT_PHILA} </td>
+            </tr>
+            <tr>
+                <td>1c.</td>
+                <td class="text-left"> Number of items sold to customers within Philadelphia.[Calculated - line 1a minus line 1b]</td>
+                <td class="text-left" align="right">{ITEM_TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>1d.</td>
+                <td class="text-left">TAX DUE [Calculated - line 1c * {dTobaccoItemTaxRate} per item]</td>
+                <td class="text-left" align="right">{ITEM_TAX_DUE} </td>
+            </tr>
+             <tr style="font-size: 10pt; font-family:sans-serif">
+                <th colspan="3" style="text-align:left"><b>All other tobacco and tobacco-related products (e.g., smokeless tobacco, pipe tobacco, loose tobacco</b></th>
+            </tr>
+            
+            <tr>
+                <td>2a.</td>
+                <td class="text-left">Total number of ounces of all tobacco and tobacco-related items sold January 1 through December 31, {year}./td>
+                <td class="text-left" align="right">{PACK_TOTAL} </td>
+            </tr>
+            <tr>
+                <td>2b.</td>
+                <td class="text-left">Total ounces delivered to bona fida customer locations outside Philadelphia</td>
+                <td class="text-left" align="right">{PACK_NOT_PHILA} </td>
+            </tr>
+            <tr>
+                <td>2c.</td>
+                <td class="text-left">Ounces of products sold to customers within Philadelphia.[Calculated - line 2a minus line 2b]</td>
+                <td class="text-left" align="right">{PACK_PHILA} </td>
+            </tr>
+            <tr>
+                <td>2d.</td>
+                <td class="text-left">Deductible ExpenseTAX DUE[Calculated - line 2c * {dTobaccoPackTaxRate} per ounce]</td>
+                <td class="text-left" align="right">{PACK_TAX_DUE} </td>
+            </tr>
+            <tr style="font-size: 10pt; font-family:sans-serif">
+                <th colspan="3" style="text-align:left"><b>Rolling Papers</b></th>
+            </tr>
+            <tr>
+                <td>3a.</td>
+                <td class="text-left">Total number of packs sold January 1 through December 31, 2016&nbsp; </td>
+                <td class="text-left" align="right">{PAPER_TOTAL} </td>
+            </tr>
+            <tr>
+                <td>3b.</td>
+                <td class="text-left">Total number of packs sold January 1 through December 31, 2016&nbsp; </td>
+                <td class="text-left" align="right">{PAPER_NOT_PHILA} </td>
+            </tr>
+            <tr>
+                <td>3c.</td>
+                <td class="text-left">Number of packs sold to customers within Philadelphia.[Calculated - line 3a minus line 3b]</td>
+                <td class="text-left" align="right">{PAPER_PHILA} </td>
+            </tr>
+            <tr>
+                <td>3d.</td>
+                <td class="text-left">TAX DUE[Calculated - line 3c * {dTobaccoPaperTaxRate} per pack]&nbsp;   </td>
+                <td class="text-left" align="right">{PAPER_TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td class="text-left">Tax due by January 31, 2017[Calculated - add lines 1d, 2d and 3d]&nbsp;</td>
+                <td class="text-left" align="right">{TOTAL_TAX_DUE}  </td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td class="text-left">Tax previously paid for tax year 2016 and other credits</td>
+                <td class="text-left" align="right">{CREDITS} </td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td class="text-left">Net Tax Due[Calculated - line 4 minus line 5]</td>
+                <td class="text-left" align="right">{NET_TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td class="text-left">Interest and Penalty</td>
+                <td class="text-left" align="right">{INTEREST_PENALTY}</td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td class="text-left"><b><u>Total Due</u></b> including Interest and Penalty[Calculated - line 6 plus line 7]&nbsp;</td>
+                <td class="text-left" align="right"> {TOTAL_AMOUNT_DUE}</td>
+            </tr>
+            <tr>
+                <td>9a.</td>
+                <td class="text-left">If Line 5 is greater than Line 8, enter the amount to be <b><i>refunded</i></b> or  skip to Line 9b.</td>
+                <td class="text-left" align="right">{TAX_REFUND} </td>
+            </tr>
+            <tr>
+                <td>9b.</td>
+                <td class="text-left">Amount of overpayment to be applied to the 2016 Tobacco and Tobacco-Related Products Tax.</td>
+                <td class="text-left" align="right">{TAX_OVERPAID} </td>
+            </tr>
+
+        </table>
+    </div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>
+        <table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px; width: 100%; top: 0px;font-size:8pt;">
+            <!--<tr style="FONT-SIZE: 14pt; height: .25in" id="coup2">-->
+            <tr style="height: 20%">
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+
+            </tr>
+          
+            <tr style="height: .25in">
+                <td align="left">Filled by*: </td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_WHO}</td>
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler Name*:</td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_NAME}</td>
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler Phone*:</td>
+                <td align="left" colspan="4" >&nbsp;{PREPARER_PHONE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">EXT- {PREPARER_PHONE_EXT}</span></td>
+                <!--<td align="left">&nbsp;EXT -</td>
+                <td align="left" colspan="2">&nbsp;{PREPARER_PHONE_EXT}</td>-->
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler E-Mail Address*:</td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_EMAIL_ADDRESS}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--For 3/4" from - right:0.75in-->
+<div style="position:absolute; bottom:.9in; right:.375in; width:5.0in; text-align:right; border: none 1px">
+
+</div>
+</div>
+</body>
+</html>

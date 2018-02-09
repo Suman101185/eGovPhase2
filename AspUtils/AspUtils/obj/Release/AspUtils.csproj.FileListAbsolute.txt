@@ -1,0 +1,9 @@
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\bin\Release\AspUtils.dll
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\bin\Release\AspUtils.pdb
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\obj\Release\AspUtils.dll
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\obj\Release\AspUtils.pdb
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\bin\Release\System.Web.Http.dll
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\bin\Release\System.Net.Http.Formatting.dll
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\bin\Release\System.Web.Http.xml
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\bin\Release\System.Net.Http.Formatting.xml
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\AspUtils\obj\Release\AspUtils.csprojResolveAssemblyReference.cache

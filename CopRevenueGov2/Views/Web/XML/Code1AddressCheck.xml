@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<c1match>
+  <Message></Message>
+  <Closeness></Closeness>
+  <Address1></Address1>
+  <Address2></Address2>
+  <City></City>
+  <State></State>
+  <Zip></Zip>
+  <Zip4></Zip4>
+  <houseno></houseno>
+  <direction></direction>
+  <designation></designation>
+  <DPC></DPC>
+  <DPBC></DPBC>
+  <CRT></CRT>
+  <street></street>
+</c1match>

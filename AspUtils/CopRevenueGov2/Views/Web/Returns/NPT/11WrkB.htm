@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+    <style>
+        .inpNormal, .inpReadOnlyRt, .inpError {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body onload='LoadError("WrkB")'>
+    <div id="NPT_WrkB" style="DISPLAY: none; VISIBILTY: hidden" name="NPT_WrkB">
+        <table class="tblShowBorder" id="TABLE1" style="MARGIN-LEFT: 4%" cellspacing="0"
+            cellpadding="0" width="90%" border="0">
+
+            <tr height="0">
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+            </tr>
+            <tr class="rowDataEven">
+                <td colspan="20">
+                    <label class="lblInstrNormal">
+                        <u>Worksheet B: Business Income (Loss) for Non-Residents</u>
+                        <br>
+                        Non-residents of Philadelphia that need to apportion their income on <b>Worksheet NR-3</b> cannot
+    file electronically</label></td>
+                <tr class="rowDataOdd">
+                    <td>
+                        <label class="lblInstrNormal">1.</label></td>
+                    <td colspan="16">
+                        <label class="lblInstrNormal">Net Income (Loss)</label></td>
+                    <td colspan="3">
+                        <input class="inpNormal" id="txtNPT_WrkB_1" style="WIDTH: 100%"
+                            onfocus="SetFocus()" maxlength="10" onchange='ValidateWorksheet("WrkB")'></td>
+                </tr>
+            <tr class="rowDataEven">
+                <td>
+                    <label class="lblInstrNormal">2.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">Federal Form 1065, Schedule K-1 and other adjustments</label>
+                </td>
+                <td colspan="3">
+                    <input class="inpNormal" id="txtNPT_WrkB_2" style="WIDTH: 100%"
+                        onfocus="SetFocus()" maxlength="10" onchange='ValidateWorksheet("WrkB")'></td>
+            </tr>
+            <tr class="rowDataOdd">
+                <td>
+                    <label class="lblInstrNormal">3.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">Other taxable income</label></td>
+                <td colspan="3">
+                    <input class="inpNormal" id="txtNPT_WrkB_3" style="WIDTH: 100%"
+                        onfocus="SetFocus()" maxlength="10" onchange='ValidateWorksheet("WrkB")'></td>
+            </tr>
+            <tr class="rowDataEven">
+                <td>
+                    <label class="lblInstrNormal">4.</label></td>
+                <td colspan="8">
+                    <label class="lblInstrNormal">Total Net Income (Loss)</label></td>
+                <td align="right" colspan="8">
+                    <label class="lblInstrNormal">[Calculated - Add lines 1 through 3]&nbsp;</label></td>
+                <td colspan="3">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkB_4"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+            </tr>
+            <tr class="rowDataOdd" style="DISPLAY: none; VISIBILTY: hidden">
+                <!--EHD Per Tom Added style section -->
+                <td>
+                    <label class="lblInstrNormal">5.</label></td>
+                <!--onclick=ShowPage("Page4")>Click here for Page 4-->
+                <td colspan="16">
+                    <label class="lblInstrNormal">
+                        Net Income apportioned outside Philadelphia from Page 4, Line 14,
+    Worksheet NR-3</label><label class="lblLink" style="FONT-SIZE: 7pt"></label></td>
+                <td colspan="3">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkB_5" style="WIDTH: 100%"></label>
+                </td>
+            </tr>
+            <tr class="rowDataEven" style="DISPLAY: none; VISIBILTY: hidden">
+                <!--EHD Per Tom Added style section -->
+                <td>
+                    <label class="lblInstrNormal">6.</label></td>
+                <td colspan="8">
+                    <label class="lblInstrNormal">Taxable Non-Residents Net Income (Loss)</label></td>
+                <td align="right" colspan="8">
+                    <label class="lblInstrNormal">[Calculated - Subtract Line 5 from Line 4]&nbsp;</label></td>
+                <td colspan="3">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkB_6"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <p></p>
+        <table style="MARGIN-LEFT: 4%" width="90%" border="0">
+            <tr>
+                <td>
+                    <input language="javascript" id="btnGoToPage1" onclick='ShowPage("Page1", "WrkB")' type="button" value="Return to Page 1"></td>
+            </tr>
+        </table>
+    </div>
+    <!--NPT_WrkB-->
+</body>
+</html>

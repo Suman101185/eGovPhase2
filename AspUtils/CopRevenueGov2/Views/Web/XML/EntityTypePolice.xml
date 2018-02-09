@@ -1,0 +1,7 @@
+<?xml version='1.0'?>            
+<ENTITYTYPE>  
+   <DDOWN DESC='Select' CODE='999' />
+   <DDOWN DESC='EIN' CODE='091' />
+   <DDOWN DESC='SSN' CODE='092' />
+   <DDOWN DESC='TEM' CODE='190' />
+</ENTITYTYPE> 

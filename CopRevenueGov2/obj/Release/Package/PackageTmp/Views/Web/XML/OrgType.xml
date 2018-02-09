@@ -1,0 +1,15 @@
+<?xml version='1.0'?>            
+<ORGTYPE>  
+   <DDOWN DESC='Select' CODE='999' DISPLAY_ITEM='1 2' />
+   <DDOWN DESC='Association' CODE='40' DISPLAY_ITEM='1' />
+   <DDOWN DESC='Corporation' CODE='140' DISPLAY_ITEM='1' />
+   <DDOWN DESC='Estate' CODE='70' DISPLAY_ITEM='1 2' />
+   <DDOWN DESC='Government' CODE='150' DISPLAY_ITEM='1' />
+   <DDOWN DESC='Individual' CODE='60' DISPLAY_ITEM='2' />
+   <DDOWN DESC='Joint Venture' CODE='5' DISPLAY_ITEM='1' />
+   <DDOWN DESC='LLC Corporation' CODE='163' DISPLAY_ITEM='1' />
+   <DDOWN DESC='LLC Individual' CODE='161' DISPLAY_ITEM='1 2' />
+   <DDOWN DESC='LLC Partnership' CODE='162' DISPLAY_ITEM='1' /> 
+   <DDOWN DESC='Non-Profit' CODE='10' DISPLAY_ITEM='1' />
+   <DDOWN DESC='Partnership' CODE='11' DISPLAY_ITEM='1' />                      
+</ORGTYPE> 

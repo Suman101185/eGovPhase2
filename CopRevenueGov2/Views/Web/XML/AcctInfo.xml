@@ -1,0 +1,25 @@
+<?xml version='1.0'?>
+ 
+<ACCT>
+
+	<DEBUG />
+	
+	<ERROR_INFO>
+	</ERROR_INFO>
+
+	<HEADER_INFO>
+	</HEADER_INFO>
+
+	<ENTITY_INFO>
+	</ENTITY_INFO>
+	
+	<TAX_ACCT>
+	</TAX_ACCT>
+	
+	<NAME_ADRESS>
+	</NAME_ADRESS>
+	
+	<ECHECK>
+	</ECHECK>
+
+</ACCT>

@@ -1,0 +1,7 @@
+<?xml version='1.0'?>            
+<SEX>  
+   <DDOWN DESC='Select' CODE='' />
+   <DDOWN DESC='Female' CODE='F' />
+   <DDOWN DESC='Male' CODE='M' />
+   <DDOWN DESC='Both' CODE='B' />
+</SEX> 

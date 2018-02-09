@@ -1,0 +1,156 @@
+<html>
+<head>
+    <title></title>
+    <script id="clientEventHandlersJS" language="javascript" type="text/javascript">
+
+function AdjustNameDisplay(incName)
+{
+	var sEntityName = incName
+	var lName = "", fName = "", mName = "", newName = ""
+		
+	if (sEntityName.indexOf("*") != -1)
+	{//If name contains *'s
+		sEntityName = sEntityName.split("*")
+		lName = (sEntityName[0].substr(0,1)) + (sEntityName[0].substr(1).toLowerCase())
+		if (sEntityName[1]) 
+		{
+			fName = (sEntityName[1].substr(0,1)) + (sEntityName[1].substr(1).toLowerCase())
+		}		//if
+		
+		if (sEntityName[2]) 
+		{
+			mName = sEntityName[2].substr(0,1).toUpperCase()
+		}
+		newName = fName + " " + mName + " " + lName
+ 	}	else	{
+ 		newName = sEntityName
+	}		//if
+	return newName
+}//AdjustNameDisplay
+
+
+function ShowTaxAccounts() {
+var tempPara = '<p style="MARGIN-BOTTOM: 1pt; MARGIN-TOP: 2pt; MARGIN-LEFT: 10pt"><label>'
+var temp = ''
+
+	if (chkBPT.checked) {
+		temp = temp + 'Business Income and Receipts'}
+	if (chkNPT.checked) {
+		temp = temp + ', Net Profits'}
+	if (chkWage.checked) {
+		temp = temp + ', Wage'}
+	if (chkEarn.checked) {
+		temp = temp + ', Earnings'}
+	if (chkLiquor.checked) {
+		temp = temp + ', Liquor'}
+	if (chkUO.checked) {
+		temp = temp + ', Use/Occupancy'}
+	if (chkSchool.checked) {
+		temp = temp + ', School Income'}
+	if (chkParking.checked) {
+		temp = temp + ', Parking'}
+	if (chkHotel.checked) {
+		temp = temp + ', Hotel'}
+	if (chkAmusement.checked) {
+		temp = temp + ', Amusement'}
+	if (chkCoin.checked) {
+		temp = temp + ', Coin'}
+	if (chkRental.checked) {
+		temp = temp + ', Vehicle Rental'}
+
+temp = tempPara + temp + '</label></p>'
+	 return temp
+}		//ShowTaxAccounts
+
+
+function CreateEmail() {
+    var sEmail;
+   // alert(parent.$g.xmlAccount.toString());
+    //lblAttention.innerText = AdjustNameDisplay(parent.$x.ispXmlGetFieldVal(oAcctInfo, 'NAME_ADDRESS/NAME', '', 0))
+    lblAttention.innerText = AdjustNameDisplay(parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'NAME_ADDRESS NAME', '', 0));
+    //	lblEntity.innerText = parent.$x.ispXmlGetFieldVal(oAcctInfo, 'ENTITY_INFO/ENTITY_ID', '', 0)
+    //	divAccounts.innerHTML = ShowTaxAccounts()
+   // lblPIN.innerText = parent.$x.ispXmlGetFieldVal(oAcctInfo, 'ENTITY_INFO/PIN', '', 0) + '.';
+    $('#lblPIN').text( parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO PIN', '', 0) + '.');
+    sEmail = Email.innerHTML;
+    try{
+        if (sEmail.indexOf('>') != -1) {
+            sEmail = sEmail.replace(">", "&GT&");
+           
+              // sEmail = ispReplace(sEmail, ">", "&GT&");
+            }
+            if (sEmail.indexOf('<') != -1) {
+              //  sEmail = ispReplace(sEmail, "<", "&LT&");
+                sEmail = sEmail.replace("<", "&LT&");
+            }
+       }
+    catch(expression)
+      {
+    
+          alert(expression);
+       }
+//    sEmail = ispReplace(sEmail, ">", "&GT&");
+//    sEmail = ispReplace(sEmail, "<", "&LT&");
+    return sEmail
+} 		//CreateAcctNewEmail
+
+    </script>
+    <script id="clientEventHandlersJS" language="vbscript">
+
+Function ispReplace(sInput, sFind, sReplace)
+	ispReplace = Replace(sInput, sFind, sReplace)
+End Function
+
+    </script>
+</head>
+<body>
+    <div id="Email" name="Email" style="display: none; visibility: visible">
+        <table cellspacing="0" cellpadding="0" border="0" style="margin-bottom: 40px; margin-left: 4%;
+            width: 7in; height: 1in">
+            <tr>
+                <td valign="center" align="middle" width="15%">
+                    <img height="126" alt="City of Philadelphia" src="[EMAIL_CITY_SEAL]" width="132">
+                </td>
+                <td align="middle" valign="center" width="5%">
+                    <img style="width: 0.03in; height: 0.9in" height="1" src="[EMAIL_SPACER]" width="1">
+                </td>
+                <td valign="center" align="left">
+                    <p>
+                        <font size="6">Department of Revenue</font></p>
+                </td>
+            </tr>
+        </table>
+        <table id="TABLE1" cellspacing="0" cellpadding="0" border="0" style="margin-left: 4%;
+            width: 6in">
+            <tr>
+                <td>
+                    <p>
+                        Entity:&nbsp;
+                        <label id="lblAttention">
+                        </label>
+                    </p>
+                    <p style="margin-top: 8pt; margin-bottom: 8pt">
+                        Your Philadelphia Revenue PIN is&nbsp;
+                        <label id="lblPIN">
+                        </label>
+                    </p>
+                    <p style="margin-top: 8pt; margin-bottom: 8pt">
+                        If this PIN was assigned to you by the Philadelphia Revenue Department, you&nbsp;will
+                        be prompted to change your PIN after your initial login.</p>
+                    <p style="margin-top: 8pt; margin-bottom: 8pt">
+                        If you forgot this PIN after&nbsp;assigning it yourself, you may keep it or change
+                        it as you choose.</p>
+                    <p style="margin-top: 8pt; margin-bottom: 8pt">
+                        Click here to access "Online Services" <a href="https://ework.phila.gov/revenue/">https://ework.phila.gov/revenue/</a></p>
+                    <p style="margin-top: 8pt; margin-bottom: 8pt">
+                        If you have any questions e-mail us at <a href="mailto:revenue@phila.gov">revenue@phila.gov</a>.</p>
+                    <p style="margin-bottom: 0pt">
+                        City of Philadelphia</p>
+                    <p style="margin-top: 0pt">
+                        Department of Revenue</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

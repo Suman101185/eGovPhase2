@@ -1,0 +1,349 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=unicode">
+<meta NAME="GENERATOR" Content="MSHTML 5.50.4134.600">
+<title></title>
+<style>
+	.inpNormal, .inpReadOnlyRt, .inpError { text-align: right; }
+</style>
+<script language="javascript">
+	var currentYear = 2006
+</script>
+<!-- Remove next line once running from .asp-->
+<!--<script language="JavaScript" src="ERN.js.htm"></script>-->
+<!-- /Remove -->
+</head>
+<body onload="DisplayERNReturn()">
+<div id="ERN" style="DISPLAY: block; VISIBILTY: visible" Name="ERN">&nbsp;
+   
+<table class="tblShowBorder" width="90%" bgcolor="whitesmoke" style="MARGIN-LEFT: 4%" border="0" cellSpacing="0" cellPadding="0" id="TABLE1">
+  <tr>
+    <td WIDTH="2%"></td>
+    <td WIDTH="8%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+  </tr>
+  
+  <tr>
+		<td>&nbsp;</td>
+		<td >
+			<label class="lblInstrNormal">Name:&nbsp;</label>
+		</td>
+		<td colspan="11">
+			<label id="lblName" class="lblTextBlack" nowrap></label></td>
+		<td colspan="3" align="right">
+			<label id="lblAccountType" class="lblInstrNormal">Account No.: &nbsp;</label></td>
+		<td colspan="4">
+			<label id="lblAccountId" class="lblTextBlack"></label></td>
+	</tr>
+  
+  <tr>
+		<td>&nbsp;</td>
+		<td >
+			<label class="lblInstrNormal">Address:&nbsp;</label>
+		</td>
+		<td colspan="11">
+			<label id="lblAddress" class="lblTextBlack"></label></td>
+		<td colspan="3" align="right">
+			<label id="lblEntityType" class="lblInstrNormal">EIN: &nbsp;</label></td>
+		<td colspan="4">
+			<label id="lblEntityId" class="lblTextBlack"></label></td>
+	</tr>
+</table>
+
+<table style="LEFT: 43px; MARGIN-LEFT:  4%; TOP: 205px" border="0" width="90%">
+  <tr>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    </tr>
+</table>
+</div><!--ERN-->   
+<div id="ERN_Page1" style="DISPLAY: block; VISIBILTY: visible" Name="ERN_Page1">
+<table style="LEFT: 43px; MARGIN-LEFT:  4%; TOP: 205px" border="0" width="90%">
+  <tr>
+		<td align="left" colspan="12" nowrap>
+			<input id="chkAmended" type="checkbox" onclick="chkAmended_onclick()">
+				<label class="lblTextBlacksmall">Check if amended return.</label></td><!--		<td colspan=6>			<label class="lblTextBlacksmall">If your business terminated in 2003,<br>					enter the termination date here:</label></td>		<td colspan=2 style="VERTICAL-ALIGN: bottom">			<input class=inpNormal				 id=txtTermDate onchange=ValidateWorksheet("Page1") onfocus="SetFocus()" maxlength=10				 onblur="return txtTermDate_onblur()"></td>	</tr>  <tr>		<td align=left colspan=12 nowrap></td>		<td colspan=6>			<label class="lblTextBlacksmall">If applicable, enter precentage from<br>					Page 3, worksheet D, Line 3:</label>			<label class="lblLink" style="FONT-SIZE: 7pt" onclick=ShowPage("WrkD")>Click here for worksheet D</label></td>		<td colspan=2 style="VERTICAL-ALIGN: bottom">			<input class=inpNormal				 id=txtPercentage onchange=ValidateWorksheet("Page1") onfocus="SetFocus()" maxlength=3>%</td>-->
+	</tr>
+</table>
+<table class="tblShowBorder" cellSpacing="0" cellPadding="0" border="0" style="MARGIN-LEFT: 4%" id="TABLE1" width="90%">
+	<tr height="0">
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+		<td WIDTH="5%"></td>
+	</tr>
+	
+	<tr class="rowDataEven">
+		<td>
+			<label class="lblInstrNormal">1.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal">
+				Gross Compensation received. Enclose
+				<script>
+						document.write(currentYear-1);
+				</script>
+				W-2 form(s).
+			</label>
+		</td>
+		<td colspan="3">
+			<input class="inpNormal" id="txtERN1" onchange="ValidateWorksheet('Page1')" onfocus="SetFocus()" maxlength="10" style="WIDTH: 100%">
+		</td>
+	</tr>
+	
+	<tr class="rowDataOdd">
+		<td>
+			<label class="lblInstrNormal">2.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal">Non-taxable compensation from Page 2, Line 3</label>
+		</td>
+		<td colspan="3">
+			<input class="inpNormal" id="txtERN2" onchange="ValidateWorksheet('Page1')" onfocus="SetFocus()" maxlength="10" style="WIDTH: 100%">			
+		</td>
+	</tr>
+	
+	<tr class="rowDataEven">
+		<td>
+			<label class="lblInstrNormal">3.</label>
+		</td>
+		<td colspan="16">
+				<label class="lblInstrNormal">Net taxable compensation (Line 1 minus Line 2)</label>
+		</td>
+		<td colspan="3">
+			<label class="inpReadOnlyRt" id="lblERN3" style="WIDTH: 100%"></label>
+		</td>
+	</tr>
+	
+	<tr class="rowDataOdd">
+		<td>
+			<label class="lblInstrNormal">4.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal"><b>Taxable Compensation received by a resident of Philadelphia</b></label>
+		</td>
+		<td colspan="3">
+			<input class="inpNormal" id="txtERN4" onchange="ValidateWorksheet('Page1')" onfocus="SetFocus()" maxlength="10" style="WIDTH: 100%">
+		</td>			
+	</tr>
+
+	<tr class="rowDataEven">
+		<td>
+			<label class="lblInstrNormal">5.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal">Tax Due (Line 4 times 0.4331
+				<!--<script>document.write(dERNResidentRate)</script>-->
+			)</label>
+		</td>	
+		<td colspan="3">
+			<label class="inpReadOnlyRt" id="lblERN5" style="WIDTH: 100%"></label>
+		</td>
+	</tr>
+  
+  <tr class="rowDataOdd">
+		<td>
+			<label class="lblInstrNormal">6.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal"><b>Taxable Compensation received by a non-resident of Philadelphia</b></label>
+		</td>
+		<td colspan="3">
+			<input class="inpNormal" id="txtERN6" onchange="ValidateWorksheet('Page1')" onfocus="SetFocus()" maxlength="10" style="WIDTH: 100%">
+		</td>
+	</tr>
+  
+	<tr class="rowDataEven">
+		<td>
+			<label class="lblInstrNormal">7.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal">Tax Due (Line 6 times .038197
+				<!--<script>document.write(dERNNonResidentRate)</script>-->
+			)</label>
+		</td>
+		<td colspan="3">
+			<label class="inpReadOnlyRt" id="lblERN7" style="WIDTH: 100%"></label>
+		</td>
+	</tr>
+	
+	<tr class="rowDataOdd">
+		<td>
+			<label class="lblInstrNormal">8.</label>
+		</td>
+		<td colspan="16">
+				<label class="lblInstrNormal">Total Tax Due (Line 5 plus Line 7)</label>
+		</td>
+		<td colspan="3">
+			<label class="inpReadOnlyRt" id="lblERN8" style="WIDTH: 100%"></label>
+		</td>
+	</tr>
+	
+	<tr class="rowDataEven">
+		<td>
+			<label class="lblInstrNormal">9.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal">
+				Any Philadelphia wage tax <u>withheld by employer</u> per enclosed W-2 forms<br>
+				<b>If Line 8 is equal to Line 9 <u><i>STOP HERE!</i></u> Do not file this return.
+			</label></B>
+		</td>
+		<td colspan="3">
+			<input class="inpNormal" id="txtERN9" onchange="ValidateWorksheet('Page1')" onfocus="SetFocus()" maxlength="10" style="WIDTH: 100%">
+		</td>
+	</tr>
+	
+	<tr class="rowDataOdd">
+		<td>
+			<label class="lblInstrNormal">10.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal">Net Tax Due (Line 8 minus Line 9)</label>
+		</td>
+		<td colspan="3">
+			<label class="inpReadOnlyRt" id="lblERN10" style="WIDTH: 100%"></label>
+		</td>
+	</tr>
+	
+	<tr class="rowDataEven">
+		<td>
+			<label class="lblInstrNormal">11.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal">Tax that you, <u>not your employer</u>, previously paid for
+				<script>
+						document.write(currentYear - 1);
+				</script>
+				.(Not included on W-2 forms)
+			</label>
+		</td>
+		<td colspan="3">
+			<input class="inpNormal" id="txtERN11" onchange="ValidateWorksheet('Page1')" onfocus="SetFocus()" maxlength="10" style="WIDTH: 100%">
+		</td>
+	</tr>
+	
+	<tr class="rowDataOdd">
+		<td>
+			<label class="lblInstrNormal">12.</label>
+		</td>
+		<td colspan="16">
+			<label class="lblInstrNormal"><u><b>ADDITIONAL TAX DUE</b></u> If Line 10 is greater than Line 11,
+				enter the difference here</label>
+		</td>
+		<td colspan="3">
+			<label class="inpReadOnlyRt" id="lblERN12" style="WIDTH: 100%"></label>
+		</td>
+	</tr>
+	
+	<tr class="rowDataEven">
+		<td>
+			<label class="lblInstrNormal">13.</label>
+		</td>
+		<td colspan="19">
+			<label class="lblInstrNormal"><u><b>OVERPAYMENT OPTIONS</u></B> If Line 10 is less than Line 11, 
+				enter the amount to be:</label>
+		</td>
+	</tr>
+	
+	<tr class="rowDataOdd">
+		<td>
+			<label class="lblInstrNormal">&nbsp;&nbsp;13A.</label></td>
+		<td colspan="16">
+			<input type="radio" id="radERN13" name="radERN13" disabled checked	 onclick="ValidateWorksheet('Page1')">
+			<label class="lblInstrNormal">Refunded. <b>Do not file a separate Refund Petition</b></label>
+		</td>
+		<td colspan="3">
+			<label class="inpReadOnlyRt" id="lblERN13a" disabled style="WIDTH: 100%"></label>
+		</td>
+	</tr>
+	
+	<tr class="rowDataEven">
+		<td>
+			<label class="lblInstrNormal">&nbsp;&nbsp;13B.</label>
+		</td>
+		<td colspan="16">
+			<input type="radio" id="radERN13" name="radERN13" disabled onclick="ValidateWorksheet('Page1')">
+			<label class="lblInstrNormal">Applied, up to the tax due, to the 
+				<script>
+						document.write(currentYear);
+				</script>			
+				Earnings Tax Return
+			</label>
+		</td>
+		<td colspan="3">
+			<label class="inpReadOnlyRt" id="lblERN13b" disabled style="WIDTH: 100%"></label>
+		</td>
+	</tr><!--		<tr class=rowDataEven>		<td >			<label class="lblInstrNormal">&nbsp;&nbsp;C.</label></td>		<td colspan=16>			<INPUT type="radio" id=radERN12 name=radERN12 disabled=true onclick=ValidateWorksheet("Page1")>			<label class="lblInstrNormal">Amount of overpayment to be applied to the 2004					Net Profits Tax</label></td>		<td colspan=3>			<label class=inpReadOnlyRt id=lblERN12c style="WIDTH: 100%"></label></td>	</tr>-->
+</table>
+
+<table style="MARGIN-LEFT: 4%" border="0" width="90%">
+  <tr>
+    <td width="80%"><label class="lblTextBlackSmall">
+    <input id="chkAgreement" type="checkbox" style="WIDTH: 13px; HEIGHT: 20px" size="13" onclick="">&nbsp;Signature box: 
+			Under penalties of perjury, as set forth in 18 Pa. C.S. §§ 4902-4903 as amended, 
+			I swear or affirm that I have reviewed this return and to the best of my knowledge
+			and belief, it is true and complete.</label></td>
+		<td width="20%" align="right" nowrap><p style="MARGIN-TOP: 5px">
+		<input id="btnERNPrint" type="button" value="Print" LANGUAGE="javascript" onclick="return btnERNPrint_onclick()">
+		<input id="btnERNSubmit" type="button" value="Submit" LANGUAGE="javascript" onclick="return btnERNSubmit_onclick()"></p>
+		</td>
+	</tr>
+
+</table>
+</div><!--ERN_Page1-->
+
+</body>
+</html>

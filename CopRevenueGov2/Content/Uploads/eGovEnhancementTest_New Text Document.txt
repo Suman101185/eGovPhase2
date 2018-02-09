@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RTTIE037WS" 
+targetNamespace="http://ISDEV.city.phila.local/RTTIE037.service:RTTIE037WS" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+xmlns:soapjms="http://www.w3.org/2010/soapjms/" 
+xmlns:tns="http://ISDEV.city.phila.local/RTTIE037.service:RTTIE037WS" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://ISDEV.city.phila.local/RTTIE037.service:RTTIE037WS" 
+	xmlns:tns="http://ISDEV.city.phila.local/RTTIE037.service:RTTIE037WS" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <xsd:element name="RTTIE037" type="tns:RTTIE037"/>
+          <xsd:element name="RTTIE037Response" type="tns:RTTIE037Response"/>
+          <xsd:complexType name="RTTIE037">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="_SMA" type="tns:_SMA"/>
+              <xsd:element minOccurs="0" name="_E-BPT" type="tns:_E-BPT"/>
+              <xsd:element minOccurs="0" name="_E-PG1" type="tns:_E-PG1"/>
+              <xsd:element minOccurs="0" name="_E-EZ-PG2" type="tns:_E-EZ-PG2"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="_SMA">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="_PROGRAM" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="SYSTEM-ERROR" type="xsd:decimal"/>
+              <xsd:element minOccurs="0" name="ERROR-LINE" type="xsd:decimal"/>
+              <xsd:element minOccurs="0" name="MESSAGE" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="_E-BPT">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="ACCOUNT-ID" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="PERIOD-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="VERSION-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="RETURN-STATUS" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="LAST-UPDATE-DATE-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="RECORDING-DATE-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="EXTENSION-DATE-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="SEQUENCE-NUM" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="ADJUSTMENT-REFERENCE-NUM" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="USER-ID" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="NET-RATE" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="GROSS-RATE" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="PREPARER-NAME" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="PREPARER-PHONE" type="xsd:decimal"/>
+              <xsd:element minOccurs="0" name="PREPARER-PHONE-EXT" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="PREPARER-IP-ADDRESS" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="PREPARER-EMAIL-ADDRESS" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="PREPARER-TYPE" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="_E-PG1">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="TAX-ON-NET-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="TAX-ON-GROSS-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="ACTUAL-TAX-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="ESTIMATED-TAX-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="TOTAL-TAX-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="NPT-TAX-CREDIT-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="BPT-TAX-CREDIT-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="TOTAL-PAYMNTS-CREDITS-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="TAX-DUE-AMT-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="INTEREST-AND-PENALTY-AMT-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="AMT-OWED-2-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="REFUND-AMT-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="NPT-OVERPAYMENT-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="BPT-OVERPAYMENT-X" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="_E-EZ-PG2">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="NET-INCOME-LOSS-1-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="NET-INCOME-LOSS-2-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="LOSS-CARRY-FORWARD-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="TAXABLE-INCOME-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="TAX-DUE-X-NET" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="SALES-RENTALS-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="SERVICES-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="RENTAL-PROPERTY-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="ROYALTIES-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="CAPITAL-GAINS-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="STOCK-GAINS-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="DIVIDENDS-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="INTEREST-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="OTHER-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="TAXABLE-GROSS-RECEIPTS-X" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="TAX-DUE-X-GROSS" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="RTTIE037Response">
+            <xsd:sequence>
+              <xsd:element name="Output" nillable="true" type="tns:Output"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="Output">
+            <xsd:sequence>
+              <xsd:element name="_SMA" type="tns:_SMA2"/>
+              <xsd:element name="_E-BPT" type="tns:_E-BPT2"/>
+              <xsd:element name="_E-PG1" type="tns:_E-PG12"/>
+              <xsd:element name="_E-EZ-PG2" type="tns:_E-EZ-PG22"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="_SMA2">
+            <xsd:sequence>
+              <xsd:element name="_PROGRAM" type="xsd:string"/>
+              <xsd:element name="SYSTEM-ERROR" type="xsd:decimal"/>
+              <xsd:element name="ERROR-LINE" type="xsd:decimal"/>
+              <xsd:element name="MESSAGE" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="_E-BPT2">
+            <xsd:sequence>
+              <xsd:element name="ACCOUNT-ID" type="xsd:string"/>
+              <xsd:element name="PERIOD-X" type="xsd:string"/>
+              <xsd:element name="VERSION-X" type="xsd:string"/>
+              <xsd:element name="RETURN-STATUS" type="xsd:string"/>
+              <xsd:element name="LAST-UPDATE-DATE-X" type="xsd:string"/>
+              <xsd:element name="RECORDING-DATE-X" type="xsd:string"/>
+              <xsd:element name="EXTENSION-DATE-X" type="xsd:string"/>
+              <xsd:element name="SEQUENCE-NUM" type="xsd:string"/>
+              <xsd:element name="ADJUSTMENT-REFERENCE-NUM" type="xsd:string"/>
+              <xsd:element name="USER-ID" type="xsd:string"/>
+              <xsd:element name="NET-RATE" type="xsd:string"/>
+              <xsd:element name="GROSS-RATE" type="xsd:string"/>
+              <xsd:element name="PREPARER-NAME" type="xsd:string"/>
+              <xsd:element name="PREPARER-PHONE" type="xsd:decimal"/>
+              <xsd:element name="PREPARER-PHONE-EXT" type="xsd:string"/>
+              <xsd:element name="PREPARER-IP-ADDRESS" type="xsd:string"/>
+              <xsd:element name="PREPARER-EMAIL-ADDRESS" type="xsd:string"/>
+              <xsd:element name="PREPARER-TYPE" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="_E-PG12">
+            <xsd:sequence>
+              <xsd:element name="TAX-ON-NET-X" type="xsd:string"/>
+              <xsd:element name="TAX-ON-GROSS-X" type="xsd:string"/>
+              <xsd:element name="ACTUAL-TAX-X" type="xsd:string"/>
+              <xsd:element name="ESTIMATED-TAX-X" type="xsd:string"/>
+              <xsd:element name="TOTAL-TAX-X" type="xsd:string"/>
+              <xsd:element name="NPT-TAX-CREDIT-X" type="xsd:string"/>
+              <xsd:element name="BPT-TAX-CREDIT-X" type="xsd:string"/>
+              <xsd:element name="TOTAL-PAYMNTS-CREDITS-X" type="xsd:string"/>
+              <xsd:element name="TAX-DUE-AMT-X" type="xsd:string"/>
+              <xsd:element name="INTEREST-AND-PENALTY-AMT-X" type="xsd:string"/>
+              <xsd:element name="AMT-OWED-2-X" type="xsd:string"/>
+              <xsd:element name="REFUND-AMT-X" type="xsd:string"/>
+              <xsd:element name="NPT-OVERPAYMENT-X" type="xsd:string"/>
+              <xsd:element name="BPT-OVERPAYMENT-X" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="_E-EZ-PG22">
+            <xsd:sequence>
+              <xsd:element name="NET-INCOME-LOSS-1-X" type="xsd:string"/>
+              <xsd:element name="NET-INCOME-LOSS-2-X" type="xsd:string"/>
+              <xsd:element name="LOSS-CARRY-FORWARD-X" type="xsd:string"/>
+              <xsd:element name="TAXABLE-INCOME-X" type="xsd:string"/>
+              <xsd:element name="TAX-DUE-X-NET" type="xsd:string"/>
+              <xsd:element name="SALES-RENTALS-X" type="xsd:string"/>
+              <xsd:element name="SERVICES-X" type="xsd:string"/>
+              <xsd:element name="RENTAL-PROPERTY-X" type="xsd:string"/>
+              <xsd:element name="ROYALTIES-X" type="xsd:string"/>
+              <xsd:element name="CAPITAL-GAINS-X" type="xsd:string"/>
+              <xsd:element name="STOCK-GAINS-X" type="xsd:string"/>
+              <xsd:element name="DIVIDENDS-X" type="xsd:string"/>
+              <xsd:element name="INTEREST-X" type="xsd:string"/>
+              <xsd:element name="OTHER-X" type="xsd:string"/>
+              <xsd:element name="TAXABLE-GROSS-RECEIPTS-X" type="xsd:string"/>
+              <xsd:element name="TAX-DUE-X-GROSS" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        	</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RTTIE037WS_PortType_RTTIE037Response">
+    <wsdl:part name="parameters" element="tns:RTTIE037Response">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RTTIE037WS_PortType_RTTIE037">
+    <wsdl:part name="parameters" element="tns:RTTIE037">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RTTIE037WS_PortType">
+    <wsdl:operation name="RTTIE037">
+      <wsdl:input message="tns:RTTIE037WS_PortType_RTTIE037">
+    </wsdl:input>
+      <wsdl:output message="tns:RTTIE037WS_PortType_RTTIE037Response">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RTTIE037_service_RTTIE037WS_Binder" type="tns:RTTIE037WS_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="RTTIE037">
+      <soap:operation soapAction="RTTIE037_service_RTTIE037WS_Binder_RTTIE037" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RTTIE037.service.RTTIE037WS">
+    <wsdl:port name="RTTIE037_service_RTTIE037WS_Port" binding="tns:RTTIE037_service_RTTIE037WS_Binder">
+      <soap:address location="http://ISDEV.city.phila.local:5555/ws/RTTIE037.service.RTTIE037WS/RTTIE037_service_RTTIE037WS_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,82 @@
+<html>
+<head>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+<script ID="Script1" LANGUAGE="javascript">
+
+//EOGVWEB-69 EDD Added function to print coupon
+function DoPrintCoupon() {
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, 'NPT', 'COUPON_FORM/CPN_FORM', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, '3', 'COUPON_FORM/CPN_ACCOUNT_TYPE', '')
+  parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO/ACCOUNT_ID', '', 0), 'COUPON_FORM/CPN_ACCOUNT', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount,'NAME_ADDRESS/NAME', '', '0'), 'COUPON_FORM/CPN_NAME', '')	
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount,'NAME_ADDRESS/ADDRESS1', '', '0'), 'COUPON_FORM/CPN_ADDR', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount,'NAME_ADDRESS/ADDRESS2', '', '0'), 'COUPON_FORM/CPN_ADDR2', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, "", 'COUPON_FORM/CPN_ADDR3', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount,'NAME_ADDRESS/CITY', '', '0'), 'COUPON_FORM/CPN_CITY', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount,'NAME_ADDRESS/STATE', '', '0'), 'COUPON_FORM/CPN_STATE', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount,'NAME_ADDRESS/ZIP', '', '0'), 'COUPON_FORM/CPN_ZIP_CODE', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO/PERIOD', '', 0), 'COUPON_FORM/CPN_PERIOD', '')
+	parent.$x.ispXmlSetFieldVal(parent.$g.xmlPayCoupon, parent.$x.ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO/PERIOD', '', 0).substr(6,4), "COUPON_FORM/CPN_YEAR", "")
+//	ispDisplayProgress('', 'Creating Net Profit Tax Coupon')
+	SetupPassFields()
+	parent.DocWin.location.href = '../../PayCoupon/CouponImage?'	+ tempParameters
+}		//DoPrintCoupon
+</script>
+
+<script ID="clientEventHandlersJS" LANGUAGE="vbscript">
+
+Function ispReplace(sInput, sFind, sReplace)
+	ispReplace = Replace(sInput, sFind, sReplace)
+End Function
+
+</script>
+</head>
+<BODY>
+
+<DIV Id="divNPTThankYou" Name="divNPTThankYou" style="DISPLAY: none; VISIBILTY: visible">
+<table cellSpacing="0" cellPadding="1" width="95%" border="0"
+		 style="MARGIN-BOTTOM: 5px; MARGIN-LEFT: 4%"></TR>
+  <tr vAlign="top" align="left">
+    <td width="75%">
+      <p id=hdrThankYou name="hdrThankYou" class="lblTextBlack">
+				Your Return is now being processed. <br>
+				You may want to print a copy of this page for your records.<br>
+				Thank you for filing your <%= cstr(cint(sCurrYear) - 1)%> Net Profit Tax Return online.</p>
+			<p class='lblTextBlack' style="MARGIN-TOP: 15px; MARGIN-BOTTOM: 0px" 
+     >Name: 
+				<label class='lblTextBlack' id='lblThankYouName'></label></p>
+			<p class='lblTextBlack' style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px" 
+     >Account No.: 
+				<label class='lblTextBlack' id='lblAcctNo'></label>.</p>
+			<p class='lblTextBlack' style="MARGIN-TOP: 0px">Your Confirmation number is
+				<label class='lblTextBlack' id=lblConfirmNo></label>.</p>
+			<center><p class='lblTextBlack' style="MARGIN-TOP:15px"><b>Payment Options</b></p></center>
+<!--EGOVWEB-81 EDD Changed Credit Card Page-->
+			<!--#Include file="../../CreditCard/CCPage.htm"-->							
+			<p class='lblTextBlack' style="MARGIN-TOP: 15px"><b>Other</b> - 
+<!--EGOVWEB-69 EDD Added the print coupon button-->
+			<input class="btnNormal" id="btnPrintCoupon" name="btnPrintCoupon" type="button" value="Print Coupon" onclick="DoPrintCoupon()">
+<!--				Use
+				the coupon from the bottom of the paper tax return that was sent to you, -->Attach a check for
+				the amount due payable to the "City of Philadelphia" and mail the coupon and check to:</p>
+			<center><p class='lblTextBlack' style="MARGIN-TOP: 15px">Philadelphia Department of Revenue<br>
+				P.O. Box 1393<br>
+				Philadelphia, PA 19105-9731</p></center>
+			<p class='lblTextBlack'>If you do not have a coupon, print a copy of this page to mail with
+				your payment.</p></td>
+	  <td></td></tr>
+  </table>
+<table cellSpacing="0" cellPadding="0" width="80%" border="0" 
+		style="MARGIN-TOP: 15px; MARGIN-LEFT: 4%">	
+  <tr height=20>
+		<td><p class=lblTextBlack>We would appreciate your comments / feedback concerning your online experience.<br>
+						Please enter your comments / feedback below:</p><TEXTAREA id=txaComments style="WIDTH: 80%; HEIGHT: 60px" name=txaComments></TEXTAREA>
+  <tr height=20 valign="bottom">
+		<td align="middle"><p><input class="btnNormal" id="btnNPTThankYou" name="btnNPTThankYou"
+			  type="submit" value="Thank You" onclick="DoThankYou()"></p></td></tr>
+</table>
+</DIV>
+   
+</BODY>
+</html>

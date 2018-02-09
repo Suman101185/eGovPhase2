@@ -1,0 +1,1120 @@
+<?xml version='1.0'?>
+<NAIC>
+  <L1 DESC="Select"/>
+  <L1 DESC="Accommodation (Hotel) and Food Services">
+    <L2  DESC="NONE">
+     <L3 DESC="Select" />
+     <L3 DESC="Bed + Breakfast Inns" CD="72119" SIC="701"/>
+     <L3 DESC="Casino Hotels" CD="72112" SIC="701"/>
+     <L3 DESC="Caterers" CD="72232" SIC="581"/>
+     <L3 DESC="Drinking Places(Alcoholic Beverages)" CD="72241" SIC="581"/>
+     <L3 DESC="Food Service Contractors" CD="72231" SIC="581"/>
+     <L3 DESC="Hotels(Except Casino Hotel)Motels" CD="72111" SIC="701"/>
+     <L3 DESC="Mobile Food Services (trucks)" CD="72233" SIC="596"/>
+     <L3 DESC="Restaurants Fast Food and/or take-Out" CD="72221" SIC="581"/>
+     <L3 DESC="Restaurants Full-Service" CD="72211" SIC="581"/>
+     <L3 DESC="Rooming/Boarding Houses" CD="72131" SIC="702"/>
+     <L3 DESC="Rv Parks/Recreational Camps" CD="72121" SIC="703"/>
+    </L2>
+  </L1>
+  <L1 DESC="Agriculture, Fishing, Forestry, and Hunting">
+     <L2 DESC="Select"/>
+    <L2  DESC="Animal Production">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Animal Production" CD="11299" SIC=" 27"/>
+     <L3 DESC="Animal Aquaculture" CD="11251" SIC=" 27"/>
+     <L3 DESC="Bee-Keeping" CD="11291" SIC=" 27"/>
+     <L3 DESC="Beef Cattle Ranching" CD="11211" SIC=" 27"/>
+     <L3 DESC="Broilers + Other Meat Chickens" CD="11232" SIC=" 27"/>
+     <L3 DESC="Chicken Egg Production" CD="11231" SIC=" 27"/>
+     <L3 DESC="Dairy Cattle And Milk Production" CD="11212" SIC=" 24"/>
+     <L3 DESC="Dual Purpose Cattle Ranching" CD="11213" SIC=" 24"/>
+     <L3 DESC="Fur-Bearing Animal + Rabbit" CD="11293" SIC=" 27"/>
+     <L3 DESC="Goat Farming" CD="11242" SIC=" 27"/>
+     <L3 DESC="Hog And Pig Farming" CD="11221" SIC=" 27"/>
+     <L3 DESC="Horse + Other Equine Farms" CD="11292" SIC=" 27"/>
+     <L3 DESC="Other Poultry Production" CD="11239" SIC=" 27"/>
+     <L3 DESC="Poultry Hatcheries" CD="11234" SIC=" 27"/>
+     <L3 DESC="Sheep Farming" CD="11241" SIC=" 27"/>
+     <L3 DESC="Turkey Production" CD="11233" SIC=" 27"/>
+    </L2>
+    <L2  DESC="Crop Production">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Crop Farming" CD="11199" SIC=" 13"/>
+     <L3 DESC="Citrus(Except Orange) groves" CD="11132" SIC=" 13"/>
+     <L3 DESC="Corn Farming" CD="11115" SIC=" 13"/>
+     <L3 DESC="Cotton Farming" CD="11192" SIC=" 13"/>
+     <L3 DESC="Dry Pea + Bean Farming" CD="11113" SIC=" 13"/>
+     <L3 DESC="Food Crops Grown Under Cover" CD="11141" SIC=" 18"/>
+     <L3 DESC="Hay Farming" CD="11194" SIC=" 13"/>
+     <L3 DESC="Noncitrus + Tree Nut Farming" CD="11133" SIC=" 13"/>
+     <L3 DESC="Nursery + Floriculture Production" CD="11142" SIC=" 18"/>
+     <L3 DESC="Oilseed (except Soybean) farming" CD="11112" SIC=" 13"/>
+     <L3 DESC="Orange Groves" CD="11131" SIC=" 13"/>
+     <L3 DESC="Other Grain Farming" CD="11119" SIC=" 13"/>
+     <L3 DESC="Rice Farming" CD="11116" SIC=" 13"/>
+     <L3 DESC="Soybean Farming" CD="11111" SIC=" 13"/>
+     <L3 DESC="Sugarcane Farming" CD="11193" SIC=" 13"/>
+     <L3 DESC="Tobacco Farming" CD="11191" SIC=" 13"/>
+     <L3 DESC="Vegetable + Melon Farming" CD="11121" SIC=" 13"/>
+     <L3 DESC="Wheat Farming" CD="11114" SIC=" 13"/>
+    </L2>
+    <L2  DESC="Fishing">
+     <L3 DESC="Fishing" CD="11411" SIC=" 27"/>
+    </L2>
+    <L2  DESC="Forestry">
+     <L3 DESC="Select" />
+     <L3 DESC="Forest Nurseries + Products" CD="11321" SIC=" 78"/>
+     <L3 DESC="Logging" CD="11331" SIC=" 78"/>
+     <L3 DESC="Timber Tract Operations" CD="11311" SIC=" 78"/>
+    </L2>
+    <L2  DESC="Hunting and Trapping">
+     <L3 DESC="Hunting + Trapping" CD="11421" SIC=" 27"/>
+    </L2>
+    <L2  DESC="Support Activity for Agriculture and Forestry">
+     <L3 DESC="Select" />
+     <L3 DESC="Animal Production-Support Activity" CD="11521" SIC=" 75"/>
+     <L3 DESC="Forestry-Support Activity" CD="11531" SIC=" 78"/>
+     <L3 DESC="Support Activity Crop Production" CD="11511" SIC=" 13"/>
+    </L2>
+  </L1>
+  <L1 DESC="Arts, Museums, Entertainment, Sports + Recreation">
+    <L2  DESC="NONE">
+     <L3 DESC="Select" />
+     <L3 DESC="Agents/Managers-Artists/Athletes" CD="71141" SIC="792"/>
+     <L3 DESC="All Other Amusement/Recreation" CD="71399" SIC="799"/>
+     <L3 DESC="Amusement And Theme Parks" CD="71311" SIC="799"/>
+     <L3 DESC="Amusement Arcades" CD="71312" SIC="799"/>
+     <L3 DESC="Bowling Centers" CD="71395" SIC="793"/>
+     <L3 DESC="Casinos (except Casino Hotels)" CD="71321" SIC="799"/>
+     <L3 DESC="Dance Companies" CD="71112" SIC="792"/>
+     <L3 DESC="Fitness/Recreational Sport Centers" CD="71394" SIC="799"/>
+     <L3 DESC="Golf Courses/Country Clubs" CD="71391" SIC="799"/>
+     <L3 DESC="Historical Sites" CD="71212" SIC="841"/>
+     <L3 DESC="Independent Artists/Writers" CD="71151" SIC="899"/>
+     <L3 DESC="Marinas" CD="71393" SIC="449"/>
+     <L3 DESC="Museums And Art Galleries" CD="71211" SIC="841"/>
+     <L3 DESC="Musical Groups/Artists" CD="71113" SIC="792"/>
+     <L3 DESC="Nature Parks + Caverns" CD="71219" SIC="842"/>
+     <L3 DESC="Other Gambling Industries" CD="71329" SIC="799"/>
+     <L3 DESC="Other Performing Arts Companies" CD="71119" SIC="792"/>
+     <L3 DESC="Promoter-Art/Sport With Facility" CD="71131" SIC="799"/>
+     <L3 DESC="Promoter-Art/Sport Without Facility" CD="71132" SIC="799"/>
+     <L3 DESC="Skiing Facilities" CD="71392" SIC="799"/>
+     <L3 DESC="Spectator Sports" CD="71121" SIC="794"/>
+     <L3 DESC="Theater Company/Dinner Theater" CD="71111" SIC="792"/>
+     <L3 DESC="Zoos/Botanical Gardens" CD="71213" SIC="842"/>
+    </L2>
+  </L1>
+  <L1 DESC="Construction">
+     <L2 DESC="Select"/>
+    <L2  DESC="Building and Developing">
+     <L3 DESC="Select" />
+     <L3 DESC="Commercial/Institutional Buildings" CD="23622" SIC="154"/>
+     <L3 DESC="Industrial Buildings" CD="23621" SIC="154"/>
+     <L3 DESC="Land Subdivision" CD="23721" SIC="655"/>
+     <L3 DESC="Residential Buildings" CD="23611" SIC="152"/>
+    </L2>
+    <L2  DESC="Heavy Construction">
+     <L3 DESC="Select" />
+     <L3 DESC="Highway/Street/Bridge" CD="23731" SIC="161"/>
+     <L3 DESC="Oil/Gas Pipeline-Related" CD="23712" SIC="162"/>
+     <L3 DESC="Other Heavy/Civil Engineer" CD="23799" SIC="162"/>
+     <L3 DESC="Power/Communication Line + Related" CD="23713" SIC="162"/>
+     <L3 DESC="Water/Sewer + Related" CD="23711" SIC="162"/>
+    </L2>
+    <L2  DESC="Trade Contractors">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Special Trade Contractors" CD="23899" SIC="179"/>
+     <L3 DESC="Concrete Found/Structure Contractors" CD="23811" SIC="177"/>
+     <L3 DESC="Drywall/Insulation Contractors" CD="23831" SIC="174"/>
+     <L3 DESC="Electrical Contractors" CD="23821" SIC="173"/>
+     <L3 DESC="Finish Carpentry Contractors" CD="23835" SIC="175"/>
+     <L3 DESC="Flooring Contractors" CD="23833" SIC="175"/>
+     <L3 DESC="Framing Contractors" CD="23813" SIC="179"/>
+     <L3 DESC="Glass And Glazing Contractors" CD="23815" SIC="179"/>
+     <L3 DESC="Masonry Contractors" CD="23814" SIC="174"/>
+     <L3 DESC="Other Building Equipment Contractors" CD="23829" SIC="179"/>
+     <L3 DESC="Other Building Finishing Contractors" CD="23839" SIC="179"/>
+     <L3 DESC="Other Foundation/Building Exterior Contr" CD="23819" SIC="179"/>
+     <L3 DESC="Painting/Wall Covering Contractors" CD="23832" SIC="172"/>
+     <L3 DESC="Plumbing/Heating/Air Conditioning" CD="23822" SIC="171"/>
+     <L3 DESC="Roofing Contractors" CD="23816" SIC="176"/>
+     <L3 DESC="Siding Contractors" CD="23817" SIC="176"/>
+     <L3 DESC="Site Preparation Contractors" CD="23891" SIC="179"/>
+     <L3 DESC="Structural Steel/Precast Contractor" CD="23812" SIC="179"/>
+     <L3 DESC="Tile/Terrazzo Contractors" CD="23834" SIC="174"/>
+    </L2>
+  </L1>
+  <L1 DESC="Educational Services">
+    <L2  DESC="NONE">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Schools/Instruction" CD="61169" SIC="829"/>
+     <L3 DESC="Business/Secretarial Schools" CD="61141" SIC="824"/>
+     <L3 DESC="Charter Schools Elementary/Secondary" CD="61112" SIC="821"/>
+     <L3 DESC="Colleges/Universities/Professional Schools" CD="61131" SIC="822"/>
+     <L3 DESC="Computer Training Education" CD="61142" SIC="824"/>
+     <L3 DESC="Educational Support Services" CD="61171" SIC="829"/>
+     <L3 DESC="Elementary/Secondary Schools" CD="61111" SIC="821"/>
+     <L3 DESC="Fine Arts Schools" CD="61161" SIC="829"/>
+     <L3 DESC="Junior Colleges" CD="61121" SIC="822"/>
+     <L3 DESC="Language Schools" CD="61163" SIC="829"/>
+     <L3 DESC="Professional/Mgmt Training Education" CD="61143" SIC="829"/>
+     <L3 DESC="Sports/Recreational Instruction" CD="61162" SIC="799"/>
+     <L3 DESC="Technical And Trade Schools" CD="61151" SIC="829"/>
+    </L2>
+  </L1>
+  <L1 DESC="Finance and Insurance">
+     <L2 DESC="Select"/>
+    <L2  DESC="Banking and Credit Unions">
+     <L3 DESC="Select" />
+     <L3 DESC="Commercial Bank" CD="52211" SIC="602"/>
+     <L3 DESC="Credit Unions" CD="52213" SIC="606"/>
+     <L3 DESC="Federal Reserve Central Bank" CD="52111" SIC="601"/>
+     <L3 DESC="Other Depository Institutions" CD="52219" SIC="602"/>
+     <L3 DESC="Savings Banks/Institutions" CD="52212" SIC="603"/>
+    </L2>
+    <L2  DESC="Credit, Mortgage, and Financing">
+     <L3 DESC="Select" />
+     <L3 DESC="Credit Card Issuing" CD="52221" SIC="614"/>
+     <L3 DESC="Mortgage/Nonmortgage Loan Brokers" CD="52231" SIC="616"/>
+     <L3 DESC="Other Credit Activity" CD="52239" SIC="616"/>
+     <L3 DESC="Other Non-Depository Credit" CD="52229" SIC="615"/>
+     <L3 DESC="Sales Financing (issue Credit)" CD="52222" SIC="615"/>
+     <L3 DESC="Transaction Processing/Clearing" CD="52232" SIC="609"/>
+    </L2>
+    <L2  DESC="Insurance">
+     <L3 DESC="Select" />
+     <L3 DESC="Insurance Agencies/Brokerages" CD="52421" SIC="641"/>
+     <L3 DESC="Insurance Carrier(Except Life/Health)" CD="52412" SIC="639"/>
+     <L3 DESC="Life/Health Insurance Carrier" CD="52411" SIC="639"/>
+     <L3 DESC="Other Insurance Related Activity" CD="52429" SIC="641"/>
+     <L3 DESC="Reinsurance Carriers" CD="52413" SIC="639"/>
+    </L2>
+    <L2  DESC="Investment Banking, Securities, and Commodities">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Financial Investment Activity" CD="52399" SIC="628"/>
+     <L3 DESC="Commodity Contracts Brokerage" CD="52314" SIC="622"/>
+     <L3 DESC="Commodity Contracts Dealing" CD="52313" SIC="622"/>
+     <L3 DESC="Investment Advice" CD="52393" SIC="628"/>
+     <L3 DESC="Investment Bank/Security Dealing" CD="52311" SIC="621"/>
+     <L3 DESC="Miscellaneous Brokers, venture Capital" CD="52391" SIC="677"/>
+     <L3 DESC="Portfolio Management" CD="52392" SIC="628"/>
+     <L3 DESC="Securities Brokerage" CD="52312" SIC="621"/>
+     <L3 DESC="Securities/Commodity Exchanges" CD="52321" SIC="623"/>
+    </L2>
+    <L2  DESC="Investment Pools and Funds">
+     <L3 DESC="Select" />
+     <L3 DESC="Health/Welfare Funds" CD="52512" SIC="637"/>
+     <L3 DESC="Open-End Investment Funds" CD="52591" SIC="672"/>
+     <L3 DESC="Other Insurance Funds" CD="52519" SIC="673"/>
+     <L3 DESC="Pension Funds" CD="52511" SIC="637"/>
+    </L2>
+    <L2  DESC="Trusts Including Real Estate Investment Trusts">
+     <L3 DESC="Select" />
+     <L3 DESC="Other Financial Trust Vehicles" CD="52599" SIC="672"/>
+     <L3 DESC="Real Estate Investment Trusts" CD="52593" SIC="679"/>
+     <L3 DESC="Trusts/Estates/Agency Accounts" CD="52592" SIC="673"/>
+    </L2>
+  </L1>
+  <L1 DESC="Health Care, Child Care, and Social Services">
+     <L2 DESC="Select"/>
+    <L2  DESC="Ambulance Services">
+     <L3 DESC="Ambulance Services" CD="62191" SIC="411"/>
+    </L2>
+    <L2  DESC="Child Care, Elderly and Other Social Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Child + Youth Social Services" CD="62411" SIC="832"/>
+     <L3 DESC="Child Day Care Services" CD="62441" SIC="835"/>
+     <L3 DESC="Community Food Services" CD="62421" SIC="832"/>
+     <L3 DESC="Community Housing Services" CD="62422" SIC="832"/>
+     <L3 DESC="Elderly/Disabled Social Services" CD="62412" SIC="832"/>
+     <L3 DESC="Emergency/Other Relief Services" CD="62423" SIC="832"/>
+     <L3 DESC="Other Individual/Family Social Services" CD="62419" SIC="832"/>
+     <L3 DESC="Vocational Rehabilitation Services" CD="62431" SIC="833"/>
+    </L2>
+    <L2  DESC="Hospitals, Nursing, and Residential Facilities">
+     <L3 DESC="Select" />
+     <L3 DESC="Community Care Facility-Elderly" CD="62331" SIC="836"/>
+     <L3 DESC="Hospital Medical/Surgical" CD="62211" SIC="806"/>
+     <L3 DESC="Hospital Psychiatric/Substance Abuse" CD="62221" SIC="806"/>
+     <L3 DESC="Hospital Specialty(Except Psychiatric)" CD="62231" SIC="806"/>
+     <L3 DESC="Mental Retardation Facilities" CD="62321" SIC="805"/>
+     <L3 DESC="Mental/Substance Abuse Facility" CD="62322" SIC="836"/>
+     <L3 DESC="Nursing Care Facilities" CD="62311" SIC="805"/>
+     <L3 DESC="Other Residential Care Facility" CD="62399" SIC="836"/>
+    </L2>
+    <L2  DESC="Medical and Mental Health (Not In-Patient Facilit">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Health Care Offices" CD="62139" SIC="804"/>
+     <L3 DESC="All Other Misc Health Care Services" CD="62199" SIC="809"/>
+     <L3 DESC="Family Planning Centers" CD="62141" SIC="809"/>
+     <L3 DESC="Home Health Care Services" CD="62161" SIC="808"/>
+     <L3 DESC="Medical/Diagnostic Laboratory" CD="62151" SIC="807"/>
+     <L3 DESC="Offices Of Chiropractors" CD="62131" SIC="804"/>
+     <L3 DESC="Offices Of Dentists" CD="62121" SIC="802"/>
+     <L3 DESC="Offices Of Optometrists" CD="62132" SIC="804"/>
+     <L3 DESC="Offices Of Physicians" CD="62111" SIC="801"/>
+     <L3 DESC="Offices-Mental Health Except Physicians" CD="62133" SIC="804"/>
+     <L3 DESC="Other Outpatient Care Centers" CD="62149" SIC="809"/>
+     <L3 DESC="Outpatient Mental Health Centers" CD="62142" SIC="809"/>
+     <L3 DESC="Physical Speech Occupational Therapist" CD="62134" SIC="804"/>
+    </L2>
+  </L1>
+  <L1 DESC="Information: Media,Telecom,Video,Music,Library,Da">
+     <L2 DESC="Select"/>
+    <L2  DESC="Data Processing">
+     <L3 DESC="Data Processing + Related Services" CD="51821" SIC="737"/>
+    </L2>
+    <L2  DESC="Libraries">
+     <L3 DESC="Libraries + Archives" CD="51912" SIC="823"/>
+    </L2>
+    <L2  DESC="Motion Picture, Music and Sound">
+     <L3 DESC="Select" />
+     <L3 DESC="Integrated Record Production/Distribution" CD="51222" SIC="365"/>
+     <L3 DESC="Motion Picture/Video Distribution" CD="51212" SIC="782"/>
+     <L3 DESC="Motion Picture/Video Exhibition" CD="51213" SIC="783"/>
+     <L3 DESC="Motion Picture/Video Other Functions" CD="51219" SIC="782"/>
+     <L3 DESC="Motion Picture/Video Production" CD="51211" SIC="781"/>
+     <L3 DESC="Music Publishers" CD="51223" SIC="274"/>
+     <L3 DESC="Record Production" CD="51221" SIC="738"/>
+     <L3 DESC="Sound Recording Other Functions" CD="51229" SIC="738"/>
+     <L3 DESC="Sound Recording Studios" CD="51224" SIC="738"/>
+    </L2>
+    <L2  DESC="News Syndicates">
+     <L3 DESC="News Syndicates" CD="51911" SIC="738"/>
+    </L2>
+    <L2  DESC="Other Information Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Internet Publishing/Broadcast" CD="51611" SIC="274"/>
+     <L3 DESC="Internet/Web Service Providers" CD="51811" SIC="737"/>
+     <L3 DESC="Other Information Services" CD="51919" SIC="738"/>
+    </L2>
+    <L2  DESC="Print Publishers Including Software">
+     <L3 DESC="Select" />
+     <L3 DESC="Book Publishers" CD="51113" SIC="273"/>
+     <L3 DESC="Database/Directory Publishers" CD="51114" SIC="274"/>
+     <L3 DESC="Newspaper Publishers" CD="51111" SIC="271"/>
+     <L3 DESC="Other Publishers" CD="51119" SIC="274"/>
+     <L3 DESC="Periodical Publishers" CD="51112" SIC="272"/>
+     <L3 DESC="Software Publishers" CD="51121" SIC="737"/>
+    </L2>
+    <L2  DESC="Radio and Television and Cable">
+     <L3 DESC="Select" />
+     <L3 DESC="Cable/Other Program Distribution" CD="51751" SIC="484"/>
+     <L3 DESC="Cable/Other Subscription Program" CD="51521" SIC="484"/>
+     <L3 DESC="Radio Broadcasting" CD="51511" SIC="483"/>
+     <L3 DESC="Television Broadcasting" CD="51512" SIC="483"/>
+    </L2>
+    <L2  DESC="Telecommunications">
+     <L3 DESC="Select" />
+     <L3 DESC="Other Telecommunications" CD="51791" SIC="489"/>
+     <L3 DESC="Satellite Telecommunications" CD="51741" SIC="481"/>
+     <L3 DESC="Telecommunications Resellers" CD="51731" SIC="481"/>
+     <L3 DESC="Wired Telecommunication Carriers" CD="51711" SIC="481"/>
+     <L3 DESC="Wireless Telecommunication Carriers" CD="51721" SIC="481"/>
+    </L2>
+  </L1>
+  <L1 DESC="Management of Companies and Enterprises">
+    <L2  DESC="NONE">
+     <L3 DESC="Management Of Companies/Enterprises" CD="55111" SIC="671"/>
+    </L2>
+  </L1>
+  <L1 DESC="Manufacturing">
+     <L2 DESC="Select"/>
+    <L2  DESC="Apparel and Textiles">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Textile Products" CD="31499" SIC="229"/>
+     <L3 DESC="Apparel Accessories/Other Apparel" CD="31599" SIC="239"/>
+     <L3 DESC="Broadwoven Fabric Mills" CD="31321" SIC="229"/>
+     <L3 DESC="Carpet + Rug Mills" CD="31411" SIC="227"/>
+     <L3 DESC="Curtain + Linen Mills" CD="31412" SIC="239"/>
+     <L3 DESC="Cut/Sewing Contractors" CD="31521" SIC="239"/>
+     <L3 DESC="Fabric Coating Mills" CD="31332" SIC="229"/>
+     <L3 DESC="Fiber/Yarn/Thread Mills" CD="31311" SIC="229"/>
+     <L3 DESC="Hosiery + Sock Mills" CD="31511" SIC="225"/>
+     <L3 DESC="Knit Fabric Mills" CD="31324" SIC="225"/>
+     <L3 DESC="Men/Boy Cut + Sew Apparel" CD="31522" SIC="239"/>
+     <L3 DESC="Narrow Fabric Mill/Embroidery" CD="31322" SIC="239"/>
+     <L3 DESC="Nonwoven Fabric Mills" CD="31323" SIC="229"/>
+     <L3 DESC="Other Apparel Knitting" CD="31519" SIC="225"/>
+     <L3 DESC="Other Cut + Sew Apparel" CD="31529" SIC="239"/>
+     <L3 DESC="Textile + Fabric Finishing" CD="31331" SIC="229"/>
+     <L3 DESC="Textile Bag + Canvas Mills" CD="31491" SIC="239"/>
+     <L3 DESC="Women/Girl Cut/Sew Apparel" CD="31523" SIC="239"/>
+    </L2>
+    <L2  DESC="Beverages">
+     <L3 DESC="Select" />
+     <L3 DESC="Breweries" CD="31212" SIC="208"/>
+     <L3 DESC="Distilleries" CD="31214" SIC="208"/>
+     <L3 DESC="Soft Drink + Ice" CD="31211" SIC="208"/>
+     <L3 DESC="Wineries" CD="31213" SIC="208"/>
+    </L2>
+    <L2  DESC="Ceramic, Glass, and Cement">
+     <L3 DESC="Select" />
+     <L3 DESC="Cement Manufacturing" CD="32731" SIC="324"/>
+     <L3 DESC="Clay Bldg Material" CD="32712" SIC="325"/>
+     <L3 DESC="Concrete Pipe/Brick" CD="32733" SIC="327"/>
+     <L3 DESC="Glass/Glass Products" CD="32721" SIC="322"/>
+     <L3 DESC="Other Concrete Products" CD="32739" SIC="327"/>
+     <L3 DESC="Pottery/Ceramics/Fixture" CD="32711" SIC="326"/>
+     <L3 DESC="Ready-Mix Concrete" CD="32732" SIC="327"/>
+    </L2>
+    <L2  DESC="Computers, Telephones, and Electronic Products">
+     <L3 DESC="Select" />
+     <L3 DESC="Audio/Video Equipment" CD="33431" SIC="365"/>
+     <L3 DESC="Computer/Peripheral Equipment" CD="33411" SIC="357"/>
+     <L3 DESC="Control Instruments" CD="33451" SIC="382"/>
+     <L3 DESC="Other Communications Equipment" CD="33429" SIC="366"/>
+     <L3 DESC="Radio/Tv/Wireless Equipment" CD="33422" SIC="366"/>
+     <L3 DESC="Reproduce Magnetic/Optical Media" CD="33461" SIC="369"/>
+     <L3 DESC="Semiconductor/Other Electrical" CD="33441" SIC="367"/>
+     <L3 DESC="Telephone Apparatus" CD="33421" SIC="366"/>
+    </L2>
+    <L2  DESC="Electrical Equipment and Appliances">
+     <L3 DESC="Select" />
+     <L3 DESC="All Misc Electrical Equipment" CD="33599" SIC="369"/>
+     <L3 DESC="Batteries" CD="33591" SIC="369"/>
+     <L3 DESC="Communication/Energy Wire" CD="33592" SIC="335"/>
+     <L3 DESC="Electric Lamp Bulb/Parts" CD="33511" SIC="364"/>
+     <L3 DESC="Electrical Equipment" CD="33531" SIC="361"/>
+     <L3 DESC="Lighting Fixtures" CD="33512" SIC="364"/>
+     <L3 DESC="Major Appliances" CD="33522" SIC="363"/>
+     <L3 DESC="Small Electrical Appliances" CD="33521" SIC="363"/>
+     <L3 DESC="Wiring Devices" CD="33593" SIC="364"/>
+    </L2>
+    <L2  DESC="Food Manufacturing">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Food Manufacturing" CD="31199" SIC="209"/>
+     <L3 DESC="Animal Food Manufacturing" CD="31111" SIC="204"/>
+     <L3 DESC="Animal Slaughtering/Processing" CD="31161" SIC="201"/>
+     <L3 DESC="Bread + Bakery Products" CD="31181" SIC="205"/>
+     <L3 DESC="Breakfast Cereal" CD="31123" SIC="204"/>
+     <L3 DESC="Choc/Confectionary-Cacao" CD="31132" SIC="206"/>
+     <L3 DESC="Coffee/Tea" CD="31192" SIC="208"/>
+     <L3 DESC="Confectionary-Purchased Chocolate" CD="31133" SIC="206"/>
+     <L3 DESC="Cookie/Cracker/Pasta" CD="31182" SIC="205"/>
+     <L3 DESC="Dairy Product(Except Frozen)" CD="31151" SIC="202"/>
+     <L3 DESC="Flavor Syrup/Concentrate" CD="31193" SIC="208"/>
+     <L3 DESC="Flour Milling/Malt" CD="31121" SIC="204"/>
+     <L3 DESC="Frozen Foods" CD="31141" SIC="203"/>
+     <L3 DESC="Fruit + Vegetable Canning/Processing" CD="31142" SIC="203"/>
+     <L3 DESC="Ice Cream/Frozen Desserts" CD="31152" SIC="202"/>
+     <L3 DESC="Non-Chocolate Confectionery" CD="31134" SIC="206"/>
+     <L3 DESC="Seafood Products" CD="31171" SIC="209"/>
+     <L3 DESC="Seasoning/Dressing" CD="31194" SIC="209"/>
+     <L3 DESC="Snack Food Manufacturing" CD="31191" SIC="205"/>
+     <L3 DESC="Starch/Vegetable Fats/Oils" CD="31122" SIC="207"/>
+     <L3 DESC="Sugar Manufacturing" CD="31131" SIC="206"/>
+     <L3 DESC="Tortilla Manufacturing" CD="31183" SIC="205"/>
+    </L2>
+    <L2  DESC="Furniture and Related Products">
+     <L3 DESC="Select" />
+     <L3 DESC="Blind And Shades" CD="33792" SIC="259"/>
+     <L3 DESC="Household/Institutional Furniture" CD="33712" SIC="259"/>
+     <L3 DESC="Mattress" CD="33791" SIC="251"/>
+     <L3 DESC="Office Furniture" CD="33721" SIC="252"/>
+     <L3 DESC="Wood Kitchen Cabinet" CD="33711" SIC="243"/>
+    </L2>
+    <L2  DESC="Leather Products">
+     <L3 DESC="Select" />
+     <L3 DESC="Footwear Manufacturing" CD="31621" SIC="314"/>
+     <L3 DESC="Leather/Tanning/Finishing" CD="31611" SIC="399"/>
+     <L3 DESC="Other Leather + Related Products" CD="31699" SIC="318"/>
+    </L2>
+    <L2  DESC="Lime, Gypsum, and Abrasives">
+     <L3 DESC="Select" />
+     <L3 DESC="Abrasive Products" CD="32791" SIC="329"/>
+     <L3 DESC="Gypsum Products" CD="32742" SIC="327"/>
+     <L3 DESC="Lime Manufacturing" CD="32741" SIC="327"/>
+     <L3 DESC="Other Nonmetallic Minerals" CD="32799" SIC="329"/>
+    </L2>
+    <L2  DESC="Machinery">
+     <L3 DESC="Select" />
+     <L3 DESC="Agricultural Implements" CD="33311" SIC="352"/>
+     <L3 DESC="All Other Machinery" CD="33399" SIC="359"/>
+     <L3 DESC="Commercial/Service Industrial Machine" CD="33331" SIC="355"/>
+     <L3 DESC="Construction Machinery" CD="33312" SIC="353"/>
+     <L3 DESC="Engines/Power Transmission" CD="33361" SIC="351"/>
+     <L3 DESC="Heating/Air Conditioning/Refrigeration" CD="33341" SIC="363"/>
+     <L3 DESC="Material Handling Equipment" CD="33392" SIC="353"/>
+     <L3 DESC="Metalworking Machinery" CD="33351" SIC="354"/>
+     <L3 DESC="Mining/Oil/Gas Machinery" CD="33313" SIC="353"/>
+     <L3 DESC="Other Industrial Machinery" CD="33329" SIC="355"/>
+     <L3 DESC="Plastic/Rubber Industrial Machinery" CD="33322" SIC="355"/>
+     <L3 DESC="Pumps/Compressors" CD="33391" SIC="356"/>
+     <L3 DESC="Sawmill/Wood Machinery" CD="33321" SIC="355"/>
+    </L2>
+    <L2  DESC="Miscellaneous Manufacturing">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Miscellaneous" CD="33999" SIC="399"/>
+     <L3 DESC="Doll, toy, game" CD="33993" SIC="394"/>
+     <L3 DESC="Jewelry/Silverware" CD="33991" SIC="391"/>
+     <L3 DESC="Medical Equipment/Supplies" CD="33911" SIC="384"/>
+     <L3 DESC="Office Supplies(Except Paper)" CD="33994" SIC="395"/>
+     <L3 DESC="Sign Manufacturing" CD="33995" SIC="399"/>
+     <L3 DESC="Sporting/Athletic Goods" CD="33992" SIC="394"/>
+    </L2>
+    <L2  DESC="Paper and Paper-Related">
+     <L3 DESC="Select" />
+     <L3 DESC="Other Converted Paper Products" CD="32229" SIC="267"/>
+     <L3 DESC="Paper Bag/Coated Paper" CD="32222" SIC="267"/>
+     <L3 DESC="Paper Mills" CD="32212" SIC="262"/>
+     <L3 DESC="Paperboard Containers" CD="32221" SIC="267"/>
+     <L3 DESC="Paperboard Mills" CD="32213" SIC="263"/>
+     <L3 DESC="Pulp Mills" CD="32211" SIC="261"/>
+     <L3 DESC="Stationary Products" CD="32223" SIC="267"/>
+    </L2>
+    <L2  DESC="Pharmaceuticals, Chemicals, and Related Products">
+     <L3 DESC="Select" />
+     <L3 DESC="Adhesive Manufacturing" CD="32552" SIC="289"/>
+     <L3 DESC="All Other Chemical Products" CD="32599" SIC="289"/>
+     <L3 DESC="Explosives Manufacturing" CD="32592" SIC="289"/>
+     <L3 DESC="Fertilizers" CD="32531" SIC="287"/>
+     <L3 DESC="Industrial Gas" CD="32512" SIC="289"/>
+     <L3 DESC="Other Basic Organic Chemicals" CD="32519" SIC="289"/>
+     <L3 DESC="Other Inorganic Chemicals" CD="32518" SIC="289"/>
+     <L3 DESC="Paint/Coatings" CD="32551" SIC="285"/>
+     <L3 DESC="Pesticide/Other Agricultural Chemicals" CD="32532" SIC="287"/>
+     <L3 DESC="Petrochemicals" CD="32511" SIC="286"/>
+     <L3 DESC="Pharmaceutical/Medicine" CD="32541" SIC="283"/>
+     <L3 DESC="Printing Ink Manufacturing" CD="32591" SIC="289"/>
+     <L3 DESC="Resin/Synthetic Rubber" CD="32521" SIC="282"/>
+     <L3 DESC="Soap/Cleaning/Toilet Preparations" CD="32561" SIC="284"/>
+     <L3 DESC="Synthetic Dye/Pigments" CD="32513" SIC="289"/>
+     <L3 DESC="Synthetic Fibers/Filaments" CD="32522" SIC="282"/>
+     <L3 DESC="Toilet Preparation" CD="32562" SIC="284"/>
+    </L2>
+    <L2  DESC="Plastics and Rubber Products">
+     <L3 DESC="Select" />
+     <L3 DESC="Laminated Plastic Plates" CD="32613" SIC="308"/>
+     <L3 DESC="Other Plastics Products" CD="32619" SIC="308"/>
+     <L3 DESC="Other Rubber Products" CD="32629" SIC="306"/>
+     <L3 DESC="Plastic Pipe/Profile Shapes" CD="32612" SIC="308"/>
+     <L3 DESC="Plastics Bottles" CD="32616" SIC="308"/>
+     <L3 DESC="Plastics Film/Sheet/Bags" CD="32611" SIC="308"/>
+     <L3 DESC="Polystyrene Foam Products" CD="32614" SIC="308"/>
+     <L3 DESC="Rubber/Plastics Hoses" CD="32622" SIC="305"/>
+     <L3 DESC="Tire Manufacturing" CD="32621" SIC="301"/>
+     <L3 DESC="Urethane/Other Foam Products" CD="32615" SIC="308"/>
+    </L2>
+    <L2  DESC="Printing">
+     <L3 DESC="Select" />
+     <L3 DESC="Printing" CD="32311" SIC="275"/>
+     <L3 DESC="Printing-Support Activity" CD="32312" SIC="279"/>
+    </L2>
+    <L2  DESC="Refineries and Refinery Products">
+     <L3 DESC="Select" />
+     <L3 DESC="Other Petroleum/Coal Products" CD="32419" SIC="299"/>
+     <L3 DESC="Paving/Roof/Saturated Materials" CD="32412" SIC="295"/>
+     <L3 DESC="Petroleum Refineries" CD="32411" SIC="291"/>
+    </L2>
+    <L2  DESC="Steel and Other Primary Metals">
+     <L3 DESC="Select" />
+     <L3 DESC="Alumina/Aluminum Production/Processing" CD="33131" SIC="335"/>
+     <L3 DESC="Copper Roll/Draw/Alloy" CD="33142" SIC="335"/>
+     <L3 DESC="Drawing Of Purchased Steel" CD="33122" SIC="339"/>
+     <L3 DESC="Ferrous Metal Foundries" CD="33151" SIC="332"/>
+     <L3 DESC="Foundries-Nonferrous Metals" CD="33152" SIC="336"/>
+     <L3 DESC="Iron/Steel Mill/Ferroalloy" CD="33111" SIC="331"/>
+     <L3 DESC="Iron/Steel Pipe/Tube" CD="33121" SIC="331"/>
+     <L3 DESC="Non Ferrous Except Copper/Aluminum" CD="33149" SIC="339"/>
+     <L3 DESC="Nonferrous Metal Refining" CD="33141" SIC="333"/>
+    </L2>
+    <L2  DESC="Tobacco Products">
+     <L3 DESC="Select" />
+     <L3 DESC="Tobacco Products" CD="31222" SIC="212"/>
+     <L3 DESC="Tobacco Stemming/Redrying" CD="31221" SIC="212"/>
+    </L2>
+    <L2  DESC="Tools and Other Fabricated Metal Products">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Fabricated Metal" CD="33299" SIC="349"/>
+     <L3 DESC="Coating/Engraving" CD="33281" SIC="347"/>
+     <L3 DESC="Cutlery + Handtools" CD="33221" SIC="342"/>
+     <L3 DESC="Fabricated Structural Products" CD="33231" SIC="344"/>
+     <L3 DESC="Forging + Stamping" CD="33211" SIC="346"/>
+     <L3 DESC="Hardware Manufacturing" CD="33251" SIC="342"/>
+     <L3 DESC="Machine Shops" CD="33271" SIC="359"/>
+     <L3 DESC="Metal Containers (light Gauge)" CD="33243" SIC="349"/>
+     <L3 DESC="Metal Tanks (heavy Gauge)" CD="33242" SIC="344"/>
+     <L3 DESC="Metal Valve Manufacturing" CD="33291" SIC="349"/>
+     <L3 DESC="Ornamental Metal Products" CD="33232" SIC="344"/>
+     <L3 DESC="Power Boiler/Heat Exchanger" CD="33241" SIC="355"/>
+     <L3 DESC="Spring/Wire Products" CD="33261" SIC="349"/>
+     <L3 DESC="Turned Products Screw/Bolt" CD="33272" SIC="342"/>
+    </L2>
+    <L2  DESC="Transportation Equipment, Vehicles and Parts">
+     <L3 DESC="Select" />
+     <L3 DESC="Aerospace Production/Parts" CD="33641" SIC="372"/>
+     <L3 DESC="Automobile/Light Duty Vehicles" CD="33611" SIC="371"/>
+     <L3 DESC="Brake System-Motor Vehicles" CD="33634" SIC="371"/>
+     <L3 DESC="Electrical Equip Motor Vehicles" CD="33632" SIC="371"/>
+     <L3 DESC="Engine/Parts Motor Vehicles" CD="33631" SIC="371"/>
+     <L3 DESC="Heavy Duty Trucks" CD="33612" SIC="371"/>
+     <L3 DESC="Metal Stamping-Motor Vehicles" CD="33637" SIC="346"/>
+     <L3 DESC="Motor Vehicle Body/Trailer" CD="33621" SIC="371"/>
+     <L3 DESC="Other Motor Vehicle Parts" CD="33639" SIC="379"/>
+     <L3 DESC="Other Transportation Equipment" CD="33699" SIC="379"/>
+     <L3 DESC="Railroad Rolling Stock" CD="33651" SIC="374"/>
+     <L3 DESC="Seating/Interior Motor Vehicles" CD="33636" SIC="379"/>
+     <L3 DESC="Ship/Boat Building" CD="33661" SIC="373"/>
+     <L3 DESC="Steering/Suspension Components" CD="33633" SIC="371"/>
+     <L3 DESC="Transmission/Power Train" CD="33635" SIC="371"/>
+    </L2>
+    <L2  DESC="Wood Products">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Wood Products" CD="32199" SIC="249"/>
+     <L3 DESC="Millwork Manufacturing" CD="32191" SIC="243"/>
+     <L3 DESC="Sawmills/Wood Preservation" CD="32111" SIC="249"/>
+     <L3 DESC="Veneer/Plywood/Wood Products" CD="32121" SIC="249"/>
+     <L3 DESC="Wood Container/Pallet" CD="32192" SIC="249"/>
+    </L2>
+  </L1>
+  <L1 DESC="Mining">
+    <L2  DESC="NONE">
+     <L3 DESC="Select" />
+     <L3 DESC="Coal Mining" CD="21211" SIC="149"/>
+     <L3 DESC="Copper Nickel Lead Zinc Mining" CD="21223" SIC="149"/>
+     <L3 DESC="Gold + Silver Ore Mining" CD="21222" SIC="149"/>
+     <L3 DESC="Iron Ore Mining" CD="21221" SIC="149"/>
+     <L3 DESC="Mining-Support Activity" CD="21311" SIC="149"/>
+     <L3 DESC="Oil + Gas Extraction" CD="21111" SIC="131"/>
+     <L3 DESC="Other Metal Ore Mining" CD="21229" SIC="149"/>
+     <L3 DESC="Other Nonmetallic Mineral" CD="21239" SIC="149"/>
+     <L3 DESC="Sand/Gravel/Clay/Refractory" CD="21232" SIC="144"/>
+     <L3 DESC="Stone Mining + Quarrying" CD="21231" SIC="141"/>
+    </L2>
+  </L1>
+  <L1 DESC="NonBusiness">
+    <L2 DESC="NONE">
+			<L3 DESC="NONE" CD="99999" SIC="977" />
+		</L2>
+	</L1>
+  <L1 DESC="NonProfits including Business, Labor, and Religio">
+    <L2  DESC="NONE">
+     <L3 DESC="Select" />
+     <L3 DESC="Business Associations" CD="81391" SIC="861"/>
+     <L3 DESC="Civic And Social Organizations" CD="81341" SIC="864"/>
+     <L3 DESC="Grantmaking And Giving Service" CD="81321" SIC="839"/>
+     <L3 DESC="Labor Unions + Labor Organizations" CD="81393" SIC="863"/>
+     <L3 DESC="Other Organizations" CD="81399" SIC="869"/>
+     <L3 DESC="Political Organizations" CD="81394" SIC="865"/>
+     <L3 DESC="Professional Organizations" CD="81392" SIC="862"/>
+     <L3 DESC="Religious Organizations" CD="81311" SIC="866"/>
+     <L3 DESC="Social Advocacy Organizations" CD="81331" SIC="839"/>
+    </L2>
+  </L1>
+  <L1 DESC="Professional, Scientific and Technical Services">
+     <L2 DESC="Select"/>
+    <L2  DESC="Accounting">
+     <L3 DESC="Accounting/Tax Prep/Payroll Service" CD="54121" SIC="872"/>
+    </L2>
+    <L2  DESC="Advertising">
+     <L3 DESC="Select" />
+     <L3 DESC="Advertising Agencies" CD="54181" SIC="731"/>
+     <L3 DESC="Advertising Material Distribution Services" CD="54187" SIC="731"/>
+     <L3 DESC="Direct Mail Advertising" CD="54186" SIC="733"/>
+     <L3 DESC="Display Advertising" CD="54185" SIC="731"/>
+     <L3 DESC="Media Advertising Representatives" CD="54184" SIC="731"/>
+     <L3 DESC="Media Buying Agencies" CD="54183" SIC="731"/>
+     <L3 DESC="Other Services Related To Advertising" CD="54189" SIC="731"/>
+     <L3 DESC="Public Relations Agencies" CD="54182" SIC="874"/>
+    </L2>
+    <L2  DESC="Architect and Engineering">
+     <L3 DESC="Select" />
+     <L3 DESC="Architectural Services" CD="54131" SIC="871"/>
+     <L3 DESC="Engineering Services" CD="54133" SIC="871"/>
+     <L3 DESC="Landscape Architecture Service" CD="54132" SIC=" 78"/>
+    </L2>
+    <L2  DESC="Building Inspection">
+     <L3 DESC="Building Inspection Services" CD="54135" SIC="738"/>
+    </L2>
+    <L2  DESC="Computer System Design">
+     <L3 DESC="Computer System Design/Service" CD="54151" SIC="737"/>
+    </L2>
+    <L2  DESC="Consulting Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Environmental Consulting Services" CD="54162" SIC="874"/>
+     <L3 DESC="Management Consulting Services" CD="54161" SIC="874"/>
+     <L3 DESC="Other Scientific/Technical Consulting" CD="54169" SIC="874"/>
+    </L2>
+    <L2  DESC="Design Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Fashion + Other Design Services" CD="54149" SIC="738"/>
+     <L3 DESC="Graphic Design Services" CD="54143" SIC="733"/>
+     <L3 DESC="Industrial Design Services" CD="54142" SIC="738"/>
+     <L3 DESC="Interior Design Services" CD="54141" SIC="738"/>
+    </L2>
+    <L2  DESC="Drafting Services">
+     <L3 DESC="Drafting Services" CD="54134" SIC="738"/>
+    </L2>
+    <L2  DESC="Legal">
+     <L3 DESC="Select" />
+     <L3 DESC="Offices Of Lawyers" CD="54111" SIC="811"/>
+     <L3 DESC="Offices Of Notaries" CD="54112" SIC="811"/>
+     <L3 DESC="Other Legal Services" CD="54119" SIC="738"/>
+    </L2>
+    <L2  DESC="Marketing Research">
+     <L3 DESC="Marketing Research" CD="54191" SIC="873"/>
+    </L2>
+    <L2  DESC="Other Professional Services">
+     <L3 DESC="Other Prof/Scientific/Technical Services" CD="54199" SIC="738"/>
+    </L2>
+    <L2  DESC="Photographic Services">
+     <L3 DESC="Photographic Services" CD="54192" SIC="733"/>
+    </L2>
+    <L2  DESC="Research and Development">
+     <L3 DESC="Select" />
+     <L3 DESC="R+D In Physical/Eng/Life Sciences" CD="54171" SIC="873"/>
+     <L3 DESC="R+D In Social Science/Humanity" CD="54172" SIC="873"/>
+    </L2>
+    <L2  DESC="Surveying">
+     <L3 DESC="Select" />
+     <L3 DESC="Surveying Not Related To Mining" CD="54137" SIC="871"/>
+     <L3 DESC="Surveying Related To Mining" CD="54136" SIC="871"/>
+    </L2>
+    <L2  DESC="Testing Laboratories">
+     <L3 DESC="Testing Laboratories" CD="54138" SIC="873"/>
+    </L2>
+    <L2  DESC="Translation Services">
+     <L3 DESC="Translation/Interpret Services" CD="54193" SIC="738"/>
+    </L2>
+    <L2  DESC="Veterinarians">
+     <L3 DESC="Veterinary Services" CD="54194" SIC=" 74"/>
+    </L2>
+  </L1>
+  <L1 DESC="Public Administration (Government)">
+     <L2 DESC="Select"/>
+    <L2  DESC="Federal">
+     <L3 DESC="Select" />
+     <L3 DESC="Other Us Agencies" CD="92513" SIC="999"/>
+     <L3 DESC="Us Defense Agencies" CD="92512" SIC="999"/>
+     <L3 DESC="Us Post Office" CD="92511" SIC="999"/>
+    </L2>
+    <L2  DESC="Local">
+     <L3 DESC="Select" />
+     <L3 DESC="City Of Phila" CD="92111" SIC="930"/>
+     <L3 DESC="Phila Authorities, quasi Government" CD="92113" SIC="953"/>
+     <L3 DESC="Regional Organizations - Governmental" CD="92213" SIC="911"/>
+     <L3 DESC="School Dist Phila" CD="92112" SIC="930"/>
+     <L3 DESC="Suburban Authorities - Governmental" CD="92212" SIC="911"/>
+     <L3 DESC="Suburban Counties/Municipalities" CD="92211" SIC="911"/>
+    </L2>
+    <L2  DESC="State">
+     <L3 DESC="Select" />
+     <L3 DESC="State Of Pa" CD="92311" SIC="920"/>
+     <L3 DESC="State Of Pa Authorities - Governmental" CD="92312" SIC="920"/>
+     <L3 DESC="States Other Than Pa" CD="92411" SIC="911"/>
+    </L2>
+  </L1>
+  <L1 DESC="Real Estate and Rental and Leasing">
+     <L2 DESC="Select"/>
+    <L2  DESC="Real Estate">
+     <L3 DESC="Select" />
+     <L3 DESC="Lessor - Other Real Estate Property" CD="53119" SIC="651"/>
+     <L3 DESC="Lessors Of Miniwarehouses" CD="53113" SIC="422"/>
+     <L3 DESC="Lessors Of Nonresidential Buildings" CD="53112" SIC="651"/>
+     <L3 DESC="Lessors Of Residential Buildings" CD="53111" SIC="651"/>
+     <L3 DESC="Offices Of Real Estate Agents" CD="53121" SIC="653"/>
+     <L3 DESC="Other Activity Related To Real Estate" CD="53139" SIC="653"/>
+     <L3 DESC="Real Estate Appraisers" CD="53132" SIC="653"/>
+     <L3 DESC="Real Estate Property Managers" CD="53131" SIC="653"/>
+    </L2>
+    <L2  DESC="Rentals other than Real Estate">
+     <L3 DESC="Select" />
+     <L3 DESC="Construction Mining Forestry Equipment" CD="53241" SIC="735"/>
+     <L3 DESC="Consumer Electronics/Appliance Rental" CD="53221" SIC="735"/>
+     <L3 DESC="Formal Wear/Costume Rental" CD="53222" SIC="729"/>
+     <L3 DESC="General Rental Centers" CD="53231" SIC="735"/>
+     <L3 DESC="Nonfinancial Intangible Asset Rental" CD="53311" SIC="678"/>
+     <L3 DESC="Office Machinery/Equip Rental" CD="53242" SIC="735"/>
+     <L3 DESC="Other Commercial Machinery Rental" CD="53249" SIC="735"/>
+     <L3 DESC="Other Consumer Goods Rental" CD="53229" SIC="735"/>
+     <L3 DESC="Passenger Car Rental/Leasing" CD="53211" SIC="751"/>
+     <L3 DESC="Truck/Utility Trailer/Rv Rental" CD="53212" SIC="751"/>
+     <L3 DESC="Video Tape/Disc Rental" CD="53223" SIC="784"/>
+    </L2>
+  </L1>
+  <L1 DESC="Retail Trade">
+     <L2 DESC="Select"/>
+    <L2  DESC="Building Material and Garden Centers">
+     <L3 DESC="Select" />
+     <L3 DESC="Hardware Stores Retail" CD="44413" SIC="525"/>
+     <L3 DESC="Home Centers Retail" CD="44411" SIC="521"/>
+     <L3 DESC="Nursery/Garden Centers" CD="44422" SIC="526"/>
+     <L3 DESC="Other Building Material Dealers" CD="44419" SIC="521"/>
+     <L3 DESC="Outdoor Power Equipment" CD="44421" SIC="526"/>
+     <L3 DESC="Paint/Wallpaper Stores Retail" CD="44412" SIC="523"/>
+    </L2>
+    <L2  DESC="Camera and Photographic">
+     <L3 DESC="Camera/Photographic Stores" CD="44313" SIC="594"/>
+    </L2>
+    <L2  DESC="Clothing and Clothing Accessories">
+     <L3 DESC="Select" />
+     <L3 DESC="Children Clothing Store" CD="44813" SIC="564"/>
+     <L3 DESC="Clothing Accessories Store" CD="44815" SIC="569"/>
+     <L3 DESC="Family Clothing Stores" CD="44814" SIC="565"/>
+     <L3 DESC="Jewelry Stores" CD="44831" SIC="594"/>
+     <L3 DESC="Luggage/Leather Goods" CD="44832" SIC="594"/>
+     <L3 DESC="Men'S Clothing Stores" CD="44811" SIC="561"/>
+     <L3 DESC="Other Clothing Stores" CD="44819" SIC="569"/>
+     <L3 DESC="Shoe Stores" CD="44821" SIC="566"/>
+     <L3 DESC="Women'S Clothing Stores" CD="44812" SIC="562"/>
+    </L2>
+    <L2  DESC="Computers and Software">
+     <L3 DESC="Computer/Software Stores" CD="44312" SIC="573"/>
+    </L2>
+    <L2  DESC="Department Stores">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other General Merchandise" CD="45299" SIC="539"/>
+     <L3 DESC="Department Stores Retail" CD="45211" SIC="531"/>
+     <L3 DESC="Warehouse Clubs/Superstore" CD="45291" SIC="541"/>
+    </L2>
+    <L2  DESC="Drug Stores and Personal Care">
+     <L3 DESC="Select" />
+     <L3 DESC="Cosmetics/Beauty Stores" CD="44612" SIC="599"/>
+     <L3 DESC="Optical Goods Stores" CD="44613" SIC="599"/>
+     <L3 DESC="Other Personal Care Stores" CD="44619" SIC="599"/>
+     <L3 DESC="Pharmacies/Drug Stores Retail" CD="44611" SIC="591"/>
+    </L2>
+    <L2  DESC="Electronics and Appliances">
+     <L3 DESC="Appliance/Other Electronics" CD="44311" SIC="572"/>
+    </L2>
+    <L2  DESC="Food and Beverage Stores">
+     <L3 DESC="Select" />
+     <L3 DESC="Convenience Stores Retail" CD="44512" SIC="541"/>
+     <L3 DESC="Fruit/Vegetable Markets" CD="44523" SIC="543"/>
+     <L3 DESC="Liquor Stores Retail" CD="44531" SIC="592"/>
+     <L3 DESC="Meat Markets Retail" CD="44521" SIC="542"/>
+     <L3 DESC="Other Specialty Food Store" CD="44529" SIC="549"/>
+     <L3 DESC="Retail Fish/Seafood Markets" CD="44522" SIC="542"/>
+     <L3 DESC="Supermarkets (except Convenience)" CD="44511" SIC="541"/>
+    </L2>
+    <L2  DESC="Furniture and Home Furnishing">
+     <L3 DESC="Select" />
+     <L3 DESC="Floor Covering Stores" CD="44221" SIC="571"/>
+     <L3 DESC="Furniture Stores Retail" CD="44211" SIC="571"/>
+     <L3 DESC="Other Home Furnishing Stores" CD="44229" SIC="571"/>
+    </L2>
+    <L2  DESC="Gasoline Stations">
+     <L3 DESC="Select" />
+     <L3 DESC="Gas With Convenience Store" CD="44711" SIC="554"/>
+     <L3 DESC="Other Gasoline Stations" CD="44719" SIC="554"/>
+    </L2>
+    <L2  DESC="Motor Vehicle and Parts Dealers">
+     <L3 DESC="Select" />
+     <L3 DESC="Auto Parts Stores Retail" CD="44131" SIC="553"/>
+     <L3 DESC="Motorcycle/Other Vehicle Dealers" CD="44122" SIC="557"/>
+     <L3 DESC="New Car Dealers Retail" CD="44111" SIC="551"/>
+     <L3 DESC="Recreational Vehicle Dealers" CD="44121" SIC="556"/>
+     <L3 DESC="Tire Dealers Retail" CD="44132" SIC="553"/>
+     <L3 DESC="Used Cars Dealers Retail" CD="44112" SIC="552"/>
+    </L2>
+    <L2  DESC="Nonstore Retailers">
+     <L3 DESC="Select" />
+     <L3 DESC="Electronic Shopping/Mail-Order" CD="45411" SIC="596"/>
+     <L3 DESC="Fuel Dealers Retail" CD="45431" SIC="598"/>
+     <L3 DESC="Other Direct Selling Retailers" CD="45439" SIC="596"/>
+     <L3 DESC="Vending Machine Operators" CD="45421" SIC="596"/>
+    </L2>
+    <L2  DESC="Other Retail">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Miscellaneous Stores" CD="45399" SIC="599"/>
+     <L3 DESC="Art Dealers Retail" CD="45392" SIC="599"/>
+     <L3 DESC="Florists Retail" CD="45311" SIC="599"/>
+     <L3 DESC="Gift/Souvenir Stores Retail" CD="45322" SIC="594"/>
+     <L3 DESC="Mobile Home Dealers Retail" CD="45393" SIC="527"/>
+     <L3 DESC="Office Supplies Stores" CD="45321" SIC="594"/>
+     <L3 DESC="Pet/Pet Supplies Stores" CD="45391" SIC="599"/>
+     <L3 DESC="Used Merchandise Stores" CD="45331" SIC="593"/>
+    </L2>
+    <L2  DESC="Sporting Goods, Hobby, Book, and Music">
+     <L3 DESC="Select" />
+     <L3 DESC="Book Stores/News Dealers" CD="45121" SIC="594"/>
+     <L3 DESC="Hobby/Toy/Game Stores" CD="45112" SIC="594"/>
+     <L3 DESC="Music Instruments + Supplies" CD="45114" SIC="573"/>
+     <L3 DESC="Sewing/Needlework Stores" CD="45113" SIC="594"/>
+     <L3 DESC="Sporting Goods Stores" CD="45111" SIC="594"/>
+     <L3 DESC="Tape/Compact Disc Store" CD="45122" SIC="573"/>
+    </L2>
+  </L1>
+  <L1 DESC="Services:">
+     <L2 DESC="Select"/>
+    <L2  DESC="Automobile Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Auto Mechanics And Repair" CD="81111" SIC="753"/>
+     <L3 DESC="Auto Paint And Body Shops" CD="81112" SIC="753"/>
+     <L3 DESC="Other Auto Repair/Maintenance" CD="81119" SIC="753"/>
+    </L2>
+    <L2  DESC="Beauty, Barber, and Other Personal Services">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Personal Services" CD="81299" SIC="729"/>
+     <L3 DESC="Hair/Nail/Skin Care Services" CD="81211" SIC="724"/>
+     <L3 DESC="Other Personal Care Services" CD="81219" SIC="729"/>
+     <L3 DESC="Private Households" CD="81411" SIC="881"/>
+    </L2>
+    <L2  DESC="Funeral Homes and Cemeteries">
+     <L3 DESC="Select" />
+     <L3 DESC="Cemeteries/Crematories" CD="81222" SIC="655"/>
+     <L3 DESC="Funeral Homes/Services" CD="81221" SIC="726"/>
+    </L2>
+    <L2  DESC="Laundry Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Coin-Operated Laundries/Dry Cleaners" CD="81231" SIC="721"/>
+     <L3 DESC="Drycleaning/Laundry(Except Coin)" CD="81232" SIC="721"/>
+     <L3 DESC="Linen And Uniform Supply" CD="81233" SIC="721"/>
+    </L2>
+    <L2  DESC="Other Repair Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Electronic Equip Repair" CD="81121" SIC="762"/>
+     <L3 DESC="Footwear/Leather Goods Repair" CD="81143" SIC="725"/>
+     <L3 DESC="Home/Garden Equip/Appliance Repair" CD="81141" SIC="769"/>
+     <L3 DESC="Machine Repair Except Auto/Electrical" CD="81131" SIC="769"/>
+     <L3 DESC="Other Personal/Household Goods Repair" CD="81149" SIC="729"/>
+     <L3 DESC="Reupholstery/Furniture Repair" CD="81142" SIC="764"/>
+    </L2>
+    <L2  DESC="Parking Lots and Garages">
+     <L3 DESC="Parking Lots And Garages" CD="81293" SIC="752"/>
+    </L2>
+    <L2  DESC="Pet Care">
+     <L3 DESC="Pet Care (except Veterinary) services" CD="81291" SIC=" 75"/>
+    </L2>
+    <L2  DESC="Photo Finishing">
+     <L3 DESC="Photofinishing" CD="81292" SIC="738"/>
+    </L2>
+  </L1>
+  <L1 DESC="Services: Admin+Support/Building Serv/Security/Tr">
+     <L2 DESC="Select"/>
+    <L2  DESC="All Other Support Services">
+     <L3 DESC="All Other Support Services" CD="56199" SIC="738"/>
+    </L2>
+    <L2  DESC="Business Service Centers">
+     <L3 DESC="Business Service Centers" CD="56143" SIC="738"/>
+    </L2>
+    <L2  DESC="Carpet and Upholstery Cleaning">
+     <L3 DESC="Carpet/Upholstery Cleaning Services" CD="56174" SIC="721"/>
+    </L2>
+    <L2  DESC="Collection and Credit Agencies">
+     <L3 DESC="Select" />
+     <L3 DESC="Collection Agencies" CD="56144" SIC="732"/>
+     <L3 DESC="Credit Bureaus" CD="56145" SIC="732"/>
+    </L2>
+    <L2  DESC="Conventions and Trade Shows">
+     <L3 DESC="Convention/Trade Show Organizers" CD="56192" SIC="738"/>
+    </L2>
+    <L2  DESC="Document Preparation">
+     <L3 DESC="Document Preparation Services" CD="56141" SIC="733"/>
+    </L2>
+    <L2  DESC="Facilities Support">
+     <L3 DESC="Facilities Support Service" CD="56121" SIC="874"/>
+    </L2>
+    <L2  DESC="General Administration">
+     <L3 DESC="Office Administrative Service" CD="56111" SIC="874"/>
+    </L2>
+    <L2  DESC="Janitorial Services">
+     <L3 DESC="Janitorial Services" CD="56172" SIC="734"/>
+    </L2>
+    <L2  DESC="Landscaping Services">
+     <L3 DESC="Landscaping Services" CD="56173" SIC=" 78"/>
+    </L2>
+    <L2  DESC="Other Business Support">
+     <L3 DESC="Other Business Support Services" CD="56149" SIC="738"/>
+    </L2>
+    <L2  DESC="Other Services to Buildings">
+     <L3 DESC="Other Services To Bldg/Dwellings" CD="56179" SIC="734"/>
+    </L2>
+    <L2  DESC="Packaging and Labeling">
+     <L3 DESC="Packaging/Labeling Services" CD="56191" SIC="738"/>
+    </L2>
+    <L2  DESC="Pest Services">
+     <L3 DESC="Exterminating/Pest Control" CD="56171" SIC="734"/>
+    </L2>
+    <L2  DESC="Security Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Alarm/Security System Services" CD="56162" SIC="738"/>
+     <L3 DESC="Investigation/Armored Car Services" CD="56161" SIC="738"/>
+    </L2>
+    <L2  DESC="Telephone Call Centers">
+     <L3 DESC="Telephone Call Centers" CD="56142" SIC="738"/>
+    </L2>
+    <L2  DESC="Temporary Employment and Placement Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Employee Leasing Services" CD="56133" SIC="736"/>
+     <L3 DESC="Employment Placement Agencies" CD="56131" SIC="736"/>
+     <L3 DESC="Temporary Help Services" CD="56132" SIC="736"/>
+    </L2>
+    <L2  DESC="Travel and Touring">
+     <L3 DESC="Select" />
+     <L3 DESC="Other Travel Arrangement Service" CD="56159" SIC="472"/>
+     <L3 DESC="Tour Operators" CD="56152" SIC="472"/>
+     <L3 DESC="Travel Agencies" CD="56151" SIC="472"/>
+    </L2>
+    <L2  DESC="Waste Collections, Disposal, and Related Services">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Waste Management Services" CD="56299" SIC="495"/>
+     <L3 DESC="Materials Recovery Facilities" CD="56292" SIC="495"/>
+     <L3 DESC="Remediation Services" CD="56291" SIC="495"/>
+     <L3 DESC="Waste Collection" CD="56211" SIC="421"/>
+     <L3 DESC="Waste Treatment/Disposal" CD="56221" SIC="495"/>
+    </L2>
+  </L1>
+  <L1 DESC="Transportation and Warehousing">
+     <L2 DESC="Select"/>
+    <L2  DESC="Pipelines">
+     <L3 DESC="Select" />
+     <L3 DESC="All Other Pipeline Trans" CD="48699" SIC="461"/>
+     <L3 DESC="Natural Gas-Pipeline Transportation" CD="48621" SIC="492"/>
+     <L3 DESC="Pipeline Transportation Of Crude Oil" CD="48611" SIC="461"/>
+     <L3 DESC="Refined Petroleum Production-Transport" CD="48691" SIC="461"/>
+    </L2>
+    <L2  DESC="Postal and Courier Services">
+     <L3 DESC="Select" />
+     <L3 DESC="Couriers Not Local" CD="49211" SIC="421"/>
+     <L3 DESC="Local Messengers/Couriers" CD="49221" SIC="421"/>
+     <L3 DESC="Postal Service Except Us Post Office" CD="49111" SIC="738"/>
+    </L2>
+    <L2  DESC="Scenic Tours">
+     <L3 DESC="Select" />
+     <L3 DESC="Other-Scenic/Sightseeing" CD="48799" SIC="452"/>
+     <L3 DESC="Scenic/Sightseeing-Land Transportation" CD="48711" SIC="478"/>
+     <L3 DESC="Water-Scenic/Sightseeing" CD="48721" SIC="448"/>
+    </L2>
+    <L2  DESC="Support Activity for Transportation">
+     <L3 DESC="Select" />
+     <L3 DESC="Airport Operations" CD="48811" SIC="458"/>
+     <L3 DESC="Freight Transportation Arrangement" CD="48851" SIC="473"/>
+     <L3 DESC="Marine Cargo Handling" CD="48832" SIC="449"/>
+     <L3 DESC="Other Support Activity-Air Transport" CD="48819" SIC="458"/>
+     <L3 DESC="Other Support Activity-Miscellaneous" CD="48899" SIC="478"/>
+     <L3 DESC="Port/Harbor Operations" CD="48831" SIC="449"/>
+     <L3 DESC="Rail Transportation-Support Activities" CD="48821" SIC="401"/>
+     <L3 DESC="Road Transportation-Support Activities" CD="48849" SIC="478"/>
+     <L3 DESC="Tugboat Transportation For Shipping" CD="48833" SIC="449"/>
+     <L3 DESC="Water Transport-Other Support Activity" CD="48839" SIC="449"/>
+    </L2>
+    <L2  DESC="Towing - Motor Vehicle">
+     <L3 DESC="Towing-Motor Vehicle" CD="48841" SIC="754"/>
+    </L2>
+    <L2  DESC="Transportation">
+     <L3 DESC="Select" />
+     <L3 DESC="Charter Bus Industry" CD="48551" SIC="414"/>
+     <L3 DESC="Deep Sea/Coastal/Water Transport" CD="48311" SIC="448"/>
+     <L3 DESC="General Freight Trucking-Local" CD="48411" SIC="421"/>
+     <L3 DESC="General Freight Trucking-Long Distance" CD="48412" SIC="421"/>
+     <L3 DESC="Inland Water Transportation" CD="48321" SIC="448"/>
+     <L3 DESC="Interurban/Rural Bus Transportation" CD="48521" SIC="413"/>
+     <L3 DESC="Limousine Service" CD="48532" SIC="411"/>
+     <L3 DESC="Nonscheduled Air Transportation" CD="48121" SIC="452"/>
+     <L3 DESC="Other Transit/Ground Passenger" CD="48599" SIC="411"/>
+     <L3 DESC="Rail Transportation" CD="48211" SIC="401"/>
+     <L3 DESC="Scheduled Air Transportation" CD="48111" SIC="451"/>
+     <L3 DESC="School/Employee Bus Transportation" CD="48541" SIC="415"/>
+     <L3 DESC="Specialized Trucking-Local" CD="48422" SIC="421"/>
+     <L3 DESC="Specialized Trucking-Long Distance" CD="48423" SIC="421"/>
+     <L3 DESC="Taxi Service" CD="48531" SIC="412"/>
+     <L3 DESC="Urban Transit Systems" CD="48511" SIC="411"/>
+     <L3 DESC="Used+Household Goods Moving/Trucking" CD="48421" SIC="421"/>
+    </L2>
+    <L2  DESC="Warehousing">
+     <L3 DESC="Select" />
+     <L3 DESC="Farm Product Warehousing Storage" CD="49313" SIC="422"/>
+     <L3 DESC="General Warehousing/Storage" CD="49311" SIC="422"/>
+     <L3 DESC="Other Warehousing/Storage" CD="49319" SIC="422"/>
+     <L3 DESC="Refrigerated Warehousing/Storage" CD="49312" SIC="422"/>
+    </L2>
+  </L1>
+  <L1 DESC="Utilities">
+    <L2  DESC="NONE">
+     <L3 DESC="Select" />
+     <L3 DESC="Electric Generation Utility" CD="22111" SIC="491"/>
+     <L3 DESC="Electric Transmission Utility" CD="22112" SIC="491"/>
+     <L3 DESC="Natural Gas Utility" CD="22121" SIC="492"/>
+     <L3 DESC="Sewage Treatment Utility" CD="22132" SIC="495"/>
+     <L3 DESC="Steam/Air-Conditioning Utility" CD="22133" SIC="496"/>
+     <L3 DESC="Water Supply/Irrigation Utility" CD="22131" SIC="494"/>
+    </L2>
+  </L1>
+  <L1 DESC="Wholesale Trade">
+     <L2 DESC="Select"/>
+    <L2  DESC="Business to Business">
+     <L3 DESC="Select" />
+     <L3 DESC="Business To Business Electronic Marketing" CD="42511" SIC="519"/>
+     <L3 DESC="Trade Agents And Brokers" CD="42512" SIC="519"/>
+    </L2>
+    <L2  DESC="Durable Goods">
+     <L3 DESC="Select" />
+     <L3 DESC="Auto/Other Motor Vehicle" CD="42311" SIC="501"/>
+     <L3 DESC="Brick/Stone/Related Construction" CD="42332" SIC="503"/>
+     <L3 DESC="Coal/Other Mineral/Ore" CD="42352" SIC="505"/>
+     <L3 DESC="Computer/Related Equipment" CD="42343" SIC="504"/>
+     <L3 DESC="Construction/Mining Equipment" CD="42381" SIC="508"/>
+     <L3 DESC="Electrical Appliance/Tv/Radio" CD="42362" SIC="506"/>
+     <L3 DESC="Electrical/Wiring Supplies" CD="42361" SIC="506"/>
+     <L3 DESC="Farm/Garden Machinery" CD="42382" SIC="508"/>
+     <L3 DESC="Furniture Wholesalers" CD="42321" SIC="502"/>
+     <L3 DESC="Hardware Wholesalers" CD="42371" SIC="507"/>
+     <L3 DESC="Home Furnishing Wholesalers" CD="42322" SIC="502"/>
+     <L3 DESC="Industrial Machinery" CD="42383" SIC="508"/>
+     <L3 DESC="Industrial Supplies" CD="42384" SIC="508"/>
+     <L3 DESC="Jewelry/Watches" CD="42394" SIC="509"/>
+     <L3 DESC="Lumber/Plywood/Millwork" CD="42331" SIC="503"/>
+     <L3 DESC="Medical/Dental/Hospital Equipment" CD="42345" SIC="504"/>
+     <L3 DESC="Metal Service Centers" CD="42351" SIC="505"/>
+     <L3 DESC="Motor Vehicle Parts - Used" CD="42314" SIC="501"/>
+     <L3 DESC="Motor Vehicle Tools + Parts - New" CD="42312" SIC="501"/>
+     <L3 DESC="Office Equipment Wholesalers" CD="42342" SIC="504"/>
+     <L3 DESC="Ophthalmic Goods Wholesalers" CD="42346" SIC="504"/>
+     <L3 DESC="Other Commercial Equipment" CD="42344" SIC="504"/>
+     <L3 DESC="Other Construction Material" CD="42339" SIC="503"/>
+     <L3 DESC="Other Electrical Parts/Equipment" CD="42369" SIC="506"/>
+     <L3 DESC="Other Miscellaneous Durable Goods" CD="42399" SIC="509"/>
+     <L3 DESC="Other Professional Equipment" CD="42349" SIC="504"/>
+     <L3 DESC="Photo Equipment/Supplies" CD="42341" SIC="504"/>
+     <L3 DESC="Plumbing/Heating Equipment" CD="42372" SIC="507"/>
+     <L3 DESC="Recyclable Material" CD="42393" SIC="509"/>
+     <L3 DESC="Refrigeration Equipment/Supplies" CD="42374" SIC="507"/>
+     <L3 DESC="Roofing/Siding/Insulation Materials" CD="42333" SIC="503"/>
+     <L3 DESC="Service Businesses - Equipment + Supplies" CD="42385" SIC="508"/>
+     <L3 DESC="Sporting/Recreational Goods + Supplies" CD="42391" SIC="509"/>
+     <L3 DESC="Tire/Tube Wholesaler" CD="42313" SIC="501"/>
+     <L3 DESC="Toy/Hobby Goods/Supplies" CD="42392" SIC="509"/>
+     <L3 DESC="Transportation (except Motor Vehicles)" CD="42386" SIC="508"/>
+     <L3 DESC="Warm Air Heating/Air Conditioning" CD="42373" SIC="507"/>
+    </L2>
+    <L2  DESC="Non-Durable Goods">
+     <L3 DESC="Select" />
+     <L3 DESC="Beer/Ale Wholesalers" CD="42481" SIC="518"/>
+     <L3 DESC="Book/Periodical/Newspapers" CD="42492" SIC="519"/>
+     <L3 DESC="Confectionery Wholesalers" CD="42445" SIC="514"/>
+     <L3 DESC="Dairy Products (except Dried/Canned)" CD="42443" SIC="514"/>
+     <L3 DESC="Drugs/Druggists' sundries" CD="42421" SIC="512"/>
+     <L3 DESC="Farm Supplies Wholesalers" CD="42491" SIC="519"/>
+     <L3 DESC="Fish/Seafood Wholesalers" CD="42446" SIC="514"/>
+     <L3 DESC="Flower/Florists' supplies" CD="42493" SIC="519"/>
+     <L3 DESC="Footwear Wholesalers" CD="42434" SIC="513"/>
+     <L3 DESC="Fresh Fruit+Vegetables" CD="42448" SIC="514"/>
+     <L3 DESC="General Line Groceries" CD="42441" SIC="514"/>
+     <L3 DESC="Grain/Soy Beans/Field Beans" CD="42451" SIC="515"/>
+     <L3 DESC="Industrial/Personal Paper" CD="42413" SIC="511"/>
+     <L3 DESC="Livestock Wholesalers" CD="42452" SIC="515"/>
+     <L3 DESC="Male Clothing/Furnishings" CD="42432" SIC="513"/>
+     <L3 DESC="Meat/Meat Products" CD="42447" SIC="514"/>
+     <L3 DESC="Other Chemical/Allied Products" CD="42469" SIC="516"/>
+     <L3 DESC="Other Farm Products+ raw Material" CD="42459" SIC="515"/>
+     <L3 DESC="Other Grocery/Related Products" CD="42449" SIC="514"/>
+     <L3 DESC="Other Miscellaneous Nondurable Goods" CD="42499" SIC="519"/>
+     <L3 DESC="Packaged+Frozen Foods" CD="42442" SIC="514"/>
+     <L3 DESC="Paint/Varnish/Paint Supplies" CD="42495" SIC="519"/>
+     <L3 DESC="Petroleum Bulk Stations" CD="42471" SIC="517"/>
+     <L3 DESC="Petroleum Except Bulk Station" CD="42472" SIC="517"/>
+     <L3 DESC="Piece Goods/Dry Goods" CD="42431" SIC="513"/>
+     <L3 DESC="Plastics Materials" CD="42461" SIC="516"/>
+     <L3 DESC="Poultry/Poultry Products" CD="42444" SIC="514"/>
+     <L3 DESC="Printing/Writing Paper" CD="42411" SIC="511"/>
+     <L3 DESC="Stationary/Office Supplies" CD="42412" SIC="511"/>
+     <L3 DESC="Tobacco/Tobacco Products" CD="42494" SIC="519"/>
+     <L3 DESC="Wine/Distilled Alcoholic Beverages" CD="42482" SIC="518"/>
+     <L3 DESC="Women/Children Clothing" CD="42433" SIC="513"/>
+    </L2>
+  </L1>
+</NAIC>

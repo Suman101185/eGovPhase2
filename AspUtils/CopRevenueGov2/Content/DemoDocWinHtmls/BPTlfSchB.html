@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Styles/framestyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" language="javascript" src="../Scripts/JqueryMin.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/global.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/ispXmlProc.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/jquery-1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".tab_content:first").show(); //Show first tab content
+        });
+
+        
+    </script>
+</head>
+<body>
+    <div class="tab_Tcontainer"  id="BPT_SchdB">
+        <div class="tab_container">
+            <div style="display: block;" id="tab1" class="tab_content">
+                <h2>Tax Payer Information  |   <span>BPTLF Schb tax return for 2013</span>  </h2>
+
+                <div class="thankyou">
+                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries</h4>
+
+                    <div class="school_form">
+
+
+                        <form class="school_page_form">
+
+                            <!--<div class="greytopbox">
+                    	<div class="bluetxt">Name :</div>
+                        <div class="bluetxt">SSN :</div>
+                        <div class="bluetxt">Address :</div>
+                        
+                        <div class="clear"></div>
+                    </div>-->
+
+
+
+                            <div class="account_greybox">
+
+                                <p>
+                                    <strong>Name :</strong>
+                                    <label>Michael Adams</label>
+                                </p>
+
+                                <p><strong>SSN :</strong> &nbsp; </p>
+                                <div class="clear"></div>
+                                <p><strong>Address :</strong> &nbsp; </p>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+
+
+                            <!--SubHeader section declaration goes here-->
+                            <div class="form_segment">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabularform">
+                                    <tr>
+                                        <th width="22%" scope="col" valign="middle" align="left" class="here_input_table">
+                                            <input type="checkbox" />
+                                            Check if amended return. </th>
+                                    </tr>
+                                    <tr>
+                                        <th width="78%" scope="col" valign="middle" align="left" class="here_input_table">If your business terminated in 
+				<script>document.write(sCurrYear - 1)</script>
+                                            ,
+					enter the termination date here <u>AND</u> file a <a href="http://www.phila.gov/revenue/pdfs/chgform.html">CHANGE FORM</a>.</th>
+                                        <th width="22%" scope="col" align="right">
+                                            <input maxlength="10" type="text" />
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--SubHeader section declaration ends here-->
+
+                            <!--schb declaration goes here-->
+
+                            <!--Form section declaration goes here-->
+                            <div class="form_segment">
+                                <table summary="Employee Pay Sheet" id="hor-zebra">
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td width="70%">
+                                                <br>
+                                                <u><b>COMPUTATION OF TAX DUE OR OVERPAYMENT</b></u>
+                                            </td>
+
+                                            <td align="center" class="no_border_right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1. NET INCOME PORTION OF TAX (from 
+			                                    <label id="lblLnkSchdB" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage('SchdB')">Schedule B, Line 12</label>
+                                                <label class="lblInstrNormal" style="float: none">or </label>
+                                                <label id="lblLnkSchdA" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage('SchdA')">Schedule A, Line 12</label>
+                                                <label id="lblLnkSchdN1" style="float: none"></label>
+                                                <label class="lblInstrNormal" style="float: none">).</label>
+                                            </td>
+                                            <td align="center" class="no_border_right">
+                                                <div>
+                                                    <label id="lblBPT1_1" style="WIDTH: 100%"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">2. GROSS RECEIPTS PORTION OF TAX (from 
+                                                <label id="Label1" class="lblLink" style="FONT-SIZE: 7pt; float: none" onclick="ShowPage('SchdD')">Schedule D, Line 11</label>
+                                                <label id="lblLnkSchdN2" style="float: none"></label>
+                                                <label class="lblInstrNormal" style="float: none">).</label>
+                                            </td>
+                                            <td align="center" class="no_border_right">
+                                                <label id="lblBPT1_2" style="WIDTH: 100%"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3. Tax Due for the 2012 Business Income & Receipts Tax [Calculated - add lines 1 and 2]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label id="lblBPT1_3" style="WIDTH: 100%"></label>
+                                            </td>
+
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">4. <b><u>MANDATORY</u> 2014 BIRT Estimated Payment <u>(repeat line 3)</u></b></td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5. Total Due by <b>4/15/2014</b> [Calculated - add lines 3 and 4]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label id="lblBPT1_5" style="WIDTH: 100%">
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">
+                                                <br>
+                                                <u><b>ESTIMATED PAYMENTS AND OTHER CREDITS</b></u></td>
+                                            <td align="center" class="no_border_right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6a. Credit from overpayment of 2011 or 2012 Net Profit Tax</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">6b. Include any estimated and/or extension payments of 2012 BIRT previously
+			  made,and any credit from overpayment of the 2011 BPT return</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6c. Total Payments and Credits [Calculated - add lines 6a and 6b]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblBPT1_6c" style="WIDTH: 100%">$50000</label></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">7. Net Tax Due [Calculated - line 5 minus 6c]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label id="lblBPT1_7" style="WIDTH: 100%"></label>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>8. Interest and Penalty (see instruction Sheet II)</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" />
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <u><b>TOTAL DUE</b></u> including Interest and Penalty<br>
+                                                <b>Use payment coupon. Make check payable to: "City of Philadelphia" [Calculated - add line 7 and 8]&nbsp;
+                                            </td>
+                                            <td>
+                                                <label id="lblBPT1_9" style="WIDTH: 100%">
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%"><u><b>OVERPAYMENT OPTIONS</b></u>.</td>
+                                            <td align="center" class="no_border_right"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>10. Refunded. <b>Do not file separate Refund Petition</b></td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" />
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">10b. Applied, up to the tax due, to the 2013 Net Profits Tax Return</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10c. Applied to the 2014	Business Income & Receipts Tax</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" />
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                                <div class="clear"></div>
+                                <div class="" align="right" style="padding: 0 35px 10px 0px; background: #FFFFFF; border: 1px solid #fff;">
+                                    <input type="button" class="submit_button2" value="GOTO Page 1" onclick="ShowPage(Pg1)" />
+                                </div>
+                                <!--<input id="btnGoToPage1" type="button" value="Go to Page 1" LANGUAGE=javascript onclick="ShowPage(1)">-->
+
+                                <div class="clear"></div>
+                                <br />
+
+                            </div>
+                            <!--Form section declaration ends here-->
+
+
+                            <!--Schb declaration ends here-->
+
+
+                        </form>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="quicklink_btm_gen"></div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

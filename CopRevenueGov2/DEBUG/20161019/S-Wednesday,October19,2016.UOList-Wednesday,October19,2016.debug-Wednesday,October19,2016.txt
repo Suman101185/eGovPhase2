@@ -1,0 +1,6 @@
+<DEBUGINFO>
+<REQUSET><?xml version="1.0" encoding="UTF-8"?><UOLIST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><ERROR_INFO><ERROR>11</ERROR><MESSAGE>Object reference not set to an instance of an object.</MESSAGE></ERROR_INFO><UO_INFO OCCURS="1" LENGTH="23" EXPORT="Y" TYPE="COMPLEX"><ENTITY_ID LENGTH="11" TYPE="A">999902586</ENTITY_ID><ACCOUNT_ID LENGTH="12" TYPE="A">0504407</ACCOUNT_ID></UO_INFO><HEADER_INFO ENVIRONMENT="" /><DEBUG></DEBUG></UOLIST></REQUSET>
+
+
+<RESPONSE><?xml version="1.0" encoding="utf-16"?><UOLIST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><ERROR_INFO><ERROR>11</ERROR><MESSAGE>Object reference not set to an instance of an object.</MESSAGE></ERROR_INFO><UO_INFO OCCURS="1" LENGTH="23" EXPORT="Y" TYPE="COMPLEX"><ENTITY_ID LENGTH="11" TYPE="A">999902586</ENTITY_ID><ACCOUNT_ID LENGTH="12" TYPE="A">0504407</ACCOUNT_ID></UO_INFO><HEADER_INFO ENVIRONMENT="" /><DEBUG></DEBUG></UOLIST></RESPONSE>
+</DEBUGINFO>

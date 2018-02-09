@@ -1,0 +1,10 @@
+﻿
+*** Completion Status ***
+
+Acct\ApplyMain.aspx
+INC\PreparerSection.aspx
+Login\Main.aspx
+Menu\Navigation.aspx
+
+
+revenue/UO.asp is not in use 

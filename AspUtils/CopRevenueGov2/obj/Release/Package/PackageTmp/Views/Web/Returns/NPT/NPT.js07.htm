@@ -1,0 +1,1762 @@
+ 
+ <script src="../../js/JqueryMin.js" type="text/javascript"></script>
+ <!--#Include File="../../Inc/ispXmlProc.js.htm"-->
+
+<script language="javascript" type="text/javascript">
+$('.inpReadOnlyRt').parent().css("text-align","right");
+    var arrPage1Err = new Array();
+    var arrWrkAErr = new Array();
+    var arrWrkBErr = new Array();
+    var arrWrkCErr = new Array();
+    var arrWrkDErr = new Array();
+    var arrWrkEErr = new Array();
+    var arrWrkKErr = new Array();
+    var arrPage4Err = new Array();
+
+    var txtHeader = 'Taxpayer Information';
+    var hasCorpMembers = false;
+    var new_rule;
+    //Resident and NonResident Rates change yearly, set in XML
+    var dNPTResidentRate;
+    var dNPTNonResidentRate;
+    var negTaxDue = false;
+    var amntNegDue = 0;
+    var sPrevWrkSht = '';
+  //  var gUserAddr = '<%response.write Request.ServerVariables("REMOTE_ADDR")%>';
+
+
+    function AdjustNameDisplay(incName) {
+        var sEntityName = incName;
+        var lName = "", fName = "", mName = "", newName = "";
+
+        if (sEntityName.indexOf("*") != -1) {//If name contains *'s
+            sEntityName = sEntityName.split("*");
+            lName = (sEntityName[0].substr(0, 1)) + (sEntityName[0].substr(1).toLowerCase());
+            if (sEntityName[1]) {
+                fName = (sEntityName[1].substr(0, 1)) + (sEntityName[1].substr(1).toLowerCase());
+            } 	//if
+
+            if (sEntityName[2]) {
+                mName = sEntityName[2].substr(0, 1).toUpperCase();
+            }
+            newName = fName + " " + mName + " " + lName;
+            return newName;
+        } else {
+            return sEntityName;
+        } 	//if
+    } 	//AdjustNameDisplay
+
+    function GetBptEzInfo() {
+        //EHD Clear BPTez XML
+        parent.MenuWin.xmlBPTez.loadXML(parent.MenuWin.xmlBPTezTemplate.xml);
+        ispXmlSetFieldVal(parent.MenuWin.xmlBPTez, 'INQ', 'BPT_INFO RETURN_STATUS', '', 0);
+        ispXmlSetFieldVal(parent.MenuWin.xmlBPTez, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ACCOUNT_ID', '', 0), 'BPT_INFO ACCOUNT_ID', '', 0);
+        //		ispXmlSetFieldVal(parent.MenuWin.xmlBPTez, '', 'BPT_INFO/VERSION', '', 0)
+        ispXmlSetFieldVal(parent.MenuWin.xmlBPTez, '12/31/2007', 'BPT_INFO PERIOD', '', 0);
+        ispCallXMLForm(parent.MenuWin.xmlBPTez, parent.MenuWin.xmlBPTez, '../../BPTezReturn', '');
+    } 	//GetBptEzInfo
+	function ReloadNPT()
+	{
+		//parent.MenuWin.loadXmlSync('../XML/NPTReturn.xml', parent.MenuWin.parseXml_xmlNPT);
+		parent.MenuWin.loadXmlSync('../XML/NPTReturn.xml', parent.MenuWin.parseXml_xmlNPTTemplate);
+	
+	}
+    function DisplayNPTReturn() {
+		$('.inpReadOnlyRt').parent().css("text-align","right");
+		ReloadNPT();
+   
+        //EHD Check if registered for BPT Tax Account
+        //EGOVWEB-82 Only get BPT if active
+
+     //   if ($(parent.MenuWin.xmlAccount).find("TAX_ACCT").find("ACCOUNT:contains('24')") 
+		//&& parent.MenuWin.GetInnerNodeText(parent.MenuWin.xmlAccount, 'TAX_ACCT ACCOUNT', 'PRK_ID', '24') != undefined
+		//	&& parent.MenuWin.GetInnerNodeText(parent.MenuWin.xmlAccount, 'TAX_ACCT ACCOUNT', 'PRK_ID', '24').slice(-4) > 2010) {
+            //ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'TAX_ACCT[ACCOUNT = 24] PRK_ID', '').slice(-4) > 2010) {
+
+			if (parent.MenuWin.GetNodeCount(parent.MenuWin.xmlAccount,'TAX_ACCT ACCOUNT','24')==1 ) {
+            //EHD Check if BPT return has been filed (BPT must be filed first)
+            if (ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_INFO PERIOD', '', 0) != '') {
+                olBPTXML = parent.MenuWin.xmlBPTez; //chayan
+                GetBptEzInfo();
+            } 	//if
+            if (ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_INFO VERSION', '', 0) == '') {
+                //			ispHideProgress()
+              	alert('Your 2007 BPT return must be filed prior to filing your 2007 NPT Return.' +
+					'\n To fill out your 2007 BPT form, Please select BPT from the side menu.');
+                //			parent.MenuWin.ispMenu_onclick(parent.MenuWin.mnuNPTYear05)		//Year 2007
+                $('#NPT_Page1').css("display", "none");
+                $('#NPT_BPT_msg').css("display", "block");
+                return;
+            } 	//if
+        } 	//if
+
+        if (parent.MenuWin.GetNodeCount(parent.MenuWin.xmlAccount,'TAX_ACCT ACCOUNT','3')==1) {
+            parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuNPTYear07);
+            $('#NPT').css("display", "block");
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 'INQ', 'NPT_INFO RETURN_STATUS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT,
+				ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ACCOUNT_ID', '', 0),
+				'NPT_INFO ACCOUNT_ID', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '12/31/2007', 'NPT_INFO PERIOD', '', 0);
+            ispCallXMLForm(parent.MenuWin.xmlNPT, parent.MenuWin.xmlNPT, "NPTReturn", "");
+            //		ispHideProgress()
+            if ($(parent.MenuWin.divAcctInfo).css("display") == 'none') {
+                $(parent.MenuWin.divAcctInfo).css("display", "block");
+                $(parent.MenuWin.divAccount).css("display", "none");
+
+            } 	//if
+        } else {
+            parent.MenuWin.xmlNPT.loadXML(parent.MenuWin.xmlNPTTemplate.xml); //chayan
+            parent.MenuWin.ispMenu_onclick(parent.MenuWin.mnuAcctInfo);
+        } 	//if
+
+        $('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|Net Profit Tax for </Font>' +
+							'<Font class=hdrMedium>' + (sCurrYear - 1) + '</Font>');
+        parent.MenuWin.gsInstructionItem = '#NPTReturn'; //chayan
+        $('#AppMessage').html(parent.MenuWin.gsInstructionText + '<BR>The Net Profit Tax for ' + (sCurrYear - 1) + ' is due April 15, ' + sCurrYear + '.');
+        $('#InstructionText').html(' for Instructions on filing this return');
+
+        $('#parent.RightFrame').attr("rows", "*,0");
+        $('#NPT_Page1').css("display", "block");
+        LoadError("Page1");
+        CheckNPTXML();
+        SetNPTFields();
+        PopulateNPTHeader();
+        PopulateNPTData();
+        PerformCalcs('Page1');
+		//--------------added------------
+		$('#CorpMembers_1').removeAttr("style");
+		$('#CorpMembers_2').removeAttr("style");
+    } //DisplayNPTReturn
+
+    function CheckNPTXML() {
+        var bPeriodExist = true;
+        var firstOfYear = '01/01/' + (sCurrYear - 1);
+
+        if (ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO PERIOD', '', 0) != '' && new Date(ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO PERIOD', '', 0)) < new Date(firstOfYear))
+		{
+            ///new Date('01/01/2005')) {
+            bPeriodExist = false;
+        } 	//if
+
+        if (ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO PERIOD', '', 0) == '') {
+            bPeriodExist = false;
+        } 	//if
+
+        if (bPeriodExist == false) {
+            //error_info
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'ERROR_INFO PROGRAM', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'ERROR_INFO ERROR', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'ERROR_INFO LINE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'ERROR_INFO MESSAGE', '', 0);
+            //npt_info
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '12/31/' + (sCurrYear - 1), 'NPT_INFO PERIOD', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'NPT_INFO VERSION', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'NPT_INFO RETURN_STATUS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'NPT_INFO LAST_UPD_DATE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'NPT_INFO RECORDING_DATE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'NPT_INFO EXTENSION_DATE', '', 0);
+           // ClearPreparerXML(parent.MenuWin.xmlNPT, 'NPT_INFO');
+            //npt_pg1
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 RESIDENT_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 RESIDENT_INCOME_TAX', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 NON_RES_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 NON_RES_INCOME_TAX', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 TOTAL_TAX', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 BPT_TAX_CREDIT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 OTHER_TAX_CREDIT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 TOTAL_PAY_CREDIT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 TAX_DUE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 INTEREST_PENALTY', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 TOTAL_DUE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 OVERPAY', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 LINE11', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 REFUND', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 BPT_OVERPAY', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG1 NPT_OVERPAY', '', 0);
+            //npt_wrka
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKA RESIDENT_NET_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKA RESIDENT_FORM_1065', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKA RESIDENT_OTHER_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKA RESIDENT_TAXABLE_INCOME', '', 0);
+            //npt_wrkb
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKB NON_RES__NET_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKB NON_RES_FORM_1065', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKB NON_RES_OTHER_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKB NON_RES_TOTAL_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKB NON_RES_OUTSIDE_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKB NON_RES_TAXABLE_INCOME', '', 0);
+            //npt_wrkc
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKC NET_PROFITS_LIABILTY', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKC BTP_TAX_CREDIT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKC ESTIMATED_PAYMENT_BASE', '', 0);
+            //npt_wrkd
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKD PORTION_TAXABLE_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKD TOTAL_TAXABLE_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKD PERCENTAGE_TAXABLE_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKD WRKK_LINE2', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKD MULTIPLY_LINE4_PERCENTAGE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKD SUBTRACT_LINE5_LINE4', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKD PAGE1_LINE5', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKD BPT_TAX_CREDIT', '', 0);
+            //npt_wrke
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKE ESTIMATED_PROFIT_PAYMENT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKE PAYMENTS_WITH_EXTENSION', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKE PRIOR_OVERPAYMENT_TBA', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKE TOTAL_PAYMENTS_CREDITS', '', 0);
+            //npt_wrkk
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKK BPT_PAGE1_LINE1', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKK SIXTY_PERCENT_LINE1', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKK NPT_PAGE1_LINE5', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_WRKK BPT_TAX_CREDIT', '', 0);
+            //npt_pg4
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 INVENTORY_RAW_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 INVENTORY_RAW_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 LAND_BUILDING_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 LAND_BUILDING_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 MACHINERY_EQUIP_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 MACHINERY_EQUIP_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 OTHER_ASSESTS_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 OTHER_ASSESTS_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 RENTED_PROPERTY_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 RENTED_PROPERTY_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 TOTAL_VALUE_OUTSIDE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 TOTAL_VALUE_EVERYWHERE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 TOTAL_VALUE_OUTSIDE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 TOTAL_VALUE_EVERYWHERE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 OUTSIDE_PROPERTY_FACTOR', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 OUT_PHILLY_PAYROLL', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 PAYROLL_EVERYWHERE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 OUTSIDE_PAYROLL_FACTOR', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 OUT_PHILLY_RECEIPTS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 GROSS_RECEIPTS_EVERYWHERE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 OUTSIDE_RECEIPTS_FACTOR', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 TOTAL_FACTORS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 AVERAGE_FACTORS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 WRKB_LINE4', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, 0, 'NPT_PG4 MULTIPLY_LINE13_LINE12', '', 0);
+        } 	//if
+    } 	//CheckNPTXML
+
+
+    function SetNPTFields() {
+		chkAgreement.checked = false
+        chkAmended.checked = false
+        $('#chkAmended').removeAttr("checked");
+
+        if (ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO VERSION', '', 0) == '') {
+            FieldLock(false);
+            $('#chkAmended').attr("disabled", "disabled");
+          //  $('#chkTaxpayer').removeAttr("checked");
+        } else {
+
+            $('#chkAmended').removeAttr("disabled");
+            FieldLock(true)
+        } 	//if
+    } 	//SetNPTFields
+
+    function PopulateNPTHeader() {
+        var addrIdx
+
+        if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ENTITY_ID', '', 0) != '') {
+            $('#lblAccountId').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ACCOUNT_ID', '', 0));
+            $('#lblEntityId').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ENTITY_ID', '', 0));
+            if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO TYPE', '', 0) == 1) {
+                $('#lblEntityType').text('EIN:');
+              $('#lblEntityId').text(' ' + $('#lblEntityId').text().substr(0, 2) + '-' + $('#lblEntityId').text().substr(2));
+                //lblEntityId.innerText = ' ' + lblEntityId.innerText.substr(0, 2) + '-' +
+                //lblEntityId.innerText.substr(2)
+            } else {
+
+                $('#lblEntityType').text('SSN:');
+                $('#lblEntityId').text(' ' + $('#lblEntityId').text().substr(0, 3) + '-' +
+					$('#lblEntityId').text().substr(3, 2) + '-' + $('#lblEntityId').text().substr(5));
+            } 	//if
+            ///lblName.innerText = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/NAME', '', addrIdx)
+            $('#lblName').text(AdjustNameDisplay(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS NAME', '', addrIdx)));
+
+
+            addrIdx = LocatePrimaryAddr();
+
+            $('#lblAddress').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS ADDRESS1', '', addrIdx) +
+            ' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS/ADDRESS2', '', addrIdx) +	
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS CITY', '', addrIdx) +
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS STATE', '', addrIdx) +
+				' ' + ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS ZIP', '', addrIdx));
+        } 	//if
+    } 	//PopulateNPTHeader
+
+    function PopulateNPTData() {
+        //Page 1
+
+        dNPTResidentRate = ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO RESIDENT_RATE', '', 0);
+        dNPTNonResidentRate = ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO NON_RES_RATE', '', 0);
+
+        $('#msgNPT1_2').text($('#msgNPT1_2').text().replace('###', dNPTResidentRate));
+        $('#msgNPT1_4').text($('#msgNPT1_4').text().replace('###', dNPTNonResidentRate));
+
+
+        txtNPT1.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 RESIDENT_INCOME', '', 0), 0);
+        $('#lblNPT2').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 RESIDENT_INCOME_TAX', '', 0), 0));
+        txtNPT3.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 NON_RES_INCOME', '', 0), 0);
+        $('#lblNPT4').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 NON_RES_INCOME_TAX', '', 0), 0));
+        $('#lblNPT5').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 TOTAL_TAX', '', 0), 0));
+        // EHD Get from BPT
+        $('#lblNPT6a').text(ispFormatMoney(
+			.6 * parseCurrency(ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_PG1 NET_TAX', '', 0)), 0));
+        txtNPT6b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 OTHER_TAX_CREDIT', '', 0), 0);
+        $('#lblNPT6c').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 TOTAL_PAY_CREDITS', '', 0), 0));
+        $('#lblNPT7').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 TAX_DUE', '', 0), 0));
+        txtNPT8.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 INTEREST_PENALTY', '', 0), 0);
+        $('#lblNPT9').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 TOTAL_DUE', '', 0), 0));
+        $('#lblNPT10').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 OVERPAY', '', 0), 0));
+        txtNPT11.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 LINE11', '', 0), 0);
+        txtNPT12a.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 REFUND', '', 0), 0);
+        txtNPT12b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 BPT_OVERPAY', '', 0), 0);
+        txtNPT12c.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG1 NPT_OVERPAY', '', 0), 0)
+      //  PopulatePreparer(parent.MenuWin.xmlNPT, 'NPT_INFO');
+        //WrkA
+        txtNPT_WrkA_1.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKA RESIDENT_NET_INCOME', '', 0), 0);
+        txtNPT_WrkA_2.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKA RESIDENT_FORM_1065', '', 0), 0);
+        txtNPT_WrkA_3.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKA RESIDENT_OTHER_INCOME', '', 0), 0);
+        $('#lblNPT_WrkA_4').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKA RESIDENT_TAXABLE_INCOME', '', 0), 0));
+        //WrkB
+        txtNPT_WrkB_1.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKB NON_RES__NET_INCOME', '', 0), 0);
+        txtNPT_WrkB_2.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKB NON_RES_FORM_1065', '', 0), 0);
+        txtNPT_WrkB_3.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKB NON_RES_OTHER_INCOME', '', 0), 0);
+        $('#lblNPT_WrkB_4').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKB NON_RES_TOTAL_INCOME', '', 0), 0));
+        $('#lblNPT_WrkB_5').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKB NON_RES_OUTSIDE_INCOME', '', 0), 0));
+        $('#lblNPT_WrkB_6').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKB NON_RES_TAXABLE_INCOME', '', 0), 0));
+        //WrkC
+        $('#lblNPT_WrkC_1').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKC NET_PROFITS_LIABILTY', '', 0), 0));
+        $('#lblNPT_WrkC_2').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKC BTP_TAX_CREDIT', '', 0), 0));
+        $('#lblNPT_WrkC_3').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKC ESTIMATED_PAYMENT_BASE', '', 0), 0));
+        //WrkD
+        txtNPT_WrkD_1.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKD PORTION_TAXABLE_INCOME', '', 0), 0);
+        txtNPT_WrkD_2.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKD TOTAL_TAXABLE_INCOME', '', 0), 0);
+        $('#lblNPT_WrkD_3').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKD PERCENTAGE_TAXABLE_INCOME', '', 0), 0));
+        $('#lblNPT_WrkD_4').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKD WRKK_LINE2', '', 0), 0));
+        $('#lblNPT_WrkD_5').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKD MULTIPLY_LINE4_PERCENTAGE', '', 0), 0));
+        $('#lblNPT_WrkD_6').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKD SUBTRACT_LINE5_LINE4', '', 0), 0));
+        $('#lblNPT_WrkD_7').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKD PAGE1_LINE5', '', 0), 0));
+        $('#lblNPT_WrkD_8').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKD BPT_TAX_CREDIT', '', 0), 0));
+        //WrkE
+        txtNPT_WrkE_1.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKE ESTIMATED_PROFIT_PAYMENT', '', 0), 0);
+        txtNPT_WrkE_2.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKE PAYMENTS_WITH_EXTENSION', '', 0), 0);
+        txtNPT_WrkE_3.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKE PRIOR_OVERPAYMENT_TBA', '', 0), 0);
+        $('#lblNPT_WrkE_4').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKE TOTAL_PAYMENTS_CREDITS', '', 0), 0));
+        //WrkK
+        txtNPT_WrkK_1.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_PG1 NET_TAX', '', 0), 0);
+        //	ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKK/BPT_PAGE1_LINE1', '', 0), 0)
+        $('#lblNPT_WrkK_2').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKK SIXTY_PERCENT_LINE1', '', 0), 0));
+        $('#lblNPT_WrkK_3').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKK NPT_PAGE1_LINE5', '', 0), 0));
+        $('#lblNPT_WrkK_4').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_WRKK BPT_TAX_CREDIT', '', 0), 0));
+        //Page 4
+        txtNPT_Page4_1a.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 INVENTORY_RAW_A', '', 0), 0);
+        txtNPT_Page4_1b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 INVENTORY_RAW_B', '', 0), 0);
+        txtNPT_Page4_2a.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 LAND_BUILDING_A', '', 0), 0);
+        txtNPT_Page4_2b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 LAND_BUILDING_B', '', 0), 0);
+        txtNPT_Page4_3a.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 MACHINERY_EQUIP_A', '', 0), 0);
+        txtNPT_Page4_3b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 MACHINERY_EQUIP_B', '', 0), 0);
+        txtNPT_Page4_4a.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 OTHER_ASSESTS_A', '', 0), 0);
+        txtNPT_Page4_4b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 OTHER_ASSESTS_B', '', 0), 0);
+        txtNPT_Page4_5a.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 RENTED_PROPERTY_A', '', 0), 0);
+        txtNPT_Page4_5b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 RENTED_PROPERTY_B', '', 0), 0);
+        $('#lblNPT_Page4_6a').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 TOTAL_VALUE_OUTSIDE', '', 0), 0));
+        $('#lblNPT_Page4_7b').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 TOTAL_VALUE_EVERYWHERE', '', 0), 0));
+        $('#lblNPT_Page4_8a').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 TOTAL_VALUE_OUTSIDE', '', 0), 0));
+        $('#lblNPT_Page4_8b').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 TOTAL_VALUE_EVERYWHERE', '', 0), 0));
+        $('#lblNPT_Page4_8c').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 OUTSIDE_PROPERTY_FACTOR', '', 0), 0));
+        txtNPT_Page4_9a.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 OUT_PHILLY_PAYROLL', '', 0), 0);
+        txtNPT_Page4_9b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 PAYROLL_EVERYWHERE', '', 0), 0);
+        $('#lblNPT_Page4_9c').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 OUTSIDE_PAYROLL_FACTOR', '', 0), 0));
+        txtNPT_Page4_10a.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 OUT_PHILLY_RECEIPTS', '', 0), 0);
+        txtNPT_Page4_10b.value = ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 GROSS_RECEIPTS_EVERYWHERE', '', 0), 0);
+        $('#lblNPT_Page4_10c').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 OUTSIDE_RECEIPTS_FACTOR', '', 0), 0));
+        $('#lblNPT_Page4_11').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 TOTAL_FACTORS', '', 0), 0));
+        $('#lblNPT_Page4_12').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 AVERAGE_FACTORS', '', 0), 0));
+        $('#lblNPT_Page4_13').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 WRKB_LINE4', '', 0), 0));
+        $('#lblNPT_Page4_14').text(ispFormatMoney(
+			ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_PG4 MULTIPLY_LINE13_LINE12', '', 0), 0)); ;
+    } 	//PopulateNPTData
+
+
+    function FieldLock(bDisabled) {
+
+        if (bDisabled == true) {
+
+            $('#txtTermDate').attr("disabled", "disabled");
+            $('#txtNPT1').attr("disabled", "disabled");
+            $('#lblNPT2').attr("disabled", "disabled");
+            $('#txtNPT3').attr("disabled", "disabled");
+            $('#lblNPT4').attr("disabled", "disabled");
+            $('#lblNPT5').attr("disabled", "disabled");
+            $('#lblNPT6a').attr("disabled", "disabled");
+            $('#txtNPT6b').attr("disabled", "disabled");
+            $('#lblNPT6c').attr("disabled", "disabled");
+            $('#lblNPT7').attr("disabled", "disabled");
+            $('#txtNPT8').attr("disabled", "disabled");
+            $('#lblNPT9').attr("disabled", "disabled");
+            $('#lblNPT10').attr("disabled", "disabled");
+            $('#txtNPT11').attr("disabled", "disabled");
+            $('#txtNPT12a').attr("disabled", "disabled");
+            $('#txtNPT12b').attr("disabled", "disabled");
+            $('#txtNPT12c').attr("disabled", "disabled");
+           // DisablePreparer(bDisabled);
+		
+			 $('#chkAgreement').attr("disabled", "disabled");
+            $('#btnNPTSubmit').attr("disabled", "disabled");
+            $('#lnkWrkA').attr("disabled", "disabled");
+            $('#lnkWrkB').attr("disabled", "disabled");
+            $('#lnkWrkC').attr("disabled", "disabled");
+            $('#lnkWrkD').attr("disabled", "disabled");
+            $('#lnkWrkE').attr("disabled", "disabled");
+
+        }
+        else {
+
+            $('#txtTermDate').removeAttr("disabled");
+            $('#txtNPT1').removeAttr("disabled");
+            $('#lblNPT2').removeAttr("disabled");
+            $('#txtNPT3').removeAttr("disabled");
+            $('#lblNPT4').removeAttr("disabled");
+            $('#lblNPT5').removeAttr("disabled");
+            $('#lblNPT6a').removeAttr("disabled");
+            $('#txtNPT6b').removeAttr("disabled");
+            $('#lblNPT6c').removeAttr("disabled");
+            $('#lblNPT7').removeAttr("disabled");
+            $('#txtNPT8').removeAttr("disabled");
+            $('#lblNPT9').removeAttr("disabled");
+            $('#lblNPT10').removeAttr("disabled");
+            $('#txtNPT11').removeAttr("disabled");
+            $('#txtNPT12a').removeAttr("disabled");
+            $('#txtNPT12b').removeAttr("disabled");
+            $('#txtNPT12c').removeAttr("disabled");
+          //  DisablePreparer(bDisabled);
+		  $('#chkAgreement').removeAttr("disabled");
+            $('#btnNPTSubmit').removeAttr("disabled");
+            $('#lnkWrkA').removeAttr("disabled");
+            $('#lnkWrkB').removeAttr("disabled");
+            $('#lnkWrkC').removeAttr("disabled");
+            $('#lnkWrkD').removeAttr("disabled");
+            $('#lnkWrkE').removeAttr("disabled");
+
+
+        }
+    } 	//FieldLock
+
+    function SetFocus() {
+        document.activeElement.select();
+    } 	//SetFocus
+
+    function btnNPTPrint_onclick() {
+        var objCurrDisplayed;
+
+        $('#btnNPTPrint').css("visibility", "hidden");
+        $('#btnNPTSubmit').css("visibility", "hidden");
+        //  btnNPTSubmit.style.visibility = 'hidden'
+        //NPT_pg2.style.pageBreakBefore = 'always'
+
+        if ($('#NPT').css("display") == 'block') {
+            objCurrDisplayed = NPT;
+            //NPT_pg2.style.display = 'block'
+
+            $('#NPT_WrkA').css("display", "block");
+            $('#NPT_WrkB').css("display", "block");
+            $('#NPT_WrkC').css("display", "block");
+            $('#NPT_WrkD').css("display", "block");
+            $('#NPT_WrkE').css("display", "block");
+            $('#NPT_WrkK').css("display", "block");
+            $('#NPT_Page4').css("display", "block");
+
+
+        }
+        /* else {
+        objCurrDisplayed = NPT_pg2
+        NPT.style.display = 'block'
+        }		//if
+        */
+        $('#AppError').text('');
+        /*
+        if (txtNPT2_1.disabled == true) {
+        FieldLock(false)
+        window.print()
+        FieldLock(true)
+        }*/
+        ///else {
+        window.print();
+        ///}		//if
+        $('#btnNPTPrint').css("visibility", "visible");
+        $('#btnNPTSubmit').css("visibility", "visible");
+
+
+        if (objCurrDisplayed = NPT) {
+            $('#NPT_WrkA').css("display", "none");
+            $('#NPT_WrkB').css("display", "none");
+            $('#NPT_WrkC').css("display", "none");
+            $('#NPT_WrkD').css("display", "none");
+            $('#NPT_WrkE').css("display", "none");
+            $('#NPT_WrkK').css("display", "none");
+            $('#NPT_Page4').css("display", "none");
+        }
+        /*
+        else {
+        NPT.style.display = 'none'
+        }		//if
+        */
+    } 	//btnNPTPrint_onclick
+
+    function btnNPTSubmit_onclick() {
+        //var tempXML = new ActiveXObject("MSXML.DOMDocument") //chayan
+
+
+        $('#AppError').text('');
+        ValidateWorksheet("Page1"); //chayan
+
+       
+        if ($('#AppError').text() == '' && $('#chkAgreement').attr("checked") == "checked") {
+            var tempXML = parent.MenuWin.getXmlDocObj();
+            tempXML.xml = parent.MenuWin.xmlNPT.xml;
+            txtTermDate_onblur();
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'NPT_INFO RETURN_STATUS', '', 0);
+            PopulateNPTXML();
+            parent.DocWin.ispCallXMLForm(parent.MenuWin.xmlNPT, tempXML, "NPTReturn", ""); //chayan
+            if (ispXmlGetFieldVal(tempXML, 'ERROR_INFO PROGRAM', '', 0) == '') {
+                // parent.MenuWin.xmlNPT.loadXML(tempXML.xml)//chayan
+                parent.MenuWin.xmlNPT = tempXML;
+                $('#NPT').css("display", "none");
+                DisplayNPTThankYou();
+            } else {
+                $('#AppError').text(ispXmlGetFieldVal(tempXML, 'ERROR_INFO MESSAGE', '', 0));
+
+            } 	//if
+        } 	//if
+		else if($('#chkAgreement').attr("checked") != "checked") {
+			 $('#AppError').text('Signature box must be checked before submitting the Net Profit Tax Form');
+		
+		}	
+    } 	//btnNPTSubmit_onclick
+
+
+    function DisplayNPTThankYou() {
+        $(frmePay.imgCards).attr("src", "../../Images/ePay.gif");
+        //	imgMC.src = '../../Images/mastercardlogo.gif'
+        // xmlCC.src = '../../xml/CCBilling.xml'
+        //  xmlCCTemplate.src = '../../xml/CCBilling.xml'
+
+
+        $('#NPT').css("visibility", "hidden");
+        $('#NPT').css("display", "none");
+
+        $('#NPT_Page1').css("visibility", "hidden");
+        $('#NPT_Page1').css("display", "none");
+
+        $('#NPT_WrkA').css("visibility", "hidden");
+        $('#NPT_WrkA').css("display", "none");
+
+        $('#NPT_WrkB').css("visibility", "hidden");
+        $('#NPT_WrkB').css("display", "none");
+
+        $('#NPT_WrkC').css("visibility", "hidden");
+        $('#NPT_WrkC').css("display", "none");
+
+        $('#NPT_WrkD').css("visibility", "hidden");
+        $('#NPT_WrkD').css("display", "none");
+
+        $('#NPT_WrkE').css("visibility", "hidden");
+        $('#NPT_WrkE').css("display", "none");
+
+        $('#NPT_WrkK').css("visibility", "hidden");
+        $('#NPT_WrkK').css("display", "none");
+
+        $('#NPT_Page4').css("visibility", "hidden");
+        $('#NPT_Page4').css("display", "none");
+
+
+
+        ///if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'NPT_INFO/PERIOD', '', 0) ==	'12/31/2003') {
+        $('#lblThankYouName').text($('#lblName').text());
+        ///}		//if
+        $('#lblAcctNo').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ENTITY_ID', '', 0));
+
+        if (ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO ADJUSTMENT_REF_NO', '', 0) != '') {
+            $('#lblConfirmNo').text(ispXmlGetFieldVal(parent.MenuWin.xmlNPT, 'NPT_INFO ADJUSTMENT_REF_NO', '', 0));
+
+        } else {
+            $('#lblConfirmNo').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ACCOUNT_ID', '', 0));
+
+        } 	//if Adjustment reference number
+        $('#divNPTThankYou').css("display", "block");
+        this.focus()
+        parent.MenuWin.gsInstructionItem = '';
+        $('#AppMessage').html('');
+        $('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|thank you</Font>');
+        $('#ccFeeText').text('A user fee of 2.49% will be charged in addition to the amount of tax due.');
+
+    } 	//DisplayThankyou
+
+    function DoThankYou() {
+        var sEmailMsg;
+        if (txaComments.value != '') {
+            sEmailMsg = '<p align=middle><strong>Comments and Feedback</strong></p>';
+            sEmailMsg += '<p>The following comments or feedback was submitted by: ';
+            sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS NAME', '', 0) + '</p>';
+            sEmailMsg += '<p>Company: ';
+            sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS TRADE_NAME', '', 0) + '</p>';
+            sEmailMsg += '<p>E-mail address: ';
+            sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS EMAIL', '', 0) + '</p><br>';
+            sEmailMsg += '<p><strong>Message: </strong></p>';
+            sEmailMsg += '<p>' + txaComments.value + '</p>';
+
+            // sEmailMsg = ispReplace(sEmailMsg, '>', '&GT&')
+            // sEmailMsg = ispReplace(sEmailMsg, '<', '&LT&')
+            sEmailMsg = sEmailMsg.replace('>', '&GT&');
+            sEmailMsg = sEmailMsg.replace('<', '&LT&');
+
+            ispXmlSetFieldVal(parent.MenuWin.xmlEmail, 'COMMENT', 'FUNCTION', '', 0); //chayan
+            ispXmlSetFieldVal(parent.MenuWin.xmlEmail, sEmailMsg, 'DATA', '', 0); //chayan
+
+            ispCallXMLForm(parent.MenuWin.xmlEmail, parent.MenuWin.xmlEmail, '../../MailPIN', ''); //chayan
+        } 	//if
+
+        parent.DocWin.location.href = '../../Acct/ApplyMain';
+    } 	//DoThankYou
+
+    function txtTermDate_onblur() {
+        if ($('#AppError').text() == "" && txtTermDate.value != "") {
+            var strBD = ispValidateDate(txtTermDate.value);
+
+            if (strBD == false) {
+                $('#AppError').text('Invalid termination date');
+                $('#txtTermDate').addClass("inpError");
+                blnErr = true;
+            } else {
+
+                $('#txtTermDate').addClass("inpNormal");
+                txtTermDate.value = strBD;
+            } 	//if
+        } else {
+            $('#txtTermDate').addClass("inpNormal");
+        } 	//if
+    } 	//txtToDate_onblur
+
+
+	function chkAgreement_onclick() {
+		ValidateWorksheet("Page1")
+	}		//chkAgreement
+
+    function chkAmended_onclick() {
+        if ($('#chkAmended').attr("checked") == "checked") {
+            //		parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuReNPT)
+            $('#NPT').css("display", "block");
+            $('#btnNPTSubmit').removeAttr("disabled");
+
+            FieldLock(false);
+            //ClearPreparer();
+            txtNPT1.focus();
+        } else {
+            //		parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuReNPT)
+            // NPT.style.display = 'block'
+            $('#NPT').css("display", "block");
+            $('#btnNPTSubmit').attr("disabled", "disabled");
+            //btnNPTSubmit.disabled = true
+				chkAgreement.checked = false
+            FieldLock(true); ;
+           // PopulatePreparer(parent.MenuWin.xmlNPT, 'NPT_INFO');
+        } 	//if
+    } 	//chkAmended_onclick
+
+    function LocatePrimaryAddr() {
+        var iMaxIdx = ispXmlGetRecCount(parent.MenuWin.xmlAccount, 'NAME_ADDRESS', '');
+
+        for (idx = 0; idx < iMaxIdx; i++) {
+            if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS ADDRESS_TYPE', '', idx) == '60') {
+                if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS RELATIONSHIP_CODE', '', idx) == '0') {
+                    return idx;
+                } 	//if
+            } else {
+                //alert ('primary addr not found')
+                return 0
+            } 	//if
+        } 	//for
+    } 	//locatePrimaryAddr
+
+    function PopulateNPTXML() { //chayan
+        var d = new Date();
+        var lYear = String(d.getFullYear());
+        var lMonth = String(d.getMonth() + 1);
+        lMonth = lMonth.length == 1 ? '0' + lMonth : lMonth;
+        var lDate = String(d.getDate());
+        lDate = lDate.length == 1 ? '0' + lDate : lDate;
+
+       // with (parent.MenuWin) {
+            //Page 1
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, lMonth + '/' + lDate + '/' + lYear, 'NPT_INFO RECORDING_DATE', '', 0);
+
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT1.value), 'NPT_PG1 RESIDENT_INCOME', '', 0);
+			//alert($('#lblNPT2').text());
+			//alert(stripCurrency($('#lblNPT2').text()));
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT2').text()), 'NPT_PG1 RESIDENT_INCOME_TAX', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT3.value), 'NPT_PG1 NON_RES_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT4').text()), 'NPT_PG1 NON_RES_INCOME_TAX', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT5').text()), 'NPT_PG1 TOTAL_TAX', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT6a').text()), 'NPT_PG1 BPT_TAX_CREDIT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT6b.value), 'NPT_PG1 OTHER_TAX_CREDIT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT6c').text()), 'NPT_PG1 TOTAL_PAY_CREDITS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT7').text()), 'NPT_PG1 TAX_DUE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT8.value), 'NPT_PG1 INTEREST_PENALTY', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT9').text()), 'NPT_PG1 TOTAL_DUE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT10').text()), 'NPT_PG1 OVERPAY', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT11.value), 'NPT_PG1 LINE11', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT12a.value), 'NPT_PG1 REFUND', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT12b.value), 'NPT_PG1 BPT_OVERPAY', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT12c.value), 'NPT_PG1 NPT_OVERPAY', '', 0);
+           // PopulatePreparerXML(parent.MenuWin.xmlNPT, 'NPT_INFO');
+            //WrkA
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkA_1.value), 'NPT_WRKA RESIDENT_NET_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkA_2.value), 'NPT_WRKA RESIDENT_FORM_1065', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkA_3.value), 'NPT_WRKA RESIDENT_OTHER_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkA_4').text()), 'NPT_WRKA RESIDENT_TAXABLE_INCOME', '', 0);
+            //WrkB
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkB_1.value), 'NPT_WRKB NON_RES__NET_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkB_2.value), 'NPT_WRKB NON_RES_FORM_1065', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkB_3.value), 'NPT_WRKB NON_RES_OTHER_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkB_4').text()), 'NPT_WRKB NON_RES_TOTAL_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkB_5').text()), 'NPT_WRKB NON_RES_OUTSIDE_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkB_6').text()), 'NPT_WRKB NON_RES_TAXABLE_INCOME', '', 0);
+            //WrkC
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkC_1').text()), 'NPT_WRKC NET_PROFITS_LIABILTY', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkC_2').text()), 'NPT_WRKC BTP_TAX_CREDIT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkC_3').text()), 'NPT_WRKC ESTIMATED_PAYMENT_BASE', '', 0);
+            //WrkD
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkD_1.value), 'NPT_WRKD PORTION_TAXABLE_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkD_2.value), 'NPT_WRKD TOTAL_TAXABLE_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkD_3').text()), 'NPT_WRKD PERCENTAGE_TAXABLE_INCOME', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkD_4').text()), 'NPT_WRKD WRKK_LINE2', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkD_5').text()), 'NPT_WRKD MULTIPLY_LINE4_PERCENTAGE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkD_6').text()), 'NPT_WRKD SUBTRACT_LINE5_LINE4', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkD_7').text()), 'NPT_WRKD PAGE1_LINE5', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkD_8').text()), 'NPT_WRKD BPT_TAX_CREDIT', '', 0);
+            //WrkE
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkE_1.value), 'NPT_WRKE ESTIMATED_PROFIT_PAYMENT', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkE_2.value), 'NPT_WRKE PAYMENTS_WITH_EXTENSION', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkE_3.value), 'NPT_WRKE PRIOR_OVERPAYMENT_TBA', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkE_4').text()), 'NPT_WRKE TOTAL_PAYMENTS_CREDITS', '', 0);
+            //WrkK
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_WrkK_1.value), 'NPT_WRKK BPT_PAGE1_LINE1', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkK_2').text()), 'NPT_WRKK SIXTY_PERCENT_LINE1', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkK_3').text()), 'NPT_WRKK NPT_PAGE1_LINE5', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_WrkK_4').text()), 'NPT_WRKK BPT_TAX_CREDIT', '', 0);
+            //Page 4
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_1a.value), 'NPT_PG4 INVENTORY_RAW_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_1b.value), 'NPT_PG4 INVENTORY_RAW_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_2a.value), 'NPT_PG4 LAND_BUILDING_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_2b.value), 'NPT_PG4 LAND_BUILDING_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_3a.value), 'NPT_PG4 MACHINERY_EQUIP_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_3b.value), 'NPT_PG4 MACHINERY_EQUIP_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_4a.value), 'NPT_PG4 OTHER_ASSESTS_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_4b.value), 'NPT_PG4 OTHER_ASSESTS_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_5a.value), 'NPT_PG4 RENTED_PROPERTY_A', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_5b.value), 'NPT_PG4 RENTED_PROPERTY_B', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_6a').text()), 'NPT_PG4 TOTAL_VALUE_OUTSIDE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_7b').text()), 'NPT_PG4 TOTAL_VALUE_EVERYWHERE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_8a').text()), 'NPT_PG4 TOTAL_VALUE_OUTSIDE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_8b').text()), 'NPT_PG4 TOTAL_VALUE_EVERYWHERE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_8c').text()), 'NPT_PG4 OUTSIDE_PROPERTY_FACTOR', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_9a.value), 'NPT_PG4 OUT_PHILLY_PAYROLL', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_9b.value), 'NPT_PG4 PAYROLL_EVERYWHERE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_9c').text()), 'NPT_PG4 OUTSIDE_PAYROLL_FACTOR', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_10a.value), 'NPT_PG4 OUT_PHILLY_RECEIPTS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency(txtNPT_Page4_10b.value), 'NPT_PG4 GROSS_RECEIPTS_EVERYWHERE', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_10c').text()), 'NPT_PG4 OUTSIDE_RECEIPTS_FACTOR', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_11').text()), 'NPT_PG4 TOTAL_FACTORS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_12').text()), 'NPT_PG4 AVERAGE_FACTORS', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_13').text()), 'NPT_PG4 WRKB_LINE4', '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, stripCurrency($('#lblNPT_Page4_14').text()), 'NPT_PG4 MULTIPLY_LINE13_LINE12', '', 0);
+
+            ispXmlSetFieldVal(parent.MenuWin.xmlNPT, '', 'DEBUG', '', 0);
+       // } 	//with
+		//clipboardData.setData ('Text', parent.MenuWin.xmlNPT.xml.xml);
+    } 	//PopulateNPTXML
+
+    function ShowPage(iPage, iWrk) {
+
+
+        $('#AppMessage').css("visibility", "hidden");
+        $('#InstructionText').css("visibility", "hidden");
+
+		$('#NPT').css("visibility", "visible");
+		$('#NPT').css("display", "block");
+
+        $('#NPT_Page1').css("visibility", "hidden");
+        $('#NPT_Page1').css("display", "none");
+
+        $('#NPT_WrkA').css("visibility", "hidden");
+        $('#NPT_WrkA').css("display", "none");
+
+        $('#NPT_WrkB').css("visibility", "hidden");
+        $('#NPT_WrkB').css("display", "none");
+
+        $('#NPT_WrkC').css("visibility", "hidden");
+        $('#NPT_WrkC').css("display", "none");
+
+        $('#NPT_WrkD').css("visibility", "hidden");
+        $('#NPT_WrkD').css("display", "none");
+
+        $('#NPT_WrkE').css("visibility", "hidden");
+        $('#NPT_WrkE').css("display", "none");
+
+        $('#NPT_WrkK').css("visibility", "hidden");
+        $('#NPT_WrkK').css("display", "none");
+
+        $('#NPT_Page4').css("visibility", "hidden");
+        $('#NPT_Page4').css("display", "none");
+
+
+        switch (iPage) {
+            case "Page1":
+                ///parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuBPTezYear05Page2)
+                //parent.MenuWin.ispHighlightMenu(parent.MenuWin.mnuReNPT)
+                ///NPT.style.visibility = "visible"
+                ///NPT.style.display = "block"
+
+
+                $('#AppMessage').css("visibility", "visible");
+                $('#InstructionText').css("visibility", "visible");
+				
+                // NPT_Page1.style.visibility = "visible"
+                // NPT_Page1.style.display = "block"
+                $('#NPT_Page1').css("visibility", "visible");
+                $('#NPT_Page1').css("display", "block");
+
+                $('#btnNPTSubmit').removeAttr("disabled");
+                FieldLock(false);
+
+                switch (iWrk) {
+                    case "WrkA":
+                        txtNPT1.focus();
+                        break;
+                    case "WrkB":
+                        txtNPT3.focus();
+                        break;
+                    case "WrkC":
+                        txtNPT11.focus();
+                        break;
+                    case "WrkD":
+                        txtPercentage.focus();
+                        break;
+                    case "WrkE":
+                        txtNPT6b.focus();
+                        break;
+                    case "WrkK":
+                        txtNPT6b.focus();
+                        break;
+                } //switch
+
+                //DisplayNetIncome()
+                break
+
+            case "WrkA":
+                // NPT_WrkA.style.visibility = "visible"
+                // NPT_WrkA.style.display = "block"
+                $('#NPT_WrkA').css("visibility", "visible");
+                $('#NPT_WrkA').css("display", "block");
+                $('#btnNPTSubmit').attr("disabled", "disabled");
+                //btnNPTSubmit.disabled = true
+                break;
+
+            case "WrkB":
+
+                $('#NPT_WrkB').css("visibility", "visible");
+                $('#NPT_WrkB').css("display", "block");
+                $('#btnNPTSubmit').attr("disabled", "disabled");
+                break;
+
+            case "WrkC":
+
+                $('#NPT_WrkC').css("visibility", "visible");
+                $('#NPT_WrkC').css("display", "block");
+                $('#btnNPTSubmit').attr("disabled", "disabled");
+                break;
+
+            case "WrkD":
+				
+                $('#NPT_WrkD').css("visibility", "visible");
+                $('#NPT_WrkD').css("display", "block");
+                $('#btnNPTSubmit').attr("disabled", "disabled");
+                break;
+
+            case "WrkE":
+
+                $('#NPT_WrkE').css("visibility", "visible");
+                $('#NPT_WrkE').css("display", "block");
+                $('#btnNPTSubmit').attr("disabled", "disabled");
+                break;
+
+            case "WrkK":
+
+                $('#NPT_WrkK').css("visibility", "visible");
+                $('#NPT_WrkK').css("display", "block");
+                $('#btnNPTSubmit').attr("disabled", "disabled");
+                break;
+            case "Page4":
+
+                $('#NPT_Page4').css("visibility", "visible");
+                $('#NPT_Page4').css("display", "block");
+                $('#btnNPTSubmit').attr("disabled", "disabled");
+                break;
+        } //switch
+        $('#AppError').text('');
+		
+        PerformCalcs(iPage);
+	
+        LoadError(iPage);
+			
+        ValidateWorksheet(iPage);
+		
+    } //ShowPage
+
+
+    function LoadError(formId) {
+        ///arrWrkErr = new Array()//Reset Array on each call (Different Page/Worksheet)
+        var i = 0;
+
+        switch (formId) {
+            case "Page1":
+                arrPage1Err[i++] = [txtTermDate, 'txtTermDate.value != "" & ispValidateDate(txtTermDate.value) == false', 'Invalid to termination date'];
+
+
+                arrPage1Err[i++] = [txtNPT1, 'txtNPT1.value == ""', 'Answer Question 1'];
+                arrPage1Err[i++] = [txtNPT1, 'ispValue(txtNPT1.value) == false', 'Value for Question 1 must be numeric'];
+                //			arrPage1Err[i++] = [txtNPT1, 'ispNegativeNumber(txtNPT1.value) == false', 'Value for Question 1 must NOT be negative']
+
+                arrPage1Err[i++] = [txtNPT3, 'txtNPT3.value == ""', 'Answer Question 3'];
+                arrPage1Err[i++] = [txtNPT3, 'ispValue(txtNPT3.value) == false', 'Value for Question 3 must be numeric'];
+                //			arrPage1Err[i++] = [txtNPT3, 'ispNegativeNumber(txtNPT3.value) == false', 'Value for Question 3 must NOT be negative']
+
+                //			arrPage1Err[i++] = [lblNPT6a, 'lblNPT6a.innerText == ""', 'Answer Question 6a']
+                //			arrPage1Err[i++] = [lblNPT6a, 'ispValue(lblNPT6a.innerText) == false', 'Value for Question 6a must be numeric']
+                //			arrPage1Err[i++] = [lblNPT6a, 'ispNegativeNumber(lblNPT6a.innerText) == false', 'Value for Question 6a must NOT be negative']
+
+                arrPage1Err[i++] = [txtNPT6b, 'txtNPT6b.value == ""', 'Answer Question 6b'];
+                arrPage1Err[i++] = [txtNPT6b, 'ispValue(txtNPT6b.value) == false', 'Value for Question 6b must be numeric'];
+                arrPage1Err[i++] = [txtNPT6b, 'ispNegativeNumber(txtNPT6b.value) == false', 'Value for Question 6b must NOT be negative'];
+
+                arrPage1Err[i++] = [txtNPT8, 'txtNPT8.value == ""', 'Answer Question 8'];
+                arrPage1Err[i++] = [txtNPT8, 'ispValue(txtNPT8.value) == false', 'Value for Question 8 must be numeric'];
+                arrPage1Err[i++] = [txtNPT8, 'ispNegativeNumber(txtNPT8.value) == false', 'Value for Question 8 must NOT be negative'];
+
+                arrPage1Err[i++] = [txtNPT11, 'txtNPT11.value == ""', 'Answer Question 11']
+                arrPage1Err[i++] = [txtNPT11, 'ispValue(txtNPT11.value) == false', 'Value for Question 11 must be numeric']
+                arrPage1Err[i++] = [txtNPT11, 'ispNegativeNumber(txtNPT11.value) == false', 'Value for Question 11 must NOT be negative']
+
+                //			if (!radNPT12(0).disabled)
+                //			{
+                //				arrPage1Err[i++] = [radNPT12(0), 'radNPT12(0).checked == false && radNPT12(1).checked == false && radNPT12(2).checked == false',
+                //							 'Please Select an option for Question 12.']
+                //				arrPage1Err[i++] = [radNPT12(1), 'radNPT12(0).checked == false && radNPT12(1).checked == false && radNPT12(2).checked == false',
+                //							 'Please Select an option for Question 12.']
+                //				arrPage1Err[i++] = [radNPT12(2), 'radNPT12(0).checked == false && radNPT12(1).checked == false && radNPT12(2).checked == false',
+                //							 'Please Select an option for Question 12.']						 			
+                //			}//if
+                ///arrPage1Err[i++] = [chkAgreement, 'chkAgreement.checked == false', 'Signature box must be checked before submitting the Net Profit Tax Form']			
+                ///arrPage1Err[i++] = [chkAgreement, 'NPT_Page1.style.display == "block" && chkAgreement.checked == false', 'Signature box must be checked before submitting the Net Profit Tax Form']			
+                //	arrPage1Err[i++] = [radNPT12(0), '', '']
+                //	arrPage1Err[i++] = [radNPT12(1), '', '']
+                //	arrPage1Err[i++] = [radNPT12(2), '', '']
+                break
+
+            case "WrkA":
+                ///arrWrkAErr[i++] = [txtNPT_WrkA_1, 'txtNPT_WrkA_1.value == ""', 'Answer Question 1']
+                arrWrkAErr[i++] = [txtNPT_WrkA_1, 'ispValue(txtNPT_WrkA_1.value) == false', 'Value for Question 1 must be numeric'];
+
+                ///arrWrkAErr[i++] = [txtNPT_WrkA_2, 'txtNPT_WrkA_2.value == ""', 'Answer Question 2']
+                arrWrkAErr[i++] = [txtNPT_WrkA_2, 'ispValue(txtNPT_WrkA_2.value) == false', 'Value for Question 2 must be numeric'];
+                ///arrWrkAErr[i++] = [txtNPT_WrkA_2, 'ispNegativeNumber(txtNPT_WrkA_2.value) == false', 'Value for Question 2 must NOT be negative']
+
+                ///arrWrkAErr[i++] = [txtNPT_WrkA_3, 'txtNPT_WrkA_3.value == ""', 'Answer Question 3']
+                arrWrkAErr[i++] = [txtNPT_WrkA_3, 'ispValue(txtNPT_WrkA_3.value) == false', 'Value for Question 3 must be numeric'];
+                ///arrWrkAErr[i++] = [txtNPT_WrkA_3, 'ispNegativeNumber(txtNPT_WrkA_3.value) == false', 'Value for Question 3 must NOT be negative']
+                break
+
+            case "WrkB":
+                ///arrWrkBErr[i++] = [txtNPT_WrkB_1, 'txtNPT_WrkB_1.value == ""', 'Answer Question 1']
+                arrWrkBErr[i++] = [txtNPT_WrkB_1, 'ispValue(txtNPT_WrkB_1.value) == false', 'Value for Question 1 must be numeric'];
+
+                ///arrWrkBErr[i++] = [txtNPT_WrkB_2, 'txtNPT_WrkB_2.value == ""', 'Answer Question 2']
+                arrWrkBErr[i++] = [txtNPT_WrkB_2, 'ispValue(txtNPT_WrkB_2.value) == false', 'Value for Question 2 must be numeric'];
+                ///arrWrkBErr[i++] = [txtNPT_WrkB_2, 'ispNegativeNumber(txtNPT_WrkB_2.value) == false', 'Value for Question 2 must NOT be negative']
+
+                ///arrWrkBErr[i++] = [txtNPT_WrkB_3, 'txtNPT_WrkB_3.value == ""', 'Answer Question 3']
+                arrWrkBErr[i++] = [txtNPT_WrkB_3, 'ispValue(txtNPT_WrkB_3.value) == false', 'Value for Question 3 must be numeric'];
+                ///arrWrkBErr[i++] = [txtNPT_WrkB_3, 'ispNegativeNumber(txtNPT_WrkB_3.value) == false', 'Value for Question 3 must NOT be negative']	
+                break
+
+            case "WrkD":
+                ///arrWrkDErr[i++] = [txtNPT_WrkD_1, 'txtNPT_WrkD_1.value == ""', 'Answer Question 1']
+                arrWrkDErr[i++] = [txtNPT_WrkD_1, 'ispValue(txtNPT_WrkD_1.value) == false', 'Value for Question 1 must be numeric'];
+                ///arrWrkDErr[i++] = [txtNPT_WrkD_1, 'ispNegativeNumber(txtNPT_WrkD_1.value) == false', 'Value for Question 1 must NOT be negative']
+
+                ///arrWrkDErr[i++] = [txtNPT_WrkD_2, 'txtNPT_WrkD_2.value == ""', 'Answer Question 2']
+                arrWrkDErr[i++] = [txtNPT_WrkD_2, 'ispValue(txtNPT_WrkD_2.value) == false', 'Value for Question 2 must be numeric'];
+                ///arrWrkDErr[i++] = [txtNPT_WrkD_2, 'ispNegativeNumber(txtNPT_WrkD_2.value) == false', 'Value for Question 2 must NOT be negative']
+                break
+
+            case "WrkE":
+                ///arrWrkEErr[i++] = [txtNPT_WrkE_1, 'txtNPT_WrkE_1.value == ""', 'Answer Question 1']
+                arrWrkEErr[i++] = [txtNPT_WrkE_1, 'ispValue(txtNPT_WrkE_1.value) == false', 'Value for Question 1 must be numeric'];
+                ///arrWrkEErr[i++] = [txtNPT_WrkE_1, 'ispNegativeNumber(txtNPT_WrkE_1.value) == false', 'Value for Question 1 must NOT be negative']
+
+                ///arrWrkEErr[i++] = [txtNPT_WrkE_2, 'txtNPT_WrkE_2.value == ""', 'Answer Question 2']
+                arrWrkEErr[i++] = [txtNPT_WrkE_2, 'ispValue(txtNPT_WrkE_2.value) == false', 'Value for Question 2 must be numeric'];
+                ///arrWrkEErr[i++] = [txtNPT_WrkE_2, 'ispNegativeNumber(txtNPT_WrkE_2.value) == false', 'Value for Question 2 must NOT be negative']
+
+                ///arrWrkEErr[i++] = [txtNPT_WrkE_3, 'txtNPT_WrkE_3.value == ""', 'Answer Question 3']
+                arrWrkEErr[i++] = [txtNPT_WrkE_3, 'ispValue(txtNPT_WrkE_3.value) == false', 'Value for Question 3 must be numeric'];
+                ///arrWrkEErr[i++] = [txtNPT_WrkE_3, 'ispNegativeNumber(txtNPT_WrkE_3.value) == false', 'Value for Question 3 must NOT be negative']
+                break
+
+            case "WrkK":
+                ///arrWrkKErr[i++] = [txtNPT_WrkK_1, 'txtNPT_WrkK_1.value == ""', 'Answer Question 1']
+                arrWrkKErr[i++] = [txtNPT_WrkK_1, 'ispValue(txtNPT_WrkK_1.value) == false', 'Value for Question 1 must be numeric'];
+                ///arrWrkKErr[i++] = [txtNPT_WrkK_1, 'ispNegativeNumber(txtNPT_WrkK_1.value) == false', 'Value for Question 1 must NOT be negative']
+                break
+
+            case "Page4":
+                ///arrPage4Err[i++] = [txtNPT_Page4_1a, 'txtNPT_Page4_1a.value == ""', 'Answer Question 1a']
+                arrPage4Err[i++] = [txtNPT_Page4_1a, 'ispValue(txtNPT_Page4_1a.value) == false', 'Value for Question 1a must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_1a, 'ispNegativeNumber(txtNPT_Page4_1a.value) == false', 'Value for Question 1a must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_1b, 'txtNPT_Page4_1b.value == ""', 'Answer Question 1b']
+                arrPage4Err[i++] = [txtNPT_Page4_1b, 'ispValue(txtNPT_Page4_1b.value) == false', 'Value for Question 1b must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_1b, 'ispNegativeNumber(txtNPT_Page4_1b.value) == false', 'Value for Question 1b must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_2a, 'txtNPT_Page4_2a.value == ""', 'Answer Question 2a']
+                arrPage4Err[i++] = [txtNPT_Page4_2a, 'ispValue(txtNPT_Page4_2a.value) == false', 'Value for Question 2a must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_2a, 'ispNegativeNumber(txtNPT_Page4_2a.value) == false', 'Value for Question 2a must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_2b, 'txtNPT_Page4_2b.value == ""', 'Answer Question 2b']
+                arrPage4Err[i++] = [txtNPT_Page4_2b, 'ispValue(txtNPT_Page4_2b.value) == false', 'Value for Question 2b must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_2b, 'ispNegativeNumber(txtNPT_Page4_2b.value) == false', 'Value for Question 2b must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_3a, 'txtNPT_Page4_3a.value == ""', 'Answer Question 3a']
+                arrPage4Err[i++] = [txtNPT_Page4_3a, 'ispValue(txtNPT_Page4_3a.value) == false', 'Value for Question 3a must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_3a, 'ispNegativeNumber(txtNPT_Page4_3a.value) == false', 'Value for Question 3a must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_3b, 'txtNPT_Page4_3b.value == ""', 'Answer Question 3b']
+                arrPage4Err[i++] = [txtNPT_Page4_3b, 'ispValue(txtNPT_Page4_3b.value) == false', 'Value for Question 3b must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_3b, 'ispNegativeNumber(txtNPT_Page4_3b.value) == false', 'Value for Question 3b must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_4a, 'txtNPT_Page4_4a.value == ""', 'Answer Question 4a']
+                arrPage4Err[i++] = [txtNPT_Page4_4a, 'ispValue(txtNPT_Page4_4a.value) == false', 'Value for Question 4a must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_4a, 'ispNegativeNumber(txtNPT_Page4_4a.value) == false', 'Value for Question 4a must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_4b, 'txtNPT_Page4_4b.value == ""', 'Answer Question 4b']
+                arrPage4Err[i++] = [txtNPT_Page4_4b, 'ispValue(txtNPT_Page4_4b.value) == false', 'Value for Question 4b must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_4b, 'ispNegativeNumber(txtNPT_Page4_4b.value) == false', 'Value for Question 4b must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_5a, 'txtNPT_Page4_5a.value == ""', 'Answer Question 5a']
+                arrPage4Err[i++] = [txtNPT_Page4_5a, 'ispValue(txtNPT_Page4_5a.value) == false', 'Value for Question 5a must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_5a, 'ispNegativeNumber(txtNPT_Page4_5a.value) == false', 'Value for Question 5a must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_5b, 'txtNPT_Page4_5b.value == ""', 'Answer Question 5b']
+                arrPage4Err[i++] = [txtNPT_Page4_5b, 'ispValue(txtNPT_Page4_5b.value) == false', 'Value for Question 5b must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_5b, 'ispNegativeNumber(txtNPT_Page4_5b.value) == false', 'Value for Question 5b must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_9a, 'txtNPT_Page4_9a.value == ""', 'Answer Question 9a']
+                arrPage4Err[i++] = [txtNPT_Page4_9a, 'ispValue(txtNPT_Page4_9a.value) == false', 'Value for Question 9a must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_9a, 'ispNegativeNumber(txtNPT_Page4_9a.value) == false', 'Value for Question 9a must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_9b, 'txtNPT_Page4_9b.value == ""', 'Answer Question 9b']
+                arrPage4Err[i++] = [txtNPT_Page4_9b, 'ispValue(txtNPT_Page4_9b.value) == false', 'Value for Question 9b must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_9b, 'ispNegativeNumber(txtNPT_Page4_9b.value) == false', 'Value for Question 9b must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_10a, 'txtNPT_Page4_10a.value == ""', 'Answer Question 10a']
+                arrPage4Err[i++] = [txtNPT_Page4_10a, 'ispValue(txtNPT_Page4_10a.value) == false', 'Value for Question 10a must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_10a, 'ispNegativeNumber(txtNPT_Page4_10a.value) == false', 'Value for Question 10a must NOT be negative']
+
+                ///arrPage4Err[i++] = [txtNPT_Page4_10b, 'txtNPT_Page4_10b.value == ""', 'Answer Question 10b']
+                arrPage4Err[i++] = [txtNPT_Page4_10b, 'ispValue(txtNPT_Page4_10b.value) == false', 'Value for Question 10b must be numeric'];
+                ///arrPage4Err[i++] = [txtNPT_Page4_10b, 'ispNegativeNumber(txtNPT_WrkK_10b.value) == false', 'Value for Question 10b must NOT be negative']
+                break;
+        } //Switch
+    } //LoadError
+
+    function ValidateWorksheet(formId) {
+		var evt = window.event || arguments.callee.caller.arguments[0];
+		var source = parent.MenuWin.getEventSource(evt);
+          
+        var ObjSelected;
+
+        $('#AppError').text('');
+		if(source != null)
+		{
+			var sId = source.id;
+			
+			if(sId !=null && sId !='')
+			{
+				ObjSelected = document.getElementById(sId);
+				//alert(source.type);
+				if(ObjSelected !=null )
+				{
+					if (ObjSelected.value == '' && ObjSelected.id != 'txtPercentage'  && source.type != 'button') {
+						
+						ObjSelected.value = ispFormatMoney(0, 0);
+					}
+					else if (ObjSelected.value != '' && ObjSelected.id != 'txtPercentage'  && source.type != 'button')
+					{
+							ObjSelected.value = ispFormatMoney(ObjSelected.value, 0);
+					}
+				}
+			}
+		}
+
+        switch (formId) {
+            case "Page1":
+                $('#AppError').text(ispSetInputErr(arrPage1Err));
+				//alert('ValidateWorksheet');
+                PerformCalcs(formId);
+                break;
+
+            case "WrkA":
+                $('#AppError').text(ispSetInputErr(arrWrkAErr));
+                break;
+
+            case "WrkB":
+                $('#AppError').text(ispSetInputErr(arrWrkBErr));
+                break
+
+            case "WrkD":
+                $('#AppError').text(ispSetInputErr(arrWrkDErr));
+                break
+
+            case "WrkE":
+                $('#AppError').text(ispSetInputErr(arrWrkEErr));
+                break
+
+            case "WrkK":
+                $('#AppError').text(ispSetInputErr(arrWrkKErr));
+                break
+
+            case "Page4":
+                $('#AppError').text(ispSetInputErr(arrPage4Err));
+                break
+        } //Switch
+
+        if ($('#AppError').text() == '') {
+            PerformCalcs(formId);
+        }
+        else {
+            AppError.scrollIntoView(true); //chayan
+        } 	//if
+    } //ValidateWorksheet			
+
+    function PerformCalcs(formId) {
+        switch (formId) {
+            case "Page1":
+                CalcPage1Line2(dNPTResidentRate);
+                CalcPage1Line3();
+                CalcPage1Line4(dNPTNonResidentRate);
+                CalcPage1Line5();
+                //EGOVWEB-78 Page 1, Line 6a
+               /* CalkWrkKLine2();
+                CalcWrkKLine4();
+                CalcWrkDLine3();
+                CalcWrkDLine5();
+				
+                CalcWrkDLine6();
+                CalcWrkDLine8();*/
+				//alert('PerformCalcs');
+                CalcPage1Line6c();
+                CalcPage1Line7();
+                CalcPage1Line9();
+                CalcPage1Line10();
+                //EGOVWEB-78 Page 1, Line 11
+               // CalcWrkCLine3();
+                CalcPage1Line12();
+                break;
+
+            case "WrkA":
+                CalcWrkALine4();
+                break;
+
+            case "WrkB":
+                CalcWrkBLine4();
+                //EHD per Tom Removed
+                //			CalcWrkBLine6()
+                break;
+
+            case "WrkC":
+                CalcWrkCLine3();
+                break;
+
+            case "WrkD":
+                CalcWrkDLine3();
+                CalcWrkDLine5();
+                CalcWrkDLine6();
+                CalcWrkDLine8();
+                break;
+
+            case "WrkE":
+                CalcWrkELine4();
+                break;
+
+            case "WrkK":
+                CalkWrkKLine2();
+                CalcWrkKLine4();
+                break;
+
+            case "Page4":
+                CalcPage4Line6a();
+                CalcPage4Line7b();
+                CalcPage4Line8c();
+                CalcPage4Line9c();
+                CalcPage4Line10c();
+                CalcPage4Line11();
+                CalcPage4Line12();
+                CalcPage4Line14();
+                break;
+        } //Switch
+    } //PerformCalcs
+
+    function chkCorpMembers_onclick() {//Determine if questions 3 & 4 of Worksheet K are needed or if Worksheet D will be used instead
+        if ($('#chkCorpMembers').attr("checked") == "checked") {//Companay has Corporate Members
+            $('#CorpMembers_1').css("visibility", "hidden");
+            $('#CorpMembers_1').css("display", "none");
+            $('#CorpMembers_2').css("visibility", "hidden");
+            $('#CorpMembers_2').css("display", "none");
+
+            hasCorpMembers = true;
+        }
+        else {//Company does not have Corporate Members
+
+            $('#CorpMembers_1').css("visibility", "visible");
+            $('#CorpMembers_1').css("display", "block");
+			$('#CorpMembers_1').removeAttr("style");
+            $('#CorpMembers_2').css("visibility", "visible");
+            $('#CorpMembers_2').css("display", "block");
+			$('#CorpMembers_2').removeAttr("style");
+
+            hasCorpMembers = false;
+        }
+        PerformCalcs("WrkK")
+    } //chkCorpMembers_onclick()
+
+
+    //Begin Calculations
+
+    function PrepForMath(numString) {//Removes $ and , from the string and forces the string into a number
+        if (numString != 'undefined' && numString != null && numString != '') {
+            var temp;
+            temp = numString;
+
+            if (temp.indexOf("(") == -1) {
+                return temp = (1 * (temp.replace(/[,$]/g, "")));
+            }
+            else {//Negative Value
+                temp = temp.replace(/[,$()]/g, "");
+                temp = (-1) * temp;
+                return temp;
+            }
+        }
+    } //PrepForMath
+    function parseCurrency(value) {
+        return ispRemoveMoney(value);
+    }
+    //*****Page 1*****
+    function CalcPage1Line2(rRate) {//Line 1 times Resident Rate
+        if (txtNPT1.value == "") {  //chayan
+            $('#lblNPT2').text(ispFormatMoney(0, 0));
+
+        } 	//if
+
+        if (parseCurrency(txtNPT1.value) < 0) {
+            $('#lblNPT2').text(ispFormatMoney(0, 0));
+        } else {
+            $('#lblNPT2').text(ispFormatMoney((parseCurrency(txtNPT1.value) * rRate), 0));
+            //lblNPT2.innerText = ispFormatMoney((parseCurrency(txtNPT1.value) * rRate), 0)
+        } 	//if
+    } //CalcPage1Line2
+
+    function CalcPage1Line3() {//Enter here and on WrkB Line 6
+        if (txtNPT3.value != "") {
+
+            $('#lblNPT_WrkB_6').text(txtNPT3.value);
+        }
+    } //CalcPage1Line3
+
+    function CalcPage1Line4(nrRate) {//Line 3 times Non-Resident Rate
+        if (txtNPT3.value == "") {
+
+            $('#lblNPT4').text(ispFormatMoney(0, 0));
+        } 	//if
+
+        if (parseCurrency(txtNPT3.value) < 0) {
+            $('#lblNPT4').text(ispFormatMoney(0, 0));
+        } else {
+            $('#lblNPT4').text(ispFormatMoney((parseCurrency(txtNPT3.value) * nrRate), 0));
+            //lblNPT4.innerText = ispFormatMoney((parseCurrency(txtNPT3.value) * nrRate), 0)
+        } 	//if
+    } //CalcPage1Line4
+
+    function CalcPage1Line5() {//Line 2 Plus Line 4, Enter here and WrkC Line 1, WrkD Line 7 and WrkK Line 3
+        if ($('#lblNPT2').text() != '' && $('#lblNPT4').text() != '') {
+            // lblNPT5.innerText = ispFormatMoney((parseCurrency(lblNPT2.innerText) + parseCurrency(lblNPT4.innerText)), 0)
+            $('#lblNPT5').text(ispFormatMoney((parseCurrency($('#lblNPT2').text()) + parseCurrency($('#lblNPT4').text())), 0))
+            //lblNPT_WrkC_1.innerText = lblNPT5.innerText
+            //lblNPT_WrkD_7.innerText = lblNPT5.innerText
+            //lblNPT_WrkK_3.innerText = lblNPT5.innerText
+            $('#lblNPT_WrkC_1').text($('#lblNPT5').text());
+            $('#lblNPT_WrkD_7').text($('#lblNPT5').text());
+            $('#lblNPT_WrkK_3').text($('#lblNPT5').text());
+
+            if (parseCurrency($('#lblNPT5').text()) < .6 * parseCurrency(ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_PG1 NET_TAX', '', 0))) {
+                // lblNPT6a.innerText = ispFormatMoney(parseCurrency(lblNPT5.innerText), 0)
+                $('#lblNPT6a').text(ispFormatMoney(parseCurrency($('#lblNPT5').text()), 0))
+            } else {
+
+                    $('#lblNPT6a').text(ispFormatMoney(.6 * parseCurrency(ispXmlGetFieldVal(parent.MenuWin.xmlBPTez, 'BPT_PG1 NET_TAX', '', 0)), 0));
+             
+            } 	//if
+        } 	//if
+    } //CalcPage1Line5
+
+    function CalcPage1Line6c() {//Line 6a Plus Line 6b
+        if ($('#lblNPT6a').text() != '' && $('#txtNPT6b').val() != '') {
+
+            // lblNPT6c.innerText = ispFormatMoney((parseCurrency(lblNPT6a.innerText) + parseCurrency(txtNPT6b.value)), 0)
+          //  alert(parseCurrency($('#lblNPT6a').text()) + parseCurrency($('#txtNPT6b').text()));
+            $('#lblNPT6c').text(ispFormatMoney((parseCurrency($('#lblNPT6a').text()) + parseCurrency($('#txtNPT6b').val())), 0));
+        }
+    } //CalcPage1Line6c
+
+    function CalcPage1Line7() {
+		//alert('CalcPage1Line7');
+        //Line 5 Less Line 6c
+        //if (lblNPT5.innerText != "" && lblNPT6c.innerText != "") {
+        if ($('#lblNPT5').text() != '' && $('#lblNPT6c').text() != '') {
+			//alert('1');
+            if ((parseCurrency($('#lblNPT5').text()) - parseCurrency($('#lblNPT6c').text())) <= 0) {	//Net Tax Due is Negative
+			//alert('2');
+                /* lblNPT7.innerText = ispFormatMoney(0, 0)
+                txtNPT8.value = ispFormatMoney(0, 0)
+                txtNPT8.disabled = true
+                */
+                $('#lblNPT7').text(ispFormatMoney(0, 0));
+                $('#txtNPT8').val(ispFormatMoney(0, 0));
+                $('#txtNPT8').attr("disabled", "disabled");
+
+            } else if ((parseCurrency($('#lblNPT5').text()) - parseCurrency($('#lblNPT6c').text())) > 0) {	//Net Tax Due is Positive
+				//alert('3');
+                //lblNPT7.innerText = ispFormatMoney((parseCurrency(lblNPT5.innerText) - parseCurrency(lblNPT6c.innerText)), 0)
+                $('#lblNPT7').text(ispFormatMoney((parseCurrency($('#lblNPT5').text()) - parseCurrency($('#lblNPT6c').text())), 0));
+                if ($('#chkAmended').attr("checked") == "checked") {
+                    //  txtNPT8.disabled = false
+                    $('#txtNPT8').removeAttr("disabled");
+
+                } 	//if
+            } 	//if
+        } 	//if
+    } 	//CalcPage1Line7
+
+    function CalcPage1Line9() {
+        //Line 7 Plus Line 8
+        // if (lblNPT7.innerText != "" && txtNPT8.value != "") {
+        if ($('#lblNPT7').text() != '' && txtNPT8.value != "") {
+            // lblNPT9.innerText = ispFormatMoney((parseCurrency(lblNPT7.innerText) + parseCurrency(txtNPT8.value)), 0)
+            $('#lblNPT9').text(ispFormatMoney((parseCurrency($('#lblNPT7').text()) + parseCurrency(txtNPT8.value )), 0));
+            if (parseCurrency($('#lblNPT9').text()) != 0) {
+                txtNPT12a.value = ispFormatMoney(0, 0)
+                txtNPT12b.value = ispFormatMoney(0, 0)
+                txtNPT12c.value = ispFormatMoney(0, 0)
+            } 	//if
+        } 	//if
+    } 	//CalcPage1Line9
+
+    function CalcPage1Line10() {
+        //If Line 6c is > Line 5, enter difference here
+        //  if (lblNPT6c.innerText != "" && lblNPT5.innerText != "") {
+        if ($('#lblNPT6c').text() != '' && $('#lblNPT5').text() != '') {
+            if (parseCurrency($('#lblNPT6c').text()) > parseCurrency($('#lblNPT5').text())) {
+                // lblNPT10.innerText = ispFormatMoney((parseCurrency(lblNPT6c.innerText) - parseCurrency(lblNPT5.innerText)), 0)
+                $('#lblNPT10').text(ispFormatMoney((parseCurrency($('#lblNPT6c').text()) - parseCurrency($('#lblNPT5').text())), 0));
+            } else {
+                //lblNPT10.innerText = 0
+                $('#lblNPT10').text('0');
+            } 	//if
+        } 	//if
+    } 	//CalcPage1Line10
+
+    function CalcPage1Line12() {
+        //If Line 10 > Line 11, enable radio buttons and enter line 10 in selected field
+        // if (parseCurrency(lblNPT10.innerText) > parseCurrency(txtNPT11.value)) {
+        if (parseCurrency($('#lblNPT10').text()) > parseCurrency(txtNPT11.value)) {
+            if (txtNPT12a.value == '') {
+                txtNPT12a.value = ispFormatMoney(0, 0)
+            } 	//if
+            if (txtNPT12b.value == '') {
+                txtNPT12b.value = ispFormatMoney(0, 0)
+            } 	//if
+            if (txtNPT12c.value == '') {
+                txtNPT12c.value = ispFormatMoney(0, 0)
+            } 	//if
+            if (parseCurrency(txtNPT12a.value) + parseCurrency(txtNPT12b.value) + parseCurrency(txtNPT12c.value) !=
+				parseCurrency($('#lblNPT10').text())) {
+                // AppError.innerText = 'Lines 12a, 12b and 12c must equal Line 10'
+                $('#AppError').text('Lines 12a, 12b and 12c must equal Line 10');
+            } 	//if
+        } else {
+            txtNPT12a.value = ispFormatMoney(0, 0)
+            txtNPT12b.value = ispFormatMoney(0, 0)
+            txtNPT12c.value = ispFormatMoney(0, 0)
+        } 	//if
+    } 	//CalcPage1Line12
+    //*****End Page 1*****
+
+
+    //*****Worksheet A*****
+    function CalcWrkALine4() {//Add Lines 1 thru 3 and enter on Page 1, Line 1
+        if (txtNPT_WrkA_1.value != "" && txtNPT_WrkA_2.value != "" && txtNPT_WrkA_3.value != "") {
+            // lblNPT_WrkA_4.innerText = ispFormatMoney((parseCurrency(txtNPT_WrkA_1.value)) + (parseCurrency(txtNPT_WrkA_2.value)) + (parseCurrency(txtNPT_WrkA_3.value)), 0)
+            $('#lblNPT_WrkA_4').text(ispFormatMoney((parseCurrency(txtNPT_WrkA_1.value)) + (parseCurrency(txtNPT_WrkA_2.value)) + (parseCurrency(txtNPT_WrkA_3.value)), 0));
+
+            // txtNPT1.value = lblNPT_WrkA_4.innerText
+            txtNPT1.value = $('#lblNPT_WrkA_4').text();
+
+        }
+    } //CalcWrkALine4
+    //*****End Worksheet A*****
+
+    //*****Worksheet B*****
+    function CalcWrkBLine4() {//Add Lines 1 thru 3 and Enter on Page 4, Line 13
+        if (txtNPT_WrkB_1.value != "" && txtNPT_WrkB_2.value != "" && txtNPT_WrkB_3.value != "") {
+            // lblNPT_WrkB_4.innerText = ispFormatMoney((parseCurrency(txtNPT_WrkB_1.value) + parseCurrency(txtNPT_WrkB_2.value)+ parseCurrency(txtNPT_WrkB_3.value)), 0)
+            $('#lblNPT_WrkB_4').text(ispFormatMoney((parseCurrency(txtNPT_WrkB_1.value) + parseCurrency(txtNPT_WrkB_2.value) + parseCurrency(txtNPT_WrkB_3.value)), 0));
+            //EHD per Tom Removed
+            //		lblNPT_Page4_13.innerText = lblNPT_WrkB_4.innerText
+            //EHD per Tom Added from function CalcWrkBLine6
+            //txtNPT3.value = lblNPT_WrkB_4.innerText
+            txtNPT3.value = $('#lblNPT_WrkB_4').text();
+        }
+    } //CalcWrkBLine4
+
+    function CalcWrkBLine6() {//Subtract Line 5 from Line 4 and enter on Page 1, Line 3
+        //  if (lblNPT_WrkB_4.innerText != "" && lblNPT_WrkB_5.innerText != "") {
+        if ($('#lblNPT_WrkB_4').text() != '' && $('#lblNPT_WrkB_5').text() != '') {
+            // lblNPT_WrkB_6.innerText = ispFormatMoney((parseCurrency(lblNPT_WrkB_4.innerText) - parseCurrency(lblNPT_WrkB_5.innerText)), 0)
+            $('#lblNPT_WrkB_6').text(ispFormatMoney((parseCurrency($('#lblNPT_WrkB_4').text()) - parseCurrency($('#lblNPT_WrkB_5').text())), 0));
+            // txtNPT3.value = lblNPT_WrkB_6.innerText
+            txtNPT3.value = $('#lblNPT_WrkB_6').text();
+        }
+    } //CalcWrkBLine6
+    //*****End Worksheet B*****
+
+    //*****Worksheet C*****
+    function CalcWrkCLine3() {//Subtract Line 2 from Line 1 and enter 50% of result on Page 1, Line 11
+        //if (lblNPT_WrkC_1.innerText != "" && lblNPT_WrkC_2.innerText != "") {
+        if ($('#lblNPT_WrkC_1').text() != '' && $('#lblNPT_WrkC_2').text() != '') {
+          
+            $('#lblNPT_WrkC_3').text(ispFormatMoney((parseCurrency($('#lblNPT_WrkC_1').text()) - parseCurrency($('#lblNPT_WrkC_2').text())), 0));
+            txtNPT11.value = ispFormatMoney((parseCurrency($('#lblNPT_WrkC_3').text()) / 2), 0)
+        }
+    } //CalcWrkCLine3
+    //*****End Worksheet C*****
+
+    //*****Worksheet D*****
+    function CalcWrkDLine3() {//Divide Line 1 by 2 and enter the percentage here and on Page 1
+        if (txtNPT_WrkD_1.value != "" && txtNPT_WrkD_2.value != "") {
+         
+            $('#lblNPT_WrkD_3').text(ispFormatMoney(0, 0));
+            if (parseCurrency(txtNPT_WrkD_2.value) == 0) {		//Not dividing by 0
+            
+            } else if (parseCurrency(txtNPT_WrkD_2.value) < parseCurrency(txtNPT_WrkD_1.value)) {
+               
+                $('#AppError').text('Line 2 cannot be less than Line 1');
+            } else {
+                var temp = (parseCurrency(txtNPT_WrkD_1.value) / parseCurrency(txtNPT_WrkD_2.value))
+             
+                $('#lblNPT_WrkD_3').text((temp.toFixed(2) * 100));
+                txtPercentage.value = $('#lblNPT_WrkD_3').text();
+            } 	//if
+        } 	//if
+    } //CalcWrkDLine3
+
+    function CalcWrkDLine5() {//Multiply the amount on Line 4 by the percentage on Line 3
+        $('#lblNPT_WrkD_4').text($('#lblNPT_WrkK_2').text());
+        // if (lblNPT_WrkD_4.innerText != "" && lblNPT_WrkD_3.innerText != "") {
+        if ($('#lblNPT_WrkD_4').text() != '' && $('#lblNPT_WrkD_3').text() != '') {
+          
+            $('#lblNPT_WrkD_5').text(ispFormatMoney((parseCurrency($('#lblNPT_WrkD_4').text()) * (parseCurrency($('#lblNPT_WrkD_3').text()) / 100)), 0))
+        }
+    } //CalcWrkDLine5
+
+    function CalcWrkDLine6() {//Subtract Line 5 from Line 4
+        //if (lblNPT_WrkD_4.innerText != "" && lblNPT_WrkD_5.innerText != "") {
+        if ($('#lblNPT_WrkD_4').text() != '' && $('#lblNPT_WrkD_5').text() != '') {
+            //lblNPT_WrkD_6.innerText = ispFormatMoney((parseCurrency(lblNPT_WrkD_4.innerText) - parseCurrency(lblNPT_WrkD_5.innerText)), 0)
+            $('#lblNPT_WrkD_6').text(ispFormatMoney((parseCurrency($('#lblNPT_WrkD_4').text()) - parseCurrency($('#lblNPT_WrkD_5').text())), 0));
+        }
+    } //CalcWrkDLine6
+
+    function CalcWrkDLine8() {//Enter the lesser of Line 6 or Line 7 here and on Page 1, Line 6a
+        //if (lblNPT_WrkD_6.innerText != "" && lblNPT_WrkD_7.innerText != "") {
+        if ($('#lblNPT_WrkD_6').text() != '' && $('#lblNPT_WrkD_7').text() != '') {
+            //if (parseCurrency(lblNPT_WrkD_6.innerText) < parseCurrency(lblNPT_WrkD_7.innerText)) {
+            if (parseCurrency($('#lblNPT_WrkD_6').text()) < parseCurrency($('#lblNPT_WrkD_7').text())) {
+               
+
+                $('#lblNPT_WrkD_8').text($('#lblNPT_WrkD_6').text());
+                $('#lblNPT6a').text($('#lblNPT_WrkD_8').text());
+                $('#lblNPT_WrkC_2').text($('#lblNPT6a').text());
+            }
+            else {//line 7 < line 6
+                
+                $('#lblNPT_WrkD_8').text($('#lblNPT_WrkD_7').text());
+                $('#lblNPT6a').text($('#lblNPT_WrkD_8').text());
+                $('#lblNPT_WrkC_2').text($('#lblNPT6a').text());
+            }
+        }
+    } //CalcWrkDLine8
+    //*****End Worksheet D*****
+
+    //*****Worksheet E*****
+    function CalcWrkELine4() {//Total of Lines 1 through 3. Enter here and on Page 1, Line 6b
+        if (txtNPT_WrkE_1.value != "" && txtNPT_WrkE_2.value != "" && txtNPT_WrkE_3.value != "") {
+            
+            $('#lblNPT_WrkE_4').text(ispFormatMoney((parseCurrency(txtNPT_WrkE_1.value) + parseCurrency(txtNPT_WrkE_2.value) + parseCurrency(txtNPT_WrkE_3.value)), 0));
+            txtNPT6b.value = $('#lblNPT_WrkE_4').text();
+        }
+    } //CalcWrkELine4
+    //*****End Worksheet E*****
+
+    //*****Worksheet K*****
+    function CalkWrkKLine2() {//Enter 60% of the amount on Line 1, if entity has corporate members, enter amount on Worksheed D, Line 4
+        if (txtNPT_WrkK_1.value != "") {
+            // lblNPT_WrkK_2.innerText = ispFormatMoney((parseCurrency(txtNPT_WrkK_1.value) * .6), 0)
+            $('#lblNPT_WrkK_2').text(ispFormatMoney((parseCurrency(txtNPT_WrkK_1.value) * .6), 0));
+
+            if (hasCorpMembers) {
+                // lblNPT_WrkD_4.innerText = lblNPT_WrkK_2.innerText
+                $('#lblNPT_WrkD_4').text($('#lblNPT_WrkK_2').text());
+            }
+        }
+    } //CalcWrkKLine2
+
+    function CalcWrkKLine4() {//Enter the lesser of Line 2 or Line 3 here and on Page 1, Line 6a
+        // if (lblNPT_WrkK_2.innerText != "" && lblNPT_WrkK_3.innerText != "") {
+        if ($('#lblNPT_WrkK_2').text() != '' && $('#lblNPT_WrkK_3').text() != '') {
+            if (hasCorpMembers) {//Don't Calculate / Undo Calculations
+                /*lblNPT_WrkK_4.innerText = ""
+                lblNPT6a.innerText = ""
+                lblNPT_WrkC_2.innerText = ""
+                */
+                $('#lblNPT_WrkK_4').text('');
+                $('#lblNPT6a').text('');
+                $('#lblNPT_WrkC_2').text('');
+            }
+            else {
+                //if (parseCurrency(lblNPT_WrkK_2.innerText) < parseCurrency(lblNPT_WrkK_3.innerText)) {//Line 2 < Line 3
+                if (parseCurrency($('#lblNPT_WrkK_2').text()) < parseCurrency($('#lblNPT_WrkK_3').text())) {
+                    /*   lblNPT_WrkK_4.innerText = lblNPT_WrkK_2.innerText
+                    lblNPT6a.innerText = lblNPT_WrkK_4.innerText
+                    lblNPT_WrkC_2.innerText = lblNPT6a.innerText
+                    */
+                    $('#lblNPT_WrkK_4').text($('#lblNPT_WrkK_2').text());
+                    $('#lblNPT6a').text($('#lblNPT_WrkK_4').text());
+                    $('#lblNPT_WrkC_2').text($('#lblNPT6a').text());
+                }
+                else {//Line 3 < Line 2
+                   /* lblNPT_WrkK_4.innerText = lblNPT_WrkK_3.innerText
+                    lblNPT6a.innerText = lblNPT_WrkK_4.innerText
+                    lblNPT_WrkC_2.innerText = lblNPT6a.innerText*/
+
+                    $('#lblNPT_WrkK_4').text($('#lblNPT_WrkK_3').text());
+                    $('#lblNPT6a').text($('#lblNPT_WrkK_4').text());
+                    $('#lblNPT_WrkC_2').text($('#lblNPT6a').text());
+                }
+            }
+        }
+    } //CalcWrkKLine4
+    //*****End Worksheet K*****
+
+    //*****Page 4*****
+    function CalcPage4Line6a() {//Total average value of Property used Outside Philadelphia, Lines 1a thru 5a and Enter on Line 8a
+        if (txtNPT_Page4_1a.value != "" && txtNPT_Page4_2a.value != "" && txtNPT_Page4_3a.value != "" &&
+		txtNPT_Page4_4a.value != "" && txtNPT_Page4_5a.value != "") {
+            /* lblNPT_Page4_6a.innerText = ispFormatMoney((parseCurrency(txtNPT_Page4_1a.value) + parseCurrency(txtNPT_Page4_2a.value)
+            + parseCurrency(txtNPT_Page4_3a.value) + parseCurrency(txtNPT_Page4_4a.value)
+            + parseCurrency(txtNPT_Page4_5a.value)), 0)
+            lblNPT_Page4_8a.innerText = lblNPT_Page4_6a.innerText
+            */
+            $('#lblNPT_Page4_6a').text(ispFormatMoney((parseCurrency(txtNPT_Page4_1a.value) + parseCurrency(txtNPT_Page4_2a.value)
+										+ parseCurrency(txtNPT_Page4_3a.value) + parseCurrency(txtNPT_Page4_4a.value)
+										+ parseCurrency(txtNPT_Page4_5a.value)), 0));
+            $('#lblNPT_Page4_8a').text($('#lblNPT_Page4_6a').text());
+        }
+    } //CalcPage4Line6a
+
+    function CalcPage4Line7b() {//Total average value of Property used Everywhere, Lines 1b thru 5b and Enter on Line 8b
+        if (txtNPT_Page4_1b.value != "" && txtNPT_Page4_2b.value != "" && txtNPT_Page4_3b.value != "" &&
+		txtNPT_Page4_4b.value != "" && txtNPT_Page4_5b.value != "") {
+            /*
+            lblNPT_Page4_7b.innerText = ispFormatMoney((parseCurrency(txtNPT_Page4_1b.value) + parseCurrency(txtNPT_Page4_2b.value)
+            + parseCurrency(txtNPT_Page4_3b.value) + parseCurrency(txtNPT_Page4_4b.value)
+            + parseCurrency(txtNPT_Page4_5b.value)), 0)
+            lblNPT_Page4_8b.innerText = lblNPT_Page4_7b.innerText
+            */
+            $('#lblNPT_Page4_7b').text(ispFormatMoney((parseCurrency(txtNPT_Page4_1b.value) + parseCurrency(txtNPT_Page4_2b.value)
+										+ parseCurrency(txtNPT_Page4_3b.value) + parseCurrency(txtNPT_Page4_4b.value)
+										+ parseCurrency(txtNPT_Page4_5b.value)), 0));
+            $('#lblNPT_Page4_8b').text($('#lblNPT_Page4_7b').text());
+        }
+    } //CalcPage4Line7b
+
+    function CalcPage4Line8c() {//Line 8a divided by 8b (Out of Philadelphia Property Factor)
+        // if (lblNPT_Page4_8a.innerText != "" && lblNPT_Page4_8b.innerText != "") {
+        if ($('#lblNPT_Page4_8a').text() != '' && $('#lblNPT_Page4_8b').text() != '') {
+            if (parseCurrency($('#lblNPT_Page4_8b').text()) != 0) {//Not dividing by 0
+                var temp = (parseCurrency($('#lblNPT_Page4_8a').text()) / parseCurrency($('#lblNPT_Page4_8b').text()));
+                // lblNPT_Page4_8c.innerText = temp.toFixed(2)
+                $('#lblNPT_Page4_8c').text(temp.toFixed(2));
+            }
+        }
+    } //CalcPage4Line8c
+
+    function CalcPage4Line9c() {//Line 9a divided by 9b (Out of Philadelphia Payroll Factor)
+        if (txtNPT_Page4_9a.value != "" && txtNPT_Page4_9b.value != "") {
+            if (parseCurrency(txtNPT_Page4_9b.value) != 0) {//Not dividing by 0
+                var temp = (parseCurrency(txtNPT_Page4_9a.value) / parseCurrency(txtNPT_Page4_9b.value));
+                // lblNPT_Page4_9c.innerText = temp.toFixed(2)
+                $('#lblNPT_Page4_9c').text(temp.toFixed(2));
+            }
+        }
+    } //CalcPage4Line9c	
+
+    function CalcPage4Line10c() {//Line 10a divided by 10b (Out of Philadelphia Receipts Factor)
+        if (txtNPT_Page4_10a.value != "" && txtNPT_Page4_10b.value != "") {
+            if (parseCurrency(txtNPT_Page4_10b.value) != 0) {//Not dividing by 0
+                var temp = (parseCurrency(txtNPT_Page4_10a.value) / parseCurrency(txtNPT_Page4_10b.value));
+                //lblNPT_Page4_10c.innerText = temp.toFixed(2)
+                $('#lblNPT_Page4_10c').text(temp.toFixed(2));
+            }
+        }
+    } //CalcPage4Line10c	
+
+    function CalcPage4Line11() {//Total Lines 8c, 9c & 10c (Total Factors)
+        if ($('#lblNPT_Page4_8c').text() != "" && $('#lblNPT_Page4_9c').text() != "" && $('#lblNPT_Page4_10c').text() != "") {
+            var temp = (parseCurrency($('#lblNPT_Page4_8c').text()) + parseCurrency($('#lblNPT_Page4_9c').text()) + parseCurrency($('#lblNPT_Page4_10c').text()));
+            //lblNPT_Page4_11.innerText = temp.toFixed(3)
+            $('#lblNPT_Page4_11').text(temp.toFixed(2));
+        }
+    } //CalcPage4Line11
+
+    function CalcPage4Line12() {//Line 11 divided by applicable number of factors (Average of Factors)
+        //Assuming 1 to 3 possible factors -- 8c>0, 9c>0, 10c>0
+        var numOfFactors = 0
+
+        if ($('#lblNPT_Page4_11').text() != '') {
+
+            if (parseCurrency($('#lblNPT_Page4_8c').text()) > 0) { numOfFactors++; }
+            if (parseCurrency($('#lblNPT_Page4_9c').text()) > 0) { numOfFactors++; }
+            if (parseCurrency($('#lblNPT_Page4_10c').text()) > 0) { numOfFactors++; }
+
+            if (numOfFactors != 0) {
+                var temp = (parseCurrency($('#lblNPT_Page4_11').text()) / numOfFactors)
+                //lblNPT_Page4_12.innerText = temp.toFixed(2)
+                $('#lblNPT_Page4_12').text(temp.toFixed(2));
+            }
+        }
+    } //CalcPage4Line12
+
+    function CalcPage4Line14() {//Multiply Line 13 times Line 12. Enter here and on Worksheet B, Line 5
+        //  if (lblNPT_Page4_12.innerText != "" && lblNPT_Page4_13.innerText != "") {
+        if ($('#lblNPT_Page4_12').text() != '' && $('#lblNPT_Page4_13').text() != '') {
+            // lblNPT_Page4_14.innerText = ispFormatMoney((parseCurrency(lblNPT_Page4_12.innerText) * parseCurrency(lblNPT_Page4_13.innerText)), 0)
+            // lblNPT_WrkB_5.innerText = lblNPT_Page4_14.innerText
+
+            $('#lblNPT_Page4_14').text(ispFormatMoney((parseCurrency($('#lblNPT_Page4_12').text()) * parseCurrency($('#lblNPT_Page4_13').text())), 0))
+            $('#lblNPT_WrkB_5').text($('#lblNPT_Page4_14').text());
+
+        }
+    } //CalcPage4Line14
+    //*****End Page 4*****
+
+    function splitField(value, start, end) {
+
+        if (value.length != 0) {
+            return value.substr(start, end)
+        } else {
+            return ''
+        }
+    } //splitField
+
+    //End Calculations
+</script>

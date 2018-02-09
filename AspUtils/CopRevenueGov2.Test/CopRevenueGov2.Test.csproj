@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8C0B078-4B64-453B-A424-F7C0D70F2597}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CopRevenueGov2.Test</RootNamespace>
+    <AssemblyName>CopRevenueGov2.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.core">
+      <HintPath>..\packages\NUnitTestAdapter.1.0\lib\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\packages\NUnitTestAdapter.1.0\lib\nunit.core.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util">
+      <HintPath>..\packages\NUnitTestAdapter.1.0\lib\nunit.util.dll</HintPath>
+    </Reference>
+    <Reference Include="NUnit.VisualStudio.TestAdapter">
+      <HintPath>..\packages\NUnitTestAdapter.1.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.ServiceModel.Routing" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="RTTIE210\RTTIE210_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE210\RTTIE210_XMLServiceTests.cs" />
+    <Compile Include="RTTIE216\RTTIE216_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE216\RTTIE216_XMLServiceTests.cs" />
+    <Compile Include="RTTIE222\RTTIE222_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE222\RTTIE222_XMLServiceTests.cs" />
+    <Compile Include="RTTIE227\RTTIE227_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE227\RTTIE227_XMLServiceTests.cs" />
+    <Compile Include="RTTIE228\RTTIE228_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE228\RTTIE228_XMLServiceTests.cs" />
+    <Compile Include="RTTIE230\RTTIE230_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE230\RTTIE230_XMLServiceTests.cs" />
+    <Compile Include="RTTIE231\RTTIE231_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE231\RTTIE231_XMLServiceTests.cs" />
+    <Compile Include="RTTIE231\testFixture.cs" />
+    <Compile Include="RTTIE234\RTTIE234_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE234\RTTIE234_XMLServiceTests.cs" />
+    <Compile Include="RTTIE235\RTTIE235_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE235\RTTIE235_XMLServiceTests.cs" />
+    <Compile Include="RTTIE236\RTTIE236_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE236\RTTIE236_XMLServiceTests.cs" />
+    <Compile Include="RTTIE237\RTTIE237_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE237\RTTIE237_XMLServiceTests.cs" />
+    <Compile Include="RTTIE239\RTTIE239_XMLFactoryTests.cs" />
+    <Compile Include="RTTIE239\RTTIE239_XMLServiceTests.cs" />
+    <Compile Include="TestDemo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CopRevenueGov2\CopRevenueGov2.csproj">
+      <Project>{f10d0f40-110f-4c97-99a8-fbd14e20fb20}</Project>
+      <Name>CopRevenueGov2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\COPXmlFactory\COPXmlFactory.csproj">
+      <Project>{489f195c-4b1c-49a8-9d00-c0db08304f17}</Project>
+      <Name>COPXmlFactory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

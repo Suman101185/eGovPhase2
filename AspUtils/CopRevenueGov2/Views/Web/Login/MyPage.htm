@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<script  type="text/javascript" language="javascript">
+    function AccInfo() {
+        this.xml = null;
+    }
+
+    var obj = new AccInfo();
+    
+
+    function hello1(o){
+        o.xml = 10;
+    }
+
+
+    function hello2(o) {
+        o.xml = 23;
+    }
+
+    function call() {
+        hello1(obj);
+        alert(obj.xml);
+        hello2(obj);
+        alert(obj.xml);
+    }
+
+alert(a);
+</script>
+    <title></title>
+</head>
+<body>
+<button onclick ="call()" value="click me"></button>
+</body>
+</html>

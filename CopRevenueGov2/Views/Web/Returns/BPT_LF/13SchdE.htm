@@ -1,0 +1,354 @@
+﻿<!--BPT_SchE-->
+<script language='javascript' type="text/javascript">
+    var arrSchdEErr = new Array();
+    var xSecScE = 'BPT_SCH_E ';
+    var xFldScELi1 = xSecScE + 'M_ALT_RECEIPTS';
+    var xFldScELi2 = xSecScE + 'M_GOODS_COST';
+    var xFldScELi3 = xSecScE + 'M_TAX_BASE';
+    var xFldScELi4 = xSecScE + 'M_TAX_DUE';
+    var xFldScELi5 = xSecScE + 'W_ALT_RECEIPTS';
+    var xFldScELi6a = xSecScE + 'W_GOODS_MATERIALS';
+    var xFldScELi6b = xSecScE + 'W_GOODS_LABOR';
+    var xFldScELi7 = xSecScE + 'W_GOODS_COST';
+    var xFldScELi8 = xSecScE + 'W_TAX_BASE';
+    var xFldScELi9 = xSecScE + 'W_TAX_DUE';
+    var xFldScELi10 = xSecScE + 'R_ALT_RECEIPTS';
+    var xFldScELi11a = xSecScE + 'R_GOODS_MATERIALS';
+    var xFldScELi11b = xSecScE + 'R_GOODS_LABOR';
+    var xFldScELi12 = xSecScE + 'R_GOODS_COST';
+    var xFldScELi13 = xSecScE + 'R_TAX_BASE';
+    var xFldScELi14 = xSecScE + 'R_TAX_DUE';
+    var xFldScELi15 = xSecScE + 'TOTAL_TAX_DUE';
+
+    function LoadErrorBPTlfSchdE() {
+        var i = 0;
+        arrSchdEErr[i++] = [txtBPT_SchE_1, 'txtBPT_SchE_1.value == ""', 'Answer Question 1'];
+        arrSchdEErr[i++] = [txtBPT_SchE_1, 'ispValue(txtBPT_SchE_1.value) == false', 'Value for Question 1 must be numeric'];
+        arrSchdEErr[i++] = [txtBPT_SchE_1, 'ispNegativeNumber(txtBPT_SchE_1.value) == false', 'Value for Question 1 must NOT be negative'];
+        arrSchdEErr[i++] = [txtBPT_SchE_2, 'txtBPT_SchE_2.value == ""', 'Answer Question 2'];
+        arrSchdEErr[i++] = [txtBPT_SchE_2, 'ispValue(txtBPT_SchE_2.value) == false', 'Value for Question 2 must be numeric'];
+        arrSchdEErr[i++] = [txtBPT_SchE_2, 'ispNegativeNumber(txtBPT_SchE_2.value) == false', 'Value for Question 2 must NOT be negative'];
+        arrSchdEErr[i++] = [txtBPT_SchE_5, 'txtBPT_SchE_5.value == ""', 'Answer Question 5'];
+        arrSchdEErr[i++] = [txtBPT_SchE_5, 'ispValue(txtBPT_SchE_5.value) == false', 'Value for Question 5 must be numeric'];
+        arrSchdEErr[i++] = [txtBPT_SchE_5, 'ispNegativeNumber(txtBPT_SchE_5.value) == false', 'Value for Question 5 must NOT be negative'];
+        arrSchdEErr[i++] = [txtBPT_SchE_6A, 'txtBPT_SchE_6A.value == ""', 'Answer Question 6a'];
+        arrSchdEErr[i++] = [txtBPT_SchE_6A, 'ispValue(txtBPT_SchE_6A.value) == false', 'Value for Question 6a must be numeric'];
+        arrSchdEErr[i++] = [txtBPT_SchE_6A, 'ispNegativeNumber(txtBPT_SchE_6A.value) == false', 'Value for Question 6a must NOT be negative'];
+        arrSchdEErr[i++] = [txtBPT_SchE_6B, 'txtBPT_SchE_6B.value == ""', 'Answer Question 6b'];
+        arrSchdEErr[i++] = [txtBPT_SchE_6B, 'ispValue(txtBPT_SchE_6B.value) == false', 'Value for Question 6b must be numeric'];
+        arrSchdEErr[i++] = [txtBPT_SchE_6B, 'ispNegativeNumber(txtBPT_SchE_6B.value) == false', 'Value for Question 6b must NOT be negative'];
+        arrSchdEErr[i++] = [txtBPT_SchE_10, 'txtBPT_SchE_10.value == ""', 'Answer Question 10']
+        arrSchdEErr[i++] = [txtBPT_SchE_10, 'ispValue(txtBPT_SchE_10.value) == false', 'Value for Question 10 must be numeric'];
+        arrSchdEErr[i++] = [txtBPT_SchE_10, 'ispNegativeNumber(txtBPT_SchE_10.value) == false', 'Value for Question 10 must NOT be negative'];
+        arrSchdEErr[i++] = [txtBPT_SchE_11A, 'txtBPT_SchE_11A.value == ""', 'Answer Question 11a'];
+        arrSchdEErr[i++] = [txtBPT_SchE_11A, 'ispValue(txtBPT_SchE_11A.value) == false', 'Value for Question 11a must be numeric'];
+        arrSchdEErr[i++] = [txtBPT_SchE_11A, 'ispNegativeNumber(txtBPT_SchE_11A.value) == false', 'Value for Question 11a must NOT be negative'];
+        arrSchdEErr[i++] = [txtBPT_SchE_11B, 'txtBPT_SchE_11B.value == ""', 'Answer Question 11b'];
+        arrSchdEErr[i++] = [txtBPT_SchE_11B, 'ispValue(txtBPT_SchE_11B.value) == false', 'Value for Question 11b must be numeric'];
+        arrSchdEErr[i++] = [txtBPT_SchE_11B, 'ispNegativeNumber(txtBPT_SchE_11B.value) == false', 'Value for Question 11b must NOT be negative'];
+    }		//LoadErrorBPTlfSchdE
+
+    function ClearBPTlfSchdE() {
+
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi1, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi2, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi3, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi4, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi5, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi6a, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi6b, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi7, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi8, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi9, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi10, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi11a, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi11b, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi12, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi13, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi14, '', 0);
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, 0, xFldScELi15, '', 0);
+
+    }		//ClearBPTlfSchdE
+
+    function PopulateBPTlfSchdE() {
+        //clipboardData.setData ('Text', parent.$g.xmlBPTlf.xml.xml);
+        txtBPT_SchE_1.value = ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi1, '', 0), 0);
+        txtBPT_SchE_2.value = ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi2, '', 0), 0);
+        $('#lblBPT_SchE_3').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi3, '', 0), 0));
+        $('#lblBPT_SchE_4').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi4, '', 0), 0));
+        txtBPT_SchE_5.value = ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi5, '', 0), 0);
+        txtBPT_SchE_6A.value = ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi6a, '', 0), 0);
+        txtBPT_SchE_6B.value = ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi6b, '', 0), 0);
+        $('#lblBPT_SchE_7').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi7, '', 0), 0));
+        $('#lblBPT_SchE_8').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi8, '', 0), 0));
+        $('#lblBPT_SchE_9').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi9, '', 0), 0));
+        txtBPT_SchE_10.value = ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi10, '', 0), 0);
+        txtBPT_SchE_11A.value = ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi11a, '', 0), 0);
+        txtBPT_SchE_11B.value = ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi11b, '', 0), 0);
+        $('#lblBPT_SchE_12').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi12, '', 0), 0));
+        $('#lblBPT_SchE_13').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi13, '', 0), 0));
+        $('#lblBPT_SchE_14').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi14, '', 0), 0));
+        $('#lblBPT_SchE_15').text(ispFormatMoney(parent.$x.ispXmlGetFieldVal(parent.$g.xmlBPTlf, xFldScELi15, '', 0), 0));
+
+        $('#msgBPT_SchE_4').text($('#msgBPT_SchE_4').text().replace('###', dBPTManufacturerRate));
+        $('#msgBPT_SchE_9').text($('#msgBPT_SchE_9').text().replace('###', dBPTWholesaleRate));
+        $('#msgBPT_SchE_14').text($('#msgBPT_SchE_14').text().replace('###', dBPTRetailerRate));
+    }		//PopulateBPTlfSchdE
+
+    function PopulateXmlBPTlfSchdE() {
+
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency(txtBPT_SchE_1.value), xFldScELi1, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency(txtBPT_SchE_2.value), xFldScELi2, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_3').text()), xFldScELi3, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_4').text()), xFldScELi4, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency(txtBPT_SchE_5.value), xFldScELi5, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency(txtBPT_SchE_6A.value), xFldScELi6a, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency(txtBPT_SchE_6B.value), xFldScELi6b, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_7').text()), xFldScELi7, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_8').text()), xFldScELi8, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_9').text()), xFldScELi9, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency(txtBPT_SchE_10.value), xFldScELi10, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency(txtBPT_SchE_11A.value), xFldScELi11a, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency(txtBPT_SchE_11B.value), xFldScELi11b, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_12').text()), xFldScELi12, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_13').text()), xFldScELi13, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_14').text()), xFldScELi14, '', 0)
+        parent.$x.ispXmlSetFieldVal(parent.$g.xmlBPTlf, stripCurrency($('#lblBPT_SchE_15').text()), xFldScELi15, '', 0)
+
+    }		//PopulateXmlBPTlfSchdE
+
+    function FieldLockBPTlfSchdE(bDisabled) {
+        $('#lblBPT_SchE_A').attr('disabled', bDisabled);
+        $('#txtBPT_SchE_1').attr('disabled', bDisabled);
+        $('#txtBPT_SchE_2').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_3').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_4').attr('disabled', bDisabled);
+        $('#txtBPT_SchE_5').attr('disabled', bDisabled);
+        $('#txtBPT_SchE_6A').attr('disabled', bDisabled);
+        $('#txtBPT_SchE_6B').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_7').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_8').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_9').attr('disabled', bDisabled);
+        $('#txtBPT_SchE_10').attr('disabled', bDisabled);
+        $('#txtBPT_SchE_11A').attr('disabled', bDisabled);
+        $('#txtBPT_SchE_11B').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_12').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_13').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_14').attr('disabled', bDisabled);
+        $('#lblBPT_SchE_15').attr('disabled', bDisabled);
+    }		//FieldLockBPTlfSchdE
+
+    function PerformCalcsBPTlfSchdE() {
+        CalcSchdELine4();
+        CalcSchdELine9();
+        CalcSchdELine14();
+        CalcSchdELine15();
+        VerifyTaxBasis();
+    }		//PerformCalcsBPTlfSchdE
+
+    function CalcSchdELine4() {
+        if (txtBPT_SchE_1.value != '' && txtBPT_SchE_2.value != '') {
+            $('#lblBPT_SchE_3').text(ispFormatMoney(PrepForMath(txtBPT_SchE_1.value) - PrepForMath(txtBPT_SchE_2.value), 0));
+        }		//if
+
+        if (PrepForMath($('#lblBPT_SchE_3').text()) < 0) {
+            $('#lblBPT_SchE_4').text(ispFormatMoney(0, 0));
+        } else {
+            $('#lblBPT_SchE_4').text(ispFormatMoney(PrepForMath($('#lblBPT_SchE_3').text()) * dBPTManufacturerRate, 0));
+        }		//if
+    }		//CalcSchdELine4
+
+    function CalcSchdELine9() {
+        if (txtBPT_SchE_5.value != '' && txtBPT_SchE_6A.value != '' && txtBPT_SchE_6B.value != '') {
+            $('#lblBPT_SchE_7').text(ispFormatMoney(PrepForMath(txtBPT_SchE_6A.value) + PrepForMath(txtBPT_SchE_6B.value), 0));
+            $('#lblBPT_SchE_8').text(ispFormatMoney(PrepForMath(txtBPT_SchE_5.value) - PrepForMath($('#lblBPT_SchE_7').text()), 0));
+        }		//if
+
+        if (PrepForMath($('#lblBPT_SchE_8').text()) < 0) {
+            $('#lblBPT_SchE_9').text(ispFormatMoney(0, 0));
+        } else {
+            $('#lblBPT_SchE_9').text(ispFormatMoney(PrepForMath($('#lblBPT_SchE_8').text()) * dBPTWholesaleRate, 0));
+        }		//if
+    }		//CalcSchdELine9
+
+    function CalcSchdELine14() {
+        if (txtBPT_SchE_10.value != '' && txtBPT_SchE_11A.value != '' && txtBPT_SchE_11B.value != '') {
+            $('#lblBPT_SchE_12').text(ispFormatMoney(PrepForMath(txtBPT_SchE_11A.value) + PrepForMath(txtBPT_SchE_11B.value), 0));
+            $('#lblBPT_SchE_13').text(ispFormatMoney(PrepForMath(txtBPT_SchE_10.value) - PrepForMath($('#lblBPT_SchE_12').text()), 0));
+        }		//if
+
+        if (PrepForMath($('#lblBPT_SchE_13').text()) < 0) {
+            $('#lblBPT_SchE_14').text(ispFormatMoney(0, 0));
+        } else {
+            $('#lblBPT_SchE_14').text(ispFormatMoney(PrepForMath($('#lblBPT_SchE_13').text()) * dBPTRetailerRate, 0));
+        }		//if
+    }		//CalcSchdELine14
+
+    function CalcSchdELine15() {
+        if ($('#lblBPT_SchE_4').text() != '' && $('#lblBPT_SchE_9').text() != '' && $('#lblBPT_SchE_14').text() != '') {
+            $('#lblBPT_SchE_15').text(ispFormatMoney(PrepForMath($('#lblBPT_SchE_4').text()) +
+                    PrepForMath($('#lblBPT_SchE_9').text()) + PrepForMath($('#lblBPT_SchE_14').text()), 0));
+        }		//if
+    }		//CalcSchdELine15
+
+    function VerifyTaxBasis(sSchd) {
+        //	if (BPT_SchdE.style.display != 'none') {
+        //alert(sSchd)
+        if ($('#lblBPT_SchE_A').text() != '' && txtBPT_SchE_1.value != '' && txtBPT_SchE_5.value != ''
+				&& txtBPT_SchE_10.value != '') {
+            if (PrepForMath($('#lblBPT_SchE_A').text()) != PrepForMath(txtBPT_SchE_1.value) +
+					PrepForMath(txtBPT_SchE_5.value) + PrepForMath(txtBPT_SchE_10.value)) {
+                if ($(parent.AppError).text() == '') {
+                    if (sSchd == '') {
+                        $(parent.AppError).text('The sum of lines 1, 5 and 10 have to equal the amount on line A');
+                    } else {
+                        $(parent.AppError).text('Schedule E is either incorrect becuase of a change to Line 7 or ' +
+								'needs to filled out');
+                    }		//if
+                }		//if
+            }		//if
+        }		//if
+        if ($('#txtBPT_SchD_7').val() != '' && $('#lblBPT_SchE_15').val() == '') {
+        }
+        //	}		//if
+    }		//VerifyTaxBasis
+</script>
+
+<DIV id=BPT_SchdE style="DISPLAY: none; VISIBILTY: visible" Name="BPT_SchdE"><BR>
+<TABLE class=tblShowBorder id=tblBptSchE style="MARGIN-LEFT: 4%" cellSpacing=0 
+cellPadding=0 width="90%" border=0>
+  <TR height=0>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD></TR>
+  <TR class=rowDataOdd>
+    <TD colSpan=20><LABEL class=lblInstrNormal><B><U>2013 BIRT Schedule E: Computation Of Tax On 
+    Gross Receipts</b></U><br>Alternate Method of Computing Tax on Gross Receipts<br>(To be used by 
+    Manufacturers, Wholesalers and Retailers electing to use the Alternate Method of computation</LABEL></TD></TR> 
+  <TR height=20px><TD></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>A.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Total Tax Basis (from Schedule D, Line 7)</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_A style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR>
+    <TD colSpan=20><LABEL class=lblInstrNormal><BR><B>Manufacturers:</B></LABEL></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>1.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Receipts on which tax is to be computed by the Alternate 
+    Method</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchE_1 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("BPT_SchdE")'></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>2.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Cost of goods solds</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchE_2 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("BPT_SchdE")'></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>3.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>TAX BASE</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Line 1 minus Line 2]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_3 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>4.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal><b>TAX DUE</b></LABEL></TD>
+    <TD align=right colSpan=8><LABEL id=msgBPT_SchE_4 class=lblInstrNormal>[Calculated - Multiply Line 3 by ###]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_4 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+
+  <TR>
+    <TD colSpan=20><LABEL class=lblInstrNormal><BR><B>Wholesalers:</B></LABEL></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>5.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Receipts on which tax is to be computed by the Alternate 
+    Method</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchE_5 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("BPT_SchdE")'></TD></TR>
+  <TR>
+    <TD colSpan=20><LABEL class=lblInstrNormal>&nbsp;&nbsp;&nbsp;Applicable Cost of Goods:</LABEL></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>&nbsp;&nbsp;&nbsp;6a.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Cost of material</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchE_6A style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("BPT_SchdE")'></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>&nbsp;&nbsp;&nbsp;6b.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Cost of labor</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchE_6B style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("BPT_SchdE")'></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>7.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>TOTAL APPLICABLE COST OF GOODS</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Line 6a plus Line 6b]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_7 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>8.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>TAX BASE</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Line 5 minus Line 7]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_8 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>9.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal><b>TAX DUE</b></LABEL></TD>
+    <TD align=right colSpan=8><LABEL id=msgBPT_SchE_9 class=lblInstrNormal>[Calculated - Multiply Line 8 by ###]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_9 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+
+  <TR>
+    <TD colSpan=20><LABEL class=lblInstrNormal><BR><B>Retailers:</B></LABEL></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>10.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Receipts on which tax is to be computed by the Alternate 
+    Method</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchE_10 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("BPT_SchdE")'></TD></TR>
+  <TR>
+    <TD colSpan=20><LABEL class=lblInstrNormal>&nbsp;&nbsp;&nbsp;Applicable Cost of Goods:</LABEL></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>&nbsp;&nbsp;&nbsp;11a.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Cost of material</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchE_11A style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("BPT_SchdE")'></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>&nbsp;&nbsp;&nbsp;11b.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Cost of labor</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchE_11B style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("BPT_SchdE")'></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>12.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>TOTAL APPLICABLE COST OF GOODS</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Line 11a plus Line 11b]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_12 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>13.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>TAX BASE</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Line 10 minus Line 12]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_13 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>14.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal><b>TAX DUE</b></LABEL></TD>
+    <TD align=right colSpan=8><LABEL id=msgBPT_SchE_14 class=lblInstrNormal>[Calculated - Multiply Line 13 by ###]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_14 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>15.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal><b>TOTAL TAX DUE</b></LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Sum Lines 4, 9 and 14]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchE_15 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR>
+    <TD colspan=20 align=middle><br><INPUT language=javascript id=btnGoToPage1 onclick='ShowPage("SchdD")' type=button value="Return to Schedule D"><br></TD>
+  </TR>
+</TABLE>
+<br style='PAGE-BREAK-AFTER: always'></div><!--BPTlf_SchdE-->

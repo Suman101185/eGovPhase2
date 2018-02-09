@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
+<head>
+
+<style>
+	.inpNormal, .inpReadOnlyRt, .inpError { text-align: right; }
+</style>
+</head>
+
+<BODY onload='LoadError("WrkK")'>
+<DIV id=NPT_WrkK style="DISPLAY: none; VISIBILTY: hidden" Name="NPT_WrkK">
+<TABLE class=tblShowBorder id=TABLE1 style="MARGIN-LEFT: 4%" cellSpacing=0 
+cellPadding=0 width="90%" border=0>
+  <TR height=0>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD></TR>
+  <TR class=rowDataEven>
+    <TD colSpan=20><LABEL class=lblInstrNormal><U>Worksheet K: 60% Business Privilege Tax Credit</U></LABEL></TD>
+  
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>1.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Enter the amount from Page 1, Line 1 of the 2010 BPT-EZ return or
+    the Summary Page, Line 1 of the 2010 Business Privilege Tax return</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtNPT_WrkK_1 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("WrkK")'></TD></TR>
+  
+  <TR class=rowDataEven>
+    <TD colSpan=20><INPUT id=chkCorpMembers type=checkbox onclick=chkCorpMembers_onclick()>
+    <label class="lblInstrNormal">Check if entity has Corporate Members</label></TD></TR>
+  
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>2.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Enter 60% of the amount on Line 1. If your entity has corporate members <b>Stop Here</b> and go to 
+    Page 3, Worksheet D - </LABEL><label class="lblLink" style="FONT-SIZE: 7pt" onclick='ShowPage("WrkD")'>Click here Worksheet D</label></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkK_2 
+      style="WIDTH: 100%"></LABEL></TD></TR>
+
+	<TR id=CorpMembers_1 class=rowDataEven style="DISPLAY: block; VISIBILTY: visible">     	
+		    <TD><LABEL class=lblInstrNormal>3.</LABEL></TD>
+			<TD colSpan=16><LABEL class=lblInstrNormal>Enter the amount from Page 1, Line 5 of the 2010 Net Profits Tax Return</LABEL></TD>
+			<TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkK_3 style="WIDTH: 100%"></LABEL></TD></TR>     
+	<TR id=CorpMembers_2 class=rowDataOdd style="DISPLAY: block; VISIBILTY: visible">
+			<TD><LABEL class=lblInstrNormal>4.</LABEL></TD>
+			<TD colSpan=16><LABEL class=lblInstrNormal>Business Privilege Tax credit allowed. Enter the lesser of Line 2
+			or Line 3 here and on Page 1, Line 6a</LABEL></TD>
+			<TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkK_4 style="WIDTH: 100%"></LABEL></TD></TR> 
+</TABLE>
+<P></P>
+<TABLE style="MARGIN-LEFT: 4%" width="90%" border=0>
+  <TR>
+    <TD><INPUT language=javascript id=btnGoToPage1 onclick='ShowPage("Page1","WrkK")' type=button value="Return to Page 1"></TD>
+  </TR>
+</TABLE>
+</DIV><!--NPT_WrkK-->
+</BODY>
+</HTML>

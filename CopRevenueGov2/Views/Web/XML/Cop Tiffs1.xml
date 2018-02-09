@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<ACCT>
+	<ERROR_INFO TYPE="COMPLEX" OCCURS="1" LENGTH="79" EXPORT="N">
+		<PROGRAM TYPE="A" LENGTH="8"></PROGRAM>
+		<ERROR TYPE="N" LENGTH="7"></ERROR>
+		<LINE TYPE="N" LENGTH="4"></LINE>
+		<MESSAGE TYPE="A" LENGTH="60"></MESSAGE>
+	</ERROR_INFO>
+	
+	<ENTITY_INFO TYPE="COMPLEX" OCCURS="1" LENGTH="85" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1">I</FUNCTION_CODE>
+		<TYPE TYPE="N" LENGTH="3">2</TYPE>
+		<ENTITY_ID TYPE="A" LENGTH="11">210589575</ENTITY_ID>
+		<ACCOUNT_ID TYPE="A" LENGTH="12">            </ACCOUNT_ID>
+		<NAIC_CODE TYPE="N" LENGTH="6">81219</NAIC_CODE>
+		<SIC_CODE TYPE="N" LENGTH="5">1</SIC_CODE>
+		<START_DATE TYPE="D" LENGTH="8">10/28/01</START_DATE>
+		<ORGTYPE TYPE="N" LENGTH="3">60</ORGTYPE>
+		<ORIGIN TYPE="A" LENGTH="1">2</ORIGIN>
+		<GENDER TYPE="A" LENGTH="1">M</GENDER>
+		<OTHER TYPE="A" LENGTH="20">                    </OTHER>
+		<PIN TYPE="N" LENGTH="13">47</PIN>
+		<FORCEPINCHG TYPE="A" LENGTH="1"> </FORCEPINCHG>
+	</ENTITY_INFO>
+	
+	<ECHECK TYPE="COMPLEX" OCCURS="1" LENGTH="31" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"></FUNCTION_CODE>
+		<ROUTING_NUMBER TYPE="A" LENGTH="9"></ROUTING_NUMBER>
+		<ACCOUNT_NUMBER TYPE="A" LENGTH="20"></ACCOUNT_NUMBER>
+		<ACCOUNT_TYPE TYPE="A" LENGTH="1"></ACCOUNT_TYPE>
+	</ECHECK>
+
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"></FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">1</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">01/01/00</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">       9,999.99</WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<NAME_ADDRESS TYPE="COMPLEX" OCCURS="21" LENGTH="306" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"></FUNCTION_CODE>
+		<TYPE TYPE="N" LENGTH="3">2</TYPE>
+		<ID TYPE="A" LENGTH="11">210589575</ID>
+		<NAME TYPE="A" LENGTH="40">Bob TIFFANY</NAME>
+		<TRADE_NAME TYPE="A" LENGTH="40">SHAPLIN SHAMPOO HOUSE</TRADE_NAME>
+		<ADDRESS_TYPE TYPE="N" LENGTH="3">60</ADDRESS_TYPE>
+		<RELATIONSHIP_CODE TYPE="N" LENGTH="3">0</RELATIONSHIP_CODE>
+		<ATTENTION TYPE="A" LENGTH="30">DADDY WARBUCKS</ATTENTION>
+		<ADDRESS1 TYPE="A" LENGTH="30">129 WESTMINSTER DR            </ADDRESS1>
+		<ADDRESS2 TYPE="A" LENGTH="30">                              </ADDRESS2>
+		<CITY TYPE="A" LENGTH="20">WALLINGFORD         </CITY>
+		<STATE TYPE="A" LENGTH="2">PA</STATE>
+		<ZIP TYPE="A" LENGTH="10">19086-6639</ZIP>
+		<WORK_PHONE TYPE="P" LENGTH="10">6108769999</WORK_PHONE>
+		<WORK_PHONE_EXT TYPE="N" LENGTH="5">45454</WORK_PHONE_EXT>
+		<WORK_FAX TYPE="P" LENGTH="10">6105555559</WORK_FAX>
+		<OTHER_PHONE TYPE="P" LENGTH="10">6105556666</OTHER_PHONE>
+		<EMAIL TYPE="A" LENGTH="40">TIFFANYS@IS-PARTNER.com</EMAIL>
+		<TRACE_NUMBER TYPE="N" LENGTH="8">732231</TRACE_NUMBER>
+	</NAME_ADDRESS>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">2</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">05/01/02</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">3</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">01/01/00</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">6</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">01/01/00</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">9</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">09/01/02</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">14</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">02/01/02</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">23</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">09/01/02</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">24</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">01/01/00</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">28</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">01/01/00</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">29</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">01/01/00</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">           </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<TAX_ACCT TYPE="COMPLEX" OCCURS="12" LENGTH="48" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<ACCOUNT TYPE="N" LENGTH="2">84</ACCOUNT>
+		<START_DATE TYPE="D" LENGTH="8">02/02/99</START_DATE>
+		<WAGE_MONTHLY_GROSS TYPE="A" LENGTH="15">               </WAGE_MONTHLY_GROSS>
+		<UOL_BRT TYPE="A" LENGTH="11">232398500  </UOL_BRT>
+		<PRK_ID TYPE="A" LENGTH="11">           </PRK_ID>
+	</TAX_ACCT>
+	
+	<NAME_ADDRESS TYPE="COMPLEX" OCCURS="21" LENGTH="306" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<TYPE TYPE="N" LENGTH="3">2</TYPE>
+		<ID TYPE="A" LENGTH="11">210589575  </ID>
+		<NAME TYPE="A" LENGTH="40">                                        </NAME>
+		<TRADE_NAME TYPE="A" LENGTH="40">                                        </TRADE_NAME>
+		<ADDRESS_TYPE TYPE="N" LENGTH="3">30</ADDRESS_TYPE>
+		<RELATIONSHIP_CODE TYPE="N" LENGTH="3">0</RELATIONSHIP_CODE>
+		<ATTENTION TYPE="A" LENGTH="30">HARRY                         </ATTENTION>
+		<ADDRESS1 TYPE="A" LENGTH="30">112 FRANKLIN ST               </ADDRESS1>
+		<ADDRESS2 TYPE="A" LENGTH="30">                              </ADDRESS2>
+		<CITY TYPE="A" LENGTH="20">MORRISTOWN          </CITY>
+		<STATE TYPE="A" LENGTH="2">NJ</STATE>
+		<ZIP TYPE="A" LENGTH="10">07960-5441</ZIP>
+		<WORK_PHONE TYPE="P" LENGTH="10">6105558877</WORK_PHONE>
+		<WORK_PHONE_EXT TYPE="N" LENGTH="5">77777</WORK_PHONE_EXT>
+		<WORK_FAX TYPE="P" LENGTH="10">6105554444</WORK_FAX>
+		<OTHER_PHONE TYPE="P" LENGTH="10">6105556666</OTHER_PHONE>
+		<EMAIL TYPE="A" LENGTH="40">HARRY@AOL.COM                           </EMAIL>
+		<TRACE_NUMBER TYPE="N" LENGTH="8">732231</TRACE_NUMBER>
+	</NAME_ADDRESS>
+	
+	<NAME_ADDRESS TYPE="COMPLEX" OCCURS="21" LENGTH="306" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<TYPE TYPE="N" LENGTH="3">2</TYPE>
+		<ID TYPE="A" LENGTH="11">210589575  </ID>
+		<NAME TYPE="A" LENGTH="40">                                        </NAME>
+		<TRADE_NAME TYPE="A" LENGTH="40">                                        </TRADE_NAME>
+		<ADDRESS_TYPE TYPE="N" LENGTH="3">30</ADDRESS_TYPE>
+		<RELATIONSHIP_CODE TYPE="N" LENGTH="3">0</RELATIONSHIP_CODE>
+		<ATTENTION TYPE="A" LENGTH="30">HARRY                         </ATTENTION>
+		<ADDRESS1 TYPE="A" LENGTH="30">1607 COVENTRY LN              </ADDRESS1>
+		<ADDRESS2 TYPE="A" LENGTH="30">                              </ADDRESS2>
+		<CITY TYPE="A" LENGTH="20">GLEN MILLS          </CITY>
+		<STATE TYPE="A" LENGTH="2">PA</STATE>
+		<ZIP TYPE="A" LENGTH="10">19342-9430</ZIP>
+		<WORK_PHONE TYPE="P" LENGTH="10">6105558877</WORK_PHONE>
+		<WORK_PHONE_EXT TYPE="N" LENGTH="5">77777</WORK_PHONE_EXT>
+		<WORK_FAX TYPE="P" LENGTH="10">6105554444</WORK_FAX>
+		<OTHER_PHONE TYPE="P" LENGTH="10">6105556666</OTHER_PHONE>
+		<EMAIL TYPE="A" LENGTH="40">HARRY@AOL.COM                           </EMAIL>
+		<TRACE_NUMBER TYPE="N" LENGTH="8">732221</TRACE_NUMBER>
+	</NAME_ADDRESS>
+	
+	<NAME_ADDRESS TYPE="COMPLEX" OCCURS="21" LENGTH="306" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<TYPE TYPE="N" LENGTH="3">1</TYPE>
+		<ID TYPE="A" LENGTH="11">232972994  </ID>
+		<NAME TYPE="A" LENGTH="40">INFORMATION SERVICES PARTNER INC        </NAME>
+		<TRADE_NAME TYPE="A" LENGTH="40">                                        </TRADE_NAME>
+		<ADDRESS_TYPE TYPE="N" LENGTH="3">60</ADDRESS_TYPE>
+		<RELATIONSHIP_CODE TYPE="N" LENGTH="3">8</RELATIONSHIP_CODE>
+		<ATTENTION TYPE="A" LENGTH="30">PLYMOUTH GREENE OFFICE CAMPUS </ATTENTION>
+		<ADDRESS1 TYPE="A" LENGTH="30">1000 GERMANTOWN PIKE STE G5   </ADDRESS1>
+		<ADDRESS2 TYPE="A" LENGTH="30">                              </ADDRESS2>
+		<CITY TYPE="A" LENGTH="20">PLYMOUTH MTNG       </CITY>
+		<STATE TYPE="A" LENGTH="2">PA</STATE>
+		<ZIP TYPE="A" LENGTH="10">19462-2487</ZIP>
+		<WORK_PHONE TYPE="P" LENGTH="10">6102795900</WORK_PHONE>
+		<WORK_PHONE_EXT TYPE="N" LENGTH="5">0</WORK_PHONE_EXT>
+		<WORK_FAX TYPE="P" LENGTH="10"></WORK_FAX>
+		<OTHER_PHONE TYPE="P" LENGTH="10"></OTHER_PHONE>
+		<EMAIL TYPE="A" LENGTH="40">                                        </EMAIL>
+		<TRACE_NUMBER TYPE="N" LENGTH="8">730779</TRACE_NUMBER>
+	</NAME_ADDRESS>
+	
+	<NAME_ADDRESS TYPE="COMPLEX" OCCURS="21" LENGTH="306" EXPORT="Y">
+		<FUNCTION_CODE TYPE="A" LENGTH="1"> </FUNCTION_CODE>
+		<TYPE TYPE="N" LENGTH="3">1</TYPE>
+		<ID TYPE="A" LENGTH="11">480895936  </ID>
+		<NAME TYPE="A" LENGTH="40">PIZZA HUT OF AMERICA INC                </NAME>
+		<TRADE_NAME TYPE="A" LENGTH="40">                                        </TRADE_NAME>
+		<ADDRESS_TYPE TYPE="N" LENGTH="3">60</ADDRESS_TYPE>
+		<RELATIONSHIP_CODE TYPE="N" LENGTH="3">19</RELATIONSHIP_CODE>
+		<ATTENTION TYPE="A" LENGTH="30">PH TAX DEPARTMENT             </ATTENTION>
+		<ADDRESS1 TYPE="A" LENGTH="30">421 QUANTUM RD NE             </ADDRESS1>
+		<ADDRESS2 TYPE="A" LENGTH="30">                              </ADDRESS2>
+		<CITY TYPE="A" LENGTH="20">RIO RANCHO          </CITY>
+		<STATE TYPE="A" LENGTH="2">NM</STATE>
+		<ZIP TYPE="A" LENGTH="10">87124-4509</ZIP>
+		<WORK_PHONE TYPE="P" LENGTH="10">8008434306</WORK_PHONE>
+		<WORK_PHONE_EXT TYPE="N" LENGTH="5">0</WORK_PHONE_EXT>
+		<WORK_FAX TYPE="P" LENGTH="10"></WORK_FAX>
+		<OTHER_PHONE TYPE="P" LENGTH="10"></OTHER_PHONE>
+		<EMAIL TYPE="A" LENGTH="40">                                        </EMAIL>
+		<TRACE_NUMBER TYPE="N" LENGTH="8">732222</TRACE_NUMBER>
+	</NAME_ADDRESS>
+
+	<HEADER_INFO>
+	</HEADER_INFO>
+
+	<DEBUG>                                                                               I002210589575              08121900001200110280605F                    0000000000046  0120000101       9,999.99                       0220020501                                      0320000101                                      0620000101                                      0920020901                                      1420020201                                      2320020901                                      2420000101                                      2820000101                                      2920000101                                      8419990202               232398500                                                                                             002210589575  RYAN TIFFANY                            SHAPLIN SHAMPOO HOUSE                   060000DADDY WARBUCKS                129 WESTMINSTER DR                                          WALLINGFORD         PA19086-663961087699994545461055555596105556666TIFFANYS@IS-PARTNER                     00732230 002210589575                                                                                  030000HARRY                         112 FRANKLIN ST                                             MORRISTOWN          NJ07960-544161055588777777761055544446105556666HARRY@AOL.COM                           00732231 002210589575                                                                                  030000HARRY                         1607 COVENTRY LN                                            GLEN MILLS          PA19342-943061055588777777761055544446105556666HARRY@AOL.COM                           00732221 001232972994  INFORMATION SERVICES PARTNER INC                                                060008PLYMOUTH GREENE OFFICE CAMPUS 1000 GERMANTOWN PIKE STE G5                                 PLYMOUTH MTNG       PA19462-248761027959000000000000000000000000000                                        00730779 001480895936  PIZZA HUT OF AMERICA INC                                                        060019PH TAX DEPARTMENT             421 QUANTUM RD NE                                           RIO RANCHO          NM87124-450980084343060000000000000000000000000                                        00732222                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </DEBUG>
+</ACCT>

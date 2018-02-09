@@ -1,0 +1,6 @@
+<DEBUGINFO>
+<REQUSET><?xml version="1.0" encoding="UTF-8"?><c1match><Message /><Closeness /><Address1>1500 John F. Kennedy Blvd</Address1><Address2></Address2><City /><State /><Zip>19102</Zip><Zip4 /><houseno /><direction /><designation /><DPC /><DPBC /><CRT /><street /></c1match></REQUSET>
+
+
+<RESPONSE><?xml version="1.0" encoding="utf-16"?><c1match xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Message>Success</Message><Closeness>0</Closeness><Address1>1500 JOHN F KENNEDY BLVD                          </Address1><Address2 /><City>PHILADELPHIA                </City><State>PA</State><Zip>19102</Zip><Zip4>1710</Zip4><houseno>      1500</houseno><direction /><designation>BLVD</designation><DPC>0</DPC><DPBC>171099</DPBC><CRT>C013</CRT><street>JOHN F KENNEDY              </street></c1match></RESPONSE>
+</DEBUGINFO>

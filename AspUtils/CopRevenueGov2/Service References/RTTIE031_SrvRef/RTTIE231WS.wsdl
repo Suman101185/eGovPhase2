@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://ISDEV.city.phila.local/RTTIE231.service:RTTIE231WS" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:HDR1="urn:com-softwareag-entirex-rpc:TIPSACCD" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" name="RTTIE231WS" targetNamespace="http://ISDEV.city.phila.local/RTTIE231.service:RTTIE231WS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="urn:com-softwareag-entirex-rpc:TIPSACCD">
+      <xsd:import namespace="http://ISDEV.city.phila.local/RTTIE231.service:RTTIE231WS" />
+      <xsd:element name="RTTIE231" type="sn0:RTTIE231" />
+      <xsd:element name="RTTIE231Response" type="sn0:RTTIE231Response" />
+      <xsd:complexType name="RTTIE231">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_SMA" nillable="true" type="tns:_SMA" />
+          <xsd:element minOccurs="0" name="_E-LCF" nillable="true" type="tns:_E-LCF" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE231Response">
+        <xsd:sequence>
+          <xsd:element name="_SMA" type="tns:_SMA2" />
+          <xsd:element name="_E-LCF" type="tns:_E-LCF2" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="http://ISDEV.city.phila.local/RTTIE231.service:RTTIE231WS">
+      <xsd:import namespace="urn:com-softwareag-entirex-rpc:TIPSACCD" />
+      <xsd:element name="RTTIE231" type="tns:RTTIE231" />
+      <xsd:element name="RTTIE231Response" type="tns:RTTIE231Response" />
+      <xsd:complexType name="RTTIE231">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE231" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_PROGRAM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SYSTEM-ERROR" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ERROR-LINE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MESSAGE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LCF">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ACCOUNT-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="YEAR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="EST-PAID-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="YEAR" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="AMOUNT" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="COMMENT" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="YEAR-1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="INCOME-1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="COMMENT-1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="YEAR-2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="INCOME-2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="COMMENT-2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="YEAR-3" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="INCOME-3" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="COMMENT-3" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE231Response">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE231Response" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA2">
+        <xsd:sequence>
+          <xsd:element name="_PROGRAM" type="xsd:string" />
+          <xsd:element name="SYSTEM-ERROR" type="xsd:string" />
+          <xsd:element name="ERROR-LINE" type="xsd:string" />
+          <xsd:element name="MESSAGE" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LCF2">
+        <xsd:sequence>
+          <xsd:element name="ACCOUNT-ID" type="xsd:string" />
+          <xsd:element name="YEAR-X" type="xsd:string" />
+          <xsd:element name="EST-PAID-X" type="xsd:string" />
+          <xsd:element name="YEAR" type="xsd:string" />
+          <xsd:element name="AMOUNT" type="xsd:string" />
+          <xsd:element name="COMMENT" type="xsd:string" />
+          <xsd:element name="YEAR-1" type="xsd:string" />
+          <xsd:element name="INCOME-1" type="xsd:string" />
+          <xsd:element name="COMMENT-1" type="xsd:string" />
+          <xsd:element name="YEAR-2" type="xsd:string" />
+          <xsd:element name="INCOME-2" type="xsd:string" />
+          <xsd:element name="COMMENT-2" type="xsd:string" />
+          <xsd:element name="YEAR-3" type="xsd:string" />
+          <xsd:element name="INCOME-3" type="xsd:string" />
+          <xsd:element name="COMMENT-3" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RTTIE231WS_PortType_RTTIE231">
+    <wsdl:part name="parameters" element="tns:RTTIE231" />
+  </wsdl:message>
+  <wsdl:message name="RTTIE231WS_PortType_RTTIE231Response">
+    <wsdl:part name="parameters" element="tns:RTTIE231Response" />
+  </wsdl:message>
+  <wsdl:portType name="RTTIE231WS_PortType">
+    <wsdl:operation name="RTTIE231">
+      <wsdl:input message="tns:RTTIE231WS_PortType_RTTIE231" />
+      <wsdl:output message="tns:RTTIE231WS_PortType_RTTIE231Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RTTIE231_service_RTTIE231WS_Binder" type="tns:RTTIE231WS_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RTTIE231">
+      <soap:operation soapAction="RTTIE231_service_RTTIE231WS_Binder_RTTIE231" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RTTIE231.service.RTTIE231WS">
+    <wsdl:port name="RTTIE231_service_RTTIE231WS_Port" binding="tns:RTTIE231_service_RTTIE231WS_Binder">
+      <soap:address location="http://ISDEV.city.phila.local:5555/ws/RTTIE231.service.RTTIE231WS/RTTIE231_service_RTTIE231WS_Port" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

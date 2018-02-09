@@ -1,0 +1,226 @@
+<%
+dim fso 
+Dim strAcctID, strEntityName, strEntityAddr, strScanLine, strPeriod, strAcctType
+dim sTmpPayCoup, drv
+
+drv=Session("COUPON_PATH")
+
+' according to the city, the scan line must be 1 inch from bottom, 3/8ths inch
+' from the right margin
+'
+'EHD - v4.2.7 - # sign not allowed in URL Querystring 
+'		Change back to # from ~LBSIGN~ from PayCoupon.asp
+
+strAcctID = Replace(Request.QueryString("a"), "~LBSIGN~", "#")
+strEntityName = Replace(Request.QueryString("b"), "~LBSIGN~", "#")
+strEntityAddr = Replace(Request.QueryString("c"), "~LBSIGN~", "#")
+strScanLine = Replace(Request.QueryString("d"), "~LBSIGN~", "#")
+strPeriod = Replace(Request.QueryString("e"), "~LBSIGN~", "#")
+strAcctType = mid(strScanLine,4,2)
+
+strEntityName = ispProperCase(strEntityName)
+strEntityAddr = ispProperCase(strEntityAddr)
+
+OpenPayCoupon()
+
+Private Function OpenPayCoupon()
+Dim sGenericPayCoup, sFullPayCoupSrc, CouponFile, i, strPath, sChkBox
+Dim sImageArray, sTempHtmName, sTempHtmData, sImageName, sQtePolName
+Dim sPopUpData, sMasterName, sMasterData, sEmailData, sTmp
+
+Dim TempDate, TimeStamp, CurrTime
+
+	sPath = Server.MapPath(".")
+	Set fso = Server.CreateObject("Scripting.FileSystemObject")
+	Set sGenericPayCoup = fso.openTextFile(sPath & "\CouponImage.htm", 1)
+	Set sFullPayCoupSrc = fso.OpenTextFile(sPath & "\CouponImageForm.htm", 1)
+
+	sFullPayCoupSrc = sFullPayCoupSrc.ReadAll
+	sGenericPayCoup = sGenericPayCoup.ReadAll
+	
+	sGenericPayCoup = Replace(sGenericPayCoup, "{AcctNum}", strAcctID)
+	sGenericPayCoup = Replace(sGenericPayCoup, "{Entity Name}", strEntityName)
+	sGenericPayCoup = Replace(sGenericPayCoup, "{Entity Street}", strEntityAddr)
+	sGenericPayCoup = Replace(sGenericPayCoup, "{Scan Line}", strScanLine)
+	sGenericPayCoup = Replace(sGenericPayCoup, "{Date}", strPeriod)
+'	sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", strAcctType)
+	
+	if strAcctType = "01" then    '"WAG"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "8040")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Wage")
+	end if		
+	if strAcctType = "02" then    '"ERN"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1648")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Earnings")
+	end if		
+	if strAcctType = "03" then    '"NPT"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1393")   '' Coupon only box
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Net Profits")
+	end if		
+	if strAcctType = "06" then    '"AMU"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "124")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Amusement")
+	end if		
+	if strAcctType = "08" then    '"PRK"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "124")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Parking")
+	end if		
+	if strAcctType = "09" then    '"COI"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "124")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Coin Operated")
+	end if		
+	if strAcctType = "11" then    '"POL"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "60")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Police")
+	end if		
+	if strAcctType = "14" then    '"VRT"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "124")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Vehicle Rental")
+	end if		
+	if strAcctType = "18" then    '"RTT"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "124")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Realty Transfer")
+	end if		
+	if strAcctType = "23" then    '"HOT"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "53180")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Hotel")
+	end if		
+	if strAcctType = "24" then    '"BIR"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1393")  '' Coupon only box
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Business Income and Receipts")
+	end if		
+'EGOVWEB-49 - Items 6-8		
+	if strAcctType = "27" then    '"TOB"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "53250")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Tobacco")
+	end if		
+	if strAcctType = "28" then    '"LIQ"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1018")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Liquor")
+	end if		
+	if strAcctType = "29" then    '"SIT"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "389")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "School Income Tax")
+	end if		
+	if strAcctType = "23" then    '"VPT"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "124")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Valet Parking")
+	end if		
+	if strAcctType = "60" then    '"REA"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "8409")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Real Estate")
+	end if
+	if strAcctType = "76" then    '"OAT"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "124")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Outdoor Advertizing")
+	end if
+	if strAcctType = "84" then    '"UOL"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1049")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "U&O - Landlord")
+	end if
+	if strAcctType = "85" then    '"UOL"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1049")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "U&O - Tenant")
+	end if
+	if strAcctType = "90" then    '"ASM"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1600")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Assessment Screen")
+	end if
+	if strAcctType = "91" then    '"GNP"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "60")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Police BRI")
+	end if
+	if strAcctType = "97" then    '"GEN"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1600")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Entity Level Charges")
+	end if
+	if strAcctType = "98" then    '"GN2"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1600")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "General")
+	end if
+	if strAcctType = "99" then    '"GN9"
+		sGenericPayCoup = Replace(sGenericPayCoup, "{BOX}", "1600")
+		sGenericPayCoup = Replace(sGenericPayCoup, "{AcctID}", "Entity Level Charges")
+	end if
+
+	TempDate = datepart("yyyy", now) & datepart("m", now) & datepart("d", now) & datepart("h", now) & datepart("m", now) & datepart("s", now)
+
+	sTmpPayCoup =  strAcctID & "_" & TempDate
+	
+	Set CouponFile = fso.CreateTextFile(drv & sTmpPayCoup & ".htm", True)
+	CouponFile.WriteLine sGenericPayCoup
+	CouponFile.Close
+
+	CreatePayCoupon()
+	sFullPayCoupSrc = replace(sFullPayCoupSrc,"src='cid:IDCARD_IMG'","src='..\CouponImages\" & sTmpPayCoup & ".gif'")
+	Response.Write(sFullPayCoupSrc)
+	
+End Function
+
+function ispProperCase(val)
+dim vTmp, sTng, i
+
+	if val = "" then
+		sTng = val
+	else
+		vTmp = Split(val," ")
+		sTng = Ucase(left(Vtmp(0),1))
+		if len(vTmp(0)) > 1 then
+			sTng = sTng & LCase(mid(vTmp(0),2))
+		end if
+		
+		for i = 1 to ubound(vTmp)
+			sTng = sTng & " " & Ucase(left(vTmp(i),1))
+			if len(vTmp(i)) > 1 then
+				sTng = sTng & LCase(Mid(vTmp(i),2))
+			end if
+		next	
+			
+	end if
+
+	ispProperCase = sTng
+	
+End Function
+
+
+Private Function GetImageStyles()
+' GetImageStyles = "<STYLE TYPE ='text/css'> 
+'	"FONT-SIZE: 10pt; WIDTH: 690px; 
+'   			BORDER-TOP-STYLE: none; FONT-FAMILY: IDAutomationOCRa;
+'   			BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 26px; BORDER-BOTTOM-STYLE: none">	
+'   			<! FONT-FAMILY: P08OBA; >
+End Function
+
+Private Function CreatePayCoupon()
+dim x, sFileIn, sFileOut, sFileGif, sRtn
+ 
+Set HTMConverter = server.CreateObject("eGovUtils.eGovVeryPDF")
+
+sFileIn = drv & sTmpPayCoup & ".htm"
+sFileOut = drv & sTmpPayCoup & ".emf"
+sFileGif = drv & sTmpPayCoup & ".gif"
+
+sRtn = HTMConverter.CallVeryGif(cstr(sFileIn), cstr(sFileGif), "-xres 300 -yres 300 -bwidth 575 -bheight 360")
+'HTMConverter.HTMLConverter chr(34) & sFileOut & chr(34), chr(34) & sFileGif & chr(34), "" ' chr(34) & "- -bwidth 150 -bheight 100 -xres 825 -yres 300" &  chr(34)
+'HTMConverter.HTMLConverter "e:\7717655_20074514429.htm", "e:\7717655_20074514429.emf", "-xres 300 -yres 300 -bwidth 150 -bheight 100"
+'HTMConverter.HTMLConverter chr(34) & sFileOut & chr(34), chr(34) & sFileGif & chr(34), "" ' chr(34) & "- -bwidth 150 -bheight 100 -xres 300 -yres 300" &  chr(34)
+'\Cop\Revenue\Wage Tax Demo\CouponDev\CouponImages
+Set HTMConverter = Nothing
+
+if err.number = 0 then
+'	if fso.FileExists(iCouponImage) then
+'		CreateImage = true
+'	else
+'		WriteFile "CreateImage Error 3 - ", " - File not created - " & vbcrlf & _
+'			lCouponImage & " - " & lCouponFile & vbcrlf & sRtn
+'			CreateImage = False
+'	end if
+else
+	WriteFile "CreateImage Error 2 - ", err.number & err.Description & _
+		lCouponFile & vbcrlf & sRtn
+	CreateImage = False
+end if
+	
+End Function
+
+%>

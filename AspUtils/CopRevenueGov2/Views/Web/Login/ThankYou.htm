@@ -1,0 +1,76 @@
+<html>
+<head>
+<TITLE></TITLE>
+<script ID="clientEventHandlersJS" LANGUAGE="javascript" type="text/javascript">
+
+var arrLoginErr = new Array()
+
+function DisplayThankYou(sLayer) {
+	
+	//ForgotPinThankYou.style.display = 'none'
+	//LogPinApply.style.display = 'none'
+	$('#ForgotPinThankYou').css('display', 'none');
+	$('#ForgotPinThankYou').css('display', 'none');
+	if (sLayer == 'APPLYPIN') {
+		$('#ApplyPinThankYou').css('display', 'block');
+	} else {
+		///ForgotPinThankYou.style.display = 'block'
+		$('#ForgotPinThankYou').css('display', 'block');
+	}		//if
+	this.focus()
+	$('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|thank you</Font>'	);
+}		//DisplayApplyPin
+
+
+function DoThankYou() {
+	$('#ApplyPinThankYou').css('display', 'none')
+	//ForgotPinThankYou.style.display = 'none';
+	$('#ForgotPinThankYou').css('display', 'none')
+	//alert($(parent.MenuWin.document).find('#mnuLogLogout'));
+	//parent.MenuWin.mnuLogLogout.click();
+	$(parent.document).find('#mnuLogLogout').first().trigger('click');
+}		//if
+
+</script>
+</head>
+<BODY>
+
+<DIV Id="ApplyPinThankYou" Name="ApplyPinThankYou" style="DISPLAY: none; VISIBILTY: visible">
+<table cellSpacing="0" cellPadding="1" width="95%" border="0"
+		 style="MARGIN-BOTTOM: 5px; MARGIN-LEFT: 4%"></TR>
+  <tr vAlign="top" align="left">
+    <td width="75%">
+      <p id="hdrThankYou" name="hdrThankYou" class="lblTextBlack">
+				The PIN is now being generated. Shortly, you will receive via
+				e-mail the Philadelphia Revenue Personal Identification Number (PIN) for this tax entity.</p>
+			<p class="lblTextBlack">You must get the PIN from this e-mail before using "Online Services"</p></td>
+  <td></td></tr>
+  </table>
+<table cellSpacing="0" cellPadding="0" width="60%" border="0" 
+		style="MARGIN-TOP: 15px; MARGIN-LEFT: 4%">	
+  <tr height=40 valign="bottom">
+		<td align="middle"><p><input class="btnNormal" id="btnThankYou" name="btnThankYou"
+			  type="submit" value="Thank You" onclick="DoThankYou()"></p></td></tr>
+</table>
+</DIV>
+
+<DIV Id="ForgotPinThankYou" Name="ForgotPinThankYou" style="DISPLAY: none; VISIBILTY: visible">
+<table cellSpacing="0" cellPadding="1" width="95%" border="0"
+		 style="MARGIN-BOTTOM: 5px; MARGIN-LEFT: 4%"></TR>
+  <tr vAlign="top" align="left">
+    <td width="75%">
+      <p id="hdrThankYou" name="hdrThankYou" class="lblTextBlack">
+				Your PIN is now being retrieved. Shortly, you will receive via
+				e-mail the Philadelphia Revenue Personal Identification Number (PIN) for this tax entity.</p></td>
+  <td></td></tr>
+  </table>
+<table cellSpacing="0" cellPadding="0" width="60%" border="0" 
+		style="MARGIN-TOP: 15px; MARGIN-LEFT: 4%">	
+  <tr height=40 valign="bottom">
+		<td align="middle"><p><input class="btnNormal" id="btnExistThankYou" name="btnExistThankYou"
+			  type="submit" value="Thank You" onclick="DoThankYou()"></p></td></tr>
+</table>
+</DIV>
+   
+</BODY>
+</html>

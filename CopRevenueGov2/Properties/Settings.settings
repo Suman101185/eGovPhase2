@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CopRevenueGov2.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CopRevenueGov2_RTTIE010_SrvRef_RTTIE010" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://istest.city.phila.local:10010/wsstack/services/RTTIE010.TIPSACCDSOAP11Port/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_RTTIE030_SrvRef_RT02E030" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://istest.city.phila.local:10010/wsstack/services/RT02E030.TIPSACCDSOAP11Port/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_BPTLFEZ_RT01E037_SrvRef_RT01E037" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://istest.city.phila.local:10010/wsstack/services/RT01E037.TIPSACCDSOAP11Port/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_LCF_RTTIE031_SrvRef_RTTIE031" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://istest.city.phila.local:10010/wsstack/services/RTTIE031.TIPSACCDSOAP11Port/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_RTTIE040_SrvRef_RT01E040" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://istest.city.phila.local:10011/wsstack/services/RT01E040.RT01E040HttpsSoap12Endpoint/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_RTTIE016_SrvRef_RTTIE016" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://istest.city.phila.local:10011/wsstack/services/RTTIE016.RTTIE016HttpsSoap12Endpoint/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_SIT_RTTIE036_SrvRef_RTTIE036" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://istest.city.phila.local:10011/wsstack/services/RTTIE036.RTTIE036HttpsSoap12Endpoint/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_TOBACCO_RTTIE028_SrvRef_RT01E028" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://istest.city.phila.local:10010/wsstack/services/RT01E028.TIPSACCDSOAP11Port/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_UOForm_RTTIE035_SrvRef_RTTIE035" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://istest.city.phila.local:10010/wsstack/services/RTTIE035.TIPSACCDSOAP11Port/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_RTTIE022_SrvRef_RTTIE022" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://istest.city.phila.local:10010/wsstack/services/RTTIE022.TIPSACCDSOAP11Port/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_UOList_RTTIE034_SrvRef_RT01E034" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://istest.city.phila.local:10011/wsstack/services/RT01E034.RT01E034HttpsSoap12Endpoint/</Value>
+    </Setting>
+    <Setting Name="CopRevenueGov2_WAGE_RTTIE027_SrvRef_RT01E027" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://istest.city.phila.local:10011/wsstack/services/RT01E027.RT01E027HttpsSoap12Endpoint/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

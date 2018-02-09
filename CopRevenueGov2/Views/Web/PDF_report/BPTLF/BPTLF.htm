@@ -1,0 +1,479 @@
+﻿<html>
+<head>
+<meta name="GENERATOR" content="Microsoft Visual Studio 6.0">
+<title></title>
+<script src="../js/JqueryMin.js" type="text/javascript"></script>
+<script language="javascript" src='../Inc/ispFunctions.js.htm' type="text/javascript"></script>
+<script language="javascript" src='../Inc/ispXmlProc.js.htm' type="text/javascript"></script>
+</head>
+
+<body style="margin: .375in .375in .375in .375in">
+
+<div style="display: block; vertical-align: bottom; top: 0px; height:10.25in; width: 7.75in;border:none 1px" id="LogCoupon">
+
+    <table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px; width: 100%; top: 0px; display:block" id="topPayCoupon">
+        <tr >
+            <td>&nbsp;</td>
+            <td align="center" style="padding-left:10%"><p id="cityseal"><img id="IMG2" src="../images/cityseal.gif" style="WIDTH: 1in; HEIGHT: 1in"></p></td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+<div >
+<h2>Tax Payer Information  |   Business Income & Receipts Tax for {year} <span id="AppHeader"></span>  </h2>
+    <div>&nbsp;</div>
+
+    <div>
+        <table border="1" style="margin-left: 0px; width: 100%; top: 0px; display: block; FONT-SIZE: 12pt; FONT-FAMILY: Arial" id="Table1">
+            <!--<tr style="FONT-SIZE: 14pt; height: .25in" id="coup2">-->
+            <!--<tr style="FONT-SIZE: 10pt; height: .25in;width:100%" id="coup2" >
+                <td style="width:10%">&nbsp;</td>
+                <td style="width:50%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+            </tr>-->
+            <tr >
+                <td align="left" width="70%">&nbsp;<b>Name:&nbsp;&nbsp;&nbsp;&nbsp;</b><span>&nbsp;{name}</span></td>
+                
+                <td align="left" >&nbsp;<b>Account No:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">{acc_id}</span></td>
+            </tr>
+            <tr >
+                <td width="70%" align="left">&nbsp;<b>Address:</b><span>&nbsp;{address}</span></td>
+                <td align="left">&nbsp;<b>{ssn_label}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">{ssn_value}</span></td>
+            </tr>
+        </table>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <table cellpadding="0" cellspacing="0" style="width: 100%; font-family: font-size 8pt; font-family: sans-serif" border="0" >
+            <tr style="height: .25in">
+                <td width="5%">&nbsp;</td>
+                <td width="85%">&nbsp;</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+            <tr style="font-size: 10pt; font-family:sans-serif">
+                <th colspan="3" align="left"><b>COMPUTATION OF TAX DUE OR OVERPAYMENT</b></th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td >NET INCOME PORTION OF TAX    </td>
+                <td  align="right">{NET_INCOME} </td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td >GROSS RECEIPTS PORTION OF TAX </td>
+                <td  align="right">{GROSS_RECEIPTS} </td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td >Tax Due for the {year} Business Income & Receipts Tax (If loss, enter "0") </td>
+                <td  align="right">{TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td >MANDATORY {year} BIRT Estimated Payment </td>
+                <td  align="right">{ESTIMATED_TAX} </td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td >Total Due by 4/18/2016[Calculated - add lines 3 and 4]</td>
+                <td  align="right">{TOTAL_TAX} </td>
+            </tr>
+
+        </table>
+
+
+        <table cellpadding="0" cellspacing="0" style="width: 100%; font-family: font-size 8pt; font-family: sans-serif" border="0">
+            <tr style="height: .25in">
+                <td width="5%">&nbsp;</td>
+                <td width="85%">&nbsp;</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+            <tr style="font-size: 10pt; font-family:sans-serif">
+                <th colspan="3" align="left"><b>ESTIMATED PAYMENTS AND OTHER CREDITS</b></th>
+            </tr>
+            <tr>
+                <td >6a.</td>
+                <td>and any credit from overpayment of the {year} BIRT and/or {year} NPT return.   </td>
+                <td  align="right">{NPT_TAX_CREDIT} </td>
+            </tr>
+            <tr>
+                <td>6b.</td>
+                <td >Credit from Special Credit Schedule (SC). (Cannot exceed amount on Line 3) </td>
+                <td  align="right">{BPT_TAX_CREDIT} </td>
+            </tr>
+            <tr>
+                <td>6c.</td>
+                <td >Total Payments and Credits[Calculated - add lines 6a and 6b] </td>
+                <td  align="right">{TOTAL_PAY_CREDITS} </td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td >Net Tax Due[Calculated - line 5 minus 6c] </td>
+                <td  align="right">{NET_TAX} </td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td >Interest and Penalty (see instruction Sheet II)</td>
+                <td  align="right">{INTEREST_PENALTY} </td>
+            </tr>
+            <tr>
+                <td >9.</td>
+                <td ><u><b>TOTAL DUE</b></u> including Interest and Penalty Use payment coupon.<br />
+                </td>
+                <td  align="right">{AMOUNT_OWED} </td>
+            </tr>
+            <tr>
+                <td >&nbsp;</td>
+                <td>
+                     Make check payable to: "City of Philadelphia"[Calculated - add line 7 and 8]
+                    
+                </td>
+                <td >&nbsp;</td>
+            </tr>
+           
+        </table>
+
+        <table cellpadding="0" cellspacing="0" style="width:100%" border="0">
+            <tr style="height: .25in">
+                <td width="5%">&nbsp;</td>
+                <td width="85%">&nbsp;</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+            <tr>
+                <th colspan="3" align="left"><b>OVERPAYMENT OPTIONS If Line 6C is greater than Line 5, enter the amount to be</b></th>
+            </tr>
+            <tr>
+                <td>10a.</td>
+                <td class="text-left">Refunded.<b>Do not file separate Refund Petition</b> </td>
+                <td class="text-left" align="right">{REFUND} </td>
+            </tr>
+            <tr>
+                <td>10b.</td>
+                <td class="text-left">Applied,to the {year} Net Profits Tax Return </td>
+                <td class="text-left" align="right">{NPT_OVERPAY} </td>
+            </tr>
+            <tr>
+                <td>10c.</td>
+                <td class="text-left">Applied to the {year} Business Income & Receipts Tax</td>
+                <td class="text-left" align="right">{BPT_OVERPAY} </td>
+            </tr>
+        </table>
+
+    </div>
+    <div>&nbsp;</div>
+    <!--schedule B-->
+    {sch_div_strt}
+    <!--schedule c-->
+    <div>&nbsp;</div>
+    <div>
+        <table cellpadding="0" cellspacing="0" style="width:100%" border="0">
+            <tr style="height: .25in">
+                <td width="5%">&nbsp;</td>
+                <td width="85%">&nbsp;</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+            <tr>
+                <th colspan="3" align="left"><u><b>2015 BIRT SCHEDULE C-1: For business conducted in and out of Philadelphia</b></u></th>
+            </tr>
+           
+            <tr>
+                <td colspan="3" align="center">
+                    This schedule must be completed in order to receive the deduction from Worksheet S.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">COMPUTATION OF APPORTIONMENT FACTOR TO BE APPLIED TO APPORTIONABLE NET INCOME. <br /> 
+                  YOU MUST COMPLETE SCHEDULE C-1 IF YOU ARE APPORTIONING YOUR INCOME.FAILURE TO <br />
+                    INCLUDE THIS SCHEDULE WITH YOUR RETURN MAY RESULT IN THE DISALLOWANCE OF YOUR  <br /> 
+                    APPORTIONMENT AND YOU MAY BE BILLED. <br />
+                </td>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td class="text-left">Philadelphia Sales/Receipts </td>
+                <td class="text-left" align="right">{c1} </td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td class="text-left">Gross Sales/Receipts Everywhere </td>
+                <td class="text-left" align="right">{c2} </td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td class="text-left">Single Sales/Receipts Factor Apportionment Percentage (Line 1 divided by 2) </td>
+                <td class="text-left" align="right">{c3} </td>
+            </tr>
+        </table>
+    </div>
+    <div>&nbsp;</div>
+    <!--schedule D-->
+    <div>
+        <table cellpadding="0" cellspacing="0" style="width:100%" border="0">
+            <tr style="height: .25in">
+                <td width="5%">&nbsp;</td>
+                <td width="85%">&nbsp;</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+            <tr>
+                <th colspan="3" align="left"><u><b>2015 BIRT Schedule D: Computation Of Tax On Gross Receipts</b></u></th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td class="text-left">Gross Receipts from sales and/or rentals of tangible personal property,<br /> 
+                dividends, interest,royalties and gainson sale of stocks, bonds and business capital assests</td>
+                <td class="text-left" align="right">{GR_SALES} </td>
+            </tr>
+            
+            <tr>
+                <td>2.</td>
+                <td class="text-left">Gross Receipts from services</td>
+                <td class="text-left" align="right">{GR_SERVICES} </td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td class="text-left">Gross Receipts from rentals of real property</td>
+                <td class="text-left" align="right">{GR_RENTALS} </td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td class="text-left">Total Gross Receipts[Calculated - Sum Lines 1, 2 and 3]</td>
+                <td class="text-left" align="right">{GR_TOTALS} </td>
+            </tr>
+            <tr>
+                <th colspan="3" align="left"><b>Less Exclusions from:</b></th>
+            </tr>
+            <tr>
+                <td>5a.</td>
+                <td class="text-left">Sales delivered outside of Philadelphia</td>
+                <td class="text-left" align="right">{LE_SALES_OUT} </td>
+            </tr>
+            <tr>
+                <td>5b.</td>
+                <td class="text-left">Services performed outside of Philadelphia</td>
+                <td class="text-left" align="right">{LE_SERVICES_OUT} </td>
+            </tr>
+            <tr>
+                <td>5c.</td>
+                <td class="text-left">Rentals of real property outside of Philadelphia</td>
+                <td class="text-left" align="right">{LE_RENTALS_OUT} </td>
+            </tr>
+            <tr>
+                <td>5d.</td>
+                <td class="text-left">Other</td>
+                <td class="text-left" align="right">{LE_OTHER} </td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td class="text-left">Net Taxable Receipts before Statutory Exclusion [Calculated - Line 4 minus Lines 5a through 5d]</td>
+                <td class="text-left" align="right">{NET_TAXABLE_RECEIPTS_BEFORE} </td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td class="text-left">Statutory Exclusion (Lower of Line 6 or $75,000.00)</td>
+                <td class="text-left" align="right">{STAT_EXCLUSION_D_X} </td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td class="text-left">Net Taxable Receipts after Statutory Exclusion (Line 6 minus Line 7)</td>
+                <td class="text-left" align="right">{NET_TAXABLE_RECEIPTS_AFTER} </td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td class="text-left">Receipts on which tax is to be computed by the Alternate Method. (Enter here and on Schedule E, Line 1, 5 or 10.)</td>
+                <td class="text-left" align="right">{RECEIPTS_ALTERNATIVE_METHOD} </td>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td class="text-left">Receipts subject to tax at the regular rate (Line 8 minus Line 9)</td>
+                <td class="text-left" align="right">{RECEIPTS_REGULAR_RATE} </td>
+            </tr>
+            <tr>
+                <td>11.</td>
+                <td class="text-left">TAX DUE at regular rate(Calculated - Multiply Line 10 by 0.001415)</td>
+                <td class="text-left" align="right">{TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>12.</td>
+                <td class="text-left">TAX DUE using the Alternate Method (from Schedule E, Line 15 )</td>
+                <td class="text-left" align="right">{TAX_DUE_ALT} </td>
+            </tr>
+            <tr>
+                <td>13.</td>
+                <td class="text-left">TOTAL TAX DUE[Calculated - Sum Line 11 and Line 12]</td>
+                <td class="text-left" align="right">{TOTAL_TAX_DUE} </td>
+            </tr>
+        </table>
+    </div>
+    <div>&nbsp;</div>
+    <!--schedule E-->
+    <div>
+        <table cellpadding="0" cellspacing="0" style="width:100%" border="0">
+            <tr style="height: .25in">
+                <td width="5%">&nbsp;</td>
+                <td width="85%">&nbsp;</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+            <tr>
+                <th colspan="3" align="left"><u><b>2015 BIRT Schedule E: Computation Of Tax On Gross Receipts<br />
+                                                    Alternate Method of Computing Tax on Gross Receipts<br />
+                                                    (To be used by Manufacturers, Wholesalers and Retailers electing to use the Alternate Method of computation)
+                    </b></u></th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <th colspan="2" align="left"><b>Manufacturers:</b></th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td class="text-left">
+                    Receipts on which tax is to be computed by the Alternate Method...
+                </td>
+                <td class="text-left" align="right">{M_ALT_RECEIPTS} </td>
+            </tr>
+
+            <tr>
+                <td>2.</td>
+                <td class="text-left">Cost of goods solds</td>
+                <td class="text-left" align="right">{M_GOODS_COST} </td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td class="text-left">TAX BASE [Calculated - Line 1 minus Line 2]</td>
+                <td class="text-left" align="right">{M_TAX_BASE} </td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td class="text-left">TAX DUE [Calculated - Multiply Line 3 by 0.0234] </td>
+                <td class="text-left" align="right">{M_TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <th colspan="2" align="left"><b>Wholesalers:</b></th>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td class="text-left">Receipts on which tax is to be computed by the Alternate Method (from Schedule D, Line 9)</td>
+                <td class="text-left" align="right">{W_ALT_RECEIPTS} </td>
+            </tr>
+            <tr>
+                
+                <th colspan="3" align="left"><b>Applicable Cost of Goods:</b></th>
+            </tr>
+           
+            <tr>
+                <td>6a.</td>
+                <td class="text-left">Cost of material</td>
+                <td class="text-left" align="right">{W_GOODS_MATERIALS} </td>
+            </tr>
+            <tr>
+                <td>6b.</td>
+                <td class="text-left">Cost of labor</td>
+                <td class="text-left" align="right">{W_GOODS_LABOR} </td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td class="text-left">TOTAL APPLICABLE COST OF GOODS [Calculated - Line 6a plus Line 6b]</td>
+                <td class="text-left" align="right">{W_GOODS_COST} </td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td class="text-left">TAX BASE [Calculated - Line 5 minus Line 7]</td>
+                <td class="text-left" align="right">{W_TAX_BASE} </td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td class="text-left">TAX DUE [Calculated - Multiply Line 8 by 0.0329] </td>
+                <td class="text-left" align="right">{W_TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <th colspan="2" align="left"><b>Retailers:</b></th>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td class="text-left">Receipts on which tax is to be computed by the Alternate Method...</td>
+                <td class="text-left" align="right">{R_ALT_RECEIPTS} </td>
+            </tr>
+            <tr>
+                <th colspan="3" align="left"><b>Applicable Cost of Goods:</b></th>
+            </tr>
+            <tr>
+                <td>11a.</td>
+                <td class="text-left">Cost of material</td>
+                <td class="text-left" align="right">{R_GOODS_MATERIALS} </td>
+            </tr>
+            <tr>
+                <td>11b.</td>
+                <td class="text-left">Cost of labor</td>
+                <td class="text-left" align="right">{R_GOODS_LABOR} </td>
+            </tr>
+            <tr>
+                <td>12.</td>
+                <td class="text-left">TOTAL APPLICABLE COST OF GOODS [Calculated - Line 11a plus Line 11b]</td>
+                <td class="text-left" align="right">{R_GOODS_COST} </td>
+            </tr>
+            <tr>
+                <td>13.</td>
+                <td class="text-left">TAX BASE [Calculated - Line 10 minus Line 12]</td>
+                <td class="text-left" align="right">{R_TAX_BASE} </td>
+            </tr>
+            <tr>
+                <td>14.</td>
+                <td class="text-left">TAX DUE [Calculated - Multiply Line 13 by 0.0078] </td>
+                <td class="text-left" align="right">{R_TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>15.</td>
+                <td class="text-left">TOTAL TAX DUE [Calculated - Sum Lines 4, 9 and 14]</td>
+                <td class="text-left" align="right">{TOTAL_TAX_DUE} </td>
+            </tr>
+           
+        </table>
+    </div>
+   
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>
+        <table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px; width: 100%; top: 0px;font-size:8pt;">
+            <!--<tr style="FONT-SIZE: 14pt; height: .25in" id="coup2">-->
+            <tr style="height: 20%">
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+
+            </tr>
+          
+            <tr style="height: .25in">
+                <td align="left">Filled by*: </td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_WHO}</td>
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler Name*:</td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_NAME}</td>
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler Phone*:</td>
+                <td align="left" colspan="4" >&nbsp;{PREPARER_PHONE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">EXT- {PREPARER_PHONE_EXT}</span></td>
+                <!--<td align="left">&nbsp;EXT -</td>
+                <td align="left" colspan="2">&nbsp;{PREPARER_PHONE_EXT}</td>-->
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler E-Mail Address*:</td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_EMAIL_ADDRESS}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--For 3/4" from - right:0.75in-->
+<div style="position:absolute; bottom:.9in; right:.375in; width:5.0in; text-align:right; border: none 1px">
+
+</div>
+</div>
+</body>
+</html>

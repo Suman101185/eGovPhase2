@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<script ID="clientEventHandlersJS" LANGUAGE="javascript">
+<!--
+
+function btnIspLink_onclick(){
+	if (window.event.ctrlKey) {
+		clipboardData.setData('Text', parent.$g.xmlAccount.xml)
+	} else {
+		window.open('http://is-partner.com')
+	}		//if
+}
+
+//-->
+</script>
+<link REL="stylesheet" TYPE="text/css" href="Content/Styles/Font.css">
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<TABLE cellSpacing=1 cellPadding=1 width="90%" height="100%" align=center border=0> 
+  <TR>
+    <TD align=middle valign=center >
+			<label class="lblLink" id="btnIspLink" style="FONT-SIZE: 7pt"	
+					 LANGUAGE="javascript" onclick="return btnIspLink_onclick()"><FONT 
+      color=white>is-partner</FONT></label></TD></TR></TABLE>
+
+</BODY>
+</HTML>

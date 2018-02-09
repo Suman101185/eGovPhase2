@@ -1,0 +1,4 @@
+System.Net.Mail.MailMessage
+
+ERROR : *****************************   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at CopRevenueGov2.Service.Persits_MailSender.Send() in e:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2\Helpers\ServiceManager.cs:line 469

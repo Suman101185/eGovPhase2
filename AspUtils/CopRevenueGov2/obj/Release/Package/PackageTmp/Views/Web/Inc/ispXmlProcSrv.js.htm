@@ -1,0 +1,124 @@
+<script language="javascript" runat="server">
+
+function ispXmlGetFieldVal(oXML, sElement, sAttrib, iRecordNo) {
+	
+	if (iRecordNo == null)
+		{iRecordNo = 0}
+	if (sElement == '')
+		{sElement = null}
+	if (sAttrib == '')
+		{sAttrib = null}
+	
+	if (sElement == null) {
+		return 'Missing sElement value...'}
+	{
+		if (sAttrib !== null) {
+			return oXML.documentElement.selectNodes("//*/" + sElement  
+					).item(iRecordNo).attributes.getNamedItem(sAttrib).text
+		}		//If sAttribute
+//if (ispXmlGetRecCount(oXML, sElement, '') == 0) {
+//	Response.Write('Get Not Found ' + sElement + '  ' + ispXmlGetRecordXml(oXML, 'INSUREDINFO', iRecordNo))
+//	Response.End
+//}
+			return oXML.documentElement.selectNodes("//*/" + sElement ).item(iRecordNo).text
+	}		//if sElement
+}		//ispXmlGetFieldVal
+
+
+function ispXmlSetFieldVal(oXML, sValue, sElement, sAttrib, iRecordNo) {
+	
+	if (iRecordNo == null)
+		{iRecordNo = 0}
+	if (sElement == '')
+		{sElement = null}
+	if (sAttrib == '')
+		{sAttrib = null}
+	
+	if (sElement == null) {
+		return 'Missing sElement value...'}
+	{
+		if (sAttrib !== null) {
+			oXML.documentElement.selectNodes("//*/" + sElement 
+					).item(iRecordNo).attributes.getNamedItem(sAttrib).text = sValue
+			return 
+		}		//If sAttribute
+//if (ispXmlGetRecCount(oXML, sElement, '') == 0) {
+//	return 'Set Not Found ' + sElement	
+//}
+		oXML.documentElement.selectNodes("//*/" + sElement
+				).item(iRecordNo).text = sValue
+			return 
+	}		//if sElement
+}		//ispXmlSetFieldVal
+
+
+function ispXmlGetRecordXml(oXML, sElement, iRecordNo) {
+
+	return oXML.documentElement.selectNodes("//*/" + sElement ).item(iRecordNo).xml
+}
+
+
+function ispXmlGetRecCount(oXML, sElement, bAttrib) {
+
+	if (sElement == '')
+		{sElement = null}
+	if (bAttrib == null || bAttrib.toUpperCase() !== 'Y')
+		{bAttrib = null}
+	
+	if (sElement == null) {
+		return 'Missing sElement value...'}
+	{
+		if (bAttrib !== null) {
+			return oXML.documentElement.selectNodes("//*/" + sElement
+					).item(0).attributes.length
+		}		//If bAttribute
+			return oXML.documentElement.selectNodes("//*/" + sElement
+					).length
+	}		//if sElement
+}		//ispXmlGetRecCount
+
+
+function ispXmlAddBlankRecs(oXML, sElement, iRecNos) {
+	var olXML, iLength, i
+	olXML = Server.CreateObject("Microsoft.XMLDOM")
+	
+	olXML.async = false
+	olXML.loadXML(oxml.documentElement.selectNodes("//" + sElement).item(0).xml)
+	iLength = oXML.documentElement.selectNodes("//*/" + sElement).length
+
+	for (i=0; i<iRecNos; i++) {
+		oXML.documentElement.selectNodes("//*/" + sElement).item((iLength + i) - 1)
+				.parentNode.appendChild(olXML.documentElement.cloneNode(true))
+	}		//for
+}		//ispXmlAddBlankRecs
+
+
+function ispXmlReplaceNode(oXmlTo, sElementTo, iRecNoTo, oXmlFrom, sElementFrom, iRecNoFrom) {
+
+	if (oXmlTo) {
+	}	
+	var oldChild = oXmlTo.documentElement.selectNodes("//" + sElementTo).item(iRecNoTo)
+	var newChild = oXmlFrom.documentElement.selectNodes("//" + sElementFrom).item(iRecNoFrom).cloneNode(true)
+	
+	oXmlTo.documentElement.replaceChild(newChild, oldChild)
+
+}
+
+
+function ispAppendNodeXml(oXmlTo, sElementTo, iRecNoTo, oXmlFrom, sElementFrom, iRecNoFrom) {
+
+	var newChild = oXmlFrom.documentElement.selectNodes("//" + sElementFrom).item(iRecNoFrom).cloneNode(true)
+
+	oXmlTo.documentElement.selectNodes("//" + sElementTo).item(iRecNoTo).appendChild(newChild)
+
+}
+function ispXmlRemoveNode(oXml, sParentElement, iParentNo, sChildElement, iChildNo) {
+
+	oXml.documentElement.selectNodes("//" + sParentElement).item(iParentNo)
+		.removeChild(oXml.documentElement.selectNodes("//" + sChildElement).item(iChildNo))
+		
+}
+
+
+</script>
+

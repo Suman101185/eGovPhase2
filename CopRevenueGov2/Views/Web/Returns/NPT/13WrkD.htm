@@ -1,0 +1,153 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+    <style>
+        .inpNormal, .inpReadOnlyRt, .inpError {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body onload='LoadError("WrkD")'>
+    <div id="NPT_WrkD" style="DISPLAY: none; VISIBILTY: hidden" name="NPT_WrkD">
+        <table class="tblShowBorder" id="TABLE1" style="MARGIN-LEFT: 4%" cellspacing="0"
+            cellpadding="0" width="90%" border="0">
+
+            <tr height="0">
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+            </tr>
+            <tr class="rowDataEven">
+                <td colspan="20">
+                    <label class="lblInstrNormal">
+                        <u><b>Worksheet E:</u> Allocation of Business Income & Receipts Tax credit for partnerships, etc., with corporate members (this schedule is to be used only by partnerships, joint ventures and associations which are composed of one or more corporate partners, corporate joint ventures, or corporate associates.)</B>
+                    </label>
+                </td>
+
+                <tr class="rowDataOdd">
+                    <td>
+                        <label class="lblInstrNormal">1.</label></td>
+                    <td colspan="16">
+                        <label class="lblInstrNormal">Enter the portion of taxable income on which 2013 Business Income & Receipts Tax has been paid, AND which represents the distributive shares of ALL CORPORATE MEMBERS</label></td>
+                    <td colspan="3">
+                        <input class="inpNormal" id="txtNPT_WrkD_1" style="WIDTH: 100%"
+                            onfocus="SetFocus()" maxlength="10" onchange='ValidateWorksheet("WrkD")'></td>
+                </tr>
+
+            <tr class="rowDataEven">
+                <td>
+                    <label class="lblInstrNormal">2.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">Enter the total taxable income of the taxpayer on which 2013 BIRT has been paid</label>
+                </td>
+                <td colspan="3">
+                    <input class="inpNormal" id="txtNPT_WrkD_2" style="WIDTH: 100%"
+                        onfocus="SetFocus()" maxlength="10" onchange='ValidateWorksheet("WrkD")'></td>
+            </tr>
+
+            <tr class="rowDataOdd">
+                <td>
+                    <label class="lblInstrNormal">3.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">Divide Line 1 by 2 and enter the percentage here and on Page 1</label></td>
+                <td colspan="2" style="text-align: right;">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_3"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+                <td align="right">%</td>
+            </tr>
+
+            <tr class="rowDataEven">
+                <td>
+                    <label class="lblInstrNormal">4.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">Enter the amount from Page 3, Worksheet K, Line 2</label>
+                    <label class="lblLink" style="FONT-SIZE: 7pt" onclick='ShowPage("WrkK")'>Click here for Worksheet K</label></td>
+                <td colspan="3" style="text-align: right;">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_4"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+            </tr>
+
+            <tr class="rowDataOdd">
+                <td>
+                    <label class="lblInstrNormal">5.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">Multiply the amount on Line 4 by the percentage on Line 3</label></td>
+                <td colspan="3" style="text-align: right;">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_5"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+            </tr>
+
+            <tr class="rowDataEven">
+                <td>
+                    <label class="lblInstrNormal">6.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">Subtract Line 5 from Line 4</label></td>
+                <td colspan="3" style="text-align: right;">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_6"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+            </tr>
+
+            <tr class="rowDataOdd">
+                <td>
+                    <label class="lblInstrNormal">7.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">Enter the amount from Page 1, Line 5</label></td>
+                <td colspan="3" style="text-align: right;">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_7"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+            </tr>
+
+            <tr class="rowDataEven">
+                <td>
+                    <label class="lblInstrNormal">8.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">
+                        <b>Business Income & Receipts Tax Credit allowed.</b> Enter
+    the lesser of Line 6 or Line 7 here, and on Page 1, Line 6a</label></td>
+                <td colspan="3" style="text-align: right;">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkD_8"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <p></p>
+        <table style="MARGIN-LEFT: 4%" width="90%" border="0">
+            <tr>
+                <td>
+                    <input language="javascript" id="btnGoToPage1" onclick='ShowPage("Page1", "WrkD")' type="button" value="Return to Page 1"></td>
+            </tr>
+        </table>
+    </div>
+    <!--NPT_WrkD-->
+</body>
+</html>

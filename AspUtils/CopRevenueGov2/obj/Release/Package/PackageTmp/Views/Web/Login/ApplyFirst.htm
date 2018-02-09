@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML>
+<HEAD><TITLE></TITLE>
+<script id="clientEventHandlersJS" language="javascript" type="text/javascript" >
+
+    var arrAppFirst = new Array();
+
+    
+function DisplayApplyFirst() {
+//EHD - 20100602 - EGOVWEB-25 - Added Line
+    $('#trError').css('display','none');
+    parent.MenuWin.sNew = true;
+    $('#LogApplyFirst').css('display','block');
+    $('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|application for a ' +
+			'philadelphia tax account number</Font>');
+
+	//read xml using jquery
+	//var xml = $('#sumanxml').html();
+    var xmlDoc = parent.MenuWin.xmlEntityType; // $.parseXML( xml ),
+
+    LoadGenericDD(parent.MenuWin.xmlEntityType, ddTaxIDType, "DDOWN", false);
+	ddTaxIDType.selectedIndex = 0;
+	$('#txtIdNumber').val('');
+	loadAppFirstError();
+	ddTaxIDType.focus();
+}		//displayApplyFirst
+
+function loadAppFirstError() {
+    var i = 0;
+    arrAppFirst[i++] = [ddTaxIDType, '$(ddTaxIDType.options[ddTaxIDType.selectedIndex]).text()=="Select"', 'Select Tax ID Type'];
+    arrAppFirst[i++] = [txtIdNumber, 'txtIdNumber.value.length != 9', 'Enter ID Number'];
+    arrAppFirst[i++] = [txtIdNumber, 'isNaN(txtIdNumber.value)', 'ID Number Not Numeric'];
+}		//loadAppFirstError
+
+
+	var dobj = parent.MenuWin.getXmlDocObj();
+
+function DoApplyFirst() {
+
+    $('#AppError').text('');
+    $('#trError').css('display','none');
+    ValidateAppFirst();
+    // alert($('#AppError').text());
+    if ($('#AppError').text() == "") {
+        
+        ispXmlSetFieldVal(parent.MenuWin.xmlAccount, "1", "ENTITY_INFO FUNCTION_CODE", '', 0);
+        ispXmlSetFieldVal(parent.MenuWin.xmlAccount, $(ddTaxIDType.options[ddTaxIDType.selectedIndex]).attr('CODE'), "ENTITY_INFO TYPE", '', 0);
+        ispXmlSetFieldVal(parent.MenuWin.xmlAccount, txtIdNumber.value, "ENTITY_INFO ENTITY_ID", '', 0);
+
+       // ispCallXMLForm(parent.MenuWin.xmlAccount, parent.MenuWin.xmlAccount, "../AccountInfo", "");
+
+ispCallXMLForm(parent.MenuWin.xmlAccount, dobj,"../AccountInfo","");
+		
+		parent.MenuWin.xmlAccount = dobj;
+
+        var error_code = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ERROR_INFO ERROR", "", 0);
+
+        if (error_code == "0" || error_code == "") {
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, "1", "ENTITY_INFO FUNCTION_CODE", '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, $(ddTaxIDType.options[ddTaxIDType.selectedIndex]).attr('CODE'), "ENTITY_INFO TYPE", '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, txtIdNumber.value, "ENTITY_INFO ENTITY_ID", '', 0);
+
+            parent.MenuWin.sNew = true;
+            parent.DocWin.location.href = '../Acct/ApplyMain';
+        } else {
+            //EHD - 20100602 - EGOVWEB-25 - Changed Error message below Started
+            if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ERROR_INFO ERROR", "", 0) == "1" &&
+					ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ERROR_INFO MESSAGE", "", 0).search('ENTITY EXISTS') != -1) {
+                $('#trError').css('display','block');
+				//visibility = 'visible';
+            } else {
+                $('#AppError').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ERROR_INFO MESSAGE", "", 0));
+            } 	//if
+        } 	//if
+        //EHD - 20100602 - EGOVWEB-25 - Changed Error message below End
+    }
+    else {
+        ddTaxIDType.focus();
+    }
+
+
+    //old code ----------------------------------------------------
+    /*
+    if ($('#AppError').text() == "") {
+    var x = parent.MenuWin.SumanMenu;
+    ispXmlSetFieldVal(parent.MenuWin.xmlAccount, "1", "ENTITY_INFO/FUNCTION_CODE", '', 0);
+    ispXmlSetFieldVal(parent.MenuWin.xmlAccount, ddTaxIDType.options(ddTaxIDType.selectedIndex).CODE, "ENTITY_INFO/TYPE", '', 0);
+    ispXmlSetFieldVal(parent.MenuWin.xmlAccount, txtIdNumber.value, "ENTITY_INFO/ENTITY_ID", '', 0);
+
+    ispCallXMLForm(parent.MenuWin.xmlAccount, parent.MenuWin.xmlAccount, "../AccountInfo", "");
+
+    if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ERROR_INFO ERROR", "", 0) == "0") {
+    ispXmlSetFieldVal(parent.MenuWin.xmlAccount, "1", "ENTITY_INFO/FUNCTION_CODE", '', 0);
+    ispXmlSetFieldVal(parent.MenuWin.xmlAccount, ddTaxIDType.options(ddTaxIDType.selectedIndex).CODE, "ENTITY_INFO/TYPE", '', 0);
+    ispXmlSetFieldVal(parent.MenuWin.xmlAccount, txtIdNumber.value, "ENTITY_INFO/ENTITY_ID", '', 0);
+		    
+    parent.MenuWin.sNew = true;
+    parent.DocWin.location.href = '../Acct/ApplyMain.asp';
+    } else {
+    //EHD - 20100602 - EGOVWEB-25 - Changed Error message below Started
+    if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ERROR_INFO/ERROR", "", 0) == "1" &&
+    ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ERROR_INFO/MESSAGE", "", 0).search('ENTITY/EXISTS') != -1) {
+    trError.style.visibility = 'visible';
+    } else {
+    AppError.innerText =
+    ispXmlGetFieldVal(parent.MenuWin.xmlAccount, "ERROR_INFO/MESSAGE", "", 0);
+    }		//if
+    }		//if
+    //EHD - 20100602 - EGOVWEB-25 - Changed Error message below End
+    } 
+    else {
+    ddTaxIDType.focus();
+    }
+    */
+    //-------------------------------------------------------------
+}
+
+function ValidateAppFirst() {
+    $('#AppError').text(ispSetInputErr(arrAppFirst)); 
+}		//ValidateAppFirst
+
+function GotoForm(id) {
+    $('#trError').css('display','none');
+	if (id == 'LogPinApply') {
+		DisplayPinApply();
+	} 
+    else if (id == 'LogLogin') {
+		DisplayLogin();
+	}		//if
+}		//GotoForm
+
+
+</script>
+</HEAD>
+<BODY>
+
+<DIV style="DISPLAY: none; VISIBILTY: visible" Id="LogApplyFirst" Name="LogApplyFirst">
+<TABLE cellSpacing=0 cellPadding=0 width="95%" border=0 
+		style="MARGIN-BOTTOM: 15px; MARGIN-LEFT: 4%; MARGIN-TOP: 5px">
+  <TR>
+		<TD><p class="lblTextBlack">
+				Please enter your Employer Indentification Number (EIN) or <br>
+				Social Security Number (SSN).</p></TD></TR>
+</TABLE>
+	
+<TABLE class=tblShowBorder bgcolor="whitesmoke" id=TABLE1 
+		cellSpacing=1 cellPadding=1 width="50%" border=0
+		 style  ="MARGIN-TOP: 15px; MARGIN-LEFT: 4%">
+  <TR height=50>
+		<TD width="10%" align=left nowrap class=lblInstrNormal>&nbsp;SSN/EIN:&nbsp;</TD>
+    <TD width="40%" align=left >
+			<SELECT class=inpNormal id="ddTaxIDType" name=ddTaxIDType style="WIDTH: 79px"
+					 onchange="ValidateAppFirst()" >
+                     <OPTION selected 
+        ></OPTION>
+        </SELECT>
+        &nbsp;&nbsp;
+			<INPUT class=inpNormal id="txtIdNumber" align=right size=11 name=txtIdNumber 
+					maxLength=9 onchange="ValidateAppFirst()">&nbsp;</TD>
+		<TD align=middle>
+			<INPUT class=btnNormal id="btnIDSubmit" type="submit" value="Submit" 
+					valign="bottom" onclick="DoApplyFirst()"></TD></TR>
+</TABLE>
+
+<TABLE cellSpacing=0 cellPadding=0 width="95%" border=0 
+		style="MARGIN-BOTTOM: 15px; MARGIN-LEFT: 4%; MARGIN-TOP: 5px">
+  <TR height=60>
+		<TD><p class="lblTextBlack">
+				Individuals: You MUST enter your Social Security Number.</p></TD></TR>
+<!--EHD 20100602 EGOVWEB-25 - Added TR Started-->
+  <TR id="trError" height="60" style="display:none">
+		<TD><p class="errMessages" style="text-decoration:none; font-size:18pt" >
+				ENTITY ALREADY EXISTS IN TAXPAYER INFORMATION SYSTEM. <br />
+				PLEASE ADD OR CHANGE TAX ACCOUNT INFORMATION TO CONTINUE. <br />
+				IF YOU ALREADY HAVE A PIN, <a class="lblLink" style="color:Blue; font-size:18pt" onclick="ShowForm('LogLogin')">LOG IN.</a> <br />
+				IF YOU NEED A PIN, <a class="lblLink" style="color:Blue; font-size:18pt" onclick="ShowForm('LogPinApply')">GET A PIN</a><br /></p>
+</TD></TR>
+<!--EHD 20100602 EGOVWEB-25 - Added TR End-->
+</TABLE>
+	
+</DIV>
+</BODY>
+</HTML>

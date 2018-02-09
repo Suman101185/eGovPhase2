@@ -1,0 +1,311 @@
+
+
+<html>
+<head>
+<script  type="text/javascript" language="javascript">
+    var arrForgotPinErr = new Array();
+    var oEmail = parent.MenuWin.getXmlDocObj();
+    var oAcctInfo = parent.MenuWin.getXmlDocObj();
+    function DisplayForgotPin() {
+
+        parent.MenuWin.sNew = false;
+        //	divForgotPin.style.display = 'block'
+        //AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|Forgot PIN</Font>'	
+        $('#divForgotPin').css("display", "block");
+        $('#AppHeader').html(txtHeader + '<Font class=hdrMedium>|Forgot PIN</Font>');
+
+        ClearForgotPinScreen();
+        LoadForgotPinError();
+        //        txtFpAcctID.focus()
+        txtFpAcctID.focus();
+    } 	//DisplayForgotPin
+
+
+    function ClearForgotPinScreen() {
+
+        for (i = 0; i < document.all.length; i++) {
+            if (document.all.item(i).id.search(/txt/i) != -1) {
+                document.all.item(i).value = '';
+                document.all.item(i).className = 'inpNormal';
+            } 	//if
+        } 	//for
+    } 	//ClearForgotPinScreen
+
+
+    function LoadForgotPinError() {
+        var i = 0;
+
+        //Account Id	
+        arrForgotPinErr[i++] = [txtFpAcctID, 'txtFpAcctID.value == ""', 'Enter SSN/EIN Number']
+        arrForgotPinErr[i++] = [txtFpAcctID, 'isNaN(txtFpAcctID.value)', 'SSN/EIN Not Numeric']
+        arrForgotPinErr[i++] = [txtFpAcctID, '(txtFpAcctID.value.length !== 9)', 'Invalid SSN/EIN Number']
+
+        //Tax ID
+        arrForgotPinErr[i++] = [txtFpTaxID, 'txtFpTaxID.value == ""', 'Enter Tax Account Number']
+        arrForgotPinErr[i++] = [txtFpTaxID, 'isNaN(txtFpTaxID.value)', 'Tax Account Number Not Numeric']
+        arrForgotPinErr[i++] = [txtFpTaxID, 'txtFpTaxID.value.length < 7', 'Invalid Tax Account Number']
+    } 	//LoadForgotPinError
+
+
+    function ValidateForgotPin() {
+
+        // AppError.innerText = ispSetInputErr(arrForgotPinErr)
+        var errforgot = ispSetInputErr(arrForgotPinErr);
+        $('#AppError').text(errforgot);
+
+    } 	//ValidateForgotPin
+
+
+    function loadXmlFiles() {
+
+        //alert('asdfsdf');
+        // parent.MenuWin.loadXmlAsync('../xml/email.xml', load_oEmail);
+
+        parent.MenuWin.loadXmlSync('../XML/AcctTemplate', parent.MenuWin.parseXml_xmlAccount);
+        parent.MenuWin.loadXmlSync('../xml/email', parent.MenuWin.parseXml_xmlEmail);
+
+
+    }
+
+    function load_oEmail(xml) {
+        oEmail.xml = xml;
+    }
+
+    /*
+    function loadtest(){
+        loadXmlFiles();
+        alert(parent.MenuWin.xmlAccount.toString());
+    }*/
+
+    /*function load_oAcctInfo(xml) {
+           oAcctInfo.xml = xml;
+       }
+       */
+    var dobj = parent.MenuWin.getXmlDocObj();
+
+    var emailobj = parent.MenuWin.getXmlDocObj();
+    // var oAcctInfo = parent.MenuWin.getXmlDocObj();
+
+    function SubmitForgotPin() {
+
+
+        //alert(parent.MenuWin.xmlAccount.toString());
+        if (txtFpTaxID.value == '') {
+            txtFpTaxID.value = txtFpAcctID.value;
+            //alert('1111111');
+            //$('#txtFpTaxID').text(txtFpAcctID.value);
+        } 	//if
+
+        loadXmlFiles();
+        //setTimeOut(loadXmlFiles(),500);
+
+        ValidateForgotPin();
+        if ($('#AppError').text() == '') {
+
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, "4", "ENTITY_INFO FUNCTION_CODE", '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, txtFpAcctID.value, "ENTITY_INFO ENTITY_ID", '', 0);
+            ispXmlSetFieldVal(parent.MenuWin.xmlAccount, txtFpTaxID.value, "ENTITY_INFO ACCOUNT_ID", '', 0);
+
+            ispCallXMLForm(parent.MenuWin.xmlAccount, parent.MenuWin.xmlAccount, "../AccountInfo", "");
+
+
+
+            if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ERROR_INFO MESSAGE', "", 0) == "") {
+                if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO PIN', "", 0) == "0") {
+                    // AppError.innerText = 'No PIN on file. Use \'PIN apply\' to get your PIN'
+                    //txtFpTaxID.value = ''
+                    var nopin = 'No PIN on file. Use \'PIN apply\' to get your PIN';
+                    $('#AppError').text(nopin);
+                    //$('#txtFpTaxID').text('');
+                    txtFpTaxID.value = '';
+
+                    return;
+                } 	//if
+                if (ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS EMAIL', "", 0) == "") {
+                    /*AppError.innerText = 'No E-mail address on file. Use \'PIN apply\' to get your PIN'
+                    txtFpTaxID.value = ''*/
+                    var noemail = 'No E-mail address on file. Use \'PIN apply\' to get your PIN';
+                    $('#AppError').text(noemail);
+                    // $('#txtFpTaxID').text('');
+                    txtFpTaxID.value = '';
+                    return;
+                } 	//if
+                sTemp = CreateEmail();
+
+                ispXmlSetFieldVal(parent.MenuWin.xmlEmail, 'FORGOTPIN', 'FUNCTION', '', 0);
+
+                sTemp = sTemp.replace('>', '&GT&');
+                sTemp = sTemp.replace('<', '&LT&');
+                ispXmlSetFieldVal(parent.MenuWin.xmlEmail, sTemp, 'DATA', '', 0);
+                ispXmlSetFieldVal(parent.MenuWin.xmlEmail, ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS EMAIL', "", 0), "ADDRESS", '', 0);
+
+                ispCallXMLForm(parent.MenuWin.xmlEmail, parent.MenuWin.xmlEmail, "../MailPIN", "");
+
+                ShowForm('ApplyPinThankYou');
+            } else {
+                /*
+                AppError.innerText = ispXmlGetFieldVal(oAcctInfo, 'ERROR_INFO MESSAGE', "", 0)
+                txtFpAcctID.focus()
+                */
+
+                var err = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ERROR_INFO MESSAGE', "", 0);
+                $('#AppError').text(err);
+                // $('#txtFpAcctID').focus();
+                txtFpAcctID.focus();
+            } 	//if
+        } else {
+            //txtFpAcctID.focus()
+            //$('#txtFpAcctID').focus();
+            txtFpAcctID.focus();
+        } 	//if
+
+
+    } 	//SubmitPinApply
+</script>
+    <title></title>
+</head>
+<body>
+
+
+    <div style="display: none; visibilty: visible;" id="divForgotPin" name="divForgotPin">
+        <table cellspacing="0" cellpadding="0" width="60%" border="0" style="margin-left: 4%;
+            margin-top: 5px">
+            <tr valign="top" align="left">
+                <td>
+                    <p class="lblTextBlack">
+                        Please enter your Employee Identification Number (EIN) or Social Security Number
+                        (SSN).<br>
+                        <br>
+                        For Earnings Tax and School Income Tax filers, your Social Security number is your
+                        Philadelphia Tax Account number.<br>
+                        <br>
+                        <font class="lblTextRed">* </font>Required Field</p>
+                </td>
+            </tr>
+        </table>
+        <table cellspacing="0" cellpadding="0" width="95%" border="0" style="margin-left: 4%">
+            <tr style="height: 0px">
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+                <td width="5%">
+                    <p>
+                        &nbsp;</p>
+                </td>
+            </tr>
+            <tr>
+                <td nowrap colspan="4">
+                    <p class="lblInstrNormal">
+                        SSN / EIN:</p>
+                </td>
+                <td align="right" class="lblTextRed">
+                    *
+                </td>
+                <td colspan="8" align="left">
+                    <input class="inpNormal" id="txtFpAcctID" name="txtFpAcctID" onchange="ValidateForgotPin()"
+                        maxlength="9" size="17">
+                </td>
+            </tr>
+            <tr>
+                <td nowrap colspan="4">
+                    <p class="lblInstrNormal">
+                        Phila. Tax Account No.:</p>
+                </td>
+                <td align="right" class="lblTextRed">
+                    *
+                </td>
+                <td colspan="8" align="left">
+                    <input class="inpNormal" id="txtFpTaxID" name="txtFpTaxID" onchange="ValidateForgotPin()"
+                        maxlength="9" size="17">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="20">
+                    <p>
+                        &nbsp;</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12" align="middle">
+                    <p>
+                        <input class="btnNormal" id="btnFpApply" name="btnFpApply" type="button" value="Apply"
+                            onclick="return SubmitForgotPin()" size="48"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

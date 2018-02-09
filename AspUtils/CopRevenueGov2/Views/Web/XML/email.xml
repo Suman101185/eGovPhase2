@@ -1,0 +1,14 @@
+<?xml version='1.0'?>
+
+<EMAILINFO>
+  <DEBUG />
+	<ERROR>
+		<SYS-MSG />
+		<SYS-ERR />
+		<RTN-CODE />
+	</ERROR>
+	<FUNCTION />
+	<DATA />
+	<ADDRESS />
+	<SUBJECT />
+</EMAILINFO>

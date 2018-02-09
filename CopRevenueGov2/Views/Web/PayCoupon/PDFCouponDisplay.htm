@@ -1,0 +1,147 @@
+﻿
+
+<html>
+	<head>
+	
+		<title></title>
+        <link href="../Content/Styles/framestyle.css" rel="stylesheet" type="text/css" />
+<script src="../Content/Scripts/JqueryMin.js" type="text/javascript" language="javascript"></script>
+<script src ="../Content/Scripts/ispFunctions.js" type="text/javascript" language="javascript"></script>
+<script src ="../Content/Scripts/ispXmlProc.js" type="text/javascript" language="javascript"></script>
+<script src ="../Content/Scripts/Accounting.js" type="text/javascript" language="javascript"></script>
+		<script language="javascript" type="text/javascript">
+
+
+
+
+   
+
+			function DisplayCouponold() {				
+				if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'TOBACCO') {
+					CouponCnclBtn.value = 'Return to Tobacco Tax';
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'WAGE') {
+					CouponCnclBtn.value = 'Return to Wage Tax';
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'SCHOOL') {
+					CouponCnclBtn.value = 'Return to School Tax';
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'BPTEZ') {
+					CouponCnclBtn.value = 'Return to Business Income and Receipts Tax';
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'BPTLF') {
+					CouponCnclBtn.value = 'Return to Business Income and Receipts Tax';
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'NPT') {
+					CouponCnclBtn.value = 'Return to Net Profit Tax';
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'UO') {
+					CouponCnclBtn.value = 'Return to Use and Occupancy Tax';
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'DELBAL') {
+					CouponCnclBtn.value = 'Return to Delinquent Balances';
+				} 	//if
+				
+			}  //DisplayCoupon
+function DisplayCoupon() {
+    var CPN_FORM;   
+				if($(parent.$g.xmlPayCoupon).find('COUPON_FORM CPN_FORM')!='undefined' && $(parent.$g.xmlPayCoupon).find('COUPON_FORM CPN_FORM') != '')
+				{
+				CPN_FORM= $(parent.$g.xmlPayCoupon).find('COUPON_FORM CPN_FORM').text();
+				if (CPN_FORM == 'TOBACCO') {
+					CouponCnclBtn.value = 'Return to Tobacco Tax';
+//EOGVWEB-69 EDD Added if statement for calling print coupon from other Tax Forms
+				} else if (CPN_FORM == 'WAGE') {
+					CouponCnclBtn.value = 'Return to Wage Tax';
+				} else if (CPN_FORM== 'SCHOOL') {
+					CouponCnclBtn.value = 'Return to School Tax';
+				} else if (CPN_FORM== 'BPTEZ') {
+					CouponCnclBtn.value = 'Return to Business Income and Receipts Tax';
+				} else if (CPN_FORM== 'BPTLF') {
+					CouponCnclBtn.value = 'Return to Business Income and Receipts Tax';
+				} else if (CPN_FORM == 'NPT') {
+					CouponCnclBtn.value = 'Return to Net Profit Tax';
+				} else if (CPN_FORM== 'UO') {
+					CouponCnclBtn.value = 'Return to Use and Occupancy Tax';
+				} else if (CPN_FORM== 'DELBAL') {
+					CouponCnclBtn.value = 'Return to Delinquent Balances';
+				} 	//if
+				
+				}
+            ///******************Dynamically hight adjust pdf report in IE,Chrome and Firefox
+				var iframe = window.parent.document.getElementById('ifrmDocwin');
+				var container = $('#LogCoupon').css("height");
+				iframe.style.height = container;
+				
+       
+ 
+
+			}  //DisplayCoupon
+
+			function ReturnToSelectionOld() {
+				
+				var sCurrReturnYear = parseInt(parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_YEAR ", "")) + 1;
+			
+				if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'TOBACCO') {
+				    parent.DocWin.location.href = '../Returns/Tobacco.asp?y=' + sCurrReturnYear;				   
+
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'WAGE') {
+					parent.DocWin.location.href = '../Returns/Wage.asp?y=' + sCurrReturnYear;
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'SCHOOL') {
+					parent.DocWin.location.href = '../Returns/School.asp?y=' + sCurrReturnYear;
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'BPTEZ') {
+					parent.DocWin.location.href = '../Returns/BPTez.asp?y=' + sCurrReturnYear;
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'BPTLF') {
+					parent.DocWin.location.href = '../Returns/BPT_LF/BPTlf.asp?y=' + sCurrReturnYear;
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'NPT') {
+					parent.DocWin.location.href = '../Returns/NPT/NPT.asp?y=' + sCurrReturnYear;
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'UO') {
+					var sCurrReturnYear = parseInt(parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_YEAR ", ""));
+					parent.DocWin.location.href = '../UO/UO?y=' + sCurrReturnYear;
+				} else if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'DELBAL') {
+				
+					parent.DocWin.location.href = '../Balances/AccountBalances.asp';
+				} else {
+					parent.DocWin.location.href = 'PayCoupon.asp';
+				} 	//if
+			}		//ReturnToSelection
+
+			function ReturnToSelection() {
+		
+			    debugger;
+			    sCurrReturnYear = parseInt(parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, 'COUPON_FORM CPN_YEAR', '')) + 1;
+			    CPN_FORM = parent.$x.ispXmlGetFieldVal(parent.$g.xmlPayCoupon, 'COUPON_FORM CPN_FORM', '');
+
+
+				if (CPN_FORM == 'TOBACCO') {				   
+				    parent.setFrameUrl('Returns/Tobacco?y=' + sCurrReturnYear);
+				} else if (CPN_FORM == 'WAGE') {
+				    parent.setFrameUrl('Returns/Wage?y=' + sCurrReturnYear);
+				} else if (CPN_FORM == 'SCHOOL') {
+				    parent.setFrameUrl('Returns/School?y=' + sCurrReturnYear);
+				} else if (CPN_FORM == 'BPTEZ') {
+				    parent.setFrameUrl('Returns/BPTez?y=' + sCurrReturnYear);
+				} else if (CPN_FORM == 'BPTLF') {
+				    parent.setFrameUrl('Returns/BPT_LF/BPTlf?y=' + sCurrReturnYear);
+				} else if (CPN_FORM == 'NPT') {
+				    parent.setFrameUrl('Returns/NPT/NPT?y=' + sCurrReturnYear);
+				} else if (CPN_FORM == 'UO') {					 
+					 parent.setFrameUrl('UO/UOList?y=' + sCurrReturnYear);
+				} else if (CPN_FORM == 'DELBAL') {
+				    parent.setFrameUrl('Balances/AccountBalances');
+				} else if (parent.bNtlOnly == 'TRUE') {				    
+				    parent.setFrameUrl('PayCoupon/PayCoupon');
+				    
+				}
+			 else {				    
+			    parent.setFrameUrl('PayCoupon/PayCoupon');
+				    
+			}//if
+			}		//ReturnToSelection
+		</script>		
+	
+	</head>
+
+<body style="height:470px !important;" onload="DisplayCoupon()">
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px; width: 100%; height: 430px !important; top: 0px; overflow-x:hidden" id="topPayCoupon">
+	
+		
+			<td colspan="4" align="center"><p><input id="CouponCnclBtn" onclick="ReturnToSelection()" type="button" value="Return to Account Select" style=" display:block" /></p></td>
+   		<td colspan="8"><p>&nbsp;</p></td></tr>
+		<tr>
+			<td colspan="20">  <iframe id="ifrPdfView" src="{PDFFILE}"  height="100%" width="70%" style="margin-left:200px !important;"></iframe></td></tr>
+	</table>
+</body></html>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://ISDEV.city.phila.local/RTTIE234.service:RTTIE234WS" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:HDR1="urn:com-softwareag-entirex-rpc:TIPSACCD" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" name="RTTIE234WS" targetNamespace="http://ISDEV.city.phila.local/RTTIE234.service:RTTIE234WS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="urn:com-softwareag-entirex-rpc:TIPSACCD">
+      <xsd:import namespace="http://ISDEV.city.phila.local/RTTIE234.service:RTTIE234WS" />
+      <xsd:element name="RTTIE234" type="sn0:RTTIE234" />
+      <xsd:element name="RTTIE234Response" type="sn0:RTTIE234Response" />
+      <xsd:complexType name="RTTIE234">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_SMA" nillable="true" type="tns:_SMA" />
+          <xsd:element minOccurs="0" name="_E-REQ" nillable="true" type="tns:_E-REQ" />
+          <xsd:element minOccurs="0" name="_E-LIST" nillable="true" type="tns:_E-LIST" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE234Response">
+        <xsd:sequence>
+          <xsd:element name="_SMA" type="tns:_SMA2" />
+          <xsd:element name="_E-REQ" type="tns:_E-REQ2" />
+          <xsd:element name="_E-LIST" type="tns:_E-LIST2" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="http://ISDEV.city.phila.local/RTTIE234.service:RTTIE234WS">
+      <xsd:import namespace="urn:com-softwareag-entirex-rpc:TIPSACCD" />
+      <xsd:element name="RTTIE234" type="tns:RTTIE234" />
+      <xsd:element name="RTTIE234Response" type="tns:RTTIE234Response" />
+      <xsd:complexType name="RTTIE234">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE234" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_PROGRAM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SYSTEM-ERROR" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="ERROR-LINE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="MESSAGE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-REQ">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ENTITY-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ACCOUNT-ID" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LIST">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_UOL-ACCOUNTSs" nillable="true" type="tns:_UOL-ACCOUNTSs" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_UOL-ACCOUNTSs">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="_UOL-ACCOUNTS" nillable="true" type="tns:_UOL-ACCOUNTS" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_UOL-ACCOUNTS">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ACCOUNT-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BRT-NUMBER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LOCATION" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="START-DATE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="END-DATE" nillable="true" type="xsd:string" />
+          <xsd:element name="FREQ-TABLE" type="tns:FREQ-TABLE" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FREQ-TABLE">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FREQs" nillable="true" type="tns:FREQs" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FREQs">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="FREQ" nillable="true" type="tns:FREQ" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FREQ">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FREQ-CODE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE234Response">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE234Response" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA2">
+        <xsd:sequence>
+          <xsd:element name="_PROGRAM" type="xsd:string" />
+          <xsd:element name="SYSTEM-ERROR" type="xsd:decimal" />
+          <xsd:element name="ERROR-LINE" type="xsd:decimal" />
+          <xsd:element name="MESSAGE" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-REQ2">
+        <xsd:sequence>
+          <xsd:element name="ENTITY-ID" type="xsd:string" />
+          <xsd:element name="ACCOUNT-ID" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LIST2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_UOL-ACCOUNTSs" type="tns:_UOL-ACCOUNTSs2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_UOL-ACCOUNTSs2">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="_UOL-ACCOUNTS" type="tns:_UOL-ACCOUNTS2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_UOL-ACCOUNTS2">
+        <xsd:sequence>
+          <xsd:element name="ACCOUNT-ID" type="xsd:string" />
+          <xsd:element name="BRT-NUMBER" type="xsd:string" />
+          <xsd:element name="LOCATION" type="xsd:string" />
+          <xsd:element name="START-DATE" type="xsd:string" />
+          <xsd:element name="END-DATE" type="xsd:string" />
+          <xsd:element name="FREQ-TABLE" type="tns:FREQ-TABLE2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FREQ-TABLE2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FREQs" type="tns:FREQs2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FREQs2">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="FREQ" type="tns:FREQ2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FREQ2">
+        <xsd:sequence>
+          <xsd:element name="FREQ-CODE" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RTTIE234WS_PortType_RTTIE234Response">
+    <wsdl:part name="parameters" element="tns:RTTIE234Response" />
+  </wsdl:message>
+  <wsdl:message name="RTTIE234WS_PortType_RTTIE234">
+    <wsdl:part name="parameters" element="tns:RTTIE234" />
+  </wsdl:message>
+  <wsdl:portType name="RTTIE234WS_PortType">
+    <wsdl:operation name="RTTIE234">
+      <wsdl:input message="tns:RTTIE234WS_PortType_RTTIE234" />
+      <wsdl:output message="tns:RTTIE234WS_PortType_RTTIE234Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RTTIE234_service_RTTIE234WS_Binder" type="tns:RTTIE234WS_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RTTIE234">
+      <soap:operation soapAction="RTTIE234_service_RTTIE234WS_Binder_RTTIE234" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RTTIE234.service.RTTIE234WS">
+    <wsdl:port name="RTTIE234_service_RTTIE234WS_Port" binding="tns:RTTIE234_service_RTTIE234WS_Binder">
+      <soap:address location="http://ISDEV.city.phila.local:5555/ws/RTTIE234.service.RTTIE234WS/RTTIE234_service_RTTIE234WS_Port" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

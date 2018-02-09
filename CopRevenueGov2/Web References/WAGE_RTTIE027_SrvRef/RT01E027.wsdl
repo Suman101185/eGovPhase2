@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://namespace.softwareag.com/entirex/xml/mapping" xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD-RT01E027" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" name="RT01E027" targetNamespace="http://namespace.softwareag.com/entirex/xml/mapping" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:com-softwareag-entirex-rpc:TIPSACCD-RT01E027">
+      <xsd:element name="RT01E027">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="_SMA">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" name="_PROGRAM">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="SYSTEM-ERROR">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="ERROR-LINE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="4" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="MESSAGE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="60" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="_E-WAG">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" name="ACCOUNT-ID">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="12" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PERIOD-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="VERSION-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="DOCUMENT-CONTROL-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="ADJ-REFNO">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="FEDERAL-ID-NUMBER">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RETURN-STATUS">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="SEQUENCE-NUM">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="LAST-UPDATE-DATE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NUMBER-OF-RESIDENTS-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NUMBER-OF-NON-RESIDENTS-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PHILA-EMPLOYEES-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TOTAL-EMPLOYEES-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RES-RATE-A">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RES-RATE-B">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RATE-A">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RATE-B">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="FREQUENCY">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="1" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="DUE-DATE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-NAME">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="40" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-PHONE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="10" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-PHONE-EXT">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-IP-ADDRESS">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-EMAIL-ADDRESS">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="60" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-TYPE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="1" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="_E-AMT">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" name="GROSS-COMPENSATION-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-TAXABLE-COMP-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TIPS-WAGES-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NET-COMPENSATION-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RESIDENT-PAYROLL-A-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RESIDENT-TAX-DUE-A-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RESIDENT-PAYROLL-B-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RESIDENT-TAX-DUE-B-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RES-PAYROLL-A-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RES-TAX-DUE-A-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RES-PAYROLL-B-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RES-TAX-DUE-B-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TOTAL-GROSS-TAX-DUE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TAX-PAID-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TAX-DUE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TAX-OVERPAID-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="POSTING-DATE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="FILING-DATE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="USER-ID">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RT01E027Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="_SMA">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" name="_PROGRAM">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="SYSTEM-ERROR">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="ERROR-LINE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="4" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="MESSAGE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="60" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="_E-WAG">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" name="ACCOUNT-ID">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="12" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PERIOD-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="VERSION-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="DOCUMENT-CONTROL-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="ADJ-REFNO">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="FEDERAL-ID-NUMBER">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RETURN-STATUS">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="SEQUENCE-NUM">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="LAST-UPDATE-DATE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NUMBER-OF-RESIDENTS-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NUMBER-OF-NON-RESIDENTS-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PHILA-EMPLOYEES-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TOTAL-EMPLOYEES-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RES-RATE-A">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RES-RATE-B">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RATE-A">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RATE-B">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="9" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="FREQUENCY">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="1" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="DUE-DATE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-NAME">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="40" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-PHONE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="10" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-PHONE-EXT">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="5" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-IP-ADDRESS">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-EMAIL-ADDRESS">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="60" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="PREPARER-TYPE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="1" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="_E-AMT">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" name="GROSS-COMPENSATION-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-TAXABLE-COMP-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TIPS-WAGES-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NET-COMPENSATION-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RESIDENT-PAYROLL-A-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RESIDENT-TAX-DUE-A-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RESIDENT-PAYROLL-B-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="RESIDENT-TAX-DUE-B-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RES-PAYROLL-A-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RES-TAX-DUE-A-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RES-PAYROLL-B-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="NON-RES-TAX-DUE-B-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TOTAL-GROSS-TAX-DUE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TAX-PAID-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TAX-DUE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="TAX-OVERPAID-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="15" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="POSTING-DATE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="FILING-DATE-X">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="USER-ID">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="_SERR">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="0" name="_SERR-PROGRAM">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="_SERR-NUMBER">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="7" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="_SERR-LINE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="4" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="_SERR-DATE">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="8" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element minOccurs="0" name="_SERR-TIME">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RT01E027SoapOut">
+    <wsdl:part name="parameters" element="sn0:RT01E027Response" />
+  </wsdl:message>
+  <wsdl:message name="RT01E027SoapIn">
+    <wsdl:part name="parameters" element="sn0:RT01E027" />
+  </wsdl:message>
+  <wsdl:portType name="TIPSACCDPort">
+    <wsdl:operation name="RT01E027">
+      <wsdl:input message="tns:RT01E027SoapIn" />
+      <wsdl:output message="tns:RT01E027SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TIPSACCDSOAP11Binding" type="tns:TIPSACCDPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RT01E027">
+      <soap:operation soapAction="RT01E027" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TIPSACCDSOAP12Binding" type="tns:TIPSACCDPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RT01E027">
+      <soap12:operation soapAction="RT01E027" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RT01E027">
+    <wsdl:port name="RT01E027HttpsSoap12Endpoint" binding="tns:TIPSACCDSOAP12Binding">
+      <soap12:address location="https://istest.city.phila.local:10011/wsstack/services/RT01E027.RT01E027HttpsSoap12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TIPSACCDSOAP11Port" binding="tns:TIPSACCDSOAP11Binding">
+      <soap:address location="http://istest.city.phila.local:10010/wsstack/services/RT01E027.TIPSACCDSOAP11Port/" />
+    </wsdl:port>
+    <wsdl:port name="TIPSACCDSOAP12Port" binding="tns:TIPSACCDSOAP12Binding">
+      <soap12:address location="http://istest.city.phila.local:10010/wsstack/services/RT01E027.TIPSACCDSOAP12Port/" />
+    </wsdl:port>
+    <wsdl:port name="RT01E027HttpsSoap11Endpoint" binding="tns:TIPSACCDSOAP11Binding">
+      <soap:address location="https://istest.city.phila.local:10011/wsstack/services/RT01E027.RT01E027HttpsSoap11Endpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

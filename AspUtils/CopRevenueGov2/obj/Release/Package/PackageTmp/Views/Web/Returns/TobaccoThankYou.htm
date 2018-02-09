@@ -1,0 +1,157 @@
+<html>
+<head>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+<script src="../js/JqueryMin.js" type="text/javascript"></script>
+<script ID="clientEventHandlersJS" LANGUAGE="javascript">
+ //var oEmail = parent.MenuWin.getXmlDocObj();
+/*function loadXmlFiles() {
+       
+        parent.MenuWin.loadXmlAsync('../xml/email.xml', load_oEmail);
+
+    }
+
+	 function load_oEmail(xml) {
+        oEmail.xml = xml;
+    }
+	*/
+function DisplayTobaccoThankYou() {
+	
+	//loadXmlFiles();
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, '', 'COUPON_FORM CPN_FORM', '');
+	$('#ispProgressScreen').css("display","none");
+//	parent.NavWin.lbl1.innerHTML = '' 
+//	parent.NavWin.rowLabel.style.display = 'none' 
+
+	$('#lblNameTY').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS NAME', '', 0));	//lblName.innerText
+//EOVWEB-49 Changed ACCT_INFO/ENTITY_ID to TOBACCO_INFO/ACCOUNT_ID	
+	$('#lblAcctNo').text(ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO ACCOUNT_ID', '', 0));
+	$('#lblConfirmNo').text(ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO ADJUSTMENT_REF_NO', '', 0));
+	
+	$('#divTobaccoThankYou').css("display","block");
+	this.focus();
+	//parent.MenuWin.gsInstructionItem = ''
+	$('#AppMessage').html('');
+	$('#AppMessage').html(txtHeader + '<Font class=hdrMedium>|thank you</Font>');
+	//AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|thank you</Font>'
+	//ccFeeText.innerText = 'A user fee of 2.49% will be charged in addition to the amount of tax due.'
+	//$('#ccFeeText').text(txtHeader + 'A user fee of 2.49% will be charged in addition to the amount of tax due.');
+	
+}		//DisplayThankyou
+ 
+function DoThankYou() {
+var sEmailMsg;
+
+	if (txaComments.value != '') {
+		sEmailMsg = '<p align=middle><strong>Comments and Feedback</strong></p>';
+		sEmailMsg += '<p>The following comments or feedback was submitted by: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS NAME', '', 0) + '</p>';
+		sEmailMsg += '<p>Company: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS TRADE_NAME', '', 0) + '</p>' ;
+		sEmailMsg += '<p>E-mail address: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESSEMAIL', '', 0) + '</p><br>';
+		sEmailMsg += '<p><strong>Message: </strong></p>';
+		sEmailMsg += '<p>' + txaComments.value + '</p>';
+		
+		//sEmailMsg = ispReplace(sEmailMsg, '>', '&GT&')
+		//sEmailMsg = ispReplace(sEmailMsg, '<', '&LT&')
+		sEmailMsg = sEmailMsg.replace('>', '&GT&');
+		sEmailMsg = sEmailMsg.replace('<', '&LT&');
+		 
+		ispXmlSetFieldVal(parent.MenuWin.xmlEmail, 'COMMENT', 'FUNCTION', '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlEmail, sEmailMsg, 'DATA', '', 0);
+
+		ispCallXMLForm(parent.MenuWin.xmlEmail, parent.MenuWin.xmlEmail, '../MailPIN', '');
+		
+	}		//if
+
+	parent.DocWin.location.href = '../Acct/ApplyMain.asp';
+}		//DoThankYou
+
+//EOGVWEB-53 EDD Added function to print coupon
+function DoPrintCoupon() {
+	
+	
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, 'TOBACCO', 'COUPON_FORM CPN_FORM', '');
+	// alert((new XMLSerializer()).serializeToString(parent.MenuWin.xmlPayCoupon.xml));
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, '27', 'COUPON_FORM CPN_ACCOUNT_TYPE', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO ACCOUNT_ID', '', 0), 'COUPON_FORM CPN_ACCOUNT', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, $('#lblNameTY').text(), 'COUPON_FORM CPN_NAME', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS ADDRESS1', '', '0'), 'COUPON_FORM CPN_ADDR', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS ADDRESS2', '', '0'), 'COUPON_FORM CPN_ADDR2', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, "", 'COUPON_FORM CPN_ADDR3', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS CITY', '', '0'), 'COUPON_FORM CPN_CITY', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS STATE', '', '0'), 'COUPON_FORM CPN_STATE', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS ZIP', '', '0'), 'COUPON_FORM CPN_ZIP_CODE', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlTobacco, 'TOBACCO_INFO PERIOD', '', 0), 'COUPON_FORM CPN_PERIOD', '');
+	//ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, '2011', "COUPON_FORM CPN_YEAR", "")
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, '2012', "COUPON_FORM CPN_YEAR", "");
+//	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, strScanLine, "COUPON_FORtM/CPN_SCAN", "")
+	ispDisplayProgress('', 'Creating Tobacco Tax Coupon');
+	SetupPassFields();
+	
+//alert(ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") );
+	parent.DocWin.location.href = '../PayCoupon/PDFCouponCreate.asp?' + tempParameters;
+
+}		//DoPrintCoupon
+
+</script>
+<script ID="clientEventHandlersJS" LANGUAGE="vbscript">
+
+Function ispReplace(sInput, sFind, sReplace)
+	ispReplace = Replace(sInput, sFind, sReplace)
+End Function
+
+</script>
+</head>
+<BODY>
+
+<DIV Id="divTobaccoThankYou" Name="divTobaccoThankYou" style="DISPLAY: none; VISIBILTY: visible">
+<table cellSpacing="0" cellPadding="1" width="95%" border="0"
+		 style="MARGIN-BOTTOM: 5px; MARGIN-LEFT: 4%"></TR>
+  <tr vAlign="top" align="left">
+    <td width=75%>
+      <p id=hdrThankYou name=hdrThankYou class="lblTextBlack">
+				Your Return is now being processed. <br>
+<!--EGOVWEB-49 Item 1 Changed	wording			You may want to print a copy of this page for your records.<br>-->
+				Print a copy of this page for your records.<br>
+<!--EGOVWEB-49 Item 2 Removed -1 need to put back after Jan 1			Thank you for filing your <%= cstr(cint(sCurrYear) - 1)%> Tobacco Tax Return online.-->
+				Thank you for filing your <%= cstr(cint(sCurrYear))%> Tobacco Tax Return online.</p>
+			<p class='lblTextBlack' style="MARGIN-TOP:15px; MARGIN-BOTTOM: 0px" >Name: 
+				<label class='lblTextBlack' id='lblNameTY'></label></p>
+			<p class='lblTextBlack' style="MARGIN-TOP:0px; MARGIN-BOTTOM: 0px" >Account No.: 
+				<label class='lblTextBlack' id='lblAcctNo'></label>.</p>
+			<p class='lblTextBlack' style="MARGIN-TOP:0px">Your Confirmation number is
+				<label class='lblTextBlack' id=lblConfirmNo></label>.</p>
+			<center><p class='lblTextBlack' style="MARGIN-TOP:15px"><b>Payment Options</b></p></center>
+			<!--#Include file="../CreditCard/CCPage.htm"-->
+			<p class='lblTextBlack' style="MARGIN-TOP:15px"><b>Coupon</b> - 
+<!--EGOVWEB-53 EDD Added the print coupon button-->
+				<input class="btnNormal" id="btnPrintCoupon" name="btnPrintCoupon" type="button" value="Print Coupon" onclick="DoPrintCoupon()">
+<!--EGOVWEB-57 EDD Removed wording per Tom Wismer
+			  or you can use the coupon from the bottom of the paper tax return that was sent to you.--> Attach a check for	the amount due, payable to the "City of Philadelphia" and mail the coupon and check to:</p>
+			<p class='lblTextBlack' style="MARGIN-TOP:15px; MARGIN-LEFT:30px">Philadelphia Department
+				of Revenue<br>
+				P.O. Box 53250<br>
+				Philadelphia, PA 19105-0389</p>
+<!--EGOVWEB-49 Item 5
+			<p class='lblTextBlack'><b>Other</b> - if you do not want to pay by credit card and you do not
+				have a coupon, print a copy of this page to mail with your payment to the address noted
+				above.</p>--></td>
+	  <td></td></tr>
+  </table>
+<table cellSpacing="0" cellPadding="0" width="80%" border="0" 
+		style="MARGIN-TOP: 15px; MARGIN-LEFT: 4%">	
+  <tr height=20>
+		<td><p class=lblTextBlack>We would appreciate your comments / feedback concerning your online experience.<br>
+						Please enter your comments / feedback below:</p>
+				<TEXTAREA id=txaComments style="WIDTH: 80%; height: 60px" name=txaComments></TEXTAREA>
+  <tr height=20 valign="bottom">
+		<td align="middle"><p><input class="btnNormal" id="btnTobaccoThankYou" name="btnTobaccoThankYou"
+			  type="submit" value="Thank You" onclick="DoThankYou()">
+			  </p></td></tr>
+</table>
+</DIV>
+   
+</BODY>
+</html>

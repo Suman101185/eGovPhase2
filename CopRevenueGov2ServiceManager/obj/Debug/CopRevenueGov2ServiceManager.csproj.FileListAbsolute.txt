@@ -1,0 +1,80 @@
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+E:\Suman\office projects\COP\COP_MVC4_NEW\CopRevenueGov2\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.dll
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.dll
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.dll
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.xml
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.xml
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.xml
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+D:\Projects\COP\eGov Phase2\LAtest eGOV2\20Jan2016\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.xml
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.xml
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.xml
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.xml
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.dll
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.dll
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.dll
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.dll
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.xml
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.xml
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.xml
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.xml
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+E:\eGOV-PHASEII_2016\eGOV-PHASE II-latest-5-08-2016\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.dll
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.dll
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.dll
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.dll
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.xml
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.xml
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.xml
+E:\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.xml
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.dll
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.dll
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.dll
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.dll
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.xml
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.xml
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.xml
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.xml
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+E:\Suman G\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\Newtonsoft.Json.xml
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Net.Http.Formatting.xml
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.xml
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Debug\System.Web.Http.WebHost.xml
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Debug\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache

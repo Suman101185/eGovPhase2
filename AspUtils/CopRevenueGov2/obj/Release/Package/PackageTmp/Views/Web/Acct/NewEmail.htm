@@ -1,0 +1,184 @@
+<html>
+<head>
+<title></title>
+<script id="clientEventHandlersJS" language="javascript" type="text/javascript">
+
+function ShowTaxAccounts() {
+//	var tempPara = '<label>'		//<p style="MARGIN-BOTTOM: 1pt; MARGIN-TOP: 2pt; MARGIN-LEFT: 10pt">'
+	var temp = '';
+
+	$('#divBptEmailExemptionNoApply').css('display','none');
+	$('#divBptEmailExemptionGood').css('display','none');
+	$('#divBptEmailExemptionFailed').css('display','none');
+	$('#divBptLiInfo').css('display','none');
+	
+	if (chkBPT.checked) {
+		temp = temp + 'Business Income and Receipts';
+		var icount;
+		var scode;
+		iCount = ispXmlGetRecCount(parent.MenuWin.xmlAccount, 'TAX_ACCT', '');
+		for (i = 0; i < iCount; i++) {
+			sCode = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ACCOUNT', '', i);
+			if (sCode == '24') {
+				sExemptionRequest = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'UOL_BRT', '', i).substr(0, 1);
+				sExemptionQuailified = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'UOL_BRT', '', i).substr(8, 1);
+				$('#divBptLiInfo').css('display','block');
+				if (sExemptionRequest == 'N' || sExemptionRequest == '') {		//Not Applied
+					$('#divBptEmailExemptionNoApply').css('display','block');
+					$('#divBptEmailExemptionGood').html('');
+					$('#divBptEmailExemptionFailed').html('');
+				} else if (sExemptionQuailified == 'A') {		//Accepted
+					$('#divBptEmailExemptionGood').css('display','block');
+					$('#divBptEmailExemptionNoApply').html('');
+					$('#divBptEmailExemptionFailed').html('');
+				} else if (sExemptionQuailified == 'R') {		//Rejected
+					$('#divBptEmailExemptionFailed').css('display','block');
+					$('#divBptEmailExemptionNoApply').html('');
+					$('#divBptEmailExemptionGood').html('');
+				} 	//if
+				break
+			} else {
+				$('#divBptEmailExemptionNoApply').html('');
+				$('#divBptEmailExemptionGood').html('');
+				$('#divBptEmailExemptionFailed').html('');
+				$('#divBptLiInfo').html('');
+			} 	//if
+		} 	//for
+	}		//if
+	if (chkNPT.checked) {
+		temp = temp + ', Net Profits';
+		}
+	if (chkWage.checked) {
+		temp = temp + ', Wage';
+		}
+	if (chkEarn.checked) {
+		temp = temp + ', Earnings';
+		}
+	if (chkLiquor.checked) {
+		temp = temp + ', Liquor';
+		}
+	if (chkUO.checked) {
+		temp = temp + ', Use/Occupancy';
+		}
+	if (chkSchool.checked) {
+		temp = temp + ', School Income';
+		}
+	if (chkParking.checked) {
+		temp = temp + ', Parking';
+		}
+	if (chkHotel.checked) {
+		temp = temp + ', Hotel';
+		}
+	if (chkAmusement.checked) {
+		temp = temp + ', Amusement';
+		}
+	if (chkCoin.checked) {
+		temp = temp + ', Coin';
+		}
+	if (chkRental.checked) {
+		temp = temp + ', Vehicle Rental';
+		}
+	if (temp.substr(0,2) ==  ', ') {
+		temp = temp.substr(2);
+	}
+//	temp = tempPara + temp + '</label>'		//</p>'
+	return temp;
+}		//ShowTaxAccounts
+
+function CreateAcctNewEmail() {
+var sEmail;
+//	lblAttention.innerText = txtEntityName.value
+	if (txtTradeName.value != '') {
+		$('#lblEntity').text(txtTradeName.value + ' ');
+	} else if (txtFirstName.value == '') {
+		$('#lblEntity').text( txtEntityName.value);
+	} else {
+		$('#lblEntity').text( txtFirstName.value + ' ' + txtLastName.value);
+	} 	//if
+	$('#lblMailAddress').text(txtBusAddress1.value + ' ' + txtBusCity.value + ', ' + $(ddBusState.options[ddBusState.selectedIndex]).attr('CODE') + ' ' + txtBusZip.value);
+//	if (chkBPT.checked == false) {
+//	}		//
+//	lblEntityId.innerText = ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO/ENTITY_ID', '', 0)
+	$('#lblAccountId').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO ACCOUNT_ID', '', 0));
+	$('#lblAccounts').text(ShowTaxAccounts());
+	$('#lblPIN').text(ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'ENTITY_INFO PIN', '', 0));
+	
+	sEmail = $('#AcctNewEmail').html();
+	sEmail = ispReplace(sEmail, ">", "&GT&");
+	sEmail = ispReplace(sEmail, "<", "&LT&");
+	return sEmail;
+}		//CreateAcctNewEmail
+
+function ispReplace(sInput, sFind, sReplace){
+	return sInput.replace(sFind, sReplace);
+}
+
+
+</script>
+
+<!--
+SUMAN converting code to javascript
+<script id="clientEventHandlersJS" language="vbscript" type="text/vbscript">
+
+Function ispReplace(sInput, sFind, sReplace)
+	ispReplace = Replace(sInput, sFind, sReplace)
+End Function
+
+</script>
+-->
+
+
+</head>
+<body>
+<div id="AcctNewEmail" name="AcctNewEmail" style="DISPLAY: none; VISIBILITY: visible">
+
+<table cellspacing="0" cellpadding="0" border="0" style="MARGIN-BOTTOM: 40px; MARGIN-LEFT: 4%; WIDTH: 7in; HEIGHT: 1in">
+  <tr>
+		<td valign="center" align="middle" width="15%">
+			<IMG height=126 alt="City of Philadelphia" src ="[EMAIL_CITY_SEAL]" width=132 ></td>
+		<td align="middle" valign="center" width="5%">
+			<IMG style="WIDTH: 0.03in; HEIGHT: 0.9in" height=1 src="[EMAIL_SPACER]" width=1></td>
+		<td valign="center" align="right">
+				<p><font size="6">City of Philadelphia</font><br />
+				<font size="5">Department of Revenue<br />
+				1401 John F Kennedy Boulevard<br />
+				Philadelphia, PA 19102
+				</font></p></td></tr>
+</table>
+
+<table id="TABLE1" cellSpacing="0" cellPadding="0" border="0" style="MARGIN-LEFT: 4%; WIDTH: 7in">
+  <tr align="left" valign="top">
+		<td>
+			<p>Thank you registering with the City of Philadelphia Department of Revenue.</p>
+			<p>Entity:&nbsp;<label id="lblEntity"></label>
+				<br />Mailing Address:&nbsp;<label id="lblMailAddress"></label></p>
+			<p style="margin-bottom:0px">Philadelphia Tax Account #:&nbsp;<label id="lblAccountId"></label>
+				<br />Registered Tax Type(s):</p>
+				<p style="margin-top:0px; margin-left: 20px"><label id="lblAccounts">test</label></p>
+			<p>Your initial Philadelphia Revenue Personal Identification Number (PIN) is <label id="lblPIN"></label>. You must use this PIN to access your account on-line.  You will be prompted to change your PIN after your initial login to our On-line Services. You can make changes to your account and file and pay your current year business taxes on-line. To access our on-line services go to <a href="https://ework.phila.gov/revenue/" target="_blank"></a>https://ework.phila.gov/revenue.</p>
+
+			<div id="divBptEmailExemptionGood" style="display:none">
+				<p>You have claimed “New Business” tax status under Philadelphia Code 19-3800. Based on your application, you qualify for the for the new tax status. If you fail to meet the requirements set forth in Philadelphia Code 19-3800, you will be retroactively subject to the full Business Income and Receipts Tax (BIR) and Commercial Activity License (CAL) fee from the start of your business.<br /><br />If you registered for a BIR account you must also obtain a Business Income and Receipts License from the Department of Licenses & Inspections (L&I). As a “New Business” the fee for this license is waived. To obtain a CAL mail a copy of this email and a completed CAL application form found at <a href="http://www.phila.gov/revenue/bpt.html" target="_blank">http://www.phila.gov/revenue/bpt.html</a> to:</p></div>
+
+			<div id="divBptEmailExemptionFailed" style="display:none">
+				<p>You have applied for “New Business” tax status under Philadelphia Code 19-3800. Based on your application, you DO NOT QUALIFY for the for the new tax status. To review the qualifications in Philadelphia Code 19-3800 visit <a href="http://www.amlegal.com/library/pa/philadelphia.shtml" target="_blank">http://www.amlegal.com/library/pa/philadelphia.shtml</a>.</p></div>
+
+			<div id="divBptEmailExemptionNoApply" style="display:none">
+				<p>If you registered for a Business Income and Receipts Tax (BIR) account you must also obtain a Commercial Activity License (CAL) from the Department of Licenses & Inspections (L&I).  If you did not do this already you can apply on-line at <a href="https://secure.phila.gov/li/licenses" target="_blank">https://secure.phila.gov/li/licenses</a>. You may also obtain your CAL by completing the CAL application found at <a href="http://www.phila.gov/revenue/bpt.html" target="_blank">http://www.phila.gov/revenue/bpt.html</a> and mail it, a copy of your forthcoming BIR account confirmation email and a $300 check made payable to the City of Philadelphia to:</p></div>
+				
+			<div id="divBptLiInfo" style="display:none">
+				<p style="margin-left: 20pt" align="left">
+					Philadelphia Department of Licenses and Inspection<br />
+					License Issuance Unit<br />
+					1401 J.F.K. Boulevard, Concourse Level<br />
+					Philadelphia, PA 19102</p>
+				<p>You may also visit L&I in person at the above address.  Please be sure to bring the aforementioned documents. You may be required to get an additional location based license depending on your business operation.  You may also check the Business Services Center website at <a href="https://business.phila.gov/Pages/Home.aspx" target="_blank">https://business.phila.gov/Pages/Home.aspx</a> to determine your licensing and permitting requirements. For any questions concerning licenses call 311 from the City Of Philadelphia, 215-686-8686 from outside the city or email <a href="mailto:license.issuance@phila.gov">license.issuance@phila.gov</a>.</p></div>
+
+			<p>If you have any questions concerning your tax account, e-mail us at <a href="mailto:revenue@phila.gov">revenue@phila.gov</a> or visit us online at <a href="http://www.phila.gov/revenue">http://www.phila.gov/revenue</a>.</p>
+			<p>City of Philadelphia
+			<br />Department of Revenue</p>
+		</td></tr>	  
+	</table>
+</div>
+</body>
+</html>

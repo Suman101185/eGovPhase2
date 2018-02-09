@@ -1,0 +1,56 @@
+<html>
+<head>
+<link REL="stylesheet" TYPE="text/css" href="../Content/Styles/Font.css">
+<title></title>
+</head>
+<body>
+
+<table cellSpacing="0" cellPadding="0" width="100%" border="0" style="MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 20px">
+  <tr>
+		<td><p class="hdrLarge" align="left">Your City Account <font face="Arial" color="#000000" size="3">|&nbsp;e-check 
+  &nbsp;apply</font>   </p></td></tr>
+  <tr vAlign="top" align="left">
+    <td width="750">
+      <p class="lblTextBlack" style="MARGIN-TOP: 5px; MARGIN-LEFT: 20px">
+      
+      Why e-check? Convenience of paying your taxes via 
+      the Internet and no more checks and stamps. The first step is 
+      completing the application. If there is any problem with your application, 
+      you will be notified via email or you
+      can check back to this site for your e-check status.
+      Most applications are approved in 3 business days.</p>
+      <p class="lblTextBlack" style="MARGIN-TOP: 2px; MARGIN-LEFT: 20px"> 
+       After you 
+       submit your e-check application, you are transferred to the 
+      e-check Parameter page. The e-check Parameter page is a useful tool 
+      to protect the user from mis-keying&nbsp;tax payment 
+amounts.</p>
+      <p class="lblTextBlack" style="MARGIN-TOP: 5px; MARGIN-LEFT: 20px"><img id="IMG1" style="HEIGHT: 150px" height="150" src="..\Images\check.gif"></p></td></tr></table>
+	
+<table cellSpacing="0" cellPadding="0" width="100%" border="0" style="MARGIN-LEFT: 20px">
+	<form id="FormApply" name="FormApply" action="MailPIN" method="post">
+  <tbody>
+		<tr style="MARGIN-LEFT: 20px">
+			<td width="20%" align="left" class="lblInstrNormal"><p>Financial Institution:</p></td>
+			<td width="80%" align="left"><select id="FinancialInstitution" style="WIDTH: 173px" name="FinancialInstitution" dataFld dataSrc> <option selected value="Citizens Bank">Citizens 
+        Bank</option><option value="First Union">First Union</option><option value="PNC">PNC</option><option value="Mellon">Mellon</option></select></td>
+		</tr>
+		
+		<tr style="MARGIN-LEFT: 20px">
+			<td width="20%" align="left" class="lblInstrNormal" nowrap> <p>Transit Routing Number:&nbsp;&nbsp;&nbsp;&nbsp;</p></td>
+			<td width="80%" align="left">561845716</td>
+		</tr>		
+     	<tr style="MARGIN-LEFT: 20px">
+			<td width="20%" align="left" class="lblInstrNormal"><p> Account Number:</p></td>
+			<td width="80%" align="left"><input class="inpNormal" id="AccountNumber" name="AccountNumber" maxlength="15" size="2" value="596087" style="WIDTH: 25.14%; HEIGHT: 22px">
+      </td></tr>
+			
+		<tr style="MARGIN-LEFT: 20px">
+			<td width="20%" align="left"><p class="lblInstrNormal">Account Type:&nbsp;</p></td>
+			<td width="80%"><input value="Checking" type="radio" name="FormSelection" checked>Checking&nbsp;&nbsp;<input type="radio" value="Savings" name="FormSelection">Savings</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="middle"><p style="MARGIN-TOP: 5px"><input id="SubmitApply" type="submit" value="Submit" name="SubmitApply"></p></td></tr></tbody></form></table>
+
+</body>
+</html>

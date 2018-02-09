@@ -1,0 +1,124 @@
+﻿<script>
+
+    function DisplayWrkShtN() {
+        PerformCalcsBPTezWrkShtN()
+        $('#BPTez_WrkShtN').css('display', 'block')
+    } 	//DisplayWrkShtN
+
+    function PerformCalcsBPTezWrkShtN() {
+        //		if (b3800val == true) {
+        $('#lblWrkShtN_1').text(GetPage2Line4());
+        $('#lblWrkShtN_3').text(GetPage2Line7());
+        if ($('#btnYes').is(':checked') == true) {
+            $('#lblWrkShtN_2').text('$0');
+            $('#lblWrkShtN_4').text('$0');
+        } else {
+            $('#lblWrkShtN_2').text($('#lblBPTez2_5').text());
+            $('#lblWrkShtN_4').text($('#lblBPTez2_8').text());
+        } 	//if
+    } 	//PerformCalcsBPTlfWrkShtN
+
+    function GetPage2Line4() {
+        if (cCur($('#lblBPTez2_4').text()) != 0) {
+            return $('#lblBPTez2_4').text()
+        } else {
+            return '$0'
+        } 	//if
+    } 	//GetPage2Line4
+
+    function GetPage2Line7() {
+        if (cCur($('#lblBPTez2_7').text()) != 0) {
+            return $('#lblBPTez2_7').text()
+        } else {
+            return '$0'
+        } 	//if
+    } 	//GetPage2Line7
+</script>
+
+<div id="BPTez_WrkShtN" style="display: none" name="BPT_WrkShtN"><br>
+	<table class=tblShowBorder id=tblWrkShtN style="MARGIN-LEFT: 4%" cellSpacing=0 cellPadding=0 width="90%" border=0>
+		<tr height=0>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+			<td WIDTH="5%"></td>
+		</tr>
+		<tr class="rowDataEven">
+			<td colSpan="20">
+				<label class="lblInstrNormal"><b><u>2010 BIRT Worksheet N: New Business and Employment Worksheet (Philadelphia Code 19-3800)</u></b><br>To be used by taxpayers who are claiming new business status under Philadelphia code 19-3800.<br><br></label>
+			</td>
+		</tr>
+		<tr class=rowDataOdd>
+			<td colspan=20>
+				<div id="divMsg19_3800"></div>
+			</td>
+		</tr>
+		<tr class=rowDataEven>
+			<td colspan=20>
+				<label class="lblInstrNormal"><br><u><b>COMPUTATION OF TAX ON NET INCOME</b></u></label>
+			</td>
+		</tr>
+		<tr class=rowDataOdd>
+			<td><label class="lblInstrNormal">1.</label></td>
+			<td colspan=16>
+				<label class="lblInstrNormal">Amount of taxable income (from </label>
+				<label id="lblLnkPg2L4" class="lblLink" style="FONT-SIZE: 7pt" onclick=ShowPage('2')>BIRT-EZ Page 2, Line 4</label>
+				<label class="lblInstrNormal">).</label>
+			</td>
+			<td colspan=3>
+				<label class=inpReadOnlyRt id=lblWrkShtN_1 style="WIDTH: 100%"></label></td>
+		</tr>
+		<tr class=rowDataEven>
+			<td>
+				<label class="lblInstrNormal">2.</label></td>
+			<td colspan=16>
+				<label class="lblInstrNormal">Tax Due as computed for new business</label>
+			</td>
+			<td colspan=3>
+				<label class=inpReadOnlyRt id=lblWrkShtN_2 style="WIDTH: 100%"></label></td>
+		</tr>
+		<tr class=rowDataOdd>
+			<td colspan=20>
+				<label class="lblInstrNormal"><br><u><b>COMPUTATION OF TAX ON GROSS RECEIPTS</b></u></label>
+			</td>
+		</tr>
+		<tr class=rowDataEven>
+			<td><label class="lblInstrNormal">3.</label></td>
+			<td colspan=16>
+				<label class="lblInstrNormal">Amount of taxable gross receipts (from </label>
+				<label id="lblLnkPg2L7" class="lblLink" style="FONT-SIZE: 7pt" onclick=ShowPage('2')>BIRT-EZ Page 2, Line 7</label>
+				<label class="lblInstrNormal">).</label>
+			</td>
+			<td colspan=3>
+				<label class=inpReadOnlyRt id=lblWrkShtN_3 style="WIDTH: 100%"></label></td>
+		</tr>
+		<tr class=rowDataOdd>
+			<td>
+				<label class="lblInstrNormal">4.</label></td>
+			<td colspan=16>
+				<label class="lblInstrNormal">Tax Due as computed for new business</label>
+			</td>
+			<td colspan=3>
+				<label class=inpReadOnlyRt id=lblWrkShtN_4 style="WIDTH: 100%"></label></td>
+		</tr>
+    <tr>
+	    <td colspan=20 align=middle><br><input language=javascript id=btnNGoTo onclick=ShowPage("1") type=button value="Return to Page 1" /></td>
+	  </tr>
+	</table>
+</div>

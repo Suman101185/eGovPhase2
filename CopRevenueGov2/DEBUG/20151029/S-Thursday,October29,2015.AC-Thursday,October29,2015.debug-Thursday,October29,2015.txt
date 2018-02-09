@@ -1,0 +1,6 @@
+<DEBUGINFO>
+<REQUSET><?xml version="1.0" encoding="UTF-8"?><c1match><Message /><Closeness /><Address1>324 ChestNut Streat</Address1><Address2></Address2><City /><State /><Zip>19131</Zip><Zip4 /><houseno /><direction /><designation /><DPC /><DPBC /><CRT /><street /></c1match></REQUSET>
+
+
+<RESPONSE><?xml version="1.0" encoding="utf-16"?><c1match xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Message>Success</Message><Closeness>0</Closeness><Address1>324 CHESTNUT ST                                   </Address1><Address2 /><City>PHILADELPHIA                </City><State>PA</State><Zip>19106</Zip><Zip4>2708</Zip4><houseno>       324</houseno><direction /><designation>ST  </designation><DPC>0</DPC><DPBC>270824</DPBC><CRT>C027</CRT><street>CHESTNUT                    </street></c1match></RESPONSE>
+</DEBUGINFO>

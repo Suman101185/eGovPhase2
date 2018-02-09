@@ -1,0 +1,131 @@
+`````````````````````````````````````````````````````````````````````<script language="vbscript" runat="server">
+
+Private Function GetValue(strVal,intStart,intLen)
+
+	GetValue = Trim(mid(strVal,intStart,intLen))
+	intStart = intStart + intLen
+	
+End Function
+
+
+Private Function SetValue(strVal,intLen)
+	
+	if len(strVal) > intLen then
+		SetValue = Left(strVal,intLen)
+	else
+		SetValue = strVal & space(intlen-len(strVal))
+	end if
+	
+End Function
+
+
+Private Function SetNumValue(strVal,intLen)
+
+	if len(strVal) > intLen then
+		SetNumValue = Left(strVal,intLen)
+	else
+		SetNumValue = String(intLen - len(strVal),("0")) & strVal
+	end if
+	
+End Function
+
+
+Private Function GetLOB(strLob)
+
+	select case strLob
+		case "10"
+			GetLOB = "Auto"
+		case else 
+			GetLOB = "Unknown"
+	end select
+End Function
+
+
+Private Function FormatRefNo(strVal)
+dim strDate, strHour, strMin, strSec, strTime, sDate
+
+	if strVal = "" then
+		FormatRefNo = ""
+	else
+		sDate = 100000000 - mid(strVal,1,8)
+		strTime =  1000000 - mid(strVal,9)
+		
+		if Len(strTime) = 5 Then 'this affects how the time is displayed before 10:00 AM
+			strTime = "0" & strTime
+		end if
+		
+		strHour = mid(strTime,1,2)
+		if len(strHour) = 1 then
+			strHour = "0" & strHour 
+		end if
+		strHour = strHour & ":" 
+		
+		strMin = mid(strTime,3,2)
+		if len(strMin) = 1 then
+			strMin = "0" & strMin 
+		end if
+		strMin = strMin &  "." 
+		
+		strSec = mid(strTime,5,2) 
+		if len(strSec) = 1 then
+			strSec = "0" & strSec 
+		end if
+
+		strDate =  mid(sDate,5,2) & "/" &  mid(sDate,7,2) & "/" & mid(sDate,1,4) & " " 
+		
+		FormatRefNo = strDate & strHour  & strMin & strSec
+
+	end if
+
+End Function
+
+
+Private Function FormatDate(strVal)
+dim strDate
+
+	if strVal = "" then
+		FormatDate = ""
+	else
+		FormatDate=mid(strVal,5,2) & "/" &  mid(strVal,7,2) & "/" & mid(strVal,1,4) 
+	end if
+End Function
+
+
+Private Function FormatCobolDate(strVal,intLen)
+dim strDate
+
+	if strVal = "" then
+		FormatCobolDate = SetValue(strVal,intLen)
+	else
+		strVal = Replace(strVal,"-","")
+		strVal = Replace(strVal,"/","")
+		strVal = Replace(strVal,".","")
+		strVal = SetValue(strVal,8)
+
+		FormatCobolDate=Right(strVal,4) & Mid(strVal,1,2) & Mid(strVal,3,2)
+	end if
+	
+End Function
+
+
+Private Function ispCurrency(strVal)
+
+	if strVal = "" then
+		ispCurrency = ""
+	else
+		ispCurrency = FormatCurrency(strVal,2)
+	end if
+	
+End Function
+
+
+Private Function ispDollarsOnly(strVal)
+
+	if strVal = "" then
+		ispDollarsOnly = ""
+	else
+		ispDollarsOnly = CDbl(strVal)
+	end if
+	
+End Function
+</script>

@@ -1,0 +1,370 @@
+BODY
+{
+    PADDING-RIGHT: 5px
+}
+.mnuLabel
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 9pt;
+    MARGIN-BOTTOM: 0px;
+    MARGIN-LEFT: 0px;
+    COLOR: black;
+    /*FONT-FAMILY: 'MS Sans Serif'*/
+}
+.mnuNormal
+{
+    cursor:pointer;
+    MARGIN-TOP: 3px;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 7pt;
+    VISIBILITY: visible;
+    MARGIN-BOTTOM: 0px;
+    MARGIN-LEFT: 0px;
+
+    COLOR: black;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    TEXT-DECORATION: underline;
+	
+}
+p.mnuNormal
+{
+	 cursor:pointer;
+	
+}
+.mnuHighlight
+{
+    MARGIN-TOP: 3px;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 7pt;
+    VISIBILITY: visible;
+    MARGIN-BOTTOM: 0px;
+    MARGIN-LEFT: 0px;
+    cursor:pointer;
+    COLOR: black;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    TEXT-DECORATION: underline
+}
+p.mnuHighlight
+{
+	 cursor:pointer;
+	
+}
+.mnuSelected
+{
+    MARGIN-TOP: 3px;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 7pt;
+    VISIBILITY: visible;
+    MARGIN-BOTTOM: 0px;
+    MARGIN-LEFT: 0px;
+    CURSOR: hand;
+    COLOR: blue;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    TEXT-DECORATION: underline
+}
+.mnuDisabled
+{
+    MARGIN-TOP: 3px;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 7pt;
+    VISIBILITY: visible;
+    MARGIN-BOTTOM: 0px;
+    MARGIN-LEFT: 0px;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    TEXT-DECORATION: underline
+}
+.hdrLarge
+{
+    MARGIN-TOP: 3px;
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 14pt;
+    MARGIN-BOTTOM: 3px;
+    MARGIN-LEFT: 4%;
+    COLOR: royalblue;
+    /*FONT-FAMILY: Tahoma*/
+}
+.hdrMedium
+{
+    FONT-SIZE: 11pt;
+    COLOR: black;
+    /*FONT-FAMILY: Tahoma*/
+}
+.hdrSmall
+{
+}
+.lblInpDisabled
+{
+    FONT-SIZE: 8pt;
+    COLOR: gray
+}
+.lblInpActive
+{
+    FONT-SIZE: 9pt;
+    COLOR: darkblue
+}
+.fntSmall
+{
+    FONT-SIZE: 10pt;
+    COLOR: green
+}
+UNKNOWN
+{
+    CURSOR: hand
+}
+.lblInstrNormal
+{
+    FONT-WEIGHT: 600;
+    FONT-SIZE: 9pt;
+    COLOR: royalblue;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial*/
+}
+.lblInstrRequired
+{
+    PADDING-RIGHT: 5px;
+    FONT-WEIGHT: 600;
+    FONT-SIZE: 10pt;
+    COLOR: red;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    TEXT-ALIGN: right
+}
+.lblInstrBold
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 9pt;
+    COLOR: royalblue;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial*/
+}
+.lblInstrHighlight
+{
+    FONT-SIZE: 9pt;
+    COLOR: teal
+}
+.inpRequired
+{
+    FONT-SIZE: 9pt;
+    COLOR: red;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    BACKGROUND-COLOR: orange
+}
+.inpDisabled
+{
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 9pt;
+    COLOR: royalblue;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    BACKGROUND-COLOR: lightgoldenrodyellow
+}
+.errMessages
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 9pt;
+    COLOR: red;
+    /*FONT-FAMILY: Tahoma;*/
+    TEXT-DECORATION: underline
+}
+.lnkLocal
+{
+    FONT-SIZE: x-small;
+    CURSOR: hand;
+    COLOR: red;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    TEXT-DECORATION: underline
+}
+.lnkStates
+{
+}
+.inpError
+{
+    /*FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    BACKGROUND-COLOR: red !important;
+}
+.inpNormal
+{
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 9pt;
+    COLOR: black;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial*/
+}
+.inpSmall
+{
+    FONT-WEIGHT: 300;
+    FONT-SIZE: 6pt;
+    COLOR: black;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    HEIGHT: 10px
+}
+.lblTblHeaderCenter
+{
+    FONT-WEIGHT: 800;
+    FONT-SIZE: 10pt;
+    COLOR: black;
+    /*FONT-FAMILY: Arial, Verdana, Tahoma;*/
+    TEXT-ALIGN: center
+}
+.lblTblDataLeft
+{
+    FONT-SIZE: x-small;
+    MARGIN-LEFT: 6px;
+    COLOR: black;
+    /*FONT-FAMILY:  Arial, Verdana, Tahoma;*/
+    TEXT-ALIGN: left
+}
+.lblTblDataCenter
+{
+    FONT-SIZE: x-small;
+    COLOR: black;
+    /*FONT-FAMILY:  Arial, Verdana, Tahoma;*/
+    TEXT-ALIGN: center
+}
+.lblTblDataRight
+{
+    FONT-SIZE: x-small;
+    COLOR: black;
+    MARGIN-RIGHT: 6px;
+    /*FONT-FAMILY: Arial, Verdana, Tahoma;*/
+    TEXT-ALIGN: right
+}
+.lblLink
+{
+    FONT-SIZE: 9pt;
+    COLOR: #de0000;
+    /*FONT-FAMILY: Verdana, Tahoma;*/
+    TEXT-DECORATION: underline;
+    cursor:pointer;
+}
+.lblLink a
+{
+	 cursor:pointer;
+	
+}
+.lblNameFormat
+{
+    TEXT-TRANSFORM: capitalize
+}
+.hdrsignon
+{
+    BORDER-RIGHT: royalblue thin groove;
+    BORDER-TOP: royalblue thin groove;
+    BORDER-LEFT: royalblue thin groove;
+    BORDER-BOTTOM: royalblue thin groove;
+    BACKGROUND-COLOR: lightgoldenrodyellow;
+    TEXT-ALIGN: center
+}
+.lblSignon
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 12pt;
+    COLOR: black;
+    /*FONT-FAMILY: Tahoma*/
+}
+.lblTextBlack
+{
+    FONT-SIZE: x-small;
+    COLOR: black;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial*/
+}
+.lblTextBold
+{
+    FONT-WEIGHT: 800;
+    FONT-SIZE: 9pt;
+    COLOR: black;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial*/
+}
+.lblTextRed
+{
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 9pt;
+    COLOR: #de0000;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial*/
+}
+.mnuProcessCurrent
+{
+    MARGIN-TOP: 3px;
+    FONT-WEIGHT: 600;
+    FONT-SIZE: 7pt;
+    VISIBILITY: visible;
+    MARGIN-BOTTOM: 0px;
+    MARGIN-LEFT: 0px;
+    COLOR: blue;
+    /*FONT-FAMILY: Tahoma, 'MS Sans Serif', Arial, Verdana*/
+}
+.mnuProcessComplete
+{
+    MARGIN-TOP: 3px;
+    FONT-WEIGHT: 600;
+    FONT-SIZE: 7pt;
+    VISIBILITY: visible;
+    MARGIN-BOTTOM: 0px;
+    MARGIN-LEFT: 0px;
+    COLOR: #ff9900;
+    /*FONT-FAMILY: Tahoma, 'MS Sans Serif', Arial, Verdana*/
+}
+.mnuProcess
+{
+    MARGIN-TOP: 3px;
+    FONT-WEIGHT: 600;
+    FONT-SIZE: 7pt;
+    VISIBILITY: visible;
+    MARGIN-BOTTOM: 0px;
+    MARGIN-LEFT: 0px;
+    COLOR: black;
+    /*FONT-FAMILY: Tahoma, 'MS Sans Serif', Arial, Verdana*/
+}
+.lblTextBlackSmall
+{
+    FONT-SIZE: xx-small;
+    COLOR: black;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial*/
+}
+.inpReadOnlyRt
+{
+    BORDER-RIGHT: lightblue 1px solid;
+    PADDING-RIGHT: 1px;
+    BORDER-TOP: lightblue 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 9pt;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: lightblue 1px solid;
+    COLOR: black;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: lightblue 1px solid;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    BACKGROUND-COLOR: #f2f2f2;
+    TEXT-ALIGN: right
+}
+
+.inpReadOnlyRtTD
+{
+	VERTICAL-ALIGN:bottom;
+}
+
+.inpReadOnlyRtTD div
+{
+    BORDER-RIGHT: lightblue 1px solid;
+    BORDER-TOP: lightblue 1px solid;
+    BORDER-LEFT: lightblue 1px solid;
+    BORDER-BOTTOM: lightblue 1px solid;
+    BACKGROUND-COLOR: #f2f2f2;
+    TEXT-ALIGN: right;
+	PADDING-RIGHT: 1px;
+    PADDING-LEFT: 1px;
+	PADDING-TOP: 2px;
+    PADDING-BOTTOM: 2px;
+
+}
+
+.inpReadOnlyRtTD label
+{    
+
+    FONT-WEIGHT: 500;
+    FONT-SIZE: 9pt;
+    COLOR: black;
+    /*FONT-FAMILY: Verdana, Tahoma, Arial;*/
+    TEXT-ALIGN: right;
+}
+
+
+

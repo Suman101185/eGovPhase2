@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://ISDEV.city.phila.local/RTTIE230.service:RTTIE230WS" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:HDR1="urn:com-softwareag-entirex-rpc:TIPSACCD" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" name="RTTIE230WS" targetNamespace="http://ISDEV.city.phila.local/RTTIE230.service:RTTIE230WS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="urn:com-softwareag-entirex-rpc:TIPSACCD">
+      <xsd:import namespace="http://ISDEV.city.phila.local/RTTIE230.service:RTTIE230WS" />
+      <xsd:element name="RTTIE230" type="sn0:RTTIE230" />
+      <xsd:element name="RTTIE230Response" type="sn0:RTTIE230Response" />
+      <xsd:complexType name="RTTIE230">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_SMA" nillable="true" type="tns:_SMA" />
+          <xsd:element minOccurs="0" name="_E-LF-BPT" nillable="true" type="tns:_E-LF-BPT" />
+          <xsd:element minOccurs="0" name="_E-LF-PG1" nillable="true" type="tns:_E-LF-PG1" />
+          <xsd:element minOccurs="0" name="_E-LF-SCHA" nillable="true" type="tns:_E-LF-SCHA" />
+          <xsd:element minOccurs="0" name="_E-LF-SCHB" nillable="true" type="tns:_E-LF-SCHB" />
+          <xsd:element minOccurs="0" name="_E-LF-SCHC1" nillable="true" type="tns:_E-LF-SCHC1" />
+          <xsd:element minOccurs="0" name="_E-LF-SCHD" nillable="true" type="tns:_E-LF-SCHD" />
+          <xsd:element minOccurs="0" name="_E-LF-SCHE" nillable="true" type="tns:_E-LF-SCHE" />
+          <xsd:element minOccurs="0" name="_NEW2014-FIELDS" nillable="true" type="tns:_NEW2014-FIELDS" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE230Response">
+        <xsd:sequence>
+          <xsd:element name="_SMA" type="tns:_SMA2" />
+          <xsd:element name="_E-LF-BPT" type="tns:_E-LF-BPT2" />
+          <xsd:element name="_E-LF-PG1" type="tns:_E-LF-PG12" />
+          <xsd:element name="_E-LF-SCHA" type="tns:_E-LF-SCHA2" />
+          <xsd:element name="_E-LF-SCHB" type="tns:_E-LF-SCHB2" />
+          <xsd:element name="_E-LF-SCHC1" type="tns:_E-LF-SCHC12" />
+          <xsd:element name="_E-LF-SCHD" type="tns:_E-LF-SCHD2" />
+          <xsd:element name="_E-LF-SCHE" type="tns:_E-LF-SCHE2" />
+          <xsd:element name="_NEW2014-FIELDS" type="tns:_NEW2014-FIELDS2" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="http://ISDEV.city.phila.local/RTTIE230.service:RTTIE230WS">
+      <xsd:import namespace="urn:com-softwareag-entirex-rpc:TIPSACCD" />
+      <xsd:element name="RTTIE230" type="tns:RTTIE230" />
+      <xsd:element name="RTTIE230Response" type="tns:RTTIE230Response" />
+      <xsd:complexType name="RTTIE230">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE230" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_PROGRAM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SYSTEM-ERROR" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ERROR-LINE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MESSAGE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-BPT">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ACCOUNT-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PERIOD-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="VERSION-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="RETURN-STATUS" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LAST-UPDATE-DATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="RECORDING-DATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="EXTENSION-DATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SEQUENCE-NUM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ADJ-REFNO" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="USER-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NET-RATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="GROSS-RATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MANUFACTURER-RATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="WHOLESALER-RATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="RETAILER-RATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LOSS-CARRYFORWARD-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-NAME" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-PHONE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="PREPARER-PHONE-EXT" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-IP-ADDRESS" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-EMAIL-ADDRESS" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-TYPE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-PG1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="TAX-ON-NET-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TAX-ON-GROSS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ACTUAL-TAX-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ESTIMATED-TAX-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TOTAL-TAX-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NPT-TAX-CREDIT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPT-TAX-CREDIT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TOTAL-PAYMNTS-CREDITS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TAX-DUE-AMT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="INTEREST-AND-PENALTY-AMT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="AMT-OWED-2-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="REFUND-AMT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NPT-OVERPAYMENT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPT-OVERPAYMENT-X" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHA">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="NET-INCOME-LOSS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NET-INCOME-PORT-ACTIVITIES-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NET-INCOME-PUC-ICC-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NET-INCOME-PUBLIC-LAW-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="INCOME-APPORTIONED-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="APPORTION-PERCENT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="INCOME-APPORTIONED-PHILA-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="INCOME-NONBUS-PHILA-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="INCOME-CURRENT-YEAR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LOSS-CARRY-FORWARD-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TAXABLE-INCOME-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TAX-DUE-X" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHB">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_NET-INCOME-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_ADJ-NET-INCOME-INTEREST-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_ADJ-NET-INC-PORT-ACTIVITIES-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_ADJ-NET-INCOME-PUC-ICC-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_ADJ-NET-INCOME-PUBLIC-LAW-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_ADJ-RECEIPTS-DIR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_ADJUSTED-INCOME-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_ADJ-RECEIPTS-OTHER-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_ADJ-GROSS-RECEIPTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_GROSS-PERCENT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_TOTAL-ADJUSTMENTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_NET-INCOME-ADJUSTED-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_NONBUS-INCOME-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_INCOME-APPORTIONED-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="APPORTION-PERCENT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_INCOME-APPORTIONED-PHILA-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_INCOME-NONBUS-PHILA-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_INCOME-CURRENT-YEAR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_LOSS-CARRY-FORWARD-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_INCOME-TAXABLE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_TAX-DUE-X" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHC1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_PROPERTY-PHILA-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_PROPERTY-ALL-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_PROPERTY-FACTOR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_PAYROLL-PHILA-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_PAYROLL-ALL-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_PAYROLL-FACTOR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_RECEIPTS-PHILA-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_RECEIPTS-ALL-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_RECEIPTS-FACTOR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_TOTAL-FACTORS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_AVERAGE-FACTORS-X" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHD">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_GROSS-SALES-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_GROSS-SERVICES-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_GROSS-RENTALS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_TOTAL-RECEIPTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_LE-SALES-OUT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_LE-SERVICES-OUT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_LE-RENTALS-OUT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_LE-OTHER-AMT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_NET-TAXABLE-RECEIPTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_LE-METHOD-RECEIPTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_REGULAR-RECEIPTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_TAX-DUE-REGULAR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_TAX-DUE-ALT-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_TOTAL-TAX-DUE-X" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHE">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_M-ALT-RECEIPTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_M-GOODS-COST-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_M-TAX-BASE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_M-TAX-DUE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_W-ALT-RECEIPTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_W-GOODS-MATERIALS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_W-GOODS-LABOR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_W-GOODS-COST-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_W-TAX-BASE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_W-TAX-DUE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_R-ALT-RECEIPTS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_R-GOODS-MATERIALS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_R-GOODS-LABOR-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_R-GOODS-COST-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_R-TAX-BASE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_R-TAX-DUE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_TOTAL-ALT-TAX-DUE-X" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NEW2014-FIELDS">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_STAT-NET-DEDUCTION-A-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_STAT-NET-DEDUCTION-B-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="_STAT-EXCLUSION-D-X" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE230Response">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE230Response" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA2">
+        <xsd:sequence>
+          <xsd:element name="_PROGRAM" type="xsd:string" />
+          <xsd:element name="SYSTEM-ERROR" type="xsd:string" />
+          <xsd:element name="ERROR-LINE" type="xsd:string" />
+          <xsd:element name="MESSAGE" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-BPT2">
+        <xsd:sequence>
+          <xsd:element name="ACCOUNT-ID" type="xsd:string" />
+          <xsd:element name="PERIOD-X" type="xsd:string" />
+          <xsd:element name="VERSION-X" type="xsd:string" />
+          <xsd:element name="RETURN-STATUS" type="xsd:string" />
+          <xsd:element name="LAST-UPDATE-DATE-X" type="xsd:string" />
+          <xsd:element name="RECORDING-DATE-X" type="xsd:string" />
+          <xsd:element name="EXTENSION-DATE-X" type="xsd:string" />
+          <xsd:element name="SEQUENCE-NUM" type="xsd:string" />
+          <xsd:element name="ADJ-REFNO" type="xsd:string" />
+          <xsd:element name="USER-ID" type="xsd:string" />
+          <xsd:element name="NET-RATE-X" type="xsd:string" />
+          <xsd:element name="GROSS-RATE-X" type="xsd:string" />
+          <xsd:element name="MANUFACTURER-RATE-X" type="xsd:string" />
+          <xsd:element name="WHOLESALER-RATE-X" type="xsd:string" />
+          <xsd:element name="RETAILER-RATE-X" type="xsd:string" />
+          <xsd:element name="LOSS-CARRYFORWARD-X" type="xsd:string" />
+          <xsd:element name="PREPARER-NAME" type="xsd:string" />
+          <xsd:element name="PREPARER-PHONE" type="xsd:decimal" />
+          <xsd:element name="PREPARER-PHONE-EXT" type="xsd:string" />
+          <xsd:element name="PREPARER-IP-ADDRESS" type="xsd:string" />
+          <xsd:element name="PREPARER-EMAIL-ADDRESS" type="xsd:string" />
+          <xsd:element name="PREPARER-TYPE" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-PG12">
+        <xsd:sequence>
+          <xsd:element name="TAX-ON-NET-X" type="xsd:string" />
+          <xsd:element name="TAX-ON-GROSS-X" type="xsd:string" />
+          <xsd:element name="ACTUAL-TAX-X" type="xsd:string" />
+          <xsd:element name="ESTIMATED-TAX-X" type="xsd:string" />
+          <xsd:element name="TOTAL-TAX-X" type="xsd:string" />
+          <xsd:element name="NPT-TAX-CREDIT-X" type="xsd:string" />
+          <xsd:element name="BPT-TAX-CREDIT-X" type="xsd:string" />
+          <xsd:element name="TOTAL-PAYMNTS-CREDITS-X" type="xsd:string" />
+          <xsd:element name="TAX-DUE-AMT-X" type="xsd:string" />
+          <xsd:element name="INTEREST-AND-PENALTY-AMT-X" type="xsd:string" />
+          <xsd:element name="AMT-OWED-2-X" type="xsd:string" />
+          <xsd:element name="REFUND-AMT-X" type="xsd:string" />
+          <xsd:element name="NPT-OVERPAYMENT-X" type="xsd:string" />
+          <xsd:element name="BPT-OVERPAYMENT-X" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHA2">
+        <xsd:sequence>
+          <xsd:element name="NET-INCOME-LOSS-X" type="xsd:string" />
+          <xsd:element name="NET-INCOME-PORT-ACTIVITIES-X" type="xsd:string" />
+          <xsd:element name="NET-INCOME-PUC-ICC-X" type="xsd:string" />
+          <xsd:element name="NET-INCOME-PUBLIC-LAW-X" type="xsd:string" />
+          <xsd:element name="INCOME-APPORTIONED-X" type="xsd:string" />
+          <xsd:element name="APPORTION-PERCENT-X" type="xsd:string" />
+          <xsd:element name="INCOME-APPORTIONED-PHILA-X" type="xsd:string" />
+          <xsd:element name="INCOME-NONBUS-PHILA-X" type="xsd:string" />
+          <xsd:element name="INCOME-CURRENT-YEAR-X" type="xsd:string" />
+          <xsd:element name="LOSS-CARRY-FORWARD-X" type="xsd:string" />
+          <xsd:element name="TAXABLE-INCOME-X" type="xsd:string" />
+          <xsd:element name="TAX-DUE-X" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHB2">
+        <xsd:sequence>
+          <xsd:element name="_NET-INCOME-X" type="xsd:string" />
+          <xsd:element name="_ADJ-NET-INCOME-INTEREST-X" type="xsd:string" />
+          <xsd:element name="_ADJ-NET-INC-PORT-ACTIVITIES-X" type="xsd:string" />
+          <xsd:element name="_ADJ-NET-INCOME-PUC-ICC-X" type="xsd:string" />
+          <xsd:element name="_ADJ-NET-INCOME-PUBLIC-LAW-X" type="xsd:string" />
+          <xsd:element name="_ADJ-RECEIPTS-DIR-X" type="xsd:string" />
+          <xsd:element name="_ADJUSTED-INCOME-X" type="xsd:string" />
+          <xsd:element name="_ADJ-RECEIPTS-OTHER-X" type="xsd:string" />
+          <xsd:element name="_ADJ-GROSS-RECEIPTS-X" type="xsd:string" />
+          <xsd:element name="_GROSS-PERCENT-X" type="xsd:string" />
+          <xsd:element name="_TOTAL-ADJUSTMENTS-X" type="xsd:string" />
+          <xsd:element name="_NET-INCOME-ADJUSTED-X" type="xsd:string" />
+          <xsd:element name="_NONBUS-INCOME-X" type="xsd:string" />
+          <xsd:element name="_INCOME-APPORTIONED-X" type="xsd:string" />
+          <xsd:element name="APPORTION-PERCENT-X" type="xsd:string" />
+          <xsd:element name="_INCOME-APPORTIONED-PHILA-X" type="xsd:string" />
+          <xsd:element name="_INCOME-NONBUS-PHILA-X" type="xsd:string" />
+          <xsd:element name="_INCOME-CURRENT-YEAR-X" type="xsd:string" />
+          <xsd:element name="_LOSS-CARRY-FORWARD-X" type="xsd:string" />
+          <xsd:element name="_INCOME-TAXABLE-X" type="xsd:string" />
+          <xsd:element name="_TAX-DUE-X" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHC12">
+        <xsd:sequence>
+          <xsd:element name="_PROPERTY-PHILA-X" type="xsd:string" />
+          <xsd:element name="_PROPERTY-ALL-X" type="xsd:string" />
+          <xsd:element name="_PROPERTY-FACTOR-X" type="xsd:string" />
+          <xsd:element name="_PAYROLL-PHILA-X" type="xsd:string" />
+          <xsd:element name="_PAYROLL-ALL-X" type="xsd:string" />
+          <xsd:element name="_PAYROLL-FACTOR-X" type="xsd:string" />
+          <xsd:element name="_RECEIPTS-PHILA-X" type="xsd:string" />
+          <xsd:element name="_RECEIPTS-ALL-X" type="xsd:string" />
+          <xsd:element name="_RECEIPTS-FACTOR-X" type="xsd:string" />
+          <xsd:element name="_TOTAL-FACTORS-X" type="xsd:string" />
+          <xsd:element name="_AVERAGE-FACTORS-X" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHD2">
+        <xsd:sequence>
+          <xsd:element name="_GROSS-SALES-X" type="xsd:string" />
+          <xsd:element name="_GROSS-SERVICES-X" type="xsd:string" />
+          <xsd:element name="_GROSS-RENTALS-X" type="xsd:string" />
+          <xsd:element name="_TOTAL-RECEIPTS-X" type="xsd:string" />
+          <xsd:element name="_LE-SALES-OUT-X" type="xsd:string" />
+          <xsd:element name="_LE-SERVICES-OUT-X" type="xsd:string" />
+          <xsd:element name="_LE-RENTALS-OUT-X" type="xsd:string" />
+          <xsd:element name="_LE-OTHER-AMT-X" type="xsd:string" />
+          <xsd:element name="_NET-TAXABLE-RECEIPTS-X" type="xsd:string" />
+          <xsd:element name="_LE-METHOD-RECEIPTS-X" type="xsd:string" />
+          <xsd:element name="_REGULAR-RECEIPTS-X" type="xsd:string" />
+          <xsd:element name="_TAX-DUE-REGULAR-X" type="xsd:string" />
+          <xsd:element name="_TAX-DUE-ALT-X" type="xsd:string" />
+          <xsd:element name="_TOTAL-TAX-DUE-X" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LF-SCHE2">
+        <xsd:sequence>
+          <xsd:element name="_M-ALT-RECEIPTS-X" type="xsd:string" />
+          <xsd:element name="_M-GOODS-COST-X" type="xsd:string" />
+          <xsd:element name="_M-TAX-BASE-X" type="xsd:string" />
+          <xsd:element name="_M-TAX-DUE-X" type="xsd:string" />
+          <xsd:element name="_W-ALT-RECEIPTS-X" type="xsd:string" />
+          <xsd:element name="_W-GOODS-MATERIALS-X" type="xsd:string" />
+          <xsd:element name="_W-GOODS-LABOR-X" type="xsd:string" />
+          <xsd:element name="_W-GOODS-COST-X" type="xsd:string" />
+          <xsd:element name="_W-TAX-BASE-X" type="xsd:string" />
+          <xsd:element name="_W-TAX-DUE-X" type="xsd:string" />
+          <xsd:element name="_R-ALT-RECEIPTS-X" type="xsd:string" />
+          <xsd:element name="_R-GOODS-MATERIALS-X" type="xsd:string" />
+          <xsd:element name="_R-GOODS-LABOR-X" type="xsd:string" />
+          <xsd:element name="_R-GOODS-COST-X" type="xsd:string" />
+          <xsd:element name="_R-TAX-BASE-X" type="xsd:string" />
+          <xsd:element name="_R-TAX-DUE-X" type="xsd:string" />
+          <xsd:element name="_TOTAL-ALT-TAX-DUE-X" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NEW2014-FIELDS2">
+        <xsd:sequence>
+          <xsd:element name="_STAT-NET-DEDUCTION-A-X" type="xsd:string" />
+          <xsd:element name="_STAT-NET-DEDUCTION-B-X" type="xsd:string" />
+          <xsd:element name="_STAT-EXCLUSION-D-X" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RTTIE230WS_PortType_RTTIE230">
+    <wsdl:part name="parameters" element="tns:RTTIE230" />
+  </wsdl:message>
+  <wsdl:message name="RTTIE230WS_PortType_RTTIE230Response">
+    <wsdl:part name="parameters" element="tns:RTTIE230Response" />
+  </wsdl:message>
+  <wsdl:portType name="RTTIE230WS_PortType">
+    <wsdl:operation name="RTTIE230">
+      <wsdl:input message="tns:RTTIE230WS_PortType_RTTIE230" />
+      <wsdl:output message="tns:RTTIE230WS_PortType_RTTIE230Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RTTIE230_service_RTTIE230WS_Binder" type="tns:RTTIE230WS_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RTTIE230">
+      <soap:operation soapAction="RTTIE230_service_RTTIE230WS_Binder_RTTIE230" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RTTIE230.service.RTTIE230WS">
+    <wsdl:port name="RTTIE230_service_RTTIE230WS_Port" binding="tns:RTTIE230_service_RTTIE230WS_Binder">
+      <soap:address location="http://ISDEV.city.phila.local:5555/ws/RTTIE230.service.RTTIE230WS/RTTIE230_service_RTTIE230WS_Port" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

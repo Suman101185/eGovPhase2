@@ -1,0 +1,6 @@
+<DEBUGINFO>
+<REQUSET><?xml version="1.0" encoding="UTF-8"?><c1match><Message /><Closeness /><Address1>TEST MAIL</Address1><Address2></Address2><City /><State /><Zip>19102</Zip><Zip4 /><houseno /><direction /><designation /><DPC /><DPBC /><CRT /><street /></c1match></REQUSET>
+
+
+<RESPONSE><?xml version="1.0" encoding="utf-16"?><c1match xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Message>Object reference not set to an instance of an object.</Message><Closeness /><Address1 /><Address2 /><City /><State /><Zip /><Zip4 /><houseno /><direction /><designation /><DPC /><DPBC /><CRT /><street /></c1match></RESPONSE>
+</DEBUGINFO>

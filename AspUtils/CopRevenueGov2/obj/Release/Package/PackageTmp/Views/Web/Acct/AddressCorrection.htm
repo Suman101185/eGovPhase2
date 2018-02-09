@@ -1,0 +1,392 @@
+<HTML>
+<HEAD>
+
+<script ID="clientEventHandlersJS" LANGUAGE="javascript" type="text/javascript">
+var AC_Form;
+var xmlCode1 = parent.MenuWin.getXmlDocObj();
+var xmlCode1Return = parent.MenuWin.getXmlDocObj();
+
+$(document).ready(function(){
+	loadXmlFiles();
+});
+
+function loadXmlFiles(){
+		//<xml id="xmlCode1" src="../XML/AddressCheck.xml"></xml>
+	//<xml id="xmlCode1Return" src="../XML/AddressCheck.xml"></xml>
+	parent.MenuWin.loadXmlAsync("../XML/AddressCheck",parseXml_xmlCode1);
+	parent.MenuWin.loadXmlAsync("../XML/AddressCheck",parseXml_xmlCode1Return);
+}
+
+function parseXml_xmlCode1(xml) {
+            xmlCode1.xml = xml;
+        }
+
+function parseXml_xmlCode1Return(xml) {
+            xmlCode1Return.xml = xml;
+        }
+
+function acCeaAccept() {
+	$('#divAC').css('display','none');//style.display = 'none'
+	//parent.MenuWin.spnMenu.disabled = false
+	$(parent.MenuWin.document).find('#spnMenu').first().removeAttr('disabled');
+	//parent.NavWin.tblNavMenu.disabled = false
+	$(parent.NavWin.document).find('#tblNavMenu').first().removeAttr('disabled');
+
+//alert(AC_Form + '...')
+	if (AC_Form == 'PROFILE'){		
+		AC_ProfileDisabled(false);		//Located on Profile Page
+		bAcctAddressChanged = false;
+//		AddressChangePopulate()			//Located on Profile Page
+		DoSubmit();
+	} else if (AC_Form == 'PARTNERS') {
+		AC_OfficersDisabled(false);		//Located on Officers Page
+		bOfficersAddressChanged = 'accepted';
+		updatePart();		//Located on Officers Page
+		bOfficersAddressChanged = false;
+	} else if (AC_Form == 'ADDRESSES') {
+		AC_AddressDisabled(false);		//Located on Addresses Page
+
+		bAddrAddressChanged = 'accepted';
+		UpdateAddr();		//Located on Addresses Page
+
+		bAddrAddressChanged = false;
+	}		//if
+}
+
+function acCvaAccept() {
+	//divAC.style.display = 'none';
+	$('#divAC').css('display','none');
+	//parent.MenuWin.spnMenu.disabled = false
+	$(parent.MenuWin.document).find('#spnMenu').first().removeAttr('disabled');
+	//parent.NavWin.tblNavMenu.disabled = false
+	$(parent.NavWin.document).find('#tblNavMenu').first().removeAttr('disabled');
+	if (AC_Form == 'PROFILE'){		
+		AC_ProfileDisabled(false);		//Located on Profile Page
+		AC_ProfileChangePopulate();			//Located on Profile Page
+		bAcctAddressChanged = false;
+		DoSubmit();
+	} else if (AC_Form == 'PARTNERS') {
+		AC_OfficersDisabled(false);		//Located on Officers Page
+		AC_OfficersChangePopulate();			//Located on Officers Page
+		bOfficersAddressChanged = 'accepted';
+//		updatePart()		//Located on Officers Page
+		bOfficersAddressChanged = false;
+	} else if (AC_Form == 'ADDRESSES') {
+		AC_AddressDisabled(false);		//Located on Addresses Page
+		AC_AddressChangePopulate();	//Located on Addresses Page
+		bAddrAddressChanged = 'accepted';
+//		UpdateAddr()		//Located on Addresses Page
+		bAddrAddressChanged = false;
+	}		//if
+}		//acAccept
+
+function acCancel() {
+	//divAC.style.display = 'none'
+
+	$('#divAC').css('display','none');
+	//parent.MenuWin.spnMenu.disabled = false
+	$(parent.MenuWin.document).find('#spnMenu').first().removeAttr('disabled');
+	//parent.NavWin.tblNavMenu.disabled = false
+	$(parent.NavWin.document).find('#tblNavMenu').first().removeAttr('disabled');
+	if (AC_Form == 'PROFILE') {
+		AC_ProfileDisabled(false);		//Located on Profile Page
+		txtBusAddress1.focus();
+	} else if (AC_Form == 'PARTNERS') {
+		AC_OfficersDisabled(false);		//Located on Officers Page
+		txtPartAddr1.focus();
+	} else if (AC_Form == 'ADDRESSES') {
+		AC_AddressDisabled(false);		//Located on Addresses Page
+		txtAddr1.focus();
+	} else {
+	}		//if
+//	parent.focus()	
+}		//acCancel
+
+function ac_CheckAddress() {
+	
+//EHD 2009.05.13 Code1 check on Profile, Address and Partners screens
+	var sAddress1, sAddress2, sZipCode;
+	//btnCVA.disabled = false;
+	$('#btnCVA').removeAttr('disabled');
+	if (AC_Form == 'PROFILE'){
+		sAddress1 = txtBusAddress1.value;
+//EGOVWEB-82
+		sAddress2 = "";	//txtBusAddress2.value
+		sZipCode = txtBusZip.value;
+	} 
+	else if (AC_Form == 'PARTNERS') {
+		sAddress1 = txtPartAddr1.value;
+		sAddress2 = txtPartAddr2.value;
+		sZipCode = txtPartBusZip.value;
+	} 
+	else if (AC_Form == 'ADDRESSES') {
+		sAddress1 = txtAddr1.value;
+		sAddress2 = txtAddr2.value;
+		sZipCode = txtAddrBusZip.value;
+	} 
+	else {
+		return false;
+	}		//if
+
+	ispXmlSetFieldVal(xmlCode1, sAddress1, 'ADD1', '', 0);
+	ispXmlSetFieldVal(xmlCode1, sAddress2, 'ADD2', '', 0);
+	ispXmlSetFieldVal(xmlCode1, sZipCode, 'ZIP', '', 0);
+
+//SUMAN CODE1 service down , skip check process
+	ispCallXMLForm(xmlCode1, xmlCode1Return, '../AddressCheck', '');
+	//as if every address is correct
+	//xmlCode1Return = xmlCode1;
+
+	var xmlstring;
+
+	var tmpReturn = XMLToString(xmlCode1Return);
+
+	//tmpReturn = ispReplace(tmpReturn, "&gt;", ">");
+	//tmpReturn = ispReplace(tmpReturn, "&lt;", "<");
+	tmpReturn = tmpReturn.replace('&lt;?xml version="1.0" encoding="UTF-8"?&gt;', '');
+		tmpReturn = tmpReturn.replace(/(&lt;)/g, '<');
+	tmpReturn = tmpReturn.replace(/(&gt;)/g, '>');
+
+	////xmlCode1Return.loadXML(tmpReturn);
+	xmlCode1Return.xml = $.parseXML(tmpReturn);
+
+	//xmlCode1Return.loadXML(ispXmlGetRecordXml(xmlCode1Return, 'c1match', 0));
+
+
+	xmlCode1Return.xml = ispXmlGetRecordXml(xmlCode1Return, 'c1match', 0);
+
+	if (ispXmlGetFieldVal(xmlCode1Return, 'Message', '', 0).toUpperCase() == 'SUCCESS' &&
+			ispXmlGetFieldVal(xmlCode1Return, 'Closeness', '', 0) == '0') {
+		acCvaAccept();
+		return true;
+	} 
+	else {
+		FormatAddress();
+		ShowAddressCorrection();
+		return false;
+	}		//if
+}		//ac_CheckAddress
+
+
+function ispReplace(sInput, sFind, sReplace){
+	/*
+var s = sInput;
+var r;
+	if(sFind==")" || sFind=="("){
+		sFind = "\\" + sFind;
+	}
+
+	if (window.ActiveXObject) {
+		var re = new RegExp(sFind,"g");
+		r = re.exec(s);
+	}else{
+		var re = new RegExp(sFind.toString(),"g");
+		r = re.exec(s);
+	}
+	//return s.toString().replace(re,sReplace);
+	return r;
+	*/
+
+//suman ---------
+	var r;
+	r = sInput.replace(sFind, sReplace);
+	return r;
+//---------------
+
+}
+
+function ShowAddressCorrection() {
+	var text='';
+	var left=0;
+	var top=0;
+	//divAC.style.display = 'block'
+	$('#divAC').css('display','block');
+	//divAC.style.position = 'absolute'
+	$('#divAC').css('position','absolute');
+	//parent.MenuWin.spnMenu.disabled = true
+	$(parent.MenuWin.document).find('#spnMenu').first().attr('disabled', 'true');
+	//parent.NavWin.tblNavMenu.disabled = true
+	$(parent.NavWin.document).find('#tblNavMenu').first().attr('disabled', 'true');
+	
+	var l1_ctrl;
+	var l2_ctrl;
+	var	l1_ctrl_offset;
+	var	l2_ctrl_offset;
+
+	if (AC_Form == 'PROFILE') {
+		text = txtBusAddress1.value + ' ' + txtBusCity.value + ' ' + 
+				$(ddBusState.options[ddBusState.selectedIndex]).attr('CODE') + ' ' + txtBusZip.value;
+		$('#lblCEA').text(text);
+		DisplayProfile();
+		//left = ((AcctProfile.offsetWidth / 2) - (divAC.offsetWidth / 2)) + AcctProfile.offsetLeft;
+		//top = ((AcctProfile.offsetHeight / 2) - (divAC.offsetHeight / 2)) + AcctProfile.offsetTop;
+
+		l1_ctrl = $('#AcctProfile');
+		l2_ctrl = $('#divAC');
+		l1_ctrl_offset = l1_ctrl.offset();
+		l2_ctrl_offset = l2_ctrl.offset();
+
+		left = ((l1_ctrl.width() / 2) - (l2_ctrl.width() / 2)) + l1_ctrl_offset.left;
+		top = ((l1_ctrl.height() / 2) - (l2_ctrl.height() / 2)) + l1_ctrl_offset.top;
+
+	
+		
+		$('#divAC').css('left', left);
+		$('#divAC').css('top', top);
+
+		AC_ProfileDisabled(true);		//Located on Profile Page
+	} else if (AC_Form == 'PARTNERS') {
+		text = txtPartAddr1.value + ' ' + txtPartAddr2.value + ' ' + txtPartBusCity.value + ', ' + 
+				$(ddPartBusState.options[ddPartBusState.selectedIndex]).attr('CODE') + ' ' + txtPartBusZip.value;	
+		$('#lblCEA').text(text);
+		//left = ((AcctPartners.offsetWidth / 2) - (divAC.offsetWidth / 2)) + AcctPartners.offsetLeft;
+		//top = ((AcctPartners.offsetHeight / 2) - (divAC.offsetHeight / 2)) + AcctPartners.offsetTop;	
+
+		l1_ctrl = $('#AcctPartners');
+		l2_ctrl = $('#divAC');
+		l1_ctrl_offset = l1_ctrl.offset();
+		l2_ctrl_offset = l2_ctrl.offset();
+
+		left = ((l1_ctrl.width() / 2) - (l2_ctrl.width() / 2)) + l1_ctrl_offset.left;
+		top = ((l1_ctrl.height() / 2) - (l2_ctrl.height() / 2)) + l1_ctrl_offset.top;
+
+
+		$('#divAC').css('left', left);
+		$('#divAC').css('top', top);
+
+		AC_OfficersDisabled(true);		//Located on Officers Page
+	} else if (AC_Form == 'ADDRESSES') {
+		text = txtAddr1.value + ' ' + txtAddr2.value + ' ' + txtAddrBusCity.value + ' ' + 
+				$(ddAddrBusState.options[ddBusState.selectedIndex]).attr('CODE') + ' ' + txtAddrBusZip.value;
+		$('#lblCEA').text(text);
+		//left = ((AcctAddresses.offsetWidth / 2) - (divAC.offsetWidth / 2)) + AcctAddresses.offsetLeft;
+		//top = ((AcctAddresses.offsetHeight / 2) - (divAC.offsetHeight / 2)) + AcctAddresses.offsetTop;
+
+		l1_ctrl = $('#AcctAddresses');
+		l2_ctrl = $('#divAC');
+		l1_ctrl_offset = l1_ctrl.offset();
+		l2_ctrl_offset = l2_ctrl.offset();
+
+		left = ((l1_ctrl.width() / 2) - (l2_ctrl.width() / 2)) + l1_ctrl_offset.left;
+		top = ((l1_ctrl.height() / 2) - (l2_ctrl.height() / 2)) + l1_ctrl_offset.top;
+
+		$('#divAC').css('left', left);
+		$('#divAC').css('top', top);
+
+		AC_AddressDisabled(true);		//Located on Addresses Page
+	} else {
+	}		//if
+
+	if (ispXmlGetFieldVal(xmlCode1Return, 'Address1', '', 0) == '') {
+		//btnCVA.disabled = true
+		$('#btnCVA').attr('disabled', 'true');
+	}		//if
+	$('#divAC').focus()	
+}		//ShowAddressCorrection
+
+function FormatAddress(){
+	var sAddress;
+	if (ispXmlGetFieldVal(xmlCode1Return, 'Message', '', 0).toUpperCase() != 'SUCCESS') {
+		sAddress = ispXmlGetFieldVal(xmlCode1Return, 'Message', '', 0) + ': ' ;
+	} else {
+		sAddress = '';
+	}		//if
+
+
+	if (ispXmlGetFieldVal(xmlCode1Return, 'Address1', '', 0) != '') {
+//		sAddress += '\n'
+		sAddress += ispXmlGetFieldVal(xmlCode1Return, 'Address1', '', 0);
+		if (ispXmlGetFieldVal(xmlCode1Return, 'Address2', '', 0) != '' &&
+				AC_Form != 'PROFILE') {
+			sAddress += ', ' + ispXmlGetFieldVal(xmlCode1Return, 'Address2', '', 0);
+		}		//if
+		sAddress += ', ' + ispXmlGetFieldVal(xmlCode1Return, 'City', '', 0);
+		sAddress += ', ' + ispXmlGetFieldVal(xmlCode1Return, 'State', '', 0);
+		sAddress += ', ' + ispXmlGetFieldVal(xmlCode1Return, 'Zip', '', 0);
+		if (ispXmlGetFieldVal(xmlCode1Return, 'Zip4', '', 0) != '') {
+			sAddress += '-' + ispXmlGetFieldVal(xmlCode1Return, 'Zip4', '', 0);
+		}		//if
+	}		//if
+	$('#lblCVA').text(sAddress);
+}		//FormatAddress
+
+
+
+</script>
+</HEAD>
+<BODY>
+	<div id="divAC" style="DISPLAY: none; BORDER-LEFT-COLOR: royalblue; BORDER-BOTTOM-COLOR: royalblue; WIDTH: 80%; 
+			BORDER-TOP-STYLE: solid; BORDER-TOP-COLOR: royalblue; BORDER-RIGHT-STYLE: solid; BORDER-LEFT-STYLE: solid; POSITION: relative; BACKGROUND-COLOR: whitesmoke; BORDER-RIGHT-COLOR: royalblue; BORDER-BOTTOM-STYLE: solid">
+		<table class="tblShowBorder" width="100%" border=0 cellSpacing=0 cellPadding=0>
+			<tr>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+				<td WIDTH="5%"></td>
+		  </tr>
+			<tr>
+				<td colspan=20 align=middle valign=center>
+					<label class="hdrLarge">Address Verification Dialog</label><br>
+				</td>
+			</tr><!--			<tr>
+				<td colspan=20 height=10></td>
+			</tr>-->
+			<tr>
+				<td colspan=8>
+					<label class="lblInstrNormal" style="MARGIN-LEFT: 10px">You entered address.</label></td>
+				<td colspan=4></td>
+				<td colspan=8></td>
+			</tr>
+			<tr>
+				<td colspan=16 valign=center height=10 style="VERTICAL-ALIGN: middle">
+					<label id="lblCEA" class="inpNormal" style="MARGIN-LEFT: 5px; VERTICAL-ALIGN: middle"></label><br>
+				</td>
+				<td colspan=2 valign=center align=middle height=10>
+					<INPUT id="btnCancel" onclick="acCancel()" style="MARGIN-LEFT: 5px; WIDTH: 60px" type=button value="Edit">
+				</td>
+
+				<td colspan=2 valign=center align=middle height=10>
+					<INPUT id="btnCEA" onclick="acCeaAccept()" style="MARGIN-LEFT: 5px; WIDTH: 60px" type=button value="Accept">
+				</td>
+			</tr>
+			<tr>
+				<td colspan=20 height=10></td>
+			</tr>
+			<tr>
+				<td colspan=8>
+					<label class="lblInstrNormal" style="MARGIN-LEFT: 10px">We suggest.</label>
+				<td colspan=4></td>
+				<td colspan=8></td>
+			</tr>
+			<tr>
+				<td colspan=18 valign=center height=10 style="VERTICAL-ALIGN: middle">
+					<label id="lblCVA" class="inpNormal" style="MARGIN-LEFT: 5px; VERTICAL-ALIGN: middle"></label><br>
+				</td>
+				<td colspan=2 valign=center align=middle height=10>
+					<INPUT id="btnCVA" onclick="acCvaAccept()" style="MARGIN-LEFT: 5px; WIDTH: 60px" type=button value="Accept">
+				</td>
+			</tr>
+		</table>
+		<!--
+<xml id="xmlCode1" src="../XML/AddressCheck.xml"></xml>
+<xml id="xmlCode1Return" src="../XML/AddressCheck.xml"></xml>
+-->
+	</div>
+</BODY>
+</HTML>

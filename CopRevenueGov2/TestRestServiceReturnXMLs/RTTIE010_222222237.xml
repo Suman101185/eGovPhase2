@@ -1,0 +1,66 @@
+﻿<?xml version="1.0"?>
+<Output>
+  <SMA>00000000000</SMA>
+  <EMI>I002222222237  1002518     01111500013200901010700                     0000000001234</EMI>
+  <ETA>
+    <string>00120090101             0.</string>
+    <string>0320090101</string>
+    <string>2420090101</string>
+    <string>2720090101</string>
+    <string>2920090101</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+  </ETA>
+  <ECHK></ECHK>
+  <ENA-1>
+    <string>0002222222237  SSN 1                                                                          0060000</string>
+    <string>002222222237                                                                                  100000</string>
+    <string>002222222237                                                                                  100000</string>
+    <string>002222222237                                                                                  101000</string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+  </ENA-1>
+  <ENA-2>
+    <string>44 W WYNEVA ST                                              PHILADELPHIA        PA19144-60022156866628     00000000000000000000MPRITHA27@GMAIL.COM                     00010001</string>
+    <string>44 W WYNEVA ST                                              PHILADELPHIA        PA19144-600221568666280    00000000000000000000                                            0002</string>
+    <string>600 LEE RD                                                  WAYNE               PA19087-562448432356070    00000000000000000000                                            0003</string>
+    <string>123 ABC                                                     PHILADELPHIA        PA15121-565612134356560    00000000000000000000                                            0004</string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+  </ENA-2>
+</Output>

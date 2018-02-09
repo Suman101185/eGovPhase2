@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://ISDEV.city.phila.local/RTTIE210.service:RTTIE210WS" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:HDR1="urn:com-softwareag-entirex-rpc:TIPSACCD" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" name="RTTIE210WS" targetNamespace="http://ISDEV.city.phila.local/RTTIE210.service:RTTIE210WS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="http://ISDEV.city.phila.local/RTTIE210.service:RTTIE210WS">
+      <xsd:import namespace="urn:com-softwareag-entirex-rpc:TIPSACCD" />
+      <xsd:element name="RTTIE210" type="tns:RTTIE210" />
+      <xsd:element name="RTTIE210Response" type="tns:RTTIE210Response" />
+      <xsd:complexType name="RTTIE210">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE210" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA">
+        <xsd:sequence>
+          <xsd:element name="_SYSTEM-MESSAGE-AREA" type="tns:_SYSTEM-MESSAGE-AREA" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SYSTEM-MESSAGE-AREA">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_PROGRAM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ERROR" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="LINE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="MESSAGE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_EMI">
+        <xsd:sequence>
+          <xsd:element name="_ENTITY-MASTER-INFO" type="tns:_ENTITY-MASTER-INFO" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENTITY-MASTER-INFO">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FUNCTION-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ENTITY-TYPE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="ENTITY-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ACCOUNT-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NAIC-FEDERAL-CODE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="SIC-FEDERAL-CODE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="BUSINESS-START-DATE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="ORGANIZATION-TYPE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="BUSINESS-ORIGIN" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="BUSINESS-GENDER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BUSINESS-OTHER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PIN-NUMBER" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="PIN-SWITCH" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ETA">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_ENTITY-TAX-ACCOUNTSs" type="tns:_ENTITY-TAX-ACCOUNTSs" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENTITY-TAX-ACCOUNTSs">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="_ENTITY-TAX-ACCOUNTS" type="tns:_ENTITY-TAX-ACCOUNTS" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENTITY-TAX-ACCOUNTS">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FUNCTION-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ACCOUNT" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="START-DATE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="WAG-MONTHLY-GROSS" nillable="true" type="xsd:string" />
+          <xsd:element name="BPT-NEW-APPLICATION" type="tns:BPT-NEW-APPLICATION" />
+          <xsd:element minOccurs="0" name="PRK-ID" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BPT-NEW-APPLICATION">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="BPTNA-APPLY-FOR-EXEMPTION" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-REACTIVATING" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-AFFILIATED" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-NEWOWNER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-REALESTATE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-ACCEPTED" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-COMPLY-YEAR1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-COMPLY-YEAR2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-STATUS" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ECHK">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_E-CHECK" nillable="true" type="tns:_E-CHECK" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-CHECK">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FUNCTION-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TRANSIT-ROUTING-NUMBER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BANK-ACCOUNT-NUMBER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BANK-ACCOUNT-TYPE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENA-1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_NAM-ADDR-1s" type="tns:_NAM-ADDR-1s" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NAM-ADDR-1s">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="_NAM-ADDR-1" type="tns:_NAM-ADDR-1" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NAM-ADDR-1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FUNCTION-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ENTITY-TYPE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="ENTITY-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ENTITY-NAME" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TRADE-NAME" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ADDRESS-TYPE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="RELATIONSHIP-CODE" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENA-2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_NAM-ADDR-2s" type="tns:_NAM-ADDR-2s" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NAM-ADDR-2s">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="_NAM-ADDR-2" type="tns:_NAM-ADDR-2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NAM-ADDR-2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ATTENTION" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ADDRESS-LINE-1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ADDRESS-LINE-2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="CITY" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="STATE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ZIP-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BUSINESS-PHONE-NUMBER" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="BUSINESS-PHONE-EXTENSION" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BUSINESS-FAX" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="OTHER-PHONE-NUMBER" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="E-MAIL-ADDR" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TINAM-SEQUENCE-NUMBER" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="TIADR-SEQUENCE-NUMBER" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE210Response">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE210Response" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA2">
+        <xsd:sequence>
+          <xsd:element name="_SYSTEM-MESSAGE-AREA" type="tns:_SYSTEM-MESSAGE-AREA2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SYSTEM-MESSAGE-AREA2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_PROGRAM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ERROR" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="LINE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="MESSAGE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_EMI2">
+        <xsd:sequence>
+          <xsd:element name="_ENTITY-MASTER-INFO" type="tns:_ENTITY-MASTER-INFO2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENTITY-MASTER-INFO2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FUNCTION-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ENTITY-TYPE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="ENTITY-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ACCOUNT-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NAIC-FEDERAL-CODE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="SIC-FEDERAL-CODE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="BUSINESS-START-DATE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="ORGANIZATION-TYPE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="BUSINESS-ORIGIN" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="BUSINESS-GENDER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BUSINESS-OTHER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PIN-NUMBER" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="PIN-SWITCH" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ETA2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_ENTITY-TAX-ACCOUNTSs" type="tns:_ENTITY-TAX-ACCOUNTSs2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENTITY-TAX-ACCOUNTSs2">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="_ENTITY-TAX-ACCOUNTS" type="tns:_ENTITY-TAX-ACCOUNTS2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENTITY-TAX-ACCOUNTS2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FUNCTION-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ACCOUNT" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="START-DATE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="WAG-MONTHLY-GROSS" nillable="true" type="xsd:string" />
+          <xsd:element name="BPT-NEW-APPLICATION" type="tns:BPT-NEW-APPLICATION2" />
+          <xsd:element minOccurs="0" name="PRK-ID" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BPT-NEW-APPLICATION2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="BPTNA-APPLY-FOR-EXEMPTION" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-REACTIVATING" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-AFFILIATED" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-NEWOWNER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-REALESTATE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-ACCEPTED" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-COMPLY-YEAR1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-COMPLY-YEAR2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BPTNA-STATUS" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ECHK2">
+        <xsd:sequence>
+          <xsd:element name="_E-CHECK" type="tns:_E-CHECK2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-CHECK2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FUNCTION-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TRANSIT-ROUTING-NUMBER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BANK-ACCOUNT-NUMBER" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BANK-ACCOUNT-TYPE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENA-12">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_NAM-ADDR-1s" type="tns:_NAM-ADDR-1s2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NAM-ADDR-1s2">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="_NAM-ADDR-1" type="tns:_NAM-ADDR-12" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NAM-ADDR-12">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="FUNCTION-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ENTITY-TYPE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="ENTITY-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ENTITY-NAME" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TRADE-NAME" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ADDRESS-TYPE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="RELATIONSHIP-CODE" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_ENA-22">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_NAM-ADDR-2s" type="tns:_NAM-ADDR-2s2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NAM-ADDR-2s2">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" name="_NAM-ADDR-2" type="tns:_NAM-ADDR-22" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_NAM-ADDR-22">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ATTENTION" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ADDRESS-LINE-1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ADDRESS-LINE-2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="CITY" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="STATE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ZIP-CODE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BUSINESS-PHONE-NUMBER" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="BUSINESS-PHONE-EXTENSION" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BUSINESS-FAX" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="OTHER-PHONE-NUMBER" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="E-MAIL-ADDR" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TINAM-SEQUENCE-NUMBER" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="TIADR-SEQUENCE-NUMBER" nillable="true" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="urn:com-softwareag-entirex-rpc:TIPSACCD">
+      <xsd:import namespace="http://ISDEV.city.phila.local/RTTIE210.service:RTTIE210WS" />
+      <xsd:element name="RTTIE210" type="sn0:RTTIE210" />
+      <xsd:element name="RTTIE210Response" type="sn0:RTTIE210Response" />
+      <xsd:complexType name="RTTIE210">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_SMA" nillable="true" type="tns:_SMA" />
+          <xsd:element minOccurs="0" name="_EMI" nillable="true" type="tns:_EMI" />
+          <xsd:element minOccurs="0" name="_ETA" nillable="true" type="tns:_ETA" />
+          <xsd:element minOccurs="0" name="_ECHK" nillable="true" type="tns:_ECHK" />
+          <xsd:element minOccurs="0" name="_ENA-1" nillable="true" type="tns:_ENA-1" />
+          <xsd:element minOccurs="0" name="_ENA-2" nillable="true" type="tns:_ENA-2" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE210Response">
+        <xsd:sequence>
+          <xsd:element name="_SMA" type="tns:_SMA2" />
+          <xsd:element name="_EMI" type="tns:_EMI2" />
+          <xsd:element name="_ETA" type="tns:_ETA2" />
+          <xsd:element name="_ECHK" type="tns:_ECHK2" />
+          <xsd:element name="_ENA-1" type="tns:_ENA-12" />
+          <xsd:element name="_ENA-2" type="tns:_ENA-22" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RTTIE210WS_PortType_RTTIE210">
+    <wsdl:part name="parameters" element="tns:RTTIE210" />
+  </wsdl:message>
+  <wsdl:message name="RTTIE210WS_PortType_RTTIE210Response">
+    <wsdl:part name="parameters" element="tns:RTTIE210Response" />
+  </wsdl:message>
+  <wsdl:portType name="RTTIE210WS_PortType">
+    <wsdl:operation name="RTTIE210">
+      <wsdl:input message="tns:RTTIE210WS_PortType_RTTIE210" />
+      <wsdl:output message="tns:RTTIE210WS_PortType_RTTIE210Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RTTIE210_service_RTTIE210WS_Binder" type="tns:RTTIE210WS_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RTTIE210">
+      <soap:operation soapAction="RTTIE210_service_RTTIE210WS_Binder_RTTIE210" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RTTIE210.service.RTTIE210WS">
+    <wsdl:port name="RTTIE210_service_RTTIE210WS_Port" binding="tns:RTTIE210_service_RTTIE210WS_Binder">
+      <soap:address location="http://ISDEV.city.phila.local:5555/ws/RTTIE210.service.RTTIE210WS/RTTIE210_service_RTTIE210WS_Port" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

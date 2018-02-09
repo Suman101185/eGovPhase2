@@ -1,0 +1,147 @@
+BODY
+{
+}
+.layVisible
+{
+    VISIBILITY: visible
+}
+.layHidden
+{
+    DISPLAY: none;
+    VISIBILITY: hidden
+}
+.tblNormal
+{
+    WIDTH: 95%;
+    TEXT-ALIGN: center;
+    ALIGN: center
+}
+.rowHeader
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    FONT-FAMILY: Verdana;
+    HEIGHT: 20px;
+    BACKGROUND-COLOR: lightcyan;
+    TEXT-ALIGN: center
+}
+.celLeft
+{
+    BORDER-LEFT: darkgray thin solid
+}
+.celRightLeft
+{
+    BORDER-RIGHT: darkgray thin solid;
+    BORDER-LEFT: darkgray thin solid
+}
+.celRight
+{
+    BORDER-RIGHT: darkgray thin solid
+}
+.celTop
+{
+    BORDER-TOP: darkgray thin solid
+}
+.celHighlightTop
+{
+    BORDER-TOP: black thin solid;
+    FONT-SIZE: 14px;
+    BORDER-LEFT: darkgray thin solid;
+    COLOR: black;
+    BACKGROUND-COLOR: lightcyan
+}
+.celHighlightBtm
+{
+    FONT-SIZE: 14px;
+    BORDER-LEFT: darkgray thin solid;
+    COLOR: black;
+    BORDER-BOTTOM: black thin solid;
+    BACKGROUND-COLOR: lightcyan
+}
+.celHighlightTopBtm
+{
+    BORDER-TOP: black thin solid;
+    FONT-SIZE: 14px;
+    BORDER-LEFT: darkgray thin solid;
+    COLOR: black;
+    BORDER-BOTTOM: black thin solid;
+    BACKGROUND-COLOR: lightcyan
+}
+.rowDataEven
+{
+    HEIGHT: 20px;
+    BACKGROUND-COLOR: #e0e0e0
+}
+.rowDataOdd
+{
+    HEIGHT: 20px;
+    BACKGROUND-COLOR: whitesmoke
+}
+.btnNormal
+{
+    BORDER-RIGHT: gray thin outset;
+    BORDER-TOP: white thin outset;
+    FONT-SIZE: 7pt;
+    BORDER-LEFT: white thin outset;
+    CURSOR: hand;
+    COLOR: black;
+    BORDER-BOTTOM: gray thin outset;
+    FONT-FAMILY: 'MS Sans Serif';
+    HEIGHT: 24px
+}
+.btnSmall
+{
+    BORDER-RIGHT: gray thin outset;
+    BORDER-TOP: white thin outset;
+    FONT-SIZE: 7pt;
+    BORDER-LEFT: white thin outset;
+    WIDTH: 40px;
+    CURSOR: hand;
+    COLOR: black;
+    BORDER-BOTTOM: gray thin outset;
+    FONT-FAMILY: Tahoma, 'MS Sans Serif';
+    HEIGHT: 17px;
+    TEXT-ALIGN: center
+}
+UNKNOWN
+{
+}
+.rowHighlight
+{
+    BORDER-RIGHT: black thin solid;
+    BORDER-TOP: black thin solid;
+    FONT-SIZE: 14px;
+    BORDER-LEFT: black thin solid;
+    COLOR: black;
+    BORDER-BOTTOM: black thin solid;
+    BACKGROUND-COLOR: lightcyan
+}
+.tblShowBorder
+{
+    BORDER-RIGHT: darkgray thin solid;
+    BORDER-TOP: darkgray thin solid;
+    BORDER-LEFT: darkgray thin solid;
+    BORDER-BOTTOM: darkgray thin solid
+}
+.rowSmallHdr
+{
+}
+.cboNormal
+{
+    FONT-SIZE: 9pt;
+    WIDTH: 100%
+}
+.txtNormal
+{
+    FONT-SIZE: 9pt
+}
+.txtPhone3
+{
+    FONT-SIZE: 9pt;
+    WIDTH: 30%
+}
+.txtPhone4
+{
+    FONT-SIZE: 9pt;
+    WIDTH: 40%
+}

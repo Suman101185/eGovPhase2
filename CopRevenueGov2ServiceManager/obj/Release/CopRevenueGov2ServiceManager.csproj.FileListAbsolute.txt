@@ -1,0 +1,90 @@
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.pdb
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.xml
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.xml
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.xml
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.xml
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.dll
+D:\egovph2-latest\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.xml
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.xml
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.xml
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.xml
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-S-1.0.0\New folder\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.6.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.9.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.pdb
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.xml
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.dll
+E:\Egov-II-Version-Payment-S-2.0.1\2.21.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.pdb
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.dll
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.pdb
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.dll
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.dll
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.dll
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.dll
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.xml
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.xml
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.xml
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.xml
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.csprojResolveAssemblyReference.cache
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.dll
+E:\dev 1\current\2.28.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.pdb
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.dll
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\CopRevenueGov2ServiceManager.pdb
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.dll
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.dll
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.dll
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.dll
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\Newtonsoft.Json.xml
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Net.Http.Formatting.xml
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.xml
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\bin\Release\System.Web.Http.WebHost.xml
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.dll
+E:\eGOV_New_Version\Suman\16.11.17\eGOV-PHASE II\CopRevenueGov2ServiceManager\obj\Release\CopRevenueGov2ServiceManager.pdb

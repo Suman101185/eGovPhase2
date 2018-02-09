@@ -1,0 +1,223 @@
+<Script type="text/javascript" language="javascript">
+    var arrPinApplyErr = new Array();
+    var oEmail = parent.$g.getXmlDocObj();
+
+function DisplayPinApply() {
+
+	parent.sNew = false;
+	LogPinApply.style.display = 'block';
+	AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|PIN apply</Font>'	;
+	//added by ajoy
+	loadXmlFiles();
+	ClearPinApplyScreen();
+	LoadPinApplyError();
+	txtPaAcctID.focus();
+}		//DisplayPinApply
+
+
+ function loadXmlFiles() {
+    // parent.$g.loadXmlSync('../xml/email', parent.load_oEmail);
+     parent.$g.loadXmlSync('XML/email', parent.load_oEmail);
+    }
+
+
+  
+    function load_oEmail(xml) {
+        oEmail.xml = xml;
+    }
+
+function ClearPinApplyScreen() {
+
+	for(i=0; i<document.all.length; i++) {
+		if (document.all.item(i).id.search(/txt/i) != -1) {
+		    document.all.item(i).value = '';
+		    document.all.item(i).className = 'inpNormal';
+		}		//if
+	}		//for
+}		//ClearPinApplyScreen
+
+
+function LoadPinApplyError(){
+    var i = 0;
+
+//Account Id	
+	arrPinApplyErr[i++] = [txtPaAcctID, 'txtPaAcctID.value == ""', 'Enter Taxpayer ID']
+	arrPinApplyErr[i++] = [txtPaAcctID, 'isNaN(txtPaAcctID.value)', 'Taxpayer ID Not Numeric']
+	arrPinApplyErr[i++] = [txtPaAcctID, '(txtPaAcctID.value.length !== 9) && ' +
+			(txtPaAcctID.value.length !== 12), 'Invalid Taxpayer ID']
+
+//Tax ID
+//	arrPinApplyErr[i++] = [txtPaTaxID, 'txtPaTaxID.value == ""', 'Enter Tax Account ID']
+	arrPinApplyErr[i++] = [txtPaTaxID, 'txtPaTaxID.value != "" && ' +
+			'isNaN(txtPaTaxID.value)', 'Tax Account ID Not Numeric'];
+	arrPinApplyErr[i++] = [txtPaTaxID, 'txtPaTaxID.value.length > 0 && ' +
+			'txtPaTaxID.value.length < 7', 'Invalid Tax Account ID'];
+
+//Contact Name
+//	arrPinApplyErr[i++] = [txtPaContactName, 'txtPaContactName.value == ""', 'Enter Contact Name']
+
+//Email
+	arrPinApplyErr[i++] = [txtPaEmail, 'txtPaEmail.value == ""', 'Email Address Required'];
+	arrPinApplyErr[i++] = [txtPaEmail, 'txtPaEmail.value !="" && ' +
+			'(txtPaEmail.value.indexOf("@") == -1 || txtPaEmail.value.indexOf(".") == -1)',
+			'Email Address Invalid Format'];
+
+//Phone Number
+/*	arrPinApplyErr[i++] = [txtPaAreaCode, 'txtPaAreaCode.value == "" || txtPaAreaCode.value.length != 3',
+			'Phone Required']
+	arrPinApplyErr[i++] = [txtPaPhone1, 'txtPaPhone1.value == "" || txtPaPhone1.value.length != 3',
+			'Phone Required']
+	arrPinApplyErr[i++] = [txtPaPhone2, 'txtPaPhone2.value == "" || txtPaPhone2.value.length != 4',
+			'Phone Required']
+
+	arrPinApplyErr[i++] = [txtPaAreaCode, 'isNaN(txtPaAreaCode.value)', 'Phone Not Numeric']
+	arrPinApplyErr[i++] = [txtPaPhone1, 'isNaN(txtPaPhone1.value)', 'Phone Not Numeric']
+	arrPinApplyErr[i++] = [txtPaPhone2, 'isNaN(txtPaPhone2.value)', 'Phone Not Numeric']
+	
+	arrPinApplyErr[i++] = [txtPaPhoneExt, 'txtPaPhoneExt.value != "" && isNaN(txtPaPhoneExt.value)',
+			'Phone Extension Not Numeric']
+*/
+}		//LoadPinApplyError
+
+var dobj = parent.$g.getXmlDocObj();
+var emailobj = parent.$g.getXmlDocObj();
+
+function ValidatePinApply() {
+    //change by ajoy   
+    var errMsg = ispSetInputErr(arrPinApplyErr)
+    $(parent.AppError).text(errMsg);
+} //ValidatePinApplyLogin
+
+
+function SubmitPinApply() {
+
+	ValidatePinApply()
+	var app = $(parent.AppError).text();
+	
+	if (app == '') {
+		parent.$x.ispXmlSetFieldVal(parent.$g.xmlAccount, "2", "ENTITY_INFO FUNCTION_CODE", '', 0)
+		parent.$x.ispXmlSetFieldVal(parent.$g.xmlAccount, txtPaAcctID.value, "ENTITY_INFO ENTITY_ID", '', 0)
+		if (txtPaTaxID.value == '') {
+			parent.$x.ispXmlSetFieldVal(parent.$g.xmlAccount, txtPaAcctID.value, "ENTITY_INFO ACCOUNT_ID", '', 0)
+		} else {
+			parent.$x.ispXmlSetFieldVal(parent.$g.xmlAccount, txtPaTaxID.value, "ENTITY_INFO ACCOUNT_ID", '', 0)
+		}		//if
+		parent.$x.ispXmlSetFieldVal(parent.$g.xmlAccount, txtPaEmail.value, "NAME_ADDRESS EMAIL", '', 0)
+
+		ispCallXMLForm(parent.$g.xmlAccount, dobj,"AccountInfo","", true);
+		parent.$g.xmlAccount.loadXML(dobj.xml);
+
+		if (parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ERROR_INFO MESSAGE', "", 0) == "") {
+			sTemp = CreateEmail();
+
+			parent.$x.ispXmlSetFieldVal(parent.$g.xmlEmail, 'NEWPIN', "FUNCTION", '', 0);
+			parent.$x.ispXmlSetFieldVal(parent.$g.xmlEmail, sTemp, "DATA", '', 0);
+			parent.$x.ispXmlSetFieldVal(parent.$g.xmlEmail, txtPaEmail.value, "ADDRESS", '', 0);
+
+			ispCallXMLForm(parent.$g.xmlEmail, emailobj, "MailPIN", "");
+
+
+			oEmail = emailobj;
+
+			$('#LogPinApply').css('display', 'none');
+			DisplayThankYou('APPLYPIN');
+		} else {
+    $('#AppError').text( parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ERROR_INFO MESSAGE', "", 0));
+//			ispHideProgress()
+			txtPaAcctID.focus()
+		}		//if
+	} else {
+//		ispHideProgress()
+		txtPaAcctID.focus()
+	}		//if
+}		//SubmitPinApply
+</Script>
+
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<DIV style="DISPLAY: none; VISIBILITY: visible" Id="LogPinApply" Name="LogPinApply">
+<table cellSpacing="0" cellPadding="0" width="60%" border="0"
+		 style="MARGIN-LEFT: 4%; MARGIN-TOP: 5px">
+	<tr vAlign="top" align="left">
+    <td>
+      <p class="lblTextBlack">Please enter your Social Security Number(SSN)/
+				Employer Identification Number(EIN), your Philadelphia Tax Account No., and 
+				your e-mail address.<br>
+				<font class=lblTextRed>* </font> Required Field</p></td></tr>
+  </table>
+  
+<table cellSpacing="0" cellPadding="0" width="95%" border="0" style="MARGIN-LEFT: 4%">
+	<tr style="HEIGHT: 0px">
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+		<td width="5%"><p>&nbsp;</p></td>
+	</tr>	
+	<tr>
+		<td nowrap colspan="4"><p class="lblInstrNormal">SSN / EIN:</p></td>
+		<td class=lblInstrRequired>*</td>
+		<td colspan="8" align="left">
+				<input class="inpNormal" id="txtPaAcctID" name="txtPaAcctID" onchange=ValidatePinApply()
+				 maxlength="9" size="17"></td></tr>
+	<tr>
+		<td nowrap colspan="4"><p class="lblInstrNormal">Phila. Tax Account No.:</p></td>
+		<td class=lblInstrRequired>*</td>
+		<td colspan="8" align="left">
+				<input class="inpNormal" id="txtPaTaxID" name="txtPaTaxID" onchange=ValidatePinApply()
+				 maxlength="12" size="17"></td></tr>
+	<tr style="DISPLAY: none; VISIBILTY: visible">
+		<td nowrap colspan="4"><p class="lblInstrNormal">Contact Name:</p></td>
+		<td class=lblInstrRequired>*</td>
+		<td colspan="8" align="left">
+				<input class="inpNormal" id="txtPaContactName" name="txtPaContactName"
+				onchange=ValidatePinApply()	maxlength="40" size="45" ></td></tr>
+	<tr>
+		<td nowrap colspan="4"><p class="lblInstrNormal">E-Mail Address:</p></td>
+		<td class=lblInstrRequired>*</td>
+		<td colspan="8" align="left">
+				<input class="inpNormal" id="txtPaEmail" name="txtPaEmail" onchange=ValidatePinApply()
+				maxlength="40" size="45" ></td></tr>
+
+	<tr style="DISPLAY: none; VISIBILTY: visible" >
+		<td nowrap colspan="4"><p class="lblInstrNormal">Phone:</p></td>
+		<td class=lblInstrRequired>*</td>
+		<td ><input class="inpNormal" id="txtPaAreaCode" name="txtPaAreaCode" onchange=ValidatePinApply()
+				maxlength="3" size="4">-</td>
+		<td ><input class="inpNormal" id="txtPaPhone1" name="txtPaPhone1" onchange=ValidatePinApply()
+				maxlength="3" size="4">-</td>
+		<td ><input class="inpNormal" id="txtPaPhone2" name="txtPaPhone2" onchange=ValidatePinApply()
+				maxlength="4" size="5"></td>
+		<td ><p class="lblInstrNormal" align="center">&nbsp;Ext:&nbsp;</p></td>
+		<td ><input class="inpNormal" id="txtPaPhoneExt" name="txtPaPhoneExt" onchange=ValidatePinApply()
+				maxlength="5" size="6" ></td></tr>
+	
+	<tr><td colspan="20"><p>&nbsp;</p></td></tr>
+	
+	<tr>
+		<td colspan="12" align="middle"><input class=btnNormal id="btnPaApply" name="btnPaApply"
+				type="submit" value="Apply" 
+				onclick="SubmitPinApply()" size="48"></td></tr>
+</table>
+</DIV>
+</body>
+</html>

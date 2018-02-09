@@ -1,0 +1,1797 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+   <meta http-equiv="Pragma" content="no-cache">
+   <link rel="stylesheet" type="text/css" href="../Content/Styles/Font.css">
+   <title></title>
+    <script type="text/javascript" language="javascript" src="../Content/Scripts/jquerymin.js"></script>
+    <script id="clientEventHandlersJS" language="javascript" type="text/javascript">
+        //EHD v0.4
+        //EGOVWEB-74 20110413 Restarted U&O
+
+	function getEvent(source) {
+		var evt = null;
+    }
+
+	function getEventSource(event) {
+				if(event == undefined || event == null ){
+				return null;
+			}
+		var source = event.target || event.srcElement;
+		return source;
+	}
+
+
+
+
+		function GetSingleNodeCount(oXML,sElement,val)//Chayan
+			{
+			var count = 0;
+				$(oXML.xml).find(sElement).each(function () {
+					
+						count = count + 1;
+					
+				});
+				return count;
+	   }
+		function GetNodeCount(oXML,sElement,val)//Chayan
+		{
+			var count = 0;
+				$(oXML.xml).find(sElement).each(function () {
+					if ($(this).text() != null && $(this).text() != '' && $(this).text() == val) {
+						count = count + 1;
+					}
+				});
+				
+				return count;
+	   }
+		function GetInnerNodeText(oXML,sElement1,sElement2,val)//Chayan
+		{
+			var result;
+				$(oXML.xml).find(sElement1).each(function () {
+					if ($(this).text() != null && $(this).text() != '' && $(this).text() == val) {
+						result = $(this).parent().find(sElement2).text();
+     				}
+				});
+				return result;
+		}
+		function UpdateElementText(oXML,setval,sElement1,searchval,sElement2)
+		{
+	
+			var result = 0;
+			var count= 0;
+				$(oXML.xml).find(sElement1).each(function () {
+					count = count + 1;
+					if ($(this).text() != null && $(this).text() != '' && $(this).text() == searchval) {
+						$(this).parent().find(sElement2).text(setval);
+					}
+				});
+				return oXML;
+			}
+
+
+        var gsInstructionItem = '';
+        var gsInstructionMessage = ' for Instructions on filing this return';
+        var gsInstructionText = '<LI> Click <font class=lblLink onclick="parent.MenuWin.InstructionLinks()">' +
+		'here</font>&nbsp;<label id="InstructionText"></label>';
+
+        var MenuLoaded = '';
+        var NavLoaded = '';
+        var sNew = "";
+        var bChangePin = false;
+        var bLoadCoupon = false;
+        var sCurrReturnYear = "";
+
+ 
+
+		
+
+/*SUMAN --------------------------------
+This function may not work properly if called from another page 
+because this function call another function using function pointer through parameter <ResponseFunction> 
+which is not allwed if both stays on diff. js scripts or diff. page
+Thus it is recomended that any xml must be loaded here in menu page and then access xml from another page using
+parent.MenuWin.<xmlobjectName>
+-----------------------------------------
+*/
+
+
+		
+        $(document).ready(function () {
+            try {
+                parent.$g.loadXmls();
+            }
+            catch (expression) {
+                alert(' $(document).ready : ' + expression);
+            }
+        }); 
+        
+ 
+        function MenuProcessCurrent(id) {
+            var divId = id.parentElement;
+			 if (divId) 
+			 {
+				var count=0;
+			  $('#spnMenu').each(function(index) {
+				 
+				 $(this).find('*').each(function() {
+					if ($(this).attr("id") == '') {
+                    }
+					else if ($(this).attr("class") == 'mnuProcessCurrent' || $(this).attr("class") == 'mnuProcessComplete' ||
+					$(this).attr("class") == 'mnuProcess') {
+                        if ($(this).attr("id") == $(id).attr("id")) {
+							$(this).removeClass("mnuProcess");
+							$(this).addClass("mnuProcessCurrent");
+
+                        } else {
+                            if ($(this).attr("class") == 'mnuProcessCurrent') {
+                               $(this).removeClass("mnuProcessCurrent");
+								$(this).addClass("mnuProcessComplete");
+                            } 	//if
+                        } 	//if
+                    } else if ($(this).attr("class") == 'mnuNormal' || $(this).attr("class") == 'mnuSelected') {
+                       if ($(this).attr("id") == $(id).attr("id")){
+                            $(this).removeClass("mnuNormal");
+						   $(this).addClass("mnuSelected");
+                        } else {
+							   $(this).removeClass("mnuSelected");
+							 $(this).addClass("mnuNormal");
+                            
+                        } 	//if
+                    }
+					count = count + 1;
+       
+					});
+				});
+			}
+
+        } 	//MenuProcessCurrent	
+
+        function MenuProcessCurrentTest(id) {
+            //id.className = 'mnuProcessCurrent'
+        } 	//MenuProcessCurrent
+
+        function MenuProcessComplete(id) {
+            $(id).attr('class', 'mnuProcessComplete');	
+        } 	//MenuProcessCurrent
+		
+		//DCS: SKV - 20121225 - Start
+        function MenuProcessClear(divId) {
+            $(divId).children().each(function () {
+                var className = $(this).attr("class");
+                if (className == 'mnuProcessComplete' || className == 'mnuProcessCurrent') {
+                    $(this).addClass("mnuProcess");
+					
+                }
+                if (className == 'mnuSelected') {
+                
+					$(this).addClass("mnuNormal");
+                }
+            });
+        }
+		//DCS: SKV - 20121225 - End
+
+        function ispMenu_MouseOver() {
+            var evt = window.event || arguments.callee.caller.arguments[0];
+			var  mnuElement = evt.target || evt.srcElement;
+			var  id=mnuElement.id;
+			if ($(id).attr("class") == 'mnuNormal') {
+			  $(id).removeClass("mnuNormal");
+			  $(id).addClass("mnuHighlight");
+			} 	//if
+        } 	//ispMenu_MouseOver
+
+        function ispMenu_MouseOut() {
+            var evt = window.event || arguments.callee.caller.arguments[0];
+            var mnuElement = evt.target || evt.srcElement;
+			var id = mnuElement.id;
+			
+            if ($('#' + id).attr("class") == 'mnuHighlight') {
+                 $('#' + id).removeClass("mnuHighlight");
+				 $('#' + id).addClass("mnuNormal");
+            } 	//if
+        } 	//ispMenu_MouseOut
+
+        function ispHighlightMenu(obj) {
+			//spnMenu
+			$('#mnuServices').css("color","black");
+			var id= $(obj).attr("id");
+			
+			$('#spnMenu .mnuNormal').each(function(i, e){
+				if($(e).hasClass('mnuSelected')){
+					$(e).removeClass('mnuSelected');
+					$(e).addClass('mnuNormal');
+				}				
+			})
+			$(obj).addClass("mnuSelected");
+	
+			//if
+        } 	//ispHighlightMenu
+
+        function window_onload() {
+			$('divMain').css("display","block");
+			$('#divLogin').css("display","none");
+			$('#divLogout').css("display","none");
+			$('#divAccount').css("display","none");
+			$('#divPayments').css("display","none");
+			$('#divReturns').css("display","none");
+			$('#divWageYear').css("display","none");
+			$('#divSchoolYear').css("display","none");
+			$('#divBPTlf').css("display","none");
+			$('#divBPTezYear11').css("display","none");
+			$('#divBPTezYear10').css("display","none");
+			$('#divBPTezYear09').css("display","none");
+			$('#divBPTezYear08').css("display","none");
+			$('#divBPTezYear07').css("display","none");
+			$('#divBPTezYear06').css("display","none");
+			$('#divBPTezPage11').css("display","none");
+			$('#divBPTezPage10').css("display","none");
+			$('#divBPTezPage09').css("display","none");
+			$('#divBPTezPage08').css("display","none");
+			$('#divBPTezPage07').css("display","none");
+			$('#divBPTezPage06').css("display","none");
+			$('#divNPTYear').css("display","none");
+			$('#divTOBYear').css("display","none");
+			$('#divReERN').css("display","none");
+
+			$('#divAcctInfo').css("display","none");
+			$('#divAccount').css("display","none");
+            ShowReturns();
+        } 	//window_onload
+
+        function isMenuLoaded() {
+            if (parent.MenuWin.document.readyState != 'complete' &&
+			parent.HeaderWin.document.readyState != 'complete' &&
+			parent.NavWin.document.readyState != 'complete') {
+                setTimeout('isMenuLoaded()', 1000);
+            } 	//if
+        } 	//isLoaded
+
+        function ispMenu_onclick(mnuElement) {
+
+           
+            var lbSrcElement = false
+
+            if (spnMenu.disabled == true) {
+                return
+            } 	//if
+            if (mnuElement)
+			{
+            } 
+			else 
+			{
+                //mnuElement = event.srcElement
+                var evt = window.event || arguments.callee.caller.arguments[0] || arguments.callee.caller.caller.arguments[0];
+                mnuElement = evt.srcElement || evt.target ;
+
+
+                lbSrcElement = true;
+            } 	//if
+
+            var caller_menu_id = mnuElement.id;
+			
+            if (caller_menu_id == '' || caller_menu_id == 'mnuOnline' || caller_menu_id == 'mnuServices' || caller_menu_id.search('div') > -1) {
+                return;
+            } 	//if
+
+            if (!parent.DocWin.AppError || mnuElement.id == '' ||mnuElement.className == 'mnuLabel') 
+			{
+                if (mnuElement.id == 'mnuServices')
+				{
+                    //				parent.DocWin.location.href = '../Login/Main.asp'
+                } else {
+                    //			return
+                } 	//if
+            } 	//if
+            //EHD 01152008 Task: Enable/Disable 'Go to Page 1' Button per Tom Wisner
+
+            if (mnuElement.disabled == true) {
+                return;
+            } 	//if
+//alert(mnuElement.id);
+            var a
+            switch (mnuElement.id) {
+                case 'mnuHome':
+                    var a = window.open('http://www.phila.gov/revenue', 'copdor');
+                    a.focus();
+                    break;
+                case 'mnuNew':
+                    var a = window.open('http://www.phila.gov/revenue/aboutus/pages/News.aspx', 'copdor');
+                    a.focus();
+                    break;
+                    //EGOVWEB-50 Changed Link
+                case 'mnuTaxGuide':
+					//prev url --- http://www.phila.gov/revenue/Philadelphia_Tax_Guide.html'
+                    var a = window.open('http://www.phila.gov/Revenue/taxpro/Pages/rates.aspx', 'copdor');					
+                    a.focus();
+                    break;
+                    //EGOVWEB-50 Changed Link
+                case 'mnuTaxForms':
+					//http://www.phila.gov/revenue/Form2011.html'
+                    var a = window.open('http://www.phila.gov/Revenue/taxpro/Pages/TaxReturns.aspx', 'copdor');
+                    a.focus();
+                    break;
+                case 'mnuFilings':
+                    var a = window.open('http://www.phila.gov/Revenue/payments/Pages/efile.aspx', 'copdor')
+                    a.focus();
+                    break;
+                case 'mnuRulings':
+                    var a = window.open('http://www.phila.gov/Revenue/taxpro/Pages/Regulations.aspx', 'copdor');
+                    a.focus();
+                    break;
+                case 'mnuFAQs':
+                    var a = window.open('http://www.phila.gov/Revenue/aboutus/Pages/faq.aspx', 'copdor')
+                    a.focus();
+                    break;
+                case 'mnuTips':
+                    var a = window.open('http://www.phila.gov/Revenue/businesses/Pages/FilingTips.aspx', 'copdor')
+                    a.focus();
+                    break;
+            } 	//switch
+
+            if (typeof (a) !== 'undefined') {
+                return;
+            } 	//if
+
+            if (/*mnuElement.id == 'mnuReBPTez' ||*/mnuElement.id == 'mnuReNPT') {
+                //	return
+            } 	//if
+
+			// parent.RightFrame.rows = '*,34'
+			$(parent.RightFrame).attr("rows",'*,34');
+
+			MenuProcessCurrent(mnuElement);
+			window_onload();
+			ispHighlightMenu(mnuElement);;
+			var tempTaxYr;
+			var tempid;
+			
+            switch (mnuElement.id) {
+                //Login Section		 
+                case 'mnuLogLogon':
+                case 'mnuLogNewAcct':
+                case 'mnuLogPinApply':
+                case 'mnuLogPayCoupon':
+                case 'mnuServices':
+
+				$('#divLogin').css("display","block");
+				$('#mnuServices').css("color", "black");
+
+				if (parent.DocWin.location.href.toLowerCase().search('login/mainasp') != -1) {
+                        if (mnuElement.id == 'mnuLogLogon') {
+                            parent.DocWin.ShowForm('LogLogin');
+                        } else if (mnuElement.id == 'mnuLogNewAcct') {
+                            parent.DocWin.ShowForm('LogApplyFirst');
+                        } else if (mnuElement.id == 'mnuLogPinApply') {
+                            parent.DocWin.ShowForm('LogPinApply');
+                        } else if (mnuElement.id == 'mnuLogPayCoupon') {
+                            parent.DocWin.ShowForm('LogCoupon');
+                        } else if (mnuElement.id == 'mnuServices') {
+							$('#mnuServices').css("color","blue");
+                            parent.DocWin.ShowForm('LogMain')
+                        } 	
+                    } else {
+                        if (mnuElement.id == 'mnuLogPayCoupon') {
+                            bLoadCoupon = true;
+                        } 
+                       
+                        parent.DocWin.location.href = '../Login/MainAsp'
+                    } 	
+                    break;
+                case 'mnuLogPinChange':
+                    if (parent.DocWin.location.href.search('Login/MainAsp') != -1) {
+                        parent.DocWin.ShowForm('LogChangePin');
+                    } else {
+                        bChangePin = true;
+                        parent.DocWin.location.href = '../Login/MainAsp';
+						$('#divLogout').css("display","block");
+						$('#divAcctInfo').css("display","block");
+                        ShowReturns();
+
+                    } 
+                    break;
+                case 'mnuLogLogout':
+
+                    parent.$g.xmlAccount = parent.$g.xmlTemplate;
+                    parent.$g.xmlWage = parent.$g.xmlWageTemplate;
+                    parent.$g.xmlSchool = parent.$g.xmlSchoolTemplate;
+                    parent.$g.xmlBPTlf = parent.$g.xmlBPTlfTemplate;
+                    parent.$g.xmlBPTez = parent.$g.xmlBPTezTemplate;
+                    parent.$g.xmlNPT = parent.$g.xmlNPTTemplate;
+                    parent.$g.xmlTobacco = parent.$g.xmlTobaccoTemplate;
+                    parent.$g.xmlERN = parent.$g.xmlERNTemplate;
+
+                    if (parent.DocWin.location.href.search('Login/MainAsp') != -1) {
+
+                        parent.DocWin.ShowForm('LogMain');
+                    }
+                    else {
+
+                        parent.DocWin.location.href = '../Login/MainAsp';
+                    }
+
+                    $('#mnuOnline').css("display", "none");
+                    $('#divLogin').css("display", "block");
+                    $('#divReturns').css("display", "none");
+                    break;
+                case 'mnuAcctInfo':
+                    if (parent.DocWin.location.href.search('ApplyMain') == -1) {
+                        parent.DocWin.location.href = '../Acct/ApplyMain';
+                    }  	
+                case 'mnuAcctProfile':
+                case 'mnuAcctTaxes':
+                case 'mnuAcctAddresses':
+                case 'mnuAcctPartners':
+                case 'mnuAcctECheck':
+                    if (parent.DocWin.location.href.search('ApplyMain') != -1) {
+							$('#divLogout').css("display","block");
+							$('#mnuOnline').css("display","block");
+							$('#divAccount').css("display","block");
+                        if (parent.DocWin.parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ENTITY_INFO NAIC_CODE', '', 0) != '0') {
+                            ShowReturns();
+                        } 	
+                        if (parent.DocWin.parent.$x.ispXmlGetFieldVal(parent.$g.xmlAccount, 'ECHECK ACCOUNT_NUMBER', '', 0) == '') {
+							$('#mnuAcctECheck').html('&nbsp;&nbsp;* e-Check enroll');
+                        } 
+						else {
+							$('#mnuAcctECheck').html('&nbsp;&nbsp;* e-Check');
+                        } 	
+                    } 	
+                    break;
+
+                case 'mnuPayCurrent':
+                    parent.NavWin.ClearImages();
+					$('#divAccount').css("display","block");
+					$('#divPayments').css("display","block");
+					$('#divReturns').css("display","block");
+                    MenuProcessClear(divAccount);
+                    break;
+                case 'mnuPayBalances':
+                    parent.NavWin.ClearImages();
+                    parent.DocWin.location.href = '../Balances/AccountBalances';
+					$('#divLogout').css("display","block");
+					$('#divPayments').css("display","block");
+					$('#divReturns').css("display","block");
+					$('#divAcctInfo').css("display","block");
+                    MenuProcessClear(divAccount);
+                    break;
+                case 'mnuPayHistory':
+                    parent.NavWin.ClearImages()
+                    parent.DocWin.location.href = '../E-check/Balances'
+					$('#divAccount').css("display","block");
+					$('#divPayments').css("display","block");
+					$('#divReturns').css("display","block");
+					MenuProcessClear(divAccount);
+                    break;
+                case 'mnuPayPayment':
+                    parent.NavWin.ClearImages();
+                    parent.DocWin.location.href = '../E-check/Payment';
+					$('#divAccount').css("display","block");
+					$('#divPayments').css("display","block");
+					$('#divReturns').css("display","block");
+					MenuProcessClear(divAccount);
+                    break;
+                case 'mnuReWage':
+                case 'mnuWageYear02':
+                case 'mnuWageYear03':
+                case 'mnuWageYear04':
+                case 'mnuWageYear05':
+                case 'mnuWageYear06':
+                case 'mnuWageYear07':
+                case 'mnuWageYear08':
+                case 'mnuWageYear09':
+                case 'mnuWageYear10':
+                case 'mnuWageYear11':
+                case 'mnuWageYear12':
+				case 'mnuWageYear13':
+                case 'mnuReSchool':
+                case 'mnuSchoolYear02':
+                case 'mnuSchoolYear03':
+                case 'mnuSchoolYear04':
+                case 'mnuSchoolYear05':
+                case 'mnuSchoolYear06':
+                case 'mnuSchoolYear07':
+                case 'mnuSchoolYear08':
+                case 'mnuSchoolYear09':
+                case 'mnuSchoolYear10':
+                case 'mnuSchoolYear11':
+                case 'mnuSchoolYear12':
+				case 'mnuSchoolYear13':
+                case 'mnuLCF':
+                case 'mnuBPTlf':
+                case 'mnuBPTlfYear09':
+                case 'mnuBPTlfYear10':
+                case 'mnuBPTlfYear11':
+                case 'mnuBPTlfYear12':
+				case 'mnuBPTlfYear13':
+                case 'mnuReBPTez':
+                case 'mnuBPTezYear06':
+                case 'mnuBPTezYear06Page1':
+                case 'mnuBPTezYear06Page2':
+                case 'mnuBPTezYear07':
+                case 'mnuBPTezYear07Page1':
+                case 'mnuBPTezYear07Page2':
+                case 'mnuBPTezYear08':
+                case 'mnuBPTezYear08Page1':
+                case 'mnuBPTezYear08Page2':
+                case 'mnuBPTezYear09':
+                case 'mnuBPTezYear09Page1':
+                case 'mnuBPTezYear09Page2':
+                case 'mnuBPTezYear10':
+                case 'mnuBPTezYear10Page1':
+                case 'mnuBPTezYear10Page2':
+                case 'mnuBPTezYear11':
+                case 'mnuBPTezYear11Page1':
+                case 'mnuBPTezYear11Page2':
+                case 'mnuBPTezYear12':
+                case 'mnuBPTezYear12Page1':
+                case 'mnuBPTezYear12Page2':
+                case 'mnuBPTezYear13':
+                case 'mnuBPTezYear13Page1':
+                case 'mnuBPTezYear13Page2':				
+                case 'mnuReNPT':
+                case 'mnuNPTYear06':
+                case 'mnuNPTYear07':
+                case 'mnuNPTYear08':
+                case 'mnuNPTYear09':
+                case 'mnuNPTYear10':
+                case 'mnuNPTYear11':
+                case 'mnuNPTYear12':
+				case 'mnuNPTYear13':
+                case 'mnuTOB':
+                case 'mnuTOBYear10':
+                case 'mnuTOBYear11':
+                case 'mnuTOBYear12':
+				case 'mnuTOBYear13':
+                case 'mnuReERN':
+                case 'mnuReERNYear05':
+                case 'mnuUO':
+
+                    var bFound = false;
+                    sCurrReturnYear = "";
+					
+                    if ((mnuElement.id == 'mnuReSchool' || mnuElement.id.substr(0, 13) == 'mnuSchoolYear') &&
+						GetNodeCount(parent.$g.xmlAccount,'TAX_ACCT ACCOUNT','29')==1){
+							
+                        parent.$g.xmlSchool=  parent.$g.xmlSchoolTemplate;
+					   	$('#divSchoolYear').css("display","block");
+                        bFound = true;
+                        parent.NavWin.ClearImages();
+                        MenuProcessClear(divAccount);
+                        if (mnuElement.id == 'mnuSchoolYear02') {
+                            sCurrReturnYear = '2003';		//Tax Year 2002
+                        } else if (mnuElement.id == 'mnuSchoolYear03') {
+                            sCurrReturnYear = '2004';		//Tax Year 2003
+                        } else if (mnuElement.id == 'mnuSchoolYear04') {
+                            sCurrReturnYear = '2005';		//Tax Year 2004
+                        } else if (mnuElement.id == 'mnuSchoolYear05') {
+                            sCurrReturnYear = '2006';		//Tax Year 2005
+                        } else if (mnuElement.id == 'mnuSchoolYear06') {
+                            sCurrReturnYear = '2007';		//Tax Year 2006
+                        } else if (mnuElement.id == 'mnuSchoolYear07') {
+                            sCurrReturnYear = '2008';		//Tax Year 2007
+                        } else if (mnuElement.id == 'mnuSchoolYear08') {
+                            sCurrReturnYear = '2009';		//Tax Year 2008
+                        } else if (mnuElement.id == 'mnuSchoolYear09') {
+                            sCurrReturnYear = '2010';		//Tax Year 2009
+                        } else if (mnuElement.id == 'mnuSchoolYear10') {
+                            sCurrReturnYear = '2011';		//Tax Year 2010
+                        } else if (mnuElement.id == 'mnuSchoolYear11') {
+                            sCurrReturnYear = '2012';		//Tax Year 2011
+                        } else if (mnuElement.id == 'mnuSchoolYear12') {
+                            sCurrReturnYear = '2013';		//Tax Year 2012
+                        } else if (mnuElement.id == 'mnuSchoolYear13') {
+                            sCurrReturnYear = '2014';		//Tax Year 2013
+                        } else if (mnuElement.id == 'mnuReSchool') {
+                            sCurrReturnYear = GetTaxesEndYear('29', false);					   
+                        } 	//if
+                        parent.DocWin.location.href = '../Returns/School?y=' + sCurrReturnYear
+                    } 
+					else if ((mnuElement.id == 'mnuReWage' || mnuElement.id.substr(0, 11) == 'mnuWageYear') &&
+						GetNodeCount(parent.$g.xmlAccount,'TAX_ACCT ACCOUNT','1')==1){
+						 xmlWage = parent.$g.xmlWageTemplate;
+					   	$('#divWageYear').css("display","block");
+                        bFound = true;
+                        parent.NavWin.ClearImages();		
+                        MenuProcessClear(divAccount);
+                        if (mnuElement.id == 'mnuWageYear02') {
+                            sCurrReturnYear = '2003';		//Tax Year 2002
+                        } else if (mnuElement.id == 'mnuWageYear03') {
+                            sCurrReturnYear = '2004';		//Tax Year 2003
+                        } else if (mnuElement.id == 'mnuWageYear04') {
+                            sCurrReturnYear = '2005';		//Tax Year 2004
+                        } else if (mnuElement.id == 'mnuWageYear05') {
+                            sCurrReturnYear = '2006';		//Tax Year 2005
+                        } else if (mnuElement.id == 'mnuWageYear06') {
+                            sCurrReturnYear = '2007';		//Tax Year 2006
+                        } else if (mnuElement.id == 'mnuWageYear07') {
+                            sCurrReturnYear = '2008';		//Tax Year 2007
+                        } else if (mnuElement.id == 'mnuWageYear08') {
+                            sCurrReturnYear = '2009'		//Tax Year 2008
+                        } else if (mnuElement.id == 'mnuWageYear09') {
+                            sCurrReturnYear = '2010';		//Tax Year 2009
+                        } else if (mnuElement.id == 'mnuWageYear10') {
+                            sCurrReturnYear = '2011';		//Tax Year 2010
+                        } else if (mnuElement.id == 'mnuWageYear11') {
+                            sCurrReturnYear = '2012';		//Tax Year 2011
+                        } else if (mnuElement.id == 'mnuWageYear12') {
+                            sCurrReturnYear = '2013';		//Tax Year 2012
+                        } else if (mnuElement.id == 'mnuWageYear13') {
+                            sCurrReturnYear = '2014';		//Tax Year 2013
+                        } else if (mnuElement.id == 'mnuReWage') {
+                            // Click header year will be end date
+                            sCurrReturnYear = GetTaxesEndYear('1', false);
+						  
+                        } 	//if
+
+                        parent.DocWin.location.href = '../Returns/Wage?y=' + sCurrReturnYear;
+                        //NPT Form
+                    } else if ((mnuElement.id == 'mnuReNPT' || mnuElement.id.substr(0, 10) == 'mnuNPTYear') &&
+					//parent.DocWin.parent.$x.ispXmlGetRecCount(parent.$g.xmlAccount, 'TAX_ACCT[ACCOUNT = "3"]', '') == 1) {
+						GetNodeCount(parent.$g.xmlAccount,'TAX_ACCT ACCOUNT','3')==1){
+                        parent.$g.xmlNPT = parent.$g.xmlNPTTemplate;
+					  	$('#divNPTYear').css("display","block");
+                        //divNPTYear.style.display = 'block'
+                        bFound = true;
+                        parent.NavWin.ClearImages();
+                        MenuProcessClear(divAccount);
+                        if (mnuElement.id == 'mnuNPTYear13') {
+                            sCurrReturnYear = '2014';		//Tax Year 2013		
+						}
+                        else if (mnuElement.id == 'mnuNPTYear12') {
+                            sCurrReturnYear = '2013';		//Tax Year 2012
+                        } else if (mnuElement.id == 'mnuNPTYear11') {
+                            sCurrReturnYear = '2012';		//Tax Year 2011
+                        } else if (mnuElement.id == 'mnuNPTYear10') {
+                            sCurrReturnYear = '2011';		//Tax Year 2010
+                        } else if (mnuElement.id == 'mnuNPTYear09') {
+                            sCurrReturnYear = '2010';		//Tax Year 2009
+                        } else if (mnuElement.id == 'mnuNPTYear08') {
+                            sCurrReturnYear = '2009'		//Tax Year 2008
+                        } else if (mnuElement.id == 'mnuNPTYear07') {
+                            sCurrReturnYear = '2008';		//Tax Year 2007
+                        } else if (mnuElement.id == 'mnuNPTYear06') {
+                            sCurrReturnYear = '2007';		//Tax Year 2006
+                        } else if (mnuElement.id == 'mnuReNPT') {
+                            sCurrReturnYear = GetTaxesEndYear('3', false); 
+                        } 	//if
+						
+                        if (lbSrcElement == true) {
+                            parent.DocWin.location.href = '../Returns/NPT/NPT?y=' + sCurrReturnYear;
+                        } else {
+                            parent.DocWin.location.href = '../../Returns/NPT/NPT?y=' + sCurrReturnYear;
+                        } 	//if
+
+                        //Loss Carry Forward
+                       } else if (mnuElement.id == 'mnuLCF') {
+                       //	parent.NavWin.ClearImages()
+                       	MenuProcessClear(divAccount)
+                       	bFound = true
+                       	if (lbSrcElement == true) {
+                       	    parent.DocWin.location.href = '../Returns/LossCarryForwardAsp'
+                       	} else {
+                       	    parent.DocWin.location.href = '../../Returns/LossCarryForwardAsp'
+                       	} 	//if
+                       	//					divAccount.style.display = 'block'
+                       	//					divPayments.style.display = 'block'
+                       	//					divReturns.style.display = 'block'
+
+                        //BPT Long Form
+                    } else if (mnuElement.id == 'mnuBPTlf' || mnuElement.id.substr(0, 12) == 'mnuBPTlfYear' &&
+						//parent.DocWin.parent.$x.ispXmlGetRecCount(parent.$g.xmlAccount, 'TAX_ACCT[ACCOUNT = "24"]', '') == 1) {
+						GetNodeCount(parent.$g.xmlAccount,'TAX_ACCT ACCOUNT','24')==1){
+
+                        parent.$g.xmlBPTlf  = parent.$g.xmlBPTlfTemplate;
+					   	$('#divBPTlf').css("display","block");
+                        //divBPTlf.style.display = 'block'
+                        if (mnuElement.id == 'mnuBPTlfYear09') {
+                            sCurrReturnYear = '2010';		//Tax Year 2009
+                        } else if (mnuElement.id == 'mnuBPTlfYear10') {
+                            sCurrReturnYear = '2011';		//Tax Year 2010
+                        } else if (mnuElement.id == 'mnuBPTlfYear11') {
+                            sCurrReturnYear = '2012';		//Tax Year 2011
+                        } else if (mnuElement.id == 'mnuBPTlfYear12') {
+                            sCurrReturnYear = '2013';		//Tax Year 2012
+                        } else if (mnuElement.id == 'mnuBPTlfYear13') {
+                            sCurrReturnYear = '2014';		//Tax Year 2013
+                        } else if (mnuElement.id == 'mnuBPTlf') {
+                            // Click header year will be end date
+                            sCurrReturnYear = GetTaxesEndYear('24', false);
+                        } //if			
+                        bFound = true;
+                        parent.NavWin.ClearImages();
+                        MenuProcessClear(divAccount);
+                        if (lbSrcElement == true) {
+                            parent.DocWin.location.href = '../Returns/BPT_LF/BPTlf?y=' + sCurrReturnYear;
+
+                        } else {
+                            parent.DocWin.location.href = '../../Returns/BPT_LF/BPTlf?y=' + sCurrReturnYear;
+                        } 	//if
+                        //BPT EZ
+                    } else if ((mnuElement.id == 'mnuReBPTez' || mnuElement.id.substr(0, 12) == 'mnuBPTezYear') && mnuElement.id.substr(14, 4) != 'Page' && GetNodeCount(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT', '24') == 1)
+                    {
+                        parent.$g.xmlBPTez = parent.$g.xmlBPTezTemplate;
+
+							   	$('#divBPTezYear06').css("display","block");
+							   	$('#divBPTezPage06').css("display","none");
+							   	$('#divBPTezYear07').css("display","block");
+							   	$('#divBPTezPage07').css("display","none");
+							   	$('#divBPTezYear08').css("display","block");
+							   	$('#divBPTezPage08').css("display","none");
+							   	$('#divBPTezYear09').css("display","block");
+							   	$('#divBPTezPage09').css("display","none");
+							   	$('#divBPTezYear10').css("display","block");
+							   	$('#divBPTezPage10').css("display","none");
+							   	$('#divBPTezYear11').css("display","block");
+							   	$('#divBPTezPage11').css("display","none");
+							   	$('#divBPTezYear12').css("display","block");
+							   	$('#divBPTezPage12').css("display","none");
+								
+								$('#divBPTezYear13').css("display","block");
+								$('#divBPTezPage13').css("display","none");
+
+                        if (mnuElement.id == 'mnuBPTezYear06') {
+                            sCurrReturnYear = '2007';         // Tax Year 2006
+							 	$('#divBPTezPage06').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear07') {
+                            sCurrReturnYear = '2008';         // Tax Year 2007
+								$('#divBPTezPage07').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear08') {
+                            sCurrReturnYear = '2009';         // Tax Year 2008
+							$('#divBPTezPage08').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear09') {
+                            sCurrReturnYear = '2010';        // Tax Year 2009
+							$('#divBPTezPage09').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear10') {
+                            sCurrReturnYear = '2011';         // Tax Year 2010
+							$('#divBPTezPage10').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear11') {
+                            sCurrReturnYear = '2012';         // Tax Year 2011
+							$('#divBPTezPage11').css("display","block");
+
+                        } else if (mnuElement.id == 'mnuBPTezYear12') {
+                            sCurrReturnYear = '2013';         // Tax Year 2012
+							$('#divBPTezPage12').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear13') {
+                            sCurrReturnYear = '2014';         // Tax Year 2013
+							$('#divBPTezPage13').css("display","block");
+                        } else if (mnuElement.id == 'mnuReBPTez') {
+                            // Click header year will be end date
+                            sCurrReturnYear = GetTaxesEndYear('24', false);
+                           // eval('divBPTezPage' + GetTaxesEndYear('24', true)).style.display = 'block';
+
+                        }       //if 
+                        bFound = true;
+                        parent.NavWin.ClearImages();
+                        MenuProcessClear(divAccount);
+                        if (lbSrcElement == true) {
+                            parent.DocWin.location.href = '../Returns/BPTez?y=' + sCurrReturnYear;
+                        } else {
+                            parent.DocWin.location.href = '../../Returns/BPTez?y=' + sCurrReturnYear;
+                        } 	//if
+                    } else if (mnuElement.id.substr(0, 12) == 'mnuBPTezYear' && mnuElement.id.substr(14) == 'Page1') {
+                        //divBPTezYear06.style.display = 'block'
+							$('#divBPTezYear06').css("display","block");
+                      //  divBPTezPage06.style.display = 'none'
+							$('#divBPTezPage06').css("display","none");
+                       // divBPTezYear07.style.display = 'block'
+							$('#divBPTezYear07').css("display","block");
+                        //divBPTezPage07.style.display = 'none'
+							$('#divBPTezPage07').css("display","none");
+                       // divBPTezYear08.style.display = 'block'
+							$('#divBPTezYear08').css("display","block");
+                        //divBPTezPage08.style.display = 'none'
+							$('#divBPTezPage08').css("display","none");
+                        //divBPTezYear09.style.display = 'block'
+							$('#divBPTezYear09').css("display","block");
+                       // divBPTezPage09.style.display = 'none'
+							$('#divBPTezPage09').css("display","none");
+                       // divBPTezYear10.style.display = 'block'
+							$('#divBPTezYear10').css("display","block");
+                        //divBPTezPage10.style.display = 'none'
+							$('#divBPTezPage10').css("display","none");
+                        //divBPTezYear11.style.display = 'block'
+							$('#divBPTezYear11').css("display","block");
+                        //divBPTezPage11.style.display = 'none'
+							$('#divBPTezPage11').css("display","none");
+                       // divBPTezYear12.style.display = 'block'
+							$('#divBPTezYear12').css("display","block");
+                      //  divBPTezPage12.style.display = 'none'
+							$('#divBPTezPage12').css("display","none");
+							
+							$('#divBPTezYear13').css("display","block");
+							$('#divBPTezPage13').css("display","none");							
+
+                      //  parent.RightFrame.rows = '*,0'
+					  	$(parent.RightFrame).attr("rows",'*,0');
+
+                        bFound = true;
+                        //				divBPTezYear06.style.display = 'block'; lDisplay = true
+                        if (mnuElement.id == 'mnuBPTezYear06Page1') {
+                           // divBPTezPage06.style.display = 'block'
+							$('#divBPTezPage06').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear07Page1') {
+                          //  divBPTezPage07.style.display = 'block'
+							$('#divBPTezPage07').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear08Page1') {
+                            //divBPTezPage08.style.display = 'block'
+							$('#divBPTezPage08').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear09Page1') {
+                            //divBPTezPage09.style.display = 'block'
+							$('#divBPTezPage09').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear10Page1') {
+                            //divBPTezPage10.style.display = 'block'
+							$('#divBPTezPage10').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear11Page1') {
+                            //divBPTezPage11.style.display = 'block'
+							$('#divBPTezPage11').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear12Page1') {
+                           // divBPTezPage12.style.display = 'block'
+							$('#divBPTezPage12').css("display","block");
+                        }else if (mnuElement.id == 'mnuBPTezYear13Page1') {
+							$('#divBPTezPage13').css("display","block");
+                        }       //if
+                        parent.DocWin.ShowPage(1);
+                    } else if (mnuElement.id.substr(0, 12) == 'mnuBPTezYear' && mnuElement.id.substr(14) == 'Page2') {
+                      //  divBPTezYear06.style.display = 'block'
+						$('#divBPTezYear06').css("display","block");
+                       // divBPTezPage06.style.display = 'none'
+						$('#divBPTezPage06').css("display","none");
+                       // divBPTezYear07.style.display = 'block'
+						$('#divBPTezYear07').css("display","block");
+                       // divBPTezPage07.style.display = 'none'
+						$('#divBPTezPage07').css("display","none");
+                       // divBPTezYear08.style.display = 'block'
+						$('#divBPTezYear08').css("display","block");
+                       // divBPTezPage08.style.display = 'none'
+						$('#divBPTezPage08').css("display","none");
+                       // divBPTezYear09.style.display = 'block'
+						$('#divBPTezYear09').css("display","block");
+                       // divBPTezPage09.style.display = 'none'
+						$('#divBPTezPage09').css("display","none");
+                       // divBPTezYear10.style.display = 'block'
+						$('#divBPTezYear10').css("display","block");
+                       // divBPTezPage10.style.display = 'none'
+						$('#divBPTezPage10').css("display","none");
+                       // divBPTezYear11.style.display = 'block'
+						$('#divBPTezYear11').css("display","block");
+                       // divBPTezPage11.style.display = 'none'
+						$('#divBPTezPage11').css("display","none");
+                      //  divBPTezYear12.style.display = 'block'
+						$('#divBPTezYear12').css("display","block");
+                       // divBPTezPage12.style.display = 'none'
+						$('#divBPTezPage12').css("display","none");
+                      //  divBPTezYear13.style.display = 'block'
+						$('#divBPTezYear13').css("display","block");
+                       // divBPTezPage13.style.display = 'none'
+						$('#divBPTezPage13').css("display","none");						
+
+						$(parent.RightFrame).attr("rows",'*,0');
+					
+
+                       //parent.RightFrame.rows = '*,0'
+                        bFound = true;
+                        //				divBPTezYear06.style.display = 'block'; lDisplay = true
+                        if (mnuElement.id == 'mnuBPTezYear06Page2') {
+                           // divBPTezPage06.style.display = 'block'
+							$('#divBPTezPage06').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear07Page2') {
+                           // divBPTezPage07.style.display = 'block'
+							$('#divBPTezPage07').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear08Page2') {
+                           // divBPTezPage08.style.display = 'block'
+							$('#divBPTezPage08').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear09Page2') {
+                           // divBPTezPage09.style.display = 'block'
+							$('#divBPTezPage09').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear10Page2') {
+                            //divBPTezPage10.style.display = 'block'
+							$('#divBPTezPage10').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear11Page2') {
+                           // divBPTezPage11.style.display = 'block'
+							$('#divBPTezPage11').css("display","block");
+                        } else if (mnuElement.id == 'mnuBPTezYear12Page2') {
+                            //divBPTezPage12.style.display = 'block'
+							$('#divBPTezPage12').css("display","block");
+                        }else if (mnuElement.id == 'mnuBPTezYear13Page2') {
+                            //divBPTezPage12.style.display = 'block'
+							$('#divBPTezPage13').css("display","block");
+                        }       //if
+                        parent.DocWin.ShowPage(2);
+                        //EGOVWEB-42 Tobacco(TOB) Form
+                    } else if ((mnuElement.id == 'mnuTOB' || mnuElement.id.substr(0, 10) == 'mnuTOBYear') 	&& 	   GetNodeCount(parent.$g.xmlAccount,'TAX_ACCT ACCOUNT','27')==1){
+						//parent.DocWin.parent.$x.ispXmlGetRecCount(parent.$g.xmlAccount, 'TAX_ACCT[ACCOUNT = 27]', '') == 1{
+						//&& $(parent.$g.xmlAccount).find("TAX_ACCT").find("ACCOUNT:contains('27')")) {
+						//loadXmlAsync('../XML/AcctTemplate.xml', parseXml_xmlAccount);
+						//loadXmlAsync('../XML/AcctTemplate.xml', parseXml_xmlTemplate);
+                        parent.$g.xmlTobacco = parent.$g.xmlTobaccoTemplate; //
+						
+						
+                      //  divTOBYear.style.display =	'block';
+						$('#divTOBYear').css("display","block");
+                        bFound = true;
+                        parent.NavWin.ClearImages();
+                        MenuProcessClear(divAccount);
+                        if (mnuElement.id == 'mnuTOBYear10') {
+                            sCurrReturnYear = '2011';		//Tax Year 2010
+                        } else if (mnuElement.id == 'mnuTOBYear11') {
+                            sCurrReturnYear = '2012';	//Tax Year 2011
+                        } else if (mnuElement.id == 'mnuTOBYear12') {
+                            sCurrReturnYear = '2013';		//Tax Year 2012
+                        } else if (mnuElement.id == 'mnuTOBYear13') {
+                            sCurrReturnYear = '2014';		//Tax Year 2013
+                        } else if (mnuElement.id == 'mnuTOB') {
+                            sCurrReturnYear = GetTaxesEndYear('27', false);
+                        } 	//if
+                        if (lbSrcElement == true) {
+                            parent.DocWin.location.href = '../Returns/Tobacco?y=' + sCurrReturnYear;
+                        } else {
+                            parent.DocWin.location.href = '../../Returns/Tobacco?y=' + sCurrReturnYear;
+                        } 	//if
+                        //EHD - 01152008 - Task ERN Return Added
+                    } else if ((mnuElement.id == 'mnuReERN' || mnuElement.id == 'mnuReERNYear05') &&
+					//parent.DocWin.parent.$x.ispXmlGetRecCount(parent.$g.xmlAccount, 'TAX_ACCT[ACCOUNT = "2"]', '') == 1) {
+							GetNodeCount(parent.$g.xmlAccount,'TAX_ACCT ACCOUNT','2')==1){
+                        xmlERN  = xmlERNTemplate;
+
+                       // divReERN.style.display = 'block'
+						$('#divReERN').css("display","block");
+                        bFound = true;
+                        parent.NavWin.ClearImages();
+                        MenuProcessClear(divAccount);
+                        if (mnuElement.id == 'mnuReERNYear06') {
+                            sCurrReturnYear = '2006';
+                        } else if (mnuElement.id == 'mnuReERNYear07') {
+                            sCurrReturnYear = '2007';
+                        } 	//if
+                        parent.DocWin.location.href = '../Returns/ERN/ERNAsp?y=' + sCurrReturnYear;
+                        //EHD - 01152008 - Task UO Return Added
+                        //EGOVWEB-74 Restarted U&O -->
+                    } else if (mnuElement.id == 'mnuUO')  {
+						
+                        //			}else if ((mnuElement.id == 'mnuUO' || 
+                        //					mnuElement.id == 'mnuUOYear11' || mnuElement.id == 'mnuReUOYearB') && 
+                        //					parent.DocWin.parent.$x.ispXmlGetRecCount(parent.$g.xmlAccount, 'TAX_ACCT[ACCOUNT = 84]', '') == 1) {			
+                        //				divUO.style.display = 'block'
+                        bFound = true
+                        parent.NavWin.ClearImages();
+                        MenuProcessClear(divAccount);
+                        //				if (mnuElement.id == 'mnuUO' ||
+                        //						mnuElement.id == 'mnuUOYear11') {
+                        //					sCurrReturnYear = '2009'		//Tax Year 2008
+                        //				} else if (mnuElement.id == 'mnuReUOYearB') {
+                        //					sCurrReturnYear = '2010'		//Tax Year 2009
+                        //				}		//if
+                        //				parent.DocWin.location.href = '../Returns/UO.asp?y=' + sCurrReturnYear
+						//clipboardData.setData ('Text', oUOForm.xml.xml);
+                        parent.DocWin.location.href = '../UO/UOList';
+                    } 	//if
+                    if (bFound) {
+
+                        //divAcctInfo.style.display = 'block'
+							$('#divAcctInfo').css("display","block");
+                    } else {
+                        //divAccount.style.display = 'none';
+						$('#divAccount').css("display","none");
+                        parent.DocWin.location.href = '../Acct/ApplyMain';
+						
+                        switch (mnuElement.id) {
+                            case 'mnuReWage':
+                                alert('You are not Registered for Wage Taxes...\n' +
+								'Click the Tax Type Tab at the bottom of the Profile Screen\n' +
+								'Click the Wage Checkbox and Enter Monthly Taxable Wages\n' +
+								'Click the Submit Tab to register for Wage Tax.');
+								break;
+                            case 'mnuReSchool':
+                                alert('You are not Registered for School Taxes...\n' +
+								'Click the Tax Type Tab at the bottom of the Profile Screen\n' +
+								'Click the School Income Checkbox\n' +
+								'Click the Submit Tab to register for School Income Tax.');
+									break;
+                            case 'mnuReBPTez':
+                                alert('You are not Registered for Business Income and Receipts Taxes...\n' +
+								'Click the Tax Type Tab at the bottom of the Profile Screen\n' +
+								'Click the Business Income and Receipts Checkbox\n' +
+								'Click the Submit Tab to register for Business Income and Receipts Tax.');
+                            case 'mnuReNPT':
+                                alert('You are not Registered for Net Profit Taxes...\n' +
+								'Click the Tax Type Tab at the bottom of the Profile Screen\n' +
+								'Click the Net Profit Checkbox\n' +
+								'Click the Submit Tab to register for Net Profit Tax.');
+									break;
+                            case 'mnuTOB':
+                                alert('You are not Registered for Tobacco Taxes...\n' +
+								'Click the Tax Type Tab at the bottom of the Profile Screen\n' +
+								'Click the Tobacco Checkbox\n' +
+								'Click the Submit Tab to register for Tobacco Tax.');
+									break;
+                                //EHD - 01152008 - Task UO Return Added
+                            case 'mnuUO':
+                                alert('You are not Registered for Use & Occupancy Taxes...\n' +
+								'Click the Tax Type Tab at the bottom of the Profile Screen\n' +
+								'Click the Use & Occupancy Checkbox\n' +
+								'Click the Submit Tab to register for Use & Occupancy Tax.');
+							break;
+                        } 	//switch
+                    } 	//if
+                   // divLogout.style.display = 'block'
+					$('#divLogout').css("display","block");
+                    ShowReturns();
+                    break
+            } 	//switch
+        } 	//ispMenu_onclick
+
+        function ispShowMenu(obj) {
+
+            /*divYourAcct.style.display = 'none'
+            divQuickQuote.style.display = 'none'
+            divApply.style.display = 'none'
+			*/
+			$('#divYourAcct').css("display","none");
+			$('#divQuickQuote').css("display","none");
+			$('#divApply').css("display","none");
+
+            if (obj == '') {
+            } else {
+                //obj.style.display = 'block'
+				$(obj).css("display","block");
+            } 	//if
+        } 	//ispShowMenu
+
+      
+
+        function isLoaded() {
+            if (parent.DocWin.document.readyState != 'complete') {
+                setTimeout('isLoaded()', 100);
+            } 	//if
+        } 	//isLoaded
+
+
+        function InstructionLinks() {
+            var a
+            switch (gsInstructionItem) {
+                case '#Profile':
+                    gsInstructionItem = '#2';
+                    break;
+                case '#TaxType':
+                    gsInstructionItem = '#3';
+                    break;
+                case '#Address':
+                    gsInstructionItem = '#4';
+                    break;
+                case '#Officer':
+                    gsInstructionItem = '#5';
+                    break;
+                case '#WageReturn':
+                    gsInstructionItem = '#6';
+                    break;
+                case '#SchoolReturn':
+                    gsInstructionItem = '#7';
+                    break;
+                case '#BIR':
+                   	$('#mnuLCF').click();
+                   	return;
+			
+                    //		case '#BptLf':
+                    //			a = window.open('../PDF/Online Long Form - BPT Filing Instructions.pdf')
+                    //			a.focus()
+                    //			return
+                    //		case '#BptEz':
+                    //			a = window.open('../PDF/Online EZ - BPT Filing Instructions.pdf')
+                    //			a.focus()
+                    //			return
+                case '#NPTReturn':
+                    a = window.open('../../PDF/Online EZ - NPT Filing Instructions.pdf');
+                    a.focus();
+                    return
+                    //		case '#TobaccoReturn':
+                    //			a = window.open('../PDF/Online Tobacco Filing Instructions.pdf')
+                    //			a.focus()
+                    //			return
+            } 	//switch
+
+            a = window.open('../PDF/Online Services Instructions.pdf', 'copdor');
+            a.focus();
+        } 	//InstructionLinks
+	function ShowReturns() {
+            var lDisplay = false;
+			
+            //divReturns.style.display = 'none';
+			$('#divReturns').css("display","none");
+           // mnuReWage.style.display = 'none';
+			$('#mnuReWage').css("display","none");
+            //mnuReSchool.style.display = 'none';
+			$('#mnuReSchool').css("display","none");
+          //  mnuBPTlf.style.display = 'none';
+			$('#mnuLCF').css("display", "none");
+			$('#mnuBPTlf').css("display","none");
+            //mnuReBPTez.style.display = 'none';
+			$('#mnuReBPTez').css("display","none");
+            //mnuReNPT.style.display = 'none';
+			$('#mnuReNPT').css("display","none");
+           // mnuTOB.style.display = 'none';
+			$('#mnuTOB').css("display","none");
+           // mnuUO.style.display = 'none';
+			$('#mnuUO').css("display","none");
+           // mnuReERN.style.display = 'none';
+			$('#mnuReERN').css("display","none");
+      
+	var taxcount=0;
+	TotalAccounts = 0
+//	iCount = parent.$x.ispXmlGetRecCount(parent.$g.parent.$g.xmlAccount, 'TAX_ACCT', '') 
+//	EntityStartDate = parent.$x.ispXmlGetFieldVal(parent.$g.parent.$g.xmlAccount, 'ENTITY_INFO/START_DATE', '', 0) 
+	taxcount = GetSingleNodeCount(parent.$g.xmlAccount, 'TAX_ACCT', '');  
+	var acc='';
+	for (i=0; i<taxcount; i++) {
+		
+				acc = $(parent.$g.xmlAccount.xml).find('ACCOUNT').eq(i).text();
+		
+				if (acc != '0') {
+                       if(acc=='1')
+					   {
+
+					   $('#mnuReWage').css("display","block");
+								lDisplay = true;
+					   }
+					if(acc=='29')
+					   {
+					   $('#mnuReSchool').css("display","block");
+								lDisplay = true;
+					   }
+					    if(acc=='24')
+					   {
+					   	$('#mnuLCF').css('display', 'block');
+					   $('#mnuBPTlf').css("display","block");
+								lDisplay = true;
+						   
+								$('#mnuReBPTez').css("display","block");
+								lDisplay = true;
+					   }
+					    if(acc=='27')
+					   {
+
+						  
+					    $('#mnuTOB').css("display","block");
+								 lDisplay = true;
+					   }
+					    if(acc=='3')
+					   {
+					     $('#mnuReNPT').css("display","block");
+						 lDisplay = true;
+					   }
+					    if(acc=='84')
+					   {
+							$('#mnuUO').css("display","block");
+							lDisplay = true;
+					   }
+					    if(acc=='2')
+					   {
+					   if (parent.gEnvironment == 'U') {
+                			 $('#mnuReERN').css("display","block");
+				 			 lDisplay = true;
+					
+									}
+					   }
+						if (lDisplay == true && divLogout.style.display == 'block') {
+								
+							$('#divReturns').css("display","block");
+							//EGOVWEB-107 Added
+						
+							$('#divPayments').css("display","block");										
+
+						} 	
+					
+						//if
+					}		//if
+				}		//for
+	
+	
+        HideMenuTaxYears(); //chayan
+    } 	//ShowReturns
+
+
+	function ShowReturns_old() {
+	var lDisplay = false
+	divReturns.style.display = 'none'
+	mnuReWage.style.display = 'none'
+	mnuReSchool.style.display = 'none'
+	mnuBPTlf.style.display = 'none'
+	mnuReBPTez.style.display = 'none'
+	mnuReNPT.style.display = 'none'
+	mnuTOB.style.display = 'none'
+	mnuUO.style.display = 'none'
+	mnuReERN.style.display = 'none'
+//Wage Tax
+	if (parent.$g.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT=1]")) {
+		mnuReWage.style.display = 'block'; lDisplay = true
+	}		//if
+	
+//School Tax
+	if (parent.$g.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT=29]")) {
+		mnuReSchool.style.display = 'block'; lDisplay = true
+	}		//if
+
+	//Business Income and Receipts Tax
+	if (parent.$g.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT=24]")) {
+		mnuBPTlf.style.display = 'block'; lDisplay = true
+		mnuReBPTez.style.display = 'block'; lDisplay = true
+	}		//if
+
+//Net Profit Tax
+	if (parent.$g.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT=3]")) {
+		mnuReNPT.style.display = 'block'; lDisplay = true
+	}		//if
+
+//Tobacco Tax
+	if (parent.$g.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT=27]")) {
+		mnuTOB.style.display = 'block'; lDisplay = true
+	}		//if
+
+//EHD - 01152008 - Task UO Return Added
+//EGOVWEB-74 Restarted U&O 
+//Use & Occupancy Tax
+	if (parent.$g.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT=84]")) {
+		mnuUO.style.display = 'block'; lDisplay = true
+	}		//if
+
+//Earnings Tax
+
+if (parent.gEnvironment == 'U') {
+	if (parent.$g.xmlAccount.documentElement.selectSingleNode("//*/TAX_ACCT[ACCOUNT=2]")) {
+		mnuReERN.style.display = 'block'; lDisplay = true
+	}		//if
+}		//if - Hide in everything but development
+
+	if (lDisplay == true && divLogout.style.display == 'block') {
+		divReturns.style.display = 'block'
+//EGOVWEB-107 Added
+		divPayments.style.display = 'block'
+	}		//if
+
+	HideMenuTaxYears()
+}		
+       
+			
+	function GetTaxesEndYear(taxAcctCode, YearMinus1) { //chayan
+			//alert(parent.DocWin.parent.$x.ispXmlGetFieldVal(parent.$g.parent.$g.xmlAccount, 'TAX_ACCT[ACCOUNT ="' + taxAcctCode + '"] PRK_ID', ''));
+			//GetNodeCount
+			//GetInnerNodeText
+
+            var a;
+            var TwoBtyeDate;
+            if (YearMinus1 == true) {
+               // a = parent.DocWin.parent.$x.ispXmlGetFieldVal(parent.$g.parent.$g.xmlAccount, 'TAX_ACCT[ACCOUNT ="' + taxAcctCode + '"] PRK_ID', '').slice(-2)
+			  
+			    a = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID',taxAcctCode).slice(-2);
+                TwoBtyeDate = String(parseInt(a, 10) - 1);
+				if(TwoBtyeDate == 'NaN'){TwoBtyeDate = '';}
+                if (TwoBtyeDate.length == 1) {
+                    TwoBtyeDate = '0' + TwoBtyeDate;
+                } 	//if
+                return TwoBtyeDate;
+            } else {
+                //a = parent.DocWin.parent.$x.ispXmlGetFieldVal(parent.$g.parent.$g.xmlAccount, 'TAX_ACCT[ACCOUNT ="' + taxAcctCode + '"] PRK_ID', '').slice(-4)
+					//clipboardData.setData ('Text', parent.$g.parent.$g.xmlAccount.xml.xml);
+				 a = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID',taxAcctCode).slice(-4);
+				
+                var century = a.substr(0, 2);
+			
+                TwoBtyeDate = String(parseInt(a.slice(-2), 10))	// + 1)
+			
+                if(TwoBtyeDate == 'NaN'){TwoBtyeDate = '';}
+                if (TwoBtyeDate.length == 1) {
+                    TwoBtyeDate = '0' + TwoBtyeDate;
+                } 	//if
+                return century + TwoBtyeDate;
+            } 	//if
+     } 	//GetTaxesEndYear
+	
+function getFormatedDate()
+{
+	var tmpDate, lDate, mToday;
+	mToday = new Date();
+	return mToday.getMonth() + 1 + "/" + mToday.getDate() + "/" + mToday.getFullYear();
+
+}
+        function ReformatTaxesEndDate() {
+            //1 = Wage  29 = School  24 = BPT  3 = NPT  27 = Tobacco
+            var aAccounts = new Array();
+            aAccounts[0] = 1; aAccounts[1] = 29; aAccounts[2] = 24; aAccounts[3] = 3; aAccounts[4] = 27;
+            var tmpDate, lDate, mToday;
+			var i;
+           // mToday = new Date();
+			mToday = getFormatedDate();
+			//clipboardData.setData ('Text', parent.$g.parent.$g.xmlAccount.xml.xml);
+		    for (i = 0; i < aAccounts.length; i++) {
+				lDate = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID',aAccounts[i]);
+				//alert(lDate);
+              
+				   
+                    if (lDate==null || lDate == '') {
+						//alert(mToday.toString());
+					//	parent.$g.xmlAccount = UpdateElementText(parent.$g.xmlAccount,'12/31/' + String(parseInt(mToday.toString().slice(-4)) + 1),'TAX_ACCT ACCOUNT',aAccounts[i],'PRK_ID');
+							parent.$g.xmlAccount = UpdateElementText(parent.$g.xmlAccount,'12/31/' + String(parseInt(mToday.toString().slice(-4))),'TAX_ACCT ACCOUNT',aAccounts[i],'PRK_ID');
+						//alert('out');
+                      // parent.DocWin.parent.$x.ispXmlSetFieldVal(parent.$g.xmlAccount, '12/31/' + String(parseInt(mToday.toString().slice(-4)) + 1), 'TAX_ACCT[ACCOUNT = "' + aAccounts[i] + '"] PRK_ID', '', 0);
+                    }
+					else if (lDate!= null && lDate.search('/') == -1) {
+					
+                    tmpDate = lDate.substr(4, 2) + '/' + lDate.substr(6, 2) + '/' + lDate.substr(0, 4);
+					parent.$g.xmlAccount =	UpdateElementText(parent.$g.xmlAccount,tmpDate,'TAX_ACCT ACCOUNT',aAccounts[i],'PRK_ID');
+					//$(parent.$g.xmlAccount).find("TAX_ACCT").find("ACCOUNT:contains('" + aAccounts[i] + "')").parent().find("PRK_ID").text(tmpDate));
+                  // parent.DocWin.parent.$x.ispXmlSetFieldVal(parent.$g.parent.$g.xmlAccount, tmpDate, 'TAX_ACCT[ACCOUNT =" ' + aAccounts[i] + '"] PRK_ID', '', 0);
+					
+                    } 	//if
+               //if
+            } 	//for
+			//XMLToString(parent.$g.xmlAccount);
+        } 	//ReformatTaxesEndDate
+	
+
+		
+	
+function HideMenuTaxYears() {    
+	
+//1 = Wage  29 = School  24 = BPT  3 = NPT  27 = Tobacco
+	var iWageItems = 0, iSchoolItems = 0, iBPTezItems = 0, iBPTlfItems = 0, iNPTItems = 0, iTobaccoItems = 0;
+	ReformatTaxesEndDate();
+	var startDate;
+	var prkId;
+	
+	
+	a = parent.MenuWin.document.getElementsByTagName('p');
+	
+	for (i = 0; i < a.length; i++) {
+
+		if (a[i].id.indexOf('mnuWageYear') != -1 && GetNodeCount(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT', '1') == 1) {
+			startDate = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','START_DATE', '1').slice(-4);
+			prkId= GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID', '1').slice(-4);
+					
+			if (startDate!='' && '20' + a[i].id.slice(-2) < startDate) {
+				$(a[i]).css("display","none");
+			} else if (prkId != '' && '20' + a[i].id.slice(-2) > prkId ) {
+				
+
+				$(a[i]).css("display","none");
+			} else {
+				$(a[i]).css("display","block");
+				iWageItems = iWageItems + 1;
+				//alert("iWageItems: " + iWageItems);
+				
+			}		//if
+//School Menu Items
+		} else if (a[i].id.indexOf('mnuSchoolYear') != -1 && GetNodeCount(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT', '29') == 1) {
+
+			startDate = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','START_DATE', '29').slice(-4);
+			prkId= GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID', '29').slice(-4);
+
+			if (startDate!='' && '20' + a[i].id.slice(-2) < startDate) {
+					
+				$(a[i]).css("display","none");
+			} else if (prkId != '' && '20' + a[i].id.slice(-2) > prkId ) {
+					
+				$(a[i]).css("display","none");
+			} else {
+			$(a[i]).css("display","block");
+				iSchoolItems = iSchoolItems + 1;
+				//alert("iSchoolItems: " + iSchoolItems);
+			}		//if
+//NPT Menu Items
+		} else if (a[i].id.indexOf('mnuNPTYear')!=-1 && GetNodeCount(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT', '3')  == 1) {
+
+			startDate = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','START_DATE', '3').slice(-4);
+			prkId= GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID', '3').slice(-4);
+
+
+			if (startDate!='' && '20' + a[i].id.slice(-2) < startDate) {
+				$(a[i]).css("display","none");
+			} else if (prkId != '' && '20' + a[i].id.slice(-2) > prkId ) {
+				
+				$(a[i]).css("display","none");
+			} else {
+				$(a[i]).css("display","block");
+				iNPTItems = iNPTItems + 1;
+			}		//if
+//BPTez Menu Items
+		} else if (a[i].id.indexOf('mnuBPTezYear') != -1 && GetNodeCount(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT', '24')  == 1) {
+
+
+			startDate = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','START_DATE', '24').slice(-4);
+			prkId= GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID', '24').slice(-4);
+
+
+			if (startDate!='' && '20' + a[i].id.slice(-2) < startDate) {
+					
+				$(a[i]).css("display","none");
+			} else if (prkId != '' && '20' + a[i].id.slice(-2) > prkId ) {
+					
+				$(a[i]).css("display","none");
+			} else {
+				$(a[i]).css("display","block");
+				//alert(a[i].id);
+				iBPTezItems = iBPTezItems + 1;
+			}		//if
+//BPTlf Menu Items
+		} else if (a[i].id.indexOf('mnuBPTlfYear') != -1 && GetNodeCount(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT', '24')  == 1) {
+
+			startDate = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','START_DATE', '24').slice(-4);
+			prkId= GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID', '24').slice(-4);
+
+
+			if (startDate!='' && '20' + a[i].id.slice(-2) < startDate) {
+					
+				$(a[i]).css("display","none");
+			} else if (prkId != '' && '20' + a[i].id.slice(-2) > prkId ) {
+					
+				$(a[i]).css("display","none")
+			} else {
+				$(a[i]).css("display","block");
+				iBPTlfItems = iBPTlfItems + 1;
+			}		//if
+//Tobacco Menu Items
+		} else if (a[i].id.indexOf('mnuTOBYear') != -1 && GetNodeCount(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT', '27')  == 1) {
+
+			startDate = GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','START_DATE', '27').slice(-4);
+			prkId= GetInnerNodeText(parent.$g.xmlAccount, 'TAX_ACCT ACCOUNT','PRK_ID', '27').slice(-4);
+
+
+			if (startDate!='' && '20' + a[i].id.slice(-2) < startDate) {
+					
+				$(a[i]).css("display","none");
+			} else if (prkId != '' && '20' + a[i].id.slice(-2) > prkId ) {
+					
+				$(a[i]).css("display","none")
+			} else {
+				$(a[i]).css("display","block");
+				iTobaccoItems = iTobaccoItems + 1;
+			}		//if
+		}		//if
+	}		//for
+
+/*
+alert("iWageItems: " + iWageItems);
+alert("iSchoolItems: " + iSchoolItems);
+alert("iNPTItems: " + iNPTItems);
+alert("iBPTezItems: " + iBPTezItems);
+alert("iBPTlfItems: " + iBPTlfItems);
+*/
+
+	if (iWageItems == 0) {
+		$('#mnuReWage').css("display","none");
+		//mnuReWage.style.display = 'none'
+	}		//if
+	if (iSchoolItems == 0) {
+	$('#mnuReSchool').css("display","none");
+		//mnuReSchool.style.display = 'none'
+	}		//if
+	if (iNPTItems == 0) {
+	$('#mnuReNPT').css("display","none");
+		//mnuReNPT.style.display = 'none'
+	}		//if
+	if (iBPTezItems == 0) {
+	$('#mnuReBPTez').css("display","none");
+		//mnuReBPTez.style.display = 'none'
+	}		//if
+	if (iBPTlfItems == 0) {
+	$('#mnuBPTlf').css("display","none");
+		//mnuBPTlf.style.display = 'none'
+	}		//if
+	if(iTobaccoItems == 0)
+	{
+	$('#mnuTOB').css("display","none");
+	//mnuTOB.style.display = 'none'
+	
+	}
+
+//alert(iWageItems + '  ' + iSchoolItems + '  ' + iNPTItems + '  ' + iBPTezItems + '  ' +  iBPTlfItems)
+}		//HideMenuTaxYears
+
+    </script>
+</head>
+<body>
+    <!--#Include file="Header.htm"-->
+    <table id="Menu" border="0" cellpadding="0" cellspacing="0" width="150" align="left"
+        height="64">
+        <tr>
+            <td valign="top">
+                <img id="MAIN" height="28" src="../Content/Images/our_Site.gif" width="158">
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <span id="spnMenu" onclick="ispMenu_onclick()" onmouseover="ispMenu_MouseOver()"
+                    onmouseout="ispMenu_MouseOut()">
+                    <div id="divMain" style="margin-left: 10px">
+                        <p class="mnuNormal" id="mnuHome">
+                            Revenue Home Page</p>
+                        <p class="mnuNormal" id="mnuNew">
+                            Whats New</p>
+                        <p class="mnuNormal" id="mnuTaxGuide">
+                            Plain Talk Tax Guide</p>
+                        <p class="mnuNormal" id="mnuTaxForms">
+                            Tax Forms &amp; Instruction</p>
+                        <p>
+                        </p>
+                        <p class="mnuLabel" id="mnuServices" style="cursor: hand; color: blue">
+                          &nbsp;-&gt;Online Services Home</p>
+                        <div id="divLogin" style="display: block; visibility: visible">
+                            <p class="mnuNormal" id="mnuLogLogon" style="margin-left: 7px">
+                                -Login</p>
+                            <p class="mnuNormal" id="mnuLogPinApply" style="margin-left: 7px">
+                                -PIN Apply</p>
+                            <p class="mnuNormal" id="mnuLogNewAcct" style="margin-left: 7px">
+                                -Account Apply</p>
+                        </div>
+                        <div id="divLogout" style="display: none; visibility: visible">
+                            <p class="mnuNormal" id="mnuLogLogout" style="margin-left: 7px">
+                                -Logout</p>
+                            <p class="mnuNormal" id="mnuLogPinChange" style="margin-left: 7px">
+                                -Pin Change</p>
+                        </div>
+                        <p class="mnuNormal" id="mnuLogPayCoupon" style="margin-left: 7px">
+                            -Payment</p>
+                        <p class="mnuLabel" id="mnuOnline" style="display: none; ">
+                            &nbsp;-&gt;Taxpayer Information</p>
+                        <div id="divAcctInfo" style="display: none;">
+                            <p class="mnuNormal" id="mnuAcctInfo" style="margin-left: 7px">
+                                -Account Information</p>
+                        </div>
+                        <div id="divAccount" style="display: none; ">
+                            <p class="mnuProcess" id="mnuAcctProfile">
+                                &nbsp;&nbsp;* Profile</p>
+                            <p class="mnuProcess" id="mnuAcctTaxes">
+                                &nbsp;&nbsp;* Accounts</p>
+                            <p class="mnuProcess" id="mnuAcctAddresses">
+                                &nbsp;&nbsp;* Addresses</p>
+                            <p class="mnuProcess" id="mnuAcctPartners">
+                                &nbsp;&nbsp;* Partners/Officers</p>
+                            <p class="mnuProcess" id="mnuAcctECheck" style="display: none; ">
+                                &nbsp;&nbsp;* E-Check</p>
+                        </div>
+                        <div id="divPayments" style="display: none; visibility: visible">
+                            <p class="mnuLabel">
+                                &nbsp;-&gt;Tax Payments</p>
+                            <p class="mnuNormal" id="mnuPayCurrent" style="margin-left: 7px; display: none">
+                                -Current Payments</p>
+                            <p class="mnuNormal" id="mnuPayBalances" style="margin-left: 7px; color: Red">
+                                -Outstanding Balances</p>
+                            <p class="mnuNormal" id="mnuPayHistory" style="margin-left: 7px; display: none">
+                                -Payment History</p>
+                            <p class="mnuNormal" id="mnuPayPayment" style="margin-left: 7px; display: none">
+                                -eCheck Payment</p>
+                            <p class="mnuNormal" id="mnuPayAgreement" style="margin-left: 7px; display: none">
+                                -Payment Agreement</p>
+                            <P class=mnuLabel style="display:block">&nbsp;-&gt;Tax Filing Information</P>
+<!--Loss Carry Forward(LCF) Form-->
+														<P class=mnuNormal id=mnuLCF style="display: none; visibility: visible; margin-left: 7px">-Loss Carry Forward and Estimated Payments</P>
+
+                        </div>
+                        <div id="divReturns" style="display: none; visibility: visible">
+                            <p class="mnuLabel">
+                                &nbsp;-&gt;File Returns</p>
+                            <p class="mnuNormal" id="mnuReWage" style="display: none; margin-left: 7px">
+                                -Wage</p>
+                            <div id="divWageYear" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuWageYear13">
+                                    -2013</p>								
+                                <p class="mnuNormal" id="mnuWageYear12">
+                                    -2012</p>
+                                <p class="mnuNormal" id="mnuWageYear11">
+                                    -2011</p>
+                                <p class="mnuNormal" id="mnuWageYear10">
+                                    -2010</p>
+                                <p class="mnuNormal" id="mnuWageYear09">
+                                    -2009</p>
+                                <p class="mnuNormal" id="mnuWageYear08">
+                                    -2008</p>
+                                <p class="mnuNormal" id="mnuWageYear07">
+                                    -2007</p>
+                                <p class="mnuNormal" id="mnuWageYear06">
+                                    -2006</p>
+                                <p class="mnuNormal" id="mnuWageYear05">
+                                    -2005</p>
+                                <p class="mnuNormal" id="mnuWageYear04">
+                                    -2004</p>
+                                <p class="mnuNormal" id="mnuWageYear03">
+                                    -2003</p>
+                                <p class="mnuNormal" id="mnuWageYear02">
+                                    -2002</p>
+                            </div>
+                            <p class="mnuNormal" id="mnuReSchool" style="display: none; 
+                                margin-left: 7px">
+                                -School Income</p>
+                            <div id="divSchoolYear" style="display: none;  margin-left: 14px">						
+								<p class="mnuNormal" id="mnuSchoolYear13">
+                                    -2013</p>	
+                                <p class="mnuNormal" id="mnuSchoolYear12">
+                                    -2012</p>
+                                <p class="mnuNormal" id="mnuSchoolYear11">
+                                    -2011</p>
+                                <p class="mnuNormal" id="mnuSchoolYear10">
+                                    -2010</p>
+                                <p class="mnuNormal" id="mnuSchoolYear09">
+                                    -2009</p>
+                                <p class="mnuNormal" id="mnuSchoolYear08">
+                                    -2008</p>
+                                <p class="mnuNormal" id="mnuSchoolYear07">
+                                    -2007</p>
+                                <p class="mnuNormal" id="mnuSchoolYear06">
+                                    -2006</p>
+                                <p class="mnuNormal" id="mnuSchoolYear05">
+                                    -2005</p>
+                                <p class="mnuNormal" id="mnuSchoolYear04">
+                                    -2004</p>
+                                <p class="mnuNormal" id="mnuSchoolYear03">
+                                    -2003</p>
+                                <p class="mnuNormal" id="mnuSchoolYear02">
+                                    -2002</p>
+                            </div>
+                            <!--BPT Long Form-->
+                            <p class="mnuNormal" id="mnuBPTlf" style="display: none; margin-left: 7px">
+                                -Business Income and Receipts Long Form</p>
+                            <div id="divBPTlf" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTlfYear13">
+                                    -2013</p>							
+                                <p class="mnuNormal" id="mnuBPTlfYear12">
+                                    -2012</p>
+                                <p class="mnuNormal" id="mnuBPTlfYear11">
+                                    -2011</p>
+                                <p class="mnuNormal" id="mnuBPTlfYear10">
+                                    -2010</p>
+                                <p class="mnuNormal" id="mnuBPTlfYear09">
+                                    -2009</p>
+                            </div>
+                            <!--BPT EZ-->
+                            <p class="mnuNormal" id="mnuReBPTez" style="display: none; margin-left: 7px">
+                                -Business Income and Receipts EZ</p>
+                            <div id="divBPTezYear13" style="display: none;  margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTezYear13">
+                                    -2013</p>
+                            </div>
+                            <div id="divBPTezPage13" style="display: none;  margin-left: 18px">
+                                <p class="mnuNormal" id="mnuBPTezYear13Page1" style="margin-left: 18PX">
+                                    Page1</p>
+                                <p class="mnuNormal" id="mnuBPTezYear13Page2" style="margin-left: 18PX">
+                                    Page2</p>
+                            </div>								
+                            <div id="divBPTezYear12" style="display: none;  margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTezYear12">
+                                    -2012</p>
+                            </div>
+                            <div id="divBPTezPage12" style="display: none;  margin-left: 18px">
+                                <p class="mnuNormal" id="mnuBPTezYear12Page1" style="margin-left: 18PX">
+                                    Page1</p>
+                                <p class="mnuNormal" id="mnuBPTezYear12Page2" style="margin-left: 18PX">
+                                    Page2</p>
+                            </div>
+                            <div id="divBPTezYear11" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTezYear11">
+                                    -2011</p>
+                            </div>
+                            <div id="divBPTezPage11" style="display: none;  margin-left: 18px">
+                                <p class="mnuNormal" id="mnuBPTezYear11Page1" style="margin-left: 18PX">
+                                    Page1</p>
+                                <p class="mnuNormal" id="mnuBPTezYear11Page2" style="margin-left: 18PX">
+                                    Page2</p>
+                            </div>
+                            <div id="divBPTezYear10" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTezYear10">
+                                    -2010</p>
+                            </div>
+                            <div id="divBPTezPage10" style="display: none;  margin-left: 18px">
+                                <p class="mnuNormal" id="mnuBPTezYear10Page1" style="margin-left: 18PX">
+                                    Page1</p>
+                                <p class="mnuNormal" id="mnuBPTezYear10Page2" style="margin-left: 18PX">
+                                    Page2</p>
+                            </div>
+                            <div id="divBPTezYear09" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTezYear09">
+                                    -2009</p>
+                            </div>
+                            <div id="divBPTezPage09" style="display: none; margin-left: 18px">
+                                <p class="mnuNormal" id="mnuBPTezYear09Page1" style="margin-left: 18PX">
+                                    Page1</p>
+                                <p class="mnuNormal" id="mnuBPTezYear09Page2" style="margin-left: 18PX">
+                                    Page2</p>
+                            </div>
+                            <div id="divBPTezYear08" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTezYear08">
+                                    -2008</p>
+                            </div>
+                            <div id="divBPTezPage08" style="display: none; margin-left: 18px">
+                                <p class="mnuNormal" id="mnuBPTezYear08Page1" style="margin-left: 18PX">
+                                    Page1</p>
+                                <p class="mnuNormal" id="mnuBPTezYear08Page2" style="margin-left: 18PX">
+                                    Page2</p>
+                            </div>
+                            <div id="divBPTezYear07" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTezYear07">
+                                    -2007</p>
+                            </div>
+                            <div id="divBPTezPage07" style="display: none;  margin-left: 18px">
+                                <p class="mnuNormal" id="mnuBPTezYear07Page1" style="margin-left: 18PX">
+                                    Page1</p>
+                                <p class="mnuNormal" id="mnuBPTezYear07Page2" style="margin-left: 18PX">
+                                    Page2</p>
+                            </div>
+                            <div id="divBPTezYear06" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuBPTezYear06">
+                                    -2006</p>
+                            </div>
+                            <div id="divBPTezPage06" style="display: none; margin-left: 18px">
+                                <p class="mnuNormal" id="mnuBPTezYear06Page1" style="margin-left: 18PX">
+                                    Page1</p>
+                                <p class="mnuNormal" id="mnuBPTezYear06Page2" style="margin-left: 18PX">
+                                    Page2</p>
+                            </div>
+                            <p class="mnuNormal" id="mnuReNPT" style="display: none; margin-left: 7px">
+                                -Net Profit</p>
+                            <div id="divNPTYear" style="display: none;  margin-left: 14px">
+                                <p class="mnuNormal" id="mnuNPTYear13">
+                                    -2013</p>							
+                                <p class="mnuNormal" id="mnuNPTYear12">
+                                    -2012</p>
+                                <p class="mnuNormal" id="mnuNPTYear11">
+                                    -2011</p>
+                                <p class="mnuNormal" id="mnuNPTYear10">
+                                    -2010</p>
+                                <p class="mnuNormal" id="mnuNPTYear09">
+                                    -2009</p>
+                                <p class="mnuNormal" id="mnuNPTYear08">
+                                    -2008</p>
+                                <p class="mnuNormal" id="mnuNPTYear07">
+                                    -2007</p>
+                                <p class="mnuNormal" id="mnuNPTYear06">
+                                    -2006</p>
+                            </div>
+                            <!--EGOVWEB-42 Tobacco Tax-->
+                            <p class="mnuNormal" id="mnuTOB" style="display: none;margin-left: 7px">
+                                -Tobacco</p>
+                            <div id="divTOBYear" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuTOBYear13">
+                                    -2013</p>							
+                                <p class="mnuNormal" id="mnuTOBYear12">
+                                    -2012</p>
+                                <p class="mnuNormal" id="mnuTOBYear11">
+                                    -2011</p>
+                                <p class="mnuNormal" id="mnuTOBYear10">
+                                    -2010</p>
+                            </div>
+                            <p class="mnuNormal" id="mnuReERN" style="display: none; margin-left: 7px">
+                                -Earning</p>
+                            <div id="divReERN" style="display: none; margin-left: 14px">
+                                <p class="mnuNormal" id="mnuReERNYear05">
+                                    -2005</p>
+                            </div>
+                            <!--EHD - 01152008 - Task UO Return Added-->
+                            <!--EGOVWEB-74 Restarted 2011.04.13 -->
+                            <p class="mnuNormal" id="mnuUO" style="display: none; margin-left: 7px">
+                                -Use & Occupancy</p>
+                            <!--No Year needed for U&O
+						<div id=divUO style="DISPLAY: none; VISIBILITY: visible; MARGIN-LEFT: 14px">
+							<P class=mnuNormal id=mnuUOYear11>-2011</P>
+							<P class=mnuNormal id=mnuReUOYearB></P>
+						</div>-->
+                        </div>
+                        <p>
+                        </p>
+                        <p>
+                        </p>
+                        <p class="mnuNormal" id="mnuFilings" name="">
+                            Electronic filing</p>
+                        <p class="mnuNormal" id="mnuRulings" name="">
+                            Technical Rulings</p>
+                        <p>
+                        </p>
+                        <p class="mnuNormal" id="mnuFAQs" name="mnu">
+                            FAQ's</p>
+                        <p class="mnuNormal" id="mnuTips" name="mnu">
+                            Tax filing Tips</p>
+                    </div>
+                </span>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

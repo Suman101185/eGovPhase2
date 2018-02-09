@@ -1,0 +1,9 @@
+<?xml version='1.0'?>            
+<ETHNICITY>  
+   <DDOWN DESC='Select' CODE='' />
+   <DDOWN DESC='Asian' CODE='2' />
+   <DDOWN DESC='Black' CODE='1' />
+   <DDOWN DESC='Hispanic' CODE='3' />
+   <DDOWN DESC='White' CODE='5' />
+   <DDOWN DESC='Other' CODE='4' />
+</ETHNICITY> 

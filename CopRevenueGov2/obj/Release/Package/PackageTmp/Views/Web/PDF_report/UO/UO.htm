@@ -1,0 +1,179 @@
+﻿<html>
+<head>
+<meta name="GENERATOR" content="Microsoft Visual Studio 6.0">
+<title></title>
+<script src="../js/JqueryMin.js" type="text/javascript"></script>
+<script language="javascript" src='../Inc/ispFunctions.js.htm' type="text/javascript"></script>
+<script language="javascript" src='../Inc/ispXmlProc.js.htm' type="text/javascript"></script>
+</head>
+
+<body style="margin: .375in .375in .375in .375in">
+
+<div style="display: block; vertical-align: bottom; top: 0px; height:10.25in; width: 7.75in;border:none 1px" id="LogCoupon">
+
+    <table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px; width: 100%; top: 0px; display:block" id="topPayCoupon">
+        <tr >
+            <td>&nbsp;</td>
+            <td align="center" style="padding-left:10%"><p id="cityseal"><img id="IMG2" src="../images/cityseal.gif" style="WIDTH: 1in; HEIGHT: 1in"></p></td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+<div class="blue_base_box">
+<h2>Tax Payer Information  |  Use and Occupency for {year} <span id="AppHeader"></span>  </h2>
+    <div>&nbsp;</div>
+
+    <div >
+       <table border="1" style="margin-left: 0px; width: 100%; top: 0px; display: block; FONT-SIZE: 12pt; FONT-FAMILY: Arial" id="Table1">
+            <!--<tr style="FONT-SIZE: 14pt; height: .25in" id="coup2">-->
+            <!--<tr style="FONT-SIZE: 10pt; height: .25in;width:100%" id="coup2" >
+                <td style="width:10%">&nbsp;</td>
+                <td style="width:50%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+            </tr>-->
+            <tr >
+                <td style="text-align:left"  width="70%">&nbsp;<b>Name:&nbsp;&nbsp;&nbsp;&nbsp;</b><span>&nbsp;{name}</span></td>
+                
+                <td align="left" >&nbsp;<b>Account No:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">{acc_id}</span></td>
+            </tr>
+            <tr >
+                <td width="70%" align="left">&nbsp;<b>Address:</b><span>&nbsp;{address}</span></td>
+                <td align="left">&nbsp;<b>{ssn_label}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">{ssn_value}</span></td>
+            </tr>
+        </table>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <table cellpadding="0" cellspacing="0" style="width:100%" border="0">
+            <tr style="height: .25in">
+                <td width="5%">&nbsp;</td>
+                <td width="85%">&nbsp;</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+
+             
+            
+            <tr>
+                <td >1.</td>
+                <td class="text-left">Maximum Tax for Period</td>
+                <td class="text-left" align="right">{MAX_TAX} </td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td class="text-left">Vacant Amount. </td>
+                <td class="text-left" align="right">{VACANCY} </td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td class="text-left">  Non-taxable exempt Amount</td>
+                <td class="text-left" align="right">{EXEMPT} </td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td class="text-left">Non-taxable residential Amount</td>
+                <td class="text-left" align="right">{RESIDENTIAL} </td>
+            </tr>
+            
+            
+            <tr>
+                <td>5.</td>
+                <td class="text-left">Keystone Opportunity Zone (KOZ) Amount</td>
+                <td class="text-left" align="right">{KOZ_CREDIT} </td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td class="text-left">Total of Lines 2, 3, 4, 5</td>
+                <td class="text-left" align="right">{TOTAL_DEDUCTIONS} </td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td class="text-left">Tax Due [Calculated - Line 1 minus Line 6]</td>
+                <td class="text-left" align="right">{PERIOD_TAX} </td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td class="text-left">$2,000.00 Annual Exemption ($167 per month or $500 per quarter)</td>
+                <td class="text-left" align="right">{FIXED_EXEMPTN} </td>
+            </tr>
+           
+            <tr>
+                <td>9.</td>
+                <td class="text-left">Delinquent Tenant Amount <label class="lblLink label_NoLeft"  >
+                            (Click here to complete UO3)</label> </td>
+                <td class="text-left" align="right">{DELINQUENT} </td>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td class="text-left">Amount due prior to discount.  [Calculated - Add Lines 8 and 9 then subtract the sum from Line 7] </td>
+                <td class="text-left" align="right">{ADJUSTED_TAX} </td>
+            </tr>
+            <tr>
+                <td>11.</td>
+                <td class="text-left">Discount for Landlords <u>ONLY</u> [Calculated - Line 10 multiply by 1%]</td>
+                <td class="text-left" align="right">{DISCOUNT} </td>
+            </tr>
+            <tr>
+                <td>12.</td>
+                <td class="text-left"><b>Net tax Due</b>  [Calculated - line 10 minus 11]   </td>
+                <td class="text-left" align="right">{TAX_DUE} </td>
+            </tr>
+            <tr>
+                <td>13.</td>
+                <td class="text-left">Interest & Penalty(See Instructions)</td>
+                <td class="text-left" align="right">{INTEREST_PENALTY}  </td>
+            </tr>
+            <tr>
+                <td>14.</td>
+                <td class="text-left"><b>Total Due</b>  [Calculated - line 12 plus 13]</td>
+                <td class="text-left" align="right">{TOTAL_DUE} </td>
+            </tr>
+            
+
+        </table>
+    </div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>
+        <table cellspacing="0" cellpadding="0" border="0" style="margin-left: 0px; width: 100%; top: 0px;font-size:8pt;">
+            <!--<tr style="FONT-SIZE: 14pt; height: .25in" id="coup2">-->
+            <tr style="height: 20%">
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+                <td style="width:20%">&nbsp;</td>
+
+            </tr>
+          
+            <tr style="height: .25in">
+                <td align="left">Filled by*: </td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_WHO}</td>
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler Name*:</td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_NAME}</td>
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler Phone*:</td>
+                <td align="left" colspan="4" >&nbsp;{PREPARER_PHONE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:none;">EXT- {PREPARER_PHONE_EXT}</span></td>
+                <!--<td align="left">&nbsp;EXT -</td>
+                <td align="left" colspan="2">&nbsp;{PREPARER_PHONE_EXT}</td>-->
+            </tr>
+            <tr style="height: .25in">
+                <td align="left">Filler E-Mail Address*:</td>
+                <td align="left" colspan="4">&nbsp;{PREPARER_EMAIL_ADDRESS}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--For 3/4" from - right:0.75in-->
+<div style="position:absolute; bottom:.9in; right:.375in; width:5.0in; text-align:right; border: none 1px">
+
+</div>
+</div>
+</body>
+</html>

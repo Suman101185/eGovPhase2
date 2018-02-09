@@ -1,0 +1,66 @@
+﻿<?xml version="1.0"?>
+<Output>
+  <SMA>00000000000</SMA>
+  <EMI>I001555555188  1002492     04251100519200902050400                     0000000001234</EMI>
+  <ETA>
+    <string>00120090205             0.</string>
+    <string>0320090205</string>
+    <string>2420090205</string>
+    <string>2720090205</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+    <string>0000000000</string>
+  </ETA>
+  <ECHK></ECHK>
+  <ENA-1>
+    <string>0001555555188  EIN 3                                                                          0060000</string>
+    <string>001555555188                                                                                  100000</string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+  </ENA-1>
+  <ENA-2>
+    <string>44 W WAYNE ST                                               PHILADELPHIA        PA19144-60022156866628     00000000000000000000MPRITHA27@GMAIL.COM                     00010001</string>
+    <string>600 LEE RD                                                  WAYNE               PA19087-562448432356070    00000000000000000000                                            0002</string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+    <string></string>
+  </ENA-2>
+</Output>

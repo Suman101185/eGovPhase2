@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=unicode">
+<meta NAME="GENERATOR" Content="MSHTML 5.50.4134.600"  >
+<script ID="clientEventHandlersJS" LANGUAGE="javascript">
+
+var arrSchoolErr = new Array()
+var txtHeader = 'Taxpayer Information'
+
+function DisplaySchoolReturn() {
+	alert('DisplaySchoolReturn');
+	parent.RightFrame.rows = '*,0'
+	SchoolReturn.style.display = 'block'
+	AppHeader.innerHTML = txtHeader + '<Font class=hdrMedium>|school income return</Font>'	
+	LoadSchoolError()
+	AppError.innerText = ""
+	RightAlignText()
+	txtNo1.focus()
+}		//DisplaySchoolReturn
+
+function RightAlignText(){
+var ObjSelected
+	for (var i=1;i!=15;i++){
+		ObjSelected = document.getElementById('txtNo' + i)
+		ObjSelected.style.textAlign = 'right'
+	}
+}
+
+
+function LoadSchoolError() {
+	var i=0
+	
+	//arrSchoolErr[i++] = [txtToDate, 'ispValidateDate(txtToDate.value) == false', 'Invalid to date']
+	//arrSchoolErr[i++] = [txtFromDate, 'ispValidateDate(txtFromDate.value) == false', 'Invalid from date']
+
+	arrSchoolErr[i++] = [txtNo1, 'txtNo1.value == ""', 'Answer Question 1']
+	arrSchoolErr[i++] = [txtNo1, 'ispValue(txtNo1.value)', 'Value for Question 1 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo2, 'txtNo2.value == ""', 'Answer Question 2']
+	arrSchoolErr[i++] = [txtNo2, 'ispValue(txtNo2.value)', 'Value for Question 2 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo3, 'txtNo3.value == ""', 'Answer Question 3']
+	arrSchoolErr[i++] = [txtNo3, 'ispValue(txtNo3.value)', 'Value for Question 3 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo4, 'txtNo4.value == ""', 'Answer Question 4']
+	arrSchoolErr[i++] = [txtNo4, 'ispValue(txtNo4.value)', 'Value for Question 4 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo5, 'txtNo5.value == ""', 'Answer Question 5']
+	arrSchoolErr[i++] = [txtNo5, 'ispValue(txtNo5.value)', 'Value for Question 5 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo6, 'txtNo6.value == ""', 'Answer Question 6']
+	arrSchoolErr[i++] = [txtNo6, 'ispValue(txtNo6.value)', 'Value for Question 6 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo7, 'txtNo7.value == ""', 'Answer Question 7']
+	arrSchoolErr[i++] = [txtNo7, 'ispValue(txtNo7.value)', 'Value for Question 7 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo8, 'txtNo8.value == ""', 'Answer Question 8']
+	arrSchoolErr[i++] = [txtNo8, 'ispValue(txtNo8.value)', 'Value for Question 8 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo10, 'txtNo10.value == ""', 'Answer Question 10']
+	arrSchoolErr[i++] = [txtNo10, 'ispValue(txtNo10.value)', 'Value for Question 10 Number must be numeric']
+	arrSchoolErr[i++] = [txtNo13, 'txtNo10.value == ""', 'Answer Question 10']
+	arrSchoolErr[i++] = [txtNo13, 'ispValue(txtNo10.value)', 'Value for Question 10 Number must be numeric']
+}		//LoadLoginError
+
+
+function ValidateSchoolReturn() {
+var sId = document.activeElement.id
+var ObjSelected
+	
+	ObjSelected = document.getElementById(sId)
+	if (sId == "txtToDate" || sId == "txtFromDate" ){
+	}else{
+		ObjSelected.value = ispFormatMoney(ObjSelected.value,2)
+	}
+	
+	AppError.innerText = ispSetInputErr(arrSchoolErr)	
+
+	if (AppError.innerText == ""){
+		Calc1_8()
+	}
+	if (AppError.innerText == ""){
+		SubCalc()
+	}
+	if (AppError.innerText == ""){
+		GrossCalc()
+	}
+	if (AppError.innerText == ""){
+		TaxDue()
+	}
+}		//ChkLoginError
+
+
+function btnPrint_onclick() {
+	parent.RightFrame.rows = '*,34'
+	parent.DocWin.location.href = '../Acct/ApplyMain.asp'
+}
+
+
+function btnSubmit_onclick() {
+	ValidateSchoolReturn()
+	
+	if (AppError.innerText == ""){
+		txtFromDate_onblur()
+		txtToDate_onblur()
+		if (AppError.innerText == ""){
+			SchoolReturn.style.display = 'none'
+			parent.RightFrame.rows = '*,34'
+			parent.DocWin.location.href = '../Acct/ApplyMain.asp'
+		}
+	}
+}
+
+function txtToDate_onblur() {
+	if (AppError.innerText == "" && txtToDate.value != ""){
+		var strBD = ispValidateDate(txtToDate.value)
+		
+		if (strBD == false){
+			AppError.innerText = 'Invalid to date'
+			blnErr = true
+		}else{
+			txtToDate.value = strBD
+		}
+	}
+}
+
+function txtFromDate_onblur() {
+	if (AppError.innerText == "" && txtFromDate.value != ""){
+		var strBD = ispValidateDate(txtFromDate.value)
+		
+		if (strBD == false){
+			AppError.innerText = 'Invalid from date'
+			blnErr = true
+		}else{
+			txtFromDate.value = strBD
+		}
+	}
+}
+
+</script>
+<SCRIPT language=vbscript>
+
+function ispValue(strVal)
+	if IsNumeric(strVal) then
+	else
+		ispValue = true
+	end if
+ 
+end function
+
+function SubCalc() 
+
+	if txtNo9.value <> "" and txtNo10.value <> ""  then
+		txtNo11.value = ispFormatMoney(CDbl(txtNo9.value) - CDbl(txtNo10.value),2)
+	end if
+
+end function
+
+function GrossCalc()
+	if txtNo11.value <> "" then
+		txtNo12.value = ispFormatMoney(CDbl(CDbl(txtNo11.value) * .045385),2)
+	end if
+end function
+
+function TaxDue()
+	if txtNo12.value <> "" and txtNo13.value <> ""  then
+		if CDbl(txtNo13.value) > 0 then
+			txtNo13.value = ispFormatMoney(CDbl(txtNo13.value)*-1,2)
+		end if
+		if CDbl(txtNo12.value) > CDbl(txtNo13.value) then
+			txtNo14.value = ispFormatMoney(CDbl(txtNo12.value) + CDbl(txtNo13.value),2)
+		else
+			txtNo14.value = 0
+		end if
+	end if
+end function
+
+function Calc1_8()
+	if txtNo1.value <> "" and txtNo2.value <> "" and txtNo3.value <> "" and txtNo4.value <> "" then
+		if txtNo5.value <> "" and txtNo6.value <> "" and txtNo7.value <> "" and txtNo8.value <> "" then
+			txtNo9.value = ispFormatMoney(CDbl(txtNo1.value) + CDbl(txtNo2.value) + CDbl(txtNo3.value) + CDbl(txtNo4.value) + _
+													CDbl(txtNo5.value) + CDbl(txtNo6.value) + CDbl(txtNo7.value) + CDbl(txtNo8.value),2)
+		end if
+	end if
+end function
+
+</script>
+<title></title>
+</head>
+<body>
+<DIV style="DISPLAY: none; VISIBILTY: visible" Id="SchoolReturn" Name="SchoolReturn">
+<table width="90%" cellSpacing="0" cellPadding="0" border=0 style  ="MARGIN-LEFT: 4%">
+  <tr align ="left">
+    <td><label class="lblTextBlack">       
+     The City of Philadelphia School Income Tax for 2002 is due April 15, 2003.</label></td>
+  </tr>
+</table>
+   
+<table class=tblShowBorder width="90%" bgcolor="whitesmoke" style="MARGIN-LEFT: 4%" border=0
+		 cellSpacing=0 cellPadding=0 id=TABLE1>
+  <tr>
+    <td WIDTH="2%"></td>
+    <td WIDTH="8%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    </tr>
+  <tr>
+		<td >&nbsp;</td>
+		<td colspan=2>
+			<label class="lblInstrNormal">Name:&nbsp;</label>
+		</td>
+		<td colspan=5><label class="lblTextBlack" nowrap>Main Street Pastry Shoppe</label></td>
+		<td colspan=2 align=right><label class="lblInstrNormal">EIN: &nbsp;</label></td>
+		<td colspan=5><label class="lblTextBlack">72-5483615</label></td>
+		<td colspan=5></td>
+	</tr>
+  <tr>
+		<td >&nbsp;</td>
+		<td colspan=2>
+			<label class="lblInstrNormal">Address:&nbsp;</label>
+		</td>
+		<td colspan=17><label class="lblTextBlack">123 Main Street / Philadelphia PA 19101-1234</label></td>
+	</tr>
+</table>
+
+<table style="LEFT: 43px; MARGIN-LEFT:  4%; TOP: 205px" border=0 width="90%">
+  <tr>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    </tr>
+  <tr>
+	<td align=left colspan=10 nowrap>
+		<INPUT id=chkAmended type=checkbox><label class="lblTextBlacksmall">Check if amended return.</label></td>
+	<td align=right   colspan=10 nowrap>
+		<U><label class="lblTextBlacksmall">Partial Resident</U></LABEL>&nbsp; 
+		<label class="lblInstrNormal">From</label>
+		<input class=inpNormal id=txtFromDate onchange="ValidateSchoolReturn()" maxlength=10 onblur="return txtFromDate_onblur()" 
+      style="WIDTH: 68px; HEIGHT: 22px" size=9>
+		<label class="lblInstrNormal">To </label><input class=inpNormal width="50%" id=txtToDate onchange="ValidateSchoolReturn()" maxlength=10 onblur="return txtToDate_onblur()" 
+      style="WIDTH: 68px; HEIGHT: 22px" size=9></td>
+	</tr>
+</table>
+
+<table class=tblShowBorder cellSpacing=0 cellPadding=0 border=0 style="MARGIN-LEFT: 4%" id=TABLE1  width="90%">
+  <tr height=0>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    <td WIDTH="5%"></td>
+    </tr>
+  <tr class=rowDataEven>
+		<td  ><label class="lblInstrNormal">1.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			        Net Taxable Dividends</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo1 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">2.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			  
+			         Taxable Interest</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo2 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td  ><label class="lblInstrNormal">3.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			        "S" Corporation Distributions</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo3 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">4.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			    Limited Partnership Income (if loss, enter "0")</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo4 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td  ><label class="lblInstrNormal">5.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			Taxable Income receivied as a Beneficiary from a Estate or Trust</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo5 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">6.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			NetShort Term 
+			Capital Gains (Held 6 months or less) (if loss, enter "0")</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo6 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td ><label class="lblInstrNormal">7.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			    Net Rental Income (if loss, enter "0")</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo7 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">8.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			        Other Taxable Income</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo8 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td ><label class="lblInstrNormal">9.</label></td>
+		<td colspan=8><label class="lblInstrNormal">
+			   Total Taxable
+			   Income</label>
+		</td>
+		<td colspan=8 align=right><label class="lblInstrNormal">
+			[Calculated - add lines 1 through 8]&nbsp;</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo9 maxlength=10 disabled style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">10.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			         Deductible Expenses</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo10 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td ><label class="lblInstrNormal">11.</label></td>
+		<td colspan=8><label class="lblInstrNormal">
+			   Total Taxable Income</label>
+		</td>
+		<td colspan=8 align=right><label class="lblInstrNormal">
+			   [Calculated - line 9 minus 10]&nbsp;</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo11 maxlength=10 disabled style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">12.</label></td>
+		<td colspan=8><label class="lblInstrNormal">
+			 Gross Tax Due</label>
+		</td>
+		<td colspan=8 align=right><label class="lblInstrNormal">
+			 [Calculated - line 11 * .045385]&nbsp;</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo12 maxlength=10 disabled style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataEven>
+		<td ><label class="lblInstrNormal">13.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			  Credits or Tax previously paid with an extension coupon</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo13 onchange="ValidateSchoolReturn()" maxlength=10 style="WIDTH: 100%"></td>
+	</tr>
+  <tr class=rowDataOdd>
+		<td ><label class="lblInstrNormal">14.</label></td>
+		<td colspan=16><label class="lblInstrNormal">
+			   
+			         TAX DUE</label>
+		</td>
+		<td colspan=3>
+			<input class=inpNormal id=txtNo14 maxlength=10 disabled style="WIDTH: 100%"></td>
+	</tr>
+</table>
+<table style="MARGIN-LEFT: 4%" border=0  width="90%">
+  <TR>
+    <td width ="80%"><label class="lblTextBlackSmall">
+    <INPUT id=chkAmended type=checkbox style="WIDTH: 13px; HEIGHT: 20px" size=13>&nbsp;
+		Under penalties of perjury, as set forth in 18 Pa. C.S. §§ 4902-4903 as amended, 
+		I swear that I have reviewed this return and accompanying statements and schedules, 
+		and to the best of my knowledge and belief, they are true and complete.</label></td>
+		<td  width ="20%" align=right nowrap><p style="MARGIN-TOP: 5px">
+		<input id="btnPrint" type="button" value="Print" LANGUAGE=javascript onclick="return btnPrint_onclick()">
+		<input id="btnSubmit" type="submit" value="Submit" LANGUAGE=javascript onclick="return btnSubmit_onclick()"></p>
+		</td>
+	</TR>
+</table>
+</DIV>
+</body>
+</html>

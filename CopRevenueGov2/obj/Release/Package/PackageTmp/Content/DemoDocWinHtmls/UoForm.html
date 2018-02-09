@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Styles/framestyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" language="javascript" src="../Scripts/JqueryMin.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/global.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/ispXmlProc.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/jquery-1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".tab_content:first").show(); //Show first tab content
+        });
+    </script>
+</head>
+<body>
+    <div class="tab_Tcontainer">
+        <div class="tab_container">
+            <div style="display: block;" id="tab1" class="tab_content">
+                <h2>Tax Payer Information  |   <span>UO tax return for 2013</span>  </h2>
+
+                <div class="thankyou">
+                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries</h4>
+
+                    <div class="school_form">
+
+
+                        <form class="school_page_form">
+
+
+                            <div class="account_greybox">
+
+                                <p><strong>Name :</strong>
+                                    <label>Michael Adams</label></p>
+                                <p><strong>SSN :</strong> &nbsp; </p>
+                                <div class="clear"></div>
+
+                                <p><strong>Address :</strong> &nbsp; </p>
+                                <div class="clear"></div>
+
+                                  <p><strong>Property Address: :</strong> &nbsp; </p>
+                                <div class="clear"></div>
+
+                                <p><strong>Property Account No. :</strong>
+                                    <label>222222228</label></p>
+                                <p><strong>Tax Period Covering: :</strong> &nbsp; </p>
+                                <div class="clear"></div>
+
+                                 <p><strong>Tax Period Covering:</strong>
+                                    <label>&nbsp</label></p>
+                                <p><strong>Tax Period/Year Code:</strong> &nbsp; </p>
+                                <div class="clear"></div>
+
+                                <p><strong>Assessed Value:</strong>
+                                    <label>&nbsp</label></p>
+                                <p><strong>Due Date:</strong> &nbsp; </p>
+                                <div class="clear"></div>
+
+
+                            </div>
+
+
+
+                            <!--Header section declaration goes here-->
+                            <div class="form_segment">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabularform">
+                                    <tr>
+                                        <th width="22%" scope="col" valign="middle" align="left" class="here_input_table">
+                                            <input type="checkbox" />
+                                            Check if amended return. </th>
+                                        <th width="53%" scope="col" align="right">All decimals will be rounded to the nearest whole number</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--Header section declaration ends here-->
+
+                            <!--Form section declaration goes here-->
+                            <div class="form_segment">
+                                <table summary="Employee Pay Sheet" id="hor-zebra">
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td width="70%">1. Maximum Tax for Period</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>               
+                                        </tr>
+                                        <tr>
+                                            <td>2. Vacant Amount</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">3. Non-taxable exempt Amount.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4. Non-taxable residential Amount&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /> </td>
+                                           
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">5. Delinquent Tenant Amount&nbsp;
+                                                <!--<label class="lblLink" style="FONT-SIZE: 7pt" onclick=""> (Click here to complete UO3)</label>-->
+                                            </td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo1d" style="WIDTH: 100%">$5000</label>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>6. Keystone Opportunity Zone (KOZ) Amount</td>
+                                            <td align="center" class="no_border_right"></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%"><b>7. Total of Lines 2, 3, 4, 5 and 6</b></td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>8. Tax Due [Calculated - line 1 minus 7]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">9. Discount (available only for landlords) [Calculated - line 8 multiply by 1%]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo2c" style="WIDTH: 100%">$5000</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10. <b>Net tax Due</b> [Calculated - line 8 minus 9]&nbsp;</td>
+                                            <td align="center" class="no_border_right">
+                                                <label class="" id="lblTobaccoNo2d" style="WIDTH: 100%">$50000</label></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">11. Interest & Penalty</td>
+                                            <td align="center" class="no_border_right">
+                                                 <input type="text" /></td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>12. <b>Total Due [Calculated - line 10 plus 11]&nbsp;</b></td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                    
+                                     
+                                    </tbody>
+                                </table>
+                                <div class="clear"></div>
+
+                            </div>
+                            <!--Form section declaration ends here-->
+
+                            <!--Preparer section declaration goes here-->
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filled by *</label>
+                                <div class="small_divs">
+                                    <input type="radio" name="n1" />
+                                    Tax Payer
+                                </div>
+                                <div class="small_divs">
+                                    <input type="radio" name="n2" checked="" />
+                                    Prepayer
+                                </div>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filler Name *</label>
+                                <span class="small_divs2">&nbsp;</span>
+
+                                <div class="here_input_table">
+                                    Filler Phone *
+                                    <input type="text" class="input_size7" /><input type="text" class="input_size7" /><input type="text" class="input_size7" />
+                                    <span class="here_alert">Ext : </span>
+                                    <input type="text" class="input_size7" />
+                                </div>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filler Name *</label>
+
+                                <div class="here_input_table">
+                                    <input type="text" class="input_size9" />
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+
+
+                            <div class="form_segment">
+
+
+
+                                <div class="here_input_table">
+                                    <input type="checkbox" class="" />
+                                </div>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+                    
+                     <div class="clear"></div>
+                            </div>
+
+
+                            <div class="form_segment here_input_table" align="right">
+                                <input type="submit" value="Print" class="submit_button_light" />
+                                <input type="submit" value="Submit" class="submit_button" />
+                            </div>
+                            <!--Preparer section declaration ends here-->
+                        </form>
+
+
+                    </div>
+
+                </div>
+                <div class="quicklink_btm_gen"></div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

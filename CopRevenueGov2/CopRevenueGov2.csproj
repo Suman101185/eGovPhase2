@@ -1,0 +1,1751 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F10D0F40-110F-4C97-99A8-FBD14E20FB20}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CopRevenueGov2</RootNamespace>
+    <AssemblyName>CopRevenueGov2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PrecompileBeforePublish>false</PrecompileBeforePublish>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\..\..\eGov2\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\..\..\..\..\..\eGov2\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WinSCPnet">
+      <HintPath>\\192.168.32.34\Shared On 174\TestProject1\TestProject1\bin\Debug\WinSCPnet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AcctController.cs" />
+    <Compile Include="Controllers\BalancesController.cs" />
+    <Compile Include="Controllers\BPT_LFController.cs" />
+    <Compile Include="Controllers\CreditCardController.cs" />
+    <Compile Include="Controllers\EcheckController.cs" />
+    <Compile Include="Controllers\ERNController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NPTController.cs" />
+    <Compile Include="Controllers\PayCouponController.cs" />
+    <Compile Include="Controllers\ReturnsController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UOController.cs" />
+    <Compile Include="Controllers\XMLController.cs" />
+    <Compile Include="Helpers\CopMvcUtil.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\COPBaseController.cs" />
+    <Compile Include="Helpers\COPPaths.cs" />
+    <Compile Include="Helpers\COPServiceURLHelper.cs" />
+    <Compile Include="Helpers\COPSession.cs" />
+    <Compile Include="Helpers\COPAppSettings.cs" />
+    <Compile Include="Helpers\FuncSrv.cs" />
+    <Compile Include="Helpers\CopQueryString.cs" />
+    <Compile Include="Helpers\RevFuncSrv.cs" />
+    <Compile Include="Helpers\ServiceHelpers\Code1Service.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE010_New.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE016.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE022.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE027.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE030.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE030_2014.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE030_2015.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE035.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE039.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE039_2015.cs" />
+    <Compile Include="Models\Web\Returns\LassCarryForwardModel.cs" />
+    <Compile Include="Service References\Code1_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\BPTLFEZ_RT01E037_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\LCF_RTTIE031_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RTTIE010_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RTTIE016_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RTTIE022_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RTTIE030_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RTTIE040_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SIT_RTTIE036_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\TOBACCO_RTTIE028_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\UOForm_RTTIE035_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\UOList_RTTIE034_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WAGE_RTTIE027_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Content Include="Content\fonts\IDAutomationOCRa.svg" />
+    <Content Include="Content\fonts\OCRAStd.svg" />
+    <Content Include="Content\Images\2DBarCodeTarget.png" />
+    <Content Include="Content\Images\bar.png" />
+    <Content Include="Content\Images\gif-load.gif" />
+    <Content Include="Content\js\barcode.js" />
+    <Content Include="Content\js\bcmath-min.js" />
+    <Content Include="Content\js\IDAutomation_PDF417.js" />
+    <Content Include="Content\js\pdf417-min.js" />
+    <Content Include="Content\js\pdf417.js" />
+    <Content Include="Content\Styles\fonts.css" />
+    <Content Include="Content\Uploads\barcode_image.png" />
+    <Content Include="Content\Uploads\eGovEnhancementTest_2015 BIRT Return Rev  7-30-2015%281%29.pdf" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE028.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE031.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE034.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE035New.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE036.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE037.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE037_2014.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE037_2015.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE037_2016.cs" />
+    <Compile Include="Helpers\ServiceHelpers\ServiceManager.cs" />
+    <Compile Include="Helpers\ServiceHelpers\ServiceManager2.cs" />
+    <Compile Include="Helpers\VB.cs" />
+    <Compile Include="Helpers\XMLUtil.cs" />
+    <Compile Include="Models\SessionMutiuserTestModel.cs" />
+    <Compile Include="Models\Web\Returns\BPF_LF\BPTLFThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\BPTezThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\UOThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\TobaccoThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\SchoolThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\UOThankYouModelNew.cs" />
+    <Compile Include="Models\Web\Returns\WageThankYouModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Content Include="Content\Scripts\BootstrapMin.js" />
+    <Content Include="Content\Scripts\jqueryminlatest.js" />
+    <Content Include="Content\Uploads\eGovEnhancementTest_address.txt" />
+    <Content Include="Content\Uploads\eGovEnhancementTest_New Text Document.txt" />
+    <Content Include="Content\Uploads\eGovEnhancementTest_sangha.txt" />
+    <Content Include="Service References\Code1_SrvRef\service1.disco" />
+    <Content Include="Service References\Code1_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\Code1_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\Code1_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Web\Acct\AddressCorrection.aspx" />
+    <Content Include="Views\Web\Acct\AddressesNew.aspx" />
+    <Content Include="Views\Web\Acct\ApplyMain.aspx" />
+    <Content Include="Views\Web\Acct\Echeck.htm" />
+    <Content Include="Views\Web\Acct\NewEmail.htm" />
+    <Content Include="Views\Web\Acct\Partners-OfficersNew.aspx" />
+    <Content Include="Views\Web\Acct\ProfileNew.aspx" />
+    <Content Include="Views\Web\Acct\TaxesNew.aspx" />
+    <Content Include="Views\Web\Acct\ThankYouNew.aspx" />
+    <Content Include="Views\Web\Acct\XMLFile1.xml" />
+    <Content Include="Views\Web\Acct\XMLFile2.xml" />
+    <Content Include="Views\Web\Login\ApplyFirstNew.aspx" />
+    <Content Include="Views\Web\Login\Capcha_1099.aspx" />
+    <Content Include="Views\Web\Login\Capcha_W2.aspx" />
+    <Content Include="Views\Web\Login\ChangePinNew.aspx" />
+    <Content Include="Views\Web\Login\Email.htm" />
+    <Content Include="Views\Web\Login\FileUpload.aspx" />
+    <Content Include="Views\Web\Login\FileUpload1099.aspx" />
+    <Content Include="Views\Web\Login\ForgotPinNew.aspx" />
+    <Content Include="Views\Web\Login\LoginNew.aspx" />
+    <Content Include="Views\Web\Login\LoginNew1.aspx" />
+    <Content Include="Views\Web\Login\Main.aspx" />
+    <Content Include="Views\Web\Login\MainNew.aspx" />
+    <Content Include="Views\Web\Login\paycouponNew.aspx" />
+    <Content Include="Views\Web\Login\PinApplyNew.aspx" />
+    <Content Include="Views\Web\Login\ThankYouNew.aspx" />
+    <Content Include="Views\Web\Login\XMLFile1.xml" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImage_FirefoxDashboard.htm" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageTemplate_FirefoxDashboard.htm" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageTemplateDashboard.htm" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageDashboard.html" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImage.html" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageTemplate_Firefox.htm" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponCreate_Firefox.aspx" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImage_Firefox.htm" />
+    <Content Include="Views\Web\PDF_report\AcBalance\2015.htm" />
+    <Content Include="Views\Web\PDF_report\AcBalance\PDF_acBalance_create.aspx" />
+    <Content Include="Views\Web\PDF_report\BPTLF\BPTLF.htm" />
+    <Content Include="Views\Web\PDF_report\BPTLF\PDF_BPTLF_create.aspx" />
+    <Content Include="Views\Web\PDF_report\EZ\EZPDF2013.htm" />
+    <Content Include="Views\Web\PDF_report\EZ\EZPDF2014.htm" />
+    <Content Include="Views\Web\PDF_report\EZ\EZPDF2015.htm" />
+    <Content Include="Views\Web\PDF_report\EZ\PDF_EZ_create.aspx" />
+    <Content Include="Views\Web\PDF_report\EZ\EZPDF2016.htm" />
+    <Content Include="Views\Web\PDF_report\LCF\PDF_LCF_create.aspx" />
+    <Content Include="Views\Web\PDF_report\LCF\LCFPDF.htm" />
+    <Content Include="Views\Web\PDF_report\NPT\PDF_NPT_create.aspx" />
+    <Content Include="Views\Web\PDF_report\NPT\NPT.htm" />
+    <Content Include="Views\Web\PDF_report\PDFDisplay.htm" />
+    <Content Include="Views\Web\PDF_report\SIT\2015.htm" />
+    <Content Include="Views\Web\PDF_report\SIT\PDF_SIT_create.aspx" />
+    <Content Include="Views\Web\PDF_report\TOBACCO\Tobacco.htm" />
+    <Content Include="Views\Web\PDF_report\TOBACCO\PDF_Tobacco_create.aspx" />
+    <Content Include="Views\Web\PDF_report\UO\PDF_UO_create.aspx" />
+    <Content Include="Views\Web\PDF_report\UO\UO.htm" />
+    <Content Include="Views\Web\PDF_report\Wage\WagePDF2013.htm" />
+    <Content Include="Views\Web\PDF_report\Wage\WagePDF2014.htm" />
+    <Content Include="Views\Web\PDF_report\Wage\WagePDF2016.htm" />
+    <Content Include="Views\Web\PDF_report\Wage\WagePDF2015.htm" />
+    <Content Include="Views\Web\PDF_report\Wage\PDF_Wage_create.aspx" />
+    <Content Include="PDF\5126_1099 specifications.pdf" />
+    <Content Include="PDF\NewProducerForm.sample.pdf" />
+    <Content Include="PDF\Online EZ - NPT Filing Instructions.pdf" />
+    <Content Include="PDF\Online Services Instructions 20160209.pdf" />
+    <Content Include="PDF\Online Services Instructions.pdf" />
+    <Content Include="PDF\wagetx.pdf" />
+    <Content Include="PDF\2016-W2-submission-instructions.pdf" />
+    <Content Include="Views\Web\Returns\BPTez2010New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2011New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2012New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2017New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2010.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2011.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2012.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2017.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11BIRTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12BIRTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13BIRTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdA.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdB.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdC1.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdD.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdE.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13WrkShtN.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\14BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdA.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdB.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdC1.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdD.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdE.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14WorkSheet5.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdA.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdB.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdC1.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdD.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdE.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15WorkSheet5.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2016\16BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2016\16BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2016\16SchdA.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2016\16SchdB.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2016\16SchdC1.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2016\16SchdD.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2016\16SchdE.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2016\16WorkSheet5.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2017\17BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2017\17BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2017\17SchdA.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2017\17SchdB.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2017\17SchdC1.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2017\17SchdD.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2017\17SchdE.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\2017\17WorkSheet5.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\BPTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\BPTLFThankYou2New.aspx" />
+    <Content Include="Views\Web\Returns\13BIRT_19_3800Message.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10BIRTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\LossCarryForward_fromBPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\10WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\11WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\12WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkA.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkB.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2010NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2011NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2012NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2013NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2014NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2015NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\2016NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\17WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2017\2017NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\NPTThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\School2010New.aspx" />
+    <Content Include="Views\Web\Returns\School2011New.aspx" />
+    <Content Include="Views\Web\Returns\School2012New.aspx" />
+    <Content Include="Views\Web\Returns\School2017New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2010New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2011New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2012New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2017New.aspx" />
+    <Content Include="Views\Web\Returns\UO\UO.aspx" />
+    <Content Include="Views\Web\Returns\UO\UO2013FormNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOFormCall.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOFormCallNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOList.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOListCall.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOListNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOThankYouNew1.aspx" />
+    <Content Include="Views\Web\Returns\Wage2010New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2011New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2012New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2013New.aspx" />
+    <Content Include="PDF\Change_Form.pdf" />
+    <Content Include="Views\Web\Returns\Wage2017New.aspx" />
+    <Content Include="Views\Web\Returns\_10BIRTWrkShtN.htm" />
+    <Content Include="Views\Web\Returns\_10BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\_11BIRTWrkShtN.htm" />
+    <Content Include="Views\Web\Returns\_11BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\_12BIRTWrkShtN.htm" />
+    <Content Include="Views\Web\Returns\_12BIRT_19_3800Message.htm" />
+    <Content Include="Web References\RTTIE010_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\RTTIE010_SrvRef\RTTIE010.wsdl" />
+    <Content Include="Web References\RTTIE010_SrvRef\RTTIE010Response_ECHK.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE010_SrvRef\RTTIE010Response_EMI.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE010_SrvRef\RTTIE010Response_ENA1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE010_SrvRef\RTTIE010Response_ENA2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE010_SrvRef\RTTIE010Response_ETA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE010_SrvRef\RTTIE010Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030.wsdl" />
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_ELFBPT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_ELFPG1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_ELFSCHA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_ELFSCHB.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_ELFSCHC1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_ELFSCHD.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_ELFSCHE.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_NEW2014FIELDS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_NEW2015FIELDS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_SERR.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE030_SrvRef\RT02E030Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\BPTLFEZ_RT01E037_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\BPTLFEZ_RT01E037_SrvRef\RT01E037.wsdl" />
+    <Content Include="Web References\BPTLFEZ_RT01E037_SrvRef\RT01E037Response_EBPT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\BPTLFEZ_RT01E037_SrvRef\RT01E037Response_EEZPG2.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\BPTLFEZ_RT01E037_SrvRef\RT01E037Response_EPG1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\BPTLFEZ_RT01E037_SrvRef\RT01E037Response_NEW2014FIELDS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\BPTLFEZ_RT01E037_SrvRef\RT01E037Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LCF_RTTIE031_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\LCF_RTTIE031_SrvRef\RTTIE031.wsdl" />
+    <Content Include="Web References\LCF_RTTIE031_SrvRef\RTTIE031Response_ELCF.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LCF_RTTIE031_SrvRef\RTTIE031Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Service References\Code1_SrvRef\service1.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="14WorkNR_3.aspx" />
+    <Content Include="bin\AspUtils.dll" />
+    <Content Include="bin\AspUtils.pdb" />
+    <Content Include="bin\CopRevenueGov2.dll" />
+    <Content Include="bin\CopRevenueGov2.dll.config" />
+    <Content Include="bin\CopRevenueGov2.pdb" />
+    <Content Include="bin\COPXmlFactory.dll" />
+    <Content Include="Content\DemoDocWinHtmls\BPTezForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\BPTlfForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\BPTlfSchB.html" />
+    <Content Include="Content\DemoDocWinHtmls\index.html" />
+    <Content Include="Content\DemoDocWinHtmls\Login.html" />
+    <Content Include="Content\DemoDocWinHtmls\LossCarryForward.html" />
+    <Content Include="Content\DemoDocWinHtmls\NPTForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\outstanding.html" />
+    <Content Include="Content\DemoDocWinHtmls\Profile.html" />
+    <Content Include="Content\DemoDocWinHtmls\SchoolForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\Thank you.html" />
+    <Content Include="Content\DemoDocWinHtmls\TobaccoForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\UoForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\UOList.html" />
+    <Content Include="Content\DemoDocWinHtmls\WageForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\XMLFile1.xml" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\tahoma.svg" />
+    <Content Include="Content\fonts\tahomabd.svg" />
+    <Content Include="Content\Images\1407844757_Silver_button.png" />
+    <Content Include="Content\Images\account_done.gif" />
+    <Content Include="Content\Images\account_opt.gif" />
+    <Content Include="Content\Images\account_tbd.gif" />
+    <Content Include="Content\Images\address_done.gif" />
+    <Content Include="Content\Images\address_opt.gif" />
+    <Content Include="Content\Images\address_tbd.gif" />
+    <Content Include="Content\Images\aProgress.gif" />
+    <Content Include="Content\Images\bg_grad.jpg" />
+    <Content Include="Content\Images\bg_grad2.jpg" />
+    <Content Include="Content\Images\blue_arrow-.png" />
+    <Content Include="Content\Images\blue_arrow.png" />
+    <Content Include="Content\Images\blue_tick.jpg" />
+    <Content Include="Content\Images\button_arrow.png" />
+    <Content Include="Content\Images\button_bg.png" />
+    <Content Include="Content\Images\button_bg2.jpg" />
+    <Content Include="Content\Images\button_bg_.png" />
+    <Content Include="Content\Images\button_bg_hover--.png" />
+    <Content Include="Content\Images\button_bg_hover.png" />
+    <Content Include="Content\Images\button_gen - Copy.jpg" />
+    <Content Include="Content\Images\button_gen-.jpg" />
+    <Content Include="Content\Images\button_gen.jpg" />
+    <Content Include="Content\Images\button_gen_hover.jpg" />
+    <Content Include="Content\Images\button_gen_hover.png" />
+    <Content Include="Content\Images\captcha-img.png" />
+    <Content Include="Content\Images\Capture.JPG" />
+    <Content Include="Content\Images\Capture1.JPG" />
+    <Content Include="Content\Images\card_amex.gif" />
+    <Content Include="Content\Images\check.gif" />
+    <Content Include="Content\Images\cityseal.gif" />
+    <Content Include="Content\Images\city_seal.gif" />
+    <Content Include="Content\Images\Copy of li_hover-bg.jpg" />
+    <Content Include="Content\Images\Copy of treeSplit.png" />
+    <Content Include="Content\Images\department_back.gif" />
+    <Content Include="Content\Images\discover.gif" />
+    <Content Include="Content\Images\e-check_done.gif" />
+    <Content Include="Content\Images\e-check_opt.gif" />
+    <Content Include="Content\Images\e-check_tbd.gif" />
+    <Content Include="Content\Images\electfile.gif" />
+    <Content Include="Content\Images\electronic-payment.png" />
+    <Content Include="Content\Images\electronically-file.png" />
+    <Content Include="Content\Images\ePay.gif" />
+    <Content Include="Content\Images\footer_block.jpg" />
+    <Content Include="Content\Images\green_tick.jpg" />
+    <Content Include="Content\Images\header_stripe.jpg" />
+    <Content Include="Content\Images\ispDot.gif" />
+    <Content Include="Content\Images\landing-print.png" />
+    <Content Include="Content\Images\landing-print_.png" />
+    <Content Include="Content\Images\landing-report.png" />
+    <Content Include="Content\Images\landing-report_.png" />
+    <Content Include="Content\Images\ligtbutton_bg-.jpg" />
+    <Content Include="Content\Images\ligtbutton_bg.jpg" />
+    <Content Include="Content\Images\ligtbutton_bg.png" />
+    <Content Include="Content\Images\ligtbutton_bg_hover.jpg" />
+    <Content Include="Content\Images\ligtbutton_bg_hover.png" />
+    <Content Include="Content\Images\li_bg.jpg" />
+    <Content Include="Content\Images\li_hover-bg.jpg" />
+    <Content Include="Content\Images\lockup_ADMV175x30.gif" />
+    <Content Include="Content\Images\lockup_ADMV230x40.gif" />
+    <Content Include="Content\Images\lockup_ADMV350x60.gif" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\m1.gif" />
+    <Content Include="Content\Images\m1.jpg" />
+    <Content Include="Content\Images\m2.jpg" />
+    <Content Include="Content\Images\mastercardlogo.gif" />
+    <Content Include="Content\Images\menulink- %282%29.png" />
+    <Content Include="Content\Images\menulink-.png" />
+    <Content Include="Content\Images\menulink.png" />
+    <Content Include="Content\Images\menulink_.png" />
+    <Content Include="Content\Images\menulink__.png" />
+    <Content Include="Content\Images\monitor-landing.png" />
+    <Content Include="Content\Images\monitor-landing_.png" />
+    <Content Include="Content\Images\monitor.jpg" />
+    <Content Include="Content\Images\no.cur" />
+    <Content Include="Content\Images\officer_done.gif" />
+    <Content Include="Content\Images\officer_opt.gif" />
+    <Content Include="Content\Images\officer_tbd.gif" />
+    <Content Include="Content\Images\our_site.gif" />
+    <Content Include="Content\Images\payment.jpg" />
+    <Content Include="Content\Images\PDF Printer.png" />
+    <Content Include="Content\Images\PDF scaling.png" />
+    <Content Include="Content\Images\Police_Header.jpg" />
+    <Content Include="Content\Images\print.jpg" />
+    <Content Include="Content\Images\print.png" />
+    <Content Include="Content\Images\profile_done.gif" />
+    <Content Include="Content\Images\profile_opt.gif" />
+    <Content Include="Content\Images\profile_tbd.gif" />
+    <Content Include="Content\Images\progress.gif" />
+    <Content Include="Content\Images\question-.jpg" />
+    <Content Include="Content\Images\question-landing.png" />
+    <Content Include="Content\Images\question-landing_.png" />
+    <Content Include="Content\Images\question.gif" />
+    <Content Include="Content\Images\question.jpg" />
+    <Content Include="Content\Images\question.png" />
+    <Content Include="Content\Images\quicklink_header.jpg" />
+    <Content Include="Content\Images\Revenue_Back.gif" />
+    <Content Include="Content\Images\revenue_header.gif" />
+    <Content Include="Content\Images\revenue_header_old.gif" />
+    <Content Include="Content\Images\revenue_top.gif" />
+    <Content Include="Content\Images\submit_done.gif" />
+    <Content Include="Content\Images\submit_opt.gif" />
+    <Content Include="Content\Images\submit_tbd.gif" />
+    <Content Include="Content\Images\taxtype_done.gif" />
+    <Content Include="Content\Images\taxtype_opt.gif" />
+    <Content Include="Content\Images\taxtype_tbd.gif" />
+    <Content Include="Content\Images\transparent.png" />
+    <Content Include="Content\Images\TRASH.BMP" />
+    <Content Include="Content\Images\treeSplit.png" />
+    <Content Include="Content\Images\visalogo.gif" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\grayscale.js" />
+    <Content Include="Content\js\iframe.js" />
+    <Content Include="Content\js\jPushMenu.js" />
+    <Content Include="Content\js\jquery.easing.min.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.nanoscroller.js" />
+    <Content Include="Content\js\npm.js" />
+    <Content Include="Content\js\treeMenu.js" />
+    <Content Include="Content\Scripts\Accounting.js" />
+    <Content Include="Content\Scripts\global.js" />
+    <Content Include="Content\Scripts\ispCoupon.js" />
+    <Content Include="Content\Scripts\ispFunctions.js" />
+    <Content Include="Content\Scripts\ispXmlProc.js" />
+    <Content Include="Content\Scripts\jquery-1.js" />
+    <Content Include="Content\Scripts\jquery.browser.min.js" />
+    <Content Include="Content\Scripts\JqueryMin.js" />
+    <Content Include="Content\Scripts\RegExpValidate.js" />
+    <Content Include="Content\Scripts\treeMenu.js" />
+    <Content Include="Content\Styles\bootstrap.css" />
+    <Content Include="Content\Styles\copegov.css" />
+    <Content Include="Content\Styles\css\style.css" />
+    <Content Include="Content\Styles\Font.css" />
+    <Content Include="Content\Styles\framestyle.css" />
+    <Content Include="Content\Styles\framestyle1.css" />
+    <Content Include="Content\Styles\jPushMenu.css" />
+    <Content Include="Content\Styles\jqtree.css" />
+    <Content Include="Content\Styles\nanoscroller.css" />
+    <Content Include="Content\Styles\Object.css" />
+    <Content Include="Content\Styles\style.css" />
+    <Content Include="DEBUG\20130711\S555555187-11July2013.AI-11July2013.debug-11July2013.txt" />
+    <Content Include="DEBUG\20130711\S555555187-11July2013.BR-11July2013.debug-11July2013.txt" />
+    <Content Include="DEBUG\20130711\SRTTIE010_PARAMETER_RECEIVED_VALUES-11July2013.txt" />
+    <Content Include="DEBUG\20130711\SRTTIE010_PARAMETER_SEND_VALUES-11July2013.txt" />
+    <Content Include="DEBUG\20130711\SRTTIE037_PARAMETER_RECEIVED_VALUES-11July2013.txt" />
+    <Content Include="DEBUG\20130711\SRTTIE037_PARAMETER_SEND_VALUES-11July2013.txt" />
+    <Content Include="DEBUG\20130711\SVALUE_IF_J-11July2013.txt" />
+    <Content Include="DEBUG\20130712\S-12July2013.BPTlf-12July2013.debug-12July2013.txt" />
+    <Content Include="DEBUG\20130712\S-12July2013.BR-12July2013.debug-12July2013.txt" />
+    <Content Include="DEBUG\20130712\S555555187-12July2013.AI-12July2013.debug-12July2013.txt" />
+    <Content Include="DEBUG\20130712\S555555187-12July2013.BPTlf-12July2013.debug-12July2013.txt" />
+    <Content Include="DEBUG\20130712\S555555187-12July2013.BR-12July2013.debug-12July2013.txt" />
+    <Content Include="DEBUG\20130712\SRTTIE010_PARAMETER_RECEIVED_VALUES-12July2013.txt" />
+    <Content Include="DEBUG\20130712\SRTTIE010_PARAMETER_SEND_VALUES-12July2013.txt" />
+    <Content Include="DEBUG\20130712\SRTTIE030_PARAMETER_RECEIVED_VALUES-12July2013.txt" />
+    <Content Include="DEBUG\20130712\SRTTIE030_PARAMETER_SEND_VALUES-12July2013.txt" />
+    <Content Include="DEBUG\20130712\SRTTIE037_PARAMETER_RECEIVED_VALUES-12July2013.txt" />
+    <Content Include="DEBUG\20130712\SRTTIE037_PARAMETER_SEND_VALUES-12July2013.txt" />
+    <Content Include="DEBUG\20130712\SVALUE_IF_J-12July2013.txt" />
+    <Content Include="DEBUG\20141230\S-Tuesday,December30,2014.BPTlf-Tuesday,December30,2014.debug-Tuesday,December30,2014.txt" />
+    <Content Include="DEBUG\20141230\S-Tuesday,December30,2014.BR-Tuesday,December30,2014.debug-Tuesday,December30,2014.txt" />
+    <Content Include="DEBUG\20141230\S-Tuesday,December30,2014.NP-Tuesday,December30,2014.debug-Tuesday,December30,2014.txt" />
+    <Content Include="DEBUG\20141230\S-Tuesday,December30,2014.TB-Tuesday,December30,2014.debug-Tuesday,December30,2014.txt" />
+    <Content Include="DEBUG\20141230\S-Tuesday,December30,2014.WR-Tuesday,December30,2014.debug-Tuesday,December30,2014.txt" />
+    <Content Include="DEBUG\20141231\S-Wednesday,December31,2014.BPTlf-Wednesday,December31,2014.debug-Wednesday,December31,2014.txt" />
+    <Content Include="DEBUG\20150105\S-Monday,January05,2015.BPTlf-Monday,January05,2015.debug-Monday,January05,2015.txt" />
+    <Content Include="DEBUG\20150106\S-Tuesday,January06,2015.BPTlf-Tuesday,January06,2015.debug-Tuesday,January06,2015.txt" />
+    <Content Include="DEBUG\20150106\S-Tuesday,January06,2015.BR-Tuesday,January06,2015.debug-Tuesday,January06,2015.txt" />
+    <Content Include="DEBUG\20150106\S-Tuesday,January06,2015.WR-Tuesday,January06,2015.debug-Tuesday,January06,2015.txt" />
+    <Content Include="DEBUG\20150107\S-Wednesday,January07,2015.BPTlf-Wednesday,January07,2015.debug-Wednesday,January07,2015.txt" />
+    <Content Include="DEBUG\20150107\S-Wednesday,January07,2015.BR-Wednesday,January07,2015.debug-Wednesday,January07,2015.txt" />
+    <Content Include="DEBUG\20150107\S-Wednesday,January07,2015.WR-Wednesday,January07,2015.debug-Wednesday,January07,2015.txt" />
+    <Content Include="DEBUG\20150108\S-Thursday,January08,2015.BPTlf-Thursday,January08,2015.debug-Thursday,January08,2015.txt" />
+    <Content Include="DEBUG\20150108\S-Thursday,January08,2015.BR-Thursday,January08,2015.debug-Thursday,January08,2015.txt" />
+    <Content Include="DEBUG\20150108\S-Thursday,January08,2015.LCF-Thursday,January08,2015.debug-Thursday,January08,2015.txt" />
+    <Content Include="DEBUG\20150109\S-Friday,January09,2015.BPTlf-Friday,January09,2015.debug-Friday,January09,2015.txt" />
+    <Content Include="DEBUG\20150109\S-Friday,January09,2015.BR-Friday,January09,2015.debug-Friday,January09,2015.txt" />
+    <Content Include="DEBUG\20150113\S-Tuesday,January13,2015.BPTlf-Tuesday,January13,2015.debug-Tuesday,January13,2015.txt" />
+    <Content Include="DEBUG\20150114\S-Wednesday,January14,2015.BR-Wednesday,January14,2015.debug-Wednesday,January14,2015.txt" />
+    <Content Include="DEBUG\20150116\S-Friday,January16,2015.BPTlf-Friday,January16,2015.debug-Friday,January16,2015.txt" />
+    <Content Include="DEBUG\20150119\S-Monday,January19,2015.BPTlf-Monday,January19,2015.debug-Monday,January19,2015.txt" />
+    <Content Include="DEBUG\20150119\S-Monday,January19,2015.BR-Monday,January19,2015.debug-Monday,January19,2015.txt" />
+    <Content Include="DEBUG\20150120\S-Tuesday,January20,2015.BPTlf-Tuesday,January20,2015.debug-Tuesday,January20,2015.txt" />
+    <Content Include="DEBUG\20150120\S-Tuesday,January20,2015.BR-Tuesday,January20,2015.debug-Tuesday,January20,2015.txt" />
+    <Content Include="DEBUG\20150121\S-Wednesday,January21,2015.BR-Wednesday,January21,2015.debug-Wednesday,January21,2015.txt" />
+    <Content Include="DEBUG\20150122\S-Thursday,January22,2015.AC-Thursday,January22,2015.debug-Thursday,January22,2015.txt" />
+    <Content Include="DEBUG\20150122\S-Thursday,January22,2015.BPTlf-Thursday,January22,2015.debug-Thursday,January22,2015.txt" />
+    <Content Include="DEBUG\20150122\S-Thursday,January22,2015.BR-Thursday,January22,2015.debug-Thursday,January22,2015.txt" />
+    <Content Include="DEBUG\20150123\S-Friday,January23,2015.BR-Friday,January23,2015.debug-Friday,January23,2015.txt" />
+    <Content Include="DEBUG\20150127\S-Tuesday,January27,2015.BR-Tuesday,January27,2015.debug-Tuesday,January27,2015.txt" />
+    <Content Include="DEBUG\20150127\S-Tuesday,January27,2015.NP-Tuesday,January27,2015.debug-Tuesday,January27,2015.txt" />
+    <Content Include="DEBUG\20150520\S-Wednesday,May20,2015.BPTlf-Wednesday,May20,2015.debug-Wednesday,May20,2015.txt" />
+    <Content Include="DEBUG\20150520\S-Wednesday,May20,2015.BR-Wednesday,May20,2015.debug-Wednesday,May20,2015.txt" />
+    <Content Include="DEBUG\20150520\S-Wednesday,May20,2015.WR-Wednesday,May20,2015.debug-Wednesday,May20,2015.txt" />
+    <Content Include="DEBUG\20151029\S-Thursday,October29,2015.AC-Thursday,October29,2015.debug-Thursday,October29,2015.txt" />
+    <Content Include="DEBUG\20151124\S-Tuesday,November24,2015.SR-Tuesday,November24,2015.debug-Tuesday,November24,2015.txt" />
+    <Content Include="DEBUG\20151124\S-Tuesday,November24,2015.WR-Tuesday,November24,2015.debug-Tuesday,November24,2015.txt" />
+    <Content Include="DEBUG\20151125\S-Wednesday,November25,2015.SR-Wednesday,November25,2015.debug-Wednesday,November25,2015.txt" />
+    <Content Include="DEBUG\20151126\S-Thursday,November26,2015.BPTlf-Thursday,November26,2015.debug-Thursday,November26,2015.txt" />
+    <Content Include="DEBUG\20151126\S-Thursday,November26,2015.BR-Thursday,November26,2015.debug-Thursday,November26,2015.txt" />
+    <Content Include="DEBUG\20151126\S-Thursday,November26,2015.SR-Thursday,November26,2015.debug-Thursday,November26,2015.txt" />
+    <Content Include="DEBUG\20151127\S-Friday,November27,2015.SR-Friday,November27,2015.debug-Friday,November27,2015.txt" />
+    <Content Include="DEBUG\20151128\S-Saturday,November28,2015.BR-Saturday,November28,2015.debug-Saturday,November28,2015.txt" />
+    <Content Include="DEBUG\20151130\S-Monday,November30,2015.BPTlf-Monday,November30,2015.debug-Monday,November30,2015.txt" />
+    <Content Include="DEBUG\20151130\S-Monday,November30,2015.BR-Monday,November30,2015.debug-Monday,November30,2015.txt" />
+    <Content Include="DEBUG\20151130\S-Monday,November30,2015.SR-Monday,November30,2015.debug-Monday,November30,2015.txt" />
+    <Content Include="DEBUG\20151201\S-Tuesday,December1,2015.BR-Tuesday,December1,2015.debug-Tuesday,December1,2015.txt" />
+    <Content Include="DEBUG\20151201\S-Tuesday,December1,2015.SR-Tuesday,December1,2015.debug-Tuesday,December1,2015.txt" />
+    <Content Include="DEBUG\20151202\S-Wednesday,December2,2015.AC-Wednesday,December2,2015.debug-Wednesday,December2,2015.txt" />
+    <Content Include="DEBUG\20151202\S-Wednesday,December2,2015.BPTlf-Wednesday,December2,2015.debug-Wednesday,December2,2015.txt" />
+    <Content Include="DEBUG\20151202\S-Wednesday,December2,2015.BR-Wednesday,December2,2015.debug-Wednesday,December2,2015.txt" />
+    <Content Include="DEBUG\20151202\S-Wednesday,December2,2015.SR-Wednesday,December2,2015.debug-Wednesday,December2,2015.txt" />
+    <Content Include="DEBUG\20151203\S-Thursday,December3,2015.BPTlf-Thursday,December3,2015.debug-Thursday,December3,2015.txt" />
+    <Content Include="DEBUG\20151203\S-Thursday,December3,2015.BR-Thursday,December3,2015.debug-Thursday,December3,2015.txt" />
+    <Content Include="DEBUG\20151203\S-Thursday,December3,2015.SR-Thursday,December3,2015.debug-Thursday,December3,2015.txt" />
+    <Content Include="DEBUG\20151204\S-Friday,December4,2015.BPTlf-Friday,December4,2015.debug-Friday,December4,2015.txt" />
+    <Content Include="DEBUG\20151207\S-Monday,December7,2015.BPTlf-Monday,December7,2015.debug-Monday,December7,2015.txt" />
+    <Content Include="DEBUG\20151207\S-Monday,December7,2015.BR-Monday,December7,2015.debug-Monday,December7,2015.txt" />
+    <Content Include="DEBUG\20151208\S-Tuesday,December8,2015.BPTlf-Tuesday,December8,2015.debug-Tuesday,December8,2015.txt" />
+    <Content Include="DEBUG\20151209\S-Wednesday,December9,2015.BPTlf-Wednesday,December9,2015.debug-Wednesday,December9,2015.txt" />
+    <Content Include="DEBUG\20151210\S-Thursday,December10,2015.BPTlf-Thursday,December10,2015.debug-Thursday,December10,2015.txt" />
+    <Content Include="DEBUG\20151211\S-Friday,December11,2015.BPTlf-Friday,December11,2015.debug-Friday,December11,2015.txt" />
+    <Content Include="DEBUG\20151214\S-Monday,December14,2015.BPTlf-Monday,December14,2015.debug-Monday,December14,2015.txt" />
+    <Content Include="DEBUG\20151215\S-Tuesday,December15,2015.BPTlf-Tuesday,December15,2015.debug-Tuesday,December15,2015.txt" />
+    <Content Include="DEBUG\20151217\S-Thursday,December17,2015.BPTlf-Thursday,December17,2015.debug-Thursday,December17,2015.txt" />
+    <Content Include="DEBUG\20151217\S-Thursday,December17,2015.BR-Thursday,December17,2015.debug-Thursday,December17,2015.txt" />
+    <Content Include="DEBUG\20151217\S-Thursday,December17,2015.NP-Thursday,December17,2015.debug-Thursday,December17,2015.txt" />
+    <Content Include="DEBUG\20151218\S-Friday,December18,2015.BPTlf-Friday,December18,2015.debug-Friday,December18,2015.txt" />
+    <Content Include="DEBUG\20151218\S-Friday,December18,2015.BR-Friday,December18,2015.debug-Friday,December18,2015.txt" />
+    <Content Include="DEBUG\20151218\S-Friday,December18,2015.NP-Friday,December18,2015.debug-Friday,December18,2015.txt" />
+    <Content Include="DEBUG\20151221\S-Monday,December21,2015.BPTlf-Monday,December21,2015.debug-Monday,December21,2015.txt" />
+    <Content Include="DEBUG\20151221\S-Monday,December21,2015.WR-Monday,December21,2015.debug-Monday,December21,2015.txt" />
+    <Content Include="DEBUG\20151222\S-Tuesday,December22,2015.BR-Tuesday,December22,2015.debug-Tuesday,December22,2015.txt" />
+    <Content Include="DEBUG\20151222\S-Tuesday,December22,2015.SR-Tuesday,December22,2015.debug-Tuesday,December22,2015.txt" />
+    <Content Include="DEBUG\20151222\S-Tuesday,December22,2015.WR-Tuesday,December22,2015.debug-Tuesday,December22,2015.txt" />
+    <Content Include="DEBUG\20151223\S-Wednesday,December23,2015.WR-Wednesday,December23,2015.debug-Wednesday,December23,2015.txt" />
+    <Content Include="DEBUG\20151224\S-Thursday,December24,2015.WR-Thursday,December24,2015.debug-Thursday,December24,2015.txt" />
+    <Content Include="DEBUG\20151229\S-Tuesday,December29,2015.BPTlf-Tuesday,December29,2015.debug-Tuesday,December29,2015.txt" />
+    <Content Include="DEBUG\20151230\S-Wednesday,December30,2015.BPTlf-Wednesday,December30,2015.debug-Wednesday,December30,2015.txt" />
+    <Content Include="DEBUG\20151230\S-Wednesday,December30,2015.BR-Wednesday,December30,2015.debug-Wednesday,December30,2015.txt" />
+    <Content Include="DEBUG\20151230\S-Wednesday,December30,2015.NP-Wednesday,December30,2015.debug-Wednesday,December30,2015.txt" />
+    <Content Include="DEBUG\20151230\S-Wednesday,December30,2015.SR-Wednesday,December30,2015.debug-Wednesday,December30,2015.txt" />
+    <Content Include="DEBUG\20151230\S-Wednesday,December30,2015.WR-Wednesday,December30,2015.debug-Wednesday,December30,2015.txt" />
+    <Content Include="DEBUG\20151231\S-Thursday,December31,2015.BPTlf-Thursday,December31,2015.debug-Thursday,December31,2015.txt" />
+    <Content Include="DEBUG\20151231\S-Thursday,December31,2015.BR-Thursday,December31,2015.debug-Thursday,December31,2015.txt" />
+    <Content Include="DEBUG\20151231\S-Thursday,December31,2015.NP-Thursday,December31,2015.debug-Thursday,December31,2015.txt" />
+    <Content Include="DEBUG\20151231\S-Thursday,December31,2015.SR-Thursday,December31,2015.debug-Thursday,December31,2015.txt" />
+    <Content Include="DEBUG\20151231\S-Thursday,December31,2015.WR-Thursday,December31,2015.debug-Thursday,December31,2015.txt" />
+    <Content Include="DEBUG\20151231\S1122-Thursday,December31,2015.CP-Thursday,December31,2015.debug-Thursday,December31,2015.txt" />
+    <Content Include="DEBUG\20151231\S1122-Thursday,December31,2015.SR-Thursday,December31,2015.debug-Thursday,December31,2015.txt" />
+    <Content Include="DEBUG\20160104\S-Monday,January4,2016.BPTlf-Monday,January4,2016.debug-Monday,January4,2016.txt" />
+    <Content Include="DEBUG\20160105\S-Tuesday,January5,2016.AB-Tuesday,January5,2016.debug-Tuesday,January5,2016.txt" />
+    <Content Include="DEBUG\20160105\S-Tuesday,January5,2016.BPTlf-Tuesday,January5,2016.debug-Tuesday,January5,2016.txt" />
+    <Content Include="DEBUG\20160105\S-Tuesday,January5,2016.BR-Tuesday,January5,2016.debug-Tuesday,January5,2016.txt" />
+    <Content Include="DEBUG\20160105\S-Tuesday,January5,2016.LCF-Tuesday,January5,2016.debug-Tuesday,January5,2016.txt" />
+    <Content Include="DEBUG\20160105\S-Tuesday,January5,2016.WR-Tuesday,January5,2016.debug-Tuesday,January5,2016.txt" />
+    <Content Include="DEBUG\20160106\S-Wednesday,January6,2016.BPTlf-Wednesday,January6,2016.debug-Wednesday,January6,2016.txt" />
+    <Content Include="DEBUG\20160106\S-Wednesday,January6,2016.LCF-Wednesday,January6,2016.debug-Wednesday,January6,2016.txt" />
+    <Content Include="DEBUG\20160106\S-Wednesday,January6,2016.SR-Wednesday,January6,2016.debug-Wednesday,January6,2016.txt" />
+    <Content Include="DEBUG\20160106\S-Wednesday,January6,2016.WR-Wednesday,January6,2016.debug-Wednesday,January6,2016.txt" />
+    <Content Include="DEBUG\20160107\S-Thursday,January7,2016.BPTlf-Thursday,January7,2016.debug-Thursday,January7,2016.txt" />
+    <Content Include="DEBUG\20160107\S-Thursday,January7,2016.BR-Thursday,January7,2016.debug-Thursday,January7,2016.txt" />
+    <Content Include="DEBUG\20160107\S-Thursday,January7,2016.NP-Thursday,January7,2016.debug-Thursday,January7,2016.txt" />
+    <Content Include="DEBUG\20160108\S-Friday,January8,2016.BR-Friday,January8,2016.debug-Friday,January8,2016.txt" />
+    <Content Include="DEBUG\20160108\S-Friday,January8,2016.WR-Friday,January8,2016.debug-Friday,January8,2016.txt" />
+    <Content Include="DEBUG\20160111\S-Monday,January11,2016.BPTlf-Monday,January11,2016.debug-Monday,January11,2016.txt" />
+    <Content Include="DEBUG\20160111\S-Monday,January11,2016.BR-Monday,January11,2016.debug-Monday,January11,2016.txt" />
+    <Content Include="DEBUG\20160111\S-Monday,January11,2016.NP-Monday,January11,2016.debug-Monday,January11,2016.txt" />
+    <Content Include="DEBUG\20160111\S-Monday,January11,2016.WR-Monday,January11,2016.debug-Monday,January11,2016.txt" />
+    <Content Include="DEBUG\20160112\S-Tuesday,January12,2016.BPTlf-Tuesday,January12,2016.debug-Tuesday,January12,2016.txt" />
+    <Content Include="DEBUG\20160112\S-Tuesday,January12,2016.BR-Tuesday,January12,2016.debug-Tuesday,January12,2016.txt" />
+    <Content Include="DEBUG\20160112\S-Tuesday,January12,2016.NP-Tuesday,January12,2016.debug-Tuesday,January12,2016.txt" />
+    <Content Include="DEBUG\20160112\S-Tuesday,January12,2016.SR-Tuesday,January12,2016.debug-Tuesday,January12,2016.txt" />
+    <Content Include="DEBUG\20160112\S-Tuesday,January12,2016.WR-Tuesday,January12,2016.debug-Tuesday,January12,2016.txt" />
+    <Content Include="DEBUG\20160113\S-Wednesday,January13,2016.BPTlf-Wednesday,January13,2016.debug-Wednesday,January13,2016.txt" />
+    <Content Include="DEBUG\20160113\S-Wednesday,January13,2016.BR-Wednesday,January13,2016.debug-Wednesday,January13,2016.txt" />
+    <Content Include="DEBUG\20160113\S-Wednesday,January13,2016.NP-Wednesday,January13,2016.debug-Wednesday,January13,2016.txt" />
+    <Content Include="DEBUG\20160113\S-Wednesday,January13,2016.SR-Wednesday,January13,2016.debug-Wednesday,January13,2016.txt" />
+    <Content Include="DEBUG\20160113\S-Wednesday,January13,2016.WR-Wednesday,January13,2016.debug-Wednesday,January13,2016.txt" />
+    <Content Include="DEBUG\20160114\S-Thursday,January14,2016.AC-Thursday,January14,2016.debug-Thursday,January14,2016.txt" />
+    <Content Include="DEBUG\20160114\S-Thursday,January14,2016.BPTlf-Thursday,January14,2016.debug-Thursday,January14,2016.txt" />
+    <Content Include="DEBUG\20160114\S-Thursday,January14,2016.BR-Thursday,January14,2016.debug-Thursday,January14,2016.txt" />
+    <Content Include="DEBUG\20160114\S-Thursday,January14,2016.NP-Thursday,January14,2016.debug-Thursday,January14,2016.txt" />
+    <Content Include="DEBUG\20160114\S-Thursday,January14,2016.WR-Thursday,January14,2016.debug-Thursday,January14,2016.txt" />
+    <Content Include="DEBUG\20160115\S-Friday,January15,2016.AC-Friday,January15,2016.debug-Friday,January15,2016.txt" />
+    <Content Include="DEBUG\20160118\S-Monday,January18,2016.AC-Monday,January18,2016.debug-Monday,January18,2016.txt" />
+    <Content Include="DEBUG\20160119\S-Tuesday,January19,2016.AC-Tuesday,January19,2016.debug-Tuesday,January19,2016.txt" />
+    <Content Include="DEBUG\20160120\S-Wednesday,January20,2016.AC-Wednesday,January20,2016.debug-Wednesday,January20,2016.txt" />
+    <Content Include="DEBUG\20160120\S-Wednesday,January20,2016.WR-Wednesday,January20,2016.debug-Wednesday,January20,2016.txt" />
+    <Content Include="DEBUG\20160121\S-Thursday,January21,2016.WR-Thursday,January21,2016.debug-Thursday,January21,2016.txt" />
+    <Content Include="DEBUG\20160122\S-Friday,January22,2016.BPTlf-Friday,January22,2016.debug-Friday,January22,2016.txt" />
+    <Content Include="DEBUG\20160122\S-Friday,January22,2016.BR-Friday,January22,2016.debug-Friday,January22,2016.txt" />
+    <Content Include="DEBUG\20160201\S-Monday,February1,2016.BPTlf-Monday,February1,2016.debug-Monday,February1,2016.txt" />
+    <Content Include="DEBUG\20160201\S-Monday,February1,2016.SR-Monday,February1,2016.debug-Monday,February1,2016.txt" />
+    <Content Include="DEBUG\20160201\S-Monday,February1,2016.WR-Monday,February1,2016.debug-Monday,February1,2016.txt" />
+    <Content Include="DEBUG\20160202\S-Tuesday,February2,2016.BPTlf-Tuesday,February2,2016.debug-Tuesday,February2,2016.txt" />
+    <Content Include="DEBUG\20160202\S-Tuesday,February2,2016.BR-Tuesday,February2,2016.debug-Tuesday,February2,2016.txt" />
+    <Content Include="DEBUG\20160202\S-Tuesday,February2,2016.LCF-Tuesday,February2,2016.debug-Tuesday,February2,2016.txt" />
+    <Content Include="DEBUG\20160202\S-Tuesday,February2,2016.NP-Tuesday,February2,2016.debug-Tuesday,February2,2016.txt" />
+    <Content Include="DEBUG\20160202\S-Tuesday,February2,2016.SR-Tuesday,February2,2016.debug-Tuesday,February2,2016.txt" />
+    <Content Include="DEBUG\20160202\S-Tuesday,February2,2016.WR-Tuesday,February2,2016.debug-Tuesday,February2,2016.txt" />
+    <Content Include="DEBUG\20160203\S-Wednesday,February3,2016.BPTlf-Wednesday,February3,2016.debug-Wednesday,February3,2016.txt" />
+    <Content Include="DEBUG\20160204\S-Thursday,February4,2016.BPTlf-Thursday,February4,2016.debug-Thursday,February4,2016.txt" />
+    <Content Include="DEBUG\20160204\S-Thursday,February4,2016.BR-Thursday,February4,2016.debug-Thursday,February4,2016.txt" />
+    <Content Include="DEBUG\20160204\S-Thursday,February4,2016.NP-Thursday,February4,2016.debug-Thursday,February4,2016.txt" />
+    <Content Include="DEBUG\20160204\S-Thursday,February4,2016.SR-Thursday,February4,2016.debug-Thursday,February4,2016.txt" />
+    <Content Include="DEBUG\20160204\S-Thursday,February4,2016.WR-Thursday,February4,2016.debug-Thursday,February4,2016.txt" />
+    <Content Include="DEBUG\20160205\S-Friday,February5,2016.AC-Friday,February5,2016.debug-Friday,February5,2016.txt" />
+    <Content Include="DEBUG\20160205\S-Friday,February5,2016.BPTlf-Friday,February5,2016.debug-Friday,February5,2016.txt" />
+    <Content Include="DEBUG\20160205\S-Friday,February5,2016.BR-Friday,February5,2016.debug-Friday,February5,2016.txt" />
+    <Content Include="DEBUG\20160205\S-Friday,February5,2016.LCF-Friday,February5,2016.debug-Friday,February5,2016.txt" />
+    <Content Include="DEBUG\20160205\S-Friday,February5,2016.WR-Friday,February5,2016.debug-Friday,February5,2016.txt" />
+    <Content Include="DEBUG\20160208\S-Monday,February8,2016.AC-Monday,February8,2016.debug-Monday,February8,2016.txt" />
+    <Content Include="DEBUG\20160208\S-Monday,February8,2016.BPTlf-Monday,February8,2016.debug-Monday,February8,2016.txt" />
+    <Content Include="DEBUG\20160208\S-Monday,February8,2016.BR-Monday,February8,2016.debug-Monday,February8,2016.txt" />
+    <Content Include="DEBUG\20160208\S-Monday,February8,2016.NP-Monday,February8,2016.debug-Monday,February8,2016.txt" />
+    <Content Include="DEBUG\20160208\S-Monday,February8,2016.SR-Monday,February8,2016.debug-Monday,February8,2016.txt" />
+    <Content Include="DEBUG\20160208\S-Monday,February8,2016.WR-Monday,February8,2016.debug-Monday,February8,2016.txt" />
+    <Content Include="DEBUG\20160209\S-Tuesday,February9,2016.BPTlf-Tuesday,February9,2016.debug-Tuesday,February9,2016.txt" />
+    <Content Include="DEBUG\20160209\S-Tuesday,February9,2016.BR-Tuesday,February9,2016.debug-Tuesday,February9,2016.txt" />
+    <Content Include="DEBUG\20160209\S-Tuesday,February9,2016.LCF-Tuesday,February9,2016.debug-Tuesday,February9,2016.txt" />
+    <Content Include="DEBUG\20160209\S-Tuesday,February9,2016.SR-Tuesday,February9,2016.debug-Tuesday,February9,2016.txt" />
+    <Content Include="DEBUG\20160209\S-Tuesday,February9,2016.WR-Tuesday,February9,2016.debug-Tuesday,February9,2016.txt" />
+    <Content Include="DEBUG\20160210\S-Wednesday,February10,2016.AC-Wednesday,February10,2016.debug-Wednesday,February10,2016.txt" />
+    <Content Include="DEBUG\20160210\S-Wednesday,February10,2016.SR-Wednesday,February10,2016.debug-Wednesday,February10,2016.txt" />
+    <Content Include="DEBUG\20160210\S-Wednesday,February10,2016.WR-Wednesday,February10,2016.debug-Wednesday,February10,2016.txt" />
+    <Content Include="DEBUG\20160211\S-Thursday,February11,2016.AC-Thursday,February11,2016.debug-Thursday,February11,2016.txt" />
+    <Content Include="DEBUG\20160212\S-Friday,February12,2016.AC-Friday,February12,2016.debug-Friday,February12,2016.txt" />
+    <Content Include="DEBUG\20160214\S-Sunday,February14,2016.AC-Sunday,February14,2016.debug-Sunday,February14,2016.txt" />
+    <Content Include="DEBUG\20160214\S-Sunday,February14,2016.BPTlf-Sunday,February14,2016.debug-Sunday,February14,2016.txt" />
+    <Content Include="DEBUG\20160215\S-Monday,February15,2016.WR-Monday,February15,2016.debug-Monday,February15,2016.txt" />
+    <Content Include="DEBUG\20160216\S-Tuesday,February16,2016.AB-Tuesday,February16,2016.debug-Tuesday,February16,2016.txt" />
+    <Content Include="DEBUG\20160216\S-Tuesday,February16,2016.BPTlf-Tuesday,February16,2016.debug-Tuesday,February16,2016.txt" />
+    <Content Include="DEBUG\20160216\S-Tuesday,February16,2016.LCF-Tuesday,February16,2016.debug-Tuesday,February16,2016.txt" />
+    <Content Include="DEBUG\20160216\S-Tuesday,February16,2016.WR-Tuesday,February16,2016.debug-Tuesday,February16,2016.txt" />
+    <Content Include="DEBUG\20160217\S-Wednesday,February17,2016.WR-Wednesday,February17,2016.debug-Wednesday,February17,2016.txt" />
+    <Content Include="DEBUG\20160218\S-Thursday,February18,2016.AB-Thursday,February18,2016.debug-Thursday,February18,2016.txt" />
+    <Content Include="DEBUG\20160218\S-Thursday,February18,2016.BR-Thursday,February18,2016.debug-Thursday,February18,2016.txt" />
+    <Content Include="DEBUG\20160218\S-Thursday,February18,2016.WR-Thursday,February18,2016.debug-Thursday,February18,2016.txt" />
+    <Content Include="DEBUG\20160219\S-Friday,February19,2016.BR-Friday,February19,2016.debug-Friday,February19,2016.txt" />
+    <Content Include="DEBUG\20160219\S-Friday,February19,2016.SR-Friday,February19,2016.debug-Friday,February19,2016.txt" />
+    <Content Include="DEBUG\20160219\S-Friday,February19,2016.WR-Friday,February19,2016.debug-Friday,February19,2016.txt" />
+    <Content Include="DEBUG\20160224\S-Wednesday,February24,2016.BR-Wednesday,February24,2016.debug-Wednesday,February24,2016.txt" />
+    <Content Include="DEBUG\20160224\S-Wednesday,February24,2016.SR-Wednesday,February24,2016.debug-Wednesday,February24,2016.txt" />
+    <Content Include="DEBUG\20160224\S-Wednesday,February24,2016.WR-Wednesday,February24,2016.debug-Wednesday,February24,2016.txt" />
+    <Content Include="DEBUG\20160225\S-Thursday,February25,2016.AC-Thursday,February25,2016.debug-Thursday,February25,2016.txt" />
+    <Content Include="DEBUG\20160225\S-Thursday,February25,2016.BR-Thursday,February25,2016.debug-Thursday,February25,2016.txt" />
+    <Content Include="DEBUG\20160225\S-Thursday,February25,2016.LCF-Thursday,February25,2016.debug-Thursday,February25,2016.txt" />
+    <Content Include="DEBUG\20160225\S-Thursday,February25,2016.NP-Thursday,February25,2016.debug-Thursday,February25,2016.txt" />
+    <Content Include="DEBUG\20160225\S-Thursday,February25,2016.SR-Thursday,February25,2016.debug-Thursday,February25,2016.txt" />
+    <Content Include="DEBUG\20160225\S-Thursday,February25,2016.WR-Thursday,February25,2016.debug-Thursday,February25,2016.txt" />
+    <Content Include="DEBUG\20160226\S-Friday,February26,2016.AC-Friday,February26,2016.debug-Friday,February26,2016.txt" />
+    <Content Include="DEBUG\20160226\S-Friday,February26,2016.SR-Friday,February26,2016.debug-Friday,February26,2016.txt" />
+    <Content Include="DEBUG\20160226\S-Friday,February26,2016.WR-Friday,February26,2016.debug-Friday,February26,2016.txt" />
+    <Content Include="DEBUG\20160228\S-Sunday,February28,2016.BR-Sunday,February28,2016.debug-Sunday,February28,2016.txt" />
+    <Content Include="DEBUG\20160228\S-Sunday,February28,2016.NP-Sunday,February28,2016.debug-Sunday,February28,2016.txt" />
+    <Content Include="DEBUG\20160228\S-Sunday,February28,2016.SR-Sunday,February28,2016.debug-Sunday,February28,2016.txt" />
+    <Content Include="DEBUG\20160229\S-Monday,February29,2016.BPTlf-Monday,February29,2016.debug-Monday,February29,2016.txt" />
+    <Content Include="DEBUG\20160229\S-Monday,February29,2016.BR-Monday,February29,2016.debug-Monday,February29,2016.txt" />
+    <Content Include="DEBUG\20160229\S-Monday,February29,2016.NP-Monday,February29,2016.debug-Monday,February29,2016.txt" />
+    <Content Include="DEBUG\20160229\S-Monday,February29,2016.SR-Monday,February29,2016.debug-Monday,February29,2016.txt" />
+    <Content Include="DEBUG\20160229\S-Monday,February29,2016.WR-Monday,February29,2016.debug-Monday,February29,2016.txt" />
+    <Content Include="DEBUG\20160301\S-Tuesday,March1,2016.AC-Tuesday,March1,2016.debug-Tuesday,March1,2016.txt" />
+    <Content Include="DEBUG\20160301\S-Tuesday,March1,2016.SR-Tuesday,March1,2016.debug-Tuesday,March1,2016.txt" />
+    <Content Include="DEBUG\20160301\S-Tuesday,March1,2016.WR-Tuesday,March1,2016.debug-Tuesday,March1,2016.txt" />
+    <Content Include="DEBUG\20160302\S-Wednesday,March2,2016.AC-Wednesday,March2,2016.debug-Wednesday,March2,2016.txt" />
+    <Content Include="DEBUG\20160302\S-Wednesday,March2,2016.WR-Wednesday,March2,2016.debug-Wednesday,March2,2016.txt" />
+    <Content Include="DEBUG\20160303\S-Thursday,March3,2016.AC-Thursday,March3,2016.debug-Thursday,March3,2016.txt" />
+    <Content Include="DEBUG\20160303\S-Thursday,March3,2016.BPTlf-Thursday,March3,2016.debug-Thursday,March3,2016.txt" />
+    <Content Include="DEBUG\20160303\S-Thursday,March3,2016.BR-Thursday,March3,2016.debug-Thursday,March3,2016.txt" />
+    <Content Include="DEBUG\20160303\S-Thursday,March3,2016.LCF-Thursday,March3,2016.debug-Thursday,March3,2016.txt" />
+    <Content Include="DEBUG\20160303\S-Thursday,March3,2016.NP-Thursday,March3,2016.debug-Thursday,March3,2016.txt" />
+    <Content Include="DEBUG\20160303\S-Thursday,March3,2016.SR-Thursday,March3,2016.debug-Thursday,March3,2016.txt" />
+    <Content Include="DEBUG\20160303\S-Thursday,March3,2016.WR-Thursday,March3,2016.debug-Thursday,March3,2016.txt" />
+    <Content Include="DEBUG\20160304\S-Friday,March4,2016.AB-Friday,March4,2016.debug-Friday,March4,2016.txt" />
+    <Content Include="DEBUG\20160304\S-Friday,March4,2016.BR-Friday,March4,2016.debug-Friday,March4,2016.txt" />
+    <Content Include="DEBUG\20160304\S-Friday,March4,2016.NP-Friday,March4,2016.debug-Friday,March4,2016.txt" />
+    <Content Include="DEBUG\20160304\S-Friday,March4,2016.SR-Friday,March4,2016.debug-Friday,March4,2016.txt" />
+    <Content Include="DEBUG\20160304\S-Friday,March4,2016.WR-Friday,March4,2016.debug-Friday,March4,2016.txt" />
+    <Content Include="DEBUG\20160307\S-Monday,March7,2016.AB-Monday,March7,2016.debug-Monday,March7,2016.txt" />
+    <Content Include="DEBUG\20160307\S-Monday,March7,2016.BPTlf-Monday,March7,2016.debug-Monday,March7,2016.txt" />
+    <Content Include="DEBUG\20160307\S-Monday,March7,2016.BR-Monday,March7,2016.debug-Monday,March7,2016.txt" />
+    <Content Include="DEBUG\20160307\S-Monday,March7,2016.LCF-Monday,March7,2016.debug-Monday,March7,2016.txt" />
+    <Content Include="DEBUG\20160307\S-Monday,March7,2016.NP-Monday,March7,2016.debug-Monday,March7,2016.txt" />
+    <Content Include="DEBUG\20160307\S-Monday,March7,2016.SR-Monday,March7,2016.debug-Monday,March7,2016.txt" />
+    <Content Include="DEBUG\20160307\S-Monday,March7,2016.WR-Monday,March7,2016.debug-Monday,March7,2016.txt" />
+    <Content Include="DEBUG\20160308\S-Tuesday,March8,2016.AB-Tuesday,March8,2016.debug-Tuesday,March8,2016.txt" />
+    <Content Include="DEBUG\20160308\S-Tuesday,March8,2016.BPTlf-Tuesday,March8,2016.debug-Tuesday,March8,2016.txt" />
+    <Content Include="DEBUG\20160308\S-Tuesday,March8,2016.LCF-Tuesday,March8,2016.debug-Tuesday,March8,2016.txt" />
+    <Content Include="DEBUG\20160308\S-Tuesday,March8,2016.SR-Tuesday,March8,2016.debug-Tuesday,March8,2016.txt" />
+    <Content Include="DEBUG\20160308\S-Tuesday,March8,2016.WR-Tuesday,March8,2016.debug-Tuesday,March8,2016.txt" />
+    <Content Include="DEBUG\20160309\S-Wednesday,March9,2016.BPTlf-Wednesday,March9,2016.debug-Wednesday,March9,2016.txt" />
+    <Content Include="DEBUG\20160309\S-Wednesday,March9,2016.SR-Wednesday,March9,2016.debug-Wednesday,March9,2016.txt" />
+    <Content Include="DEBUG\20160309\S-Wednesday,March9,2016.WR-Wednesday,March9,2016.debug-Wednesday,March9,2016.txt" />
+    <Content Include="DEBUG\20160310\S-Thursday,March10,2016.BPTlf-Thursday,March10,2016.debug-Thursday,March10,2016.txt" />
+    <Content Include="DEBUG\20160310\S-Thursday,March10,2016.SR-Thursday,March10,2016.debug-Thursday,March10,2016.txt" />
+    <Content Include="DEBUG\20160310\S-Thursday,March10,2016.WR-Thursday,March10,2016.debug-Thursday,March10,2016.txt" />
+    <Content Include="DEBUG\20160314\S-Monday,March14,2016.BPTlf-Monday,March14,2016.debug-Monday,March14,2016.txt" />
+    <Content Include="DEBUG\20160314\S-Monday,March14,2016.SR-Monday,March14,2016.debug-Monday,March14,2016.txt" />
+    <Content Include="DEBUG\20160314\S-Monday,March14,2016.WR-Monday,March14,2016.debug-Monday,March14,2016.txt" />
+    <Content Include="DEBUG\20160315\S-Tuesday,March15,2016.BPTlf-Tuesday,March15,2016.debug-Tuesday,March15,2016.txt" />
+    <Content Include="DEBUG\20160316\S-Wednesday,March16,2016.BPTlf-Wednesday,March16,2016.debug-Wednesday,March16,2016.txt" />
+    <Content Include="DEBUG\20160316\S-Wednesday,March16,2016.LCF-Wednesday,March16,2016.debug-Wednesday,March16,2016.txt" />
+    <Content Include="DEBUG\20160316\S-Wednesday,March16,2016.WR-Wednesday,March16,2016.debug-Wednesday,March16,2016.txt" />
+    <Content Include="DEBUG\20160317\S-Thursday,March17,2016.BPTlf-Thursday,March17,2016.debug-Thursday,March17,2016.txt" />
+    <Content Include="DEBUG\20160318\S-Friday,March18,2016.BPTlf-Friday,March18,2016.debug-Friday,March18,2016.txt" />
+    <Content Include="DEBUG\20160318\S-Friday,March18,2016.BR-Friday,March18,2016.debug-Friday,March18,2016.txt" />
+    <Content Include="DEBUG\20160318\S-Friday,March18,2016.TB-Friday,March18,2016.debug-Friday,March18,2016.txt" />
+    <Content Include="DEBUG\20160318\S-Friday,March18,2016.WR-Friday,March18,2016.debug-Friday,March18,2016.txt" />
+    <Content Include="DEBUG\20160321\S-Monday,March21,2016.AC-Monday,March21,2016.debug-Monday,March21,2016.txt" />
+    <Content Include="DEBUG\20160321\S-Monday,March21,2016.BPTlf-Monday,March21,2016.debug-Monday,March21,2016.txt" />
+    <Content Include="DEBUG\20160321\S-Monday,March21,2016.BR-Monday,March21,2016.debug-Monday,March21,2016.txt" />
+    <Content Include="DEBUG\20160321\S-Monday,March21,2016.NP-Monday,March21,2016.debug-Monday,March21,2016.txt" />
+    <Content Include="DEBUG\20160321\S-Monday,March21,2016.WR-Monday,March21,2016.debug-Monday,March21,2016.txt" />
+    <Content Include="DEBUG\20160322\S-Tuesday,March22,2016.BR-Tuesday,March22,2016.debug-Tuesday,March22,2016.txt" />
+    <Content Include="DEBUG\20160322\S-Tuesday,March22,2016.NP-Tuesday,March22,2016.debug-Tuesday,March22,2016.txt" />
+    <Content Include="DEBUG\20160322\S-Tuesday,March22,2016.SR-Tuesday,March22,2016.debug-Tuesday,March22,2016.txt" />
+    <Content Include="DEBUG\20160322\S-Tuesday,March22,2016.WR-Tuesday,March22,2016.debug-Tuesday,March22,2016.txt" />
+    <Content Include="DEBUG\20160324\S-Thursday,March24,2016.BPTlf-Thursday,March24,2016.debug-Thursday,March24,2016.txt" />
+    <Content Include="DEBUG\20160324\S-Thursday,March24,2016.BR-Thursday,March24,2016.debug-Thursday,March24,2016.txt" />
+    <Content Include="DEBUG\20160324\S-Thursday,March24,2016.LCF-Thursday,March24,2016.debug-Thursday,March24,2016.txt" />
+    <Content Include="DEBUG\20160324\S-Thursday,March24,2016.NP-Thursday,March24,2016.debug-Thursday,March24,2016.txt" />
+    <Content Include="DEBUG\20160324\S-Thursday,March24,2016.SR-Thursday,March24,2016.debug-Thursday,March24,2016.txt" />
+    <Content Include="DEBUG\20160324\S-Thursday,March24,2016.WR-Thursday,March24,2016.debug-Thursday,March24,2016.txt" />
+    <Content Include="DEBUG\20160326\S-Saturday,March26,2016.BR-Saturday,March26,2016.debug-Saturday,March26,2016.txt" />
+    <Content Include="DEBUG\20160326\S-Saturday,March26,2016.NP-Saturday,March26,2016.debug-Saturday,March26,2016.txt" />
+    <Content Include="DEBUG\20160327\S-Sunday,March27,2016.BPTlf-Sunday,March27,2016.debug-Sunday,March27,2016.txt" />
+    <Content Include="DEBUG\20160327\S-Sunday,March27,2016.BR-Sunday,March27,2016.debug-Sunday,March27,2016.txt" />
+    <Content Include="DEBUG\20160327\S-Sunday,March27,2016.NP-Sunday,March27,2016.debug-Sunday,March27,2016.txt" />
+    <Content Include="DEBUG\20160327\S-Sunday,March27,2016.WR-Sunday,March27,2016.debug-Sunday,March27,2016.txt" />
+    <Content Include="DEBUG\20160328\S-Monday,March28,2016.BR-Monday,March28,2016.debug-Monday,March28,2016.txt" />
+    <Content Include="DEBUG\20160328\S-Monday,March28,2016.NP-Monday,March28,2016.debug-Monday,March28,2016.txt" />
+    <Content Include="DEBUG\20160328\S-Monday,March28,2016.SR-Monday,March28,2016.debug-Monday,March28,2016.txt" />
+    <Content Include="DEBUG\20160328\S-Monday,March28,2016.WR-Monday,March28,2016.debug-Monday,March28,2016.txt" />
+    <Content Include="DEBUG\20160329\S-Tuesday,March29,2016.BPTlf-Tuesday,March29,2016.debug-Tuesday,March29,2016.txt" />
+    <Content Include="DEBUG\20160329\S-Tuesday,March29,2016.BR-Tuesday,March29,2016.debug-Tuesday,March29,2016.txt" />
+    <Content Include="DEBUG\20160329\S-Tuesday,March29,2016.LCF-Tuesday,March29,2016.debug-Tuesday,March29,2016.txt" />
+    <Content Include="DEBUG\20160329\S-Tuesday,March29,2016.NP-Tuesday,March29,2016.debug-Tuesday,March29,2016.txt" />
+    <Content Include="DEBUG\20160329\S-Tuesday,March29,2016.SR-Tuesday,March29,2016.debug-Tuesday,March29,2016.txt" />
+    <Content Include="DEBUG\20160330\S-Wednesday,March30,2016.BPTlf-Wednesday,March30,2016.debug-Wednesday,March30,2016.txt" />
+    <Content Include="DEBUG\20160330\S-Wednesday,March30,2016.BR-Wednesday,March30,2016.debug-Wednesday,March30,2016.txt" />
+    <Content Include="DEBUG\20160330\S-Wednesday,March30,2016.NP-Wednesday,March30,2016.debug-Wednesday,March30,2016.txt" />
+    <Content Include="DEBUG\20160330\S-Wednesday,March30,2016.SR-Wednesday,March30,2016.debug-Wednesday,March30,2016.txt" />
+    <Content Include="DEBUG\20160331\S-Thursday,March31,2016.BR-Thursday,March31,2016.debug-Thursday,March31,2016.txt" />
+    <Content Include="DEBUG\20160331\S-Thursday,March31,2016.NP-Thursday,March31,2016.debug-Thursday,March31,2016.txt" />
+    <Content Include="DEBUG\20160331\S-Thursday,March31,2016.TB-Thursday,March31,2016.debug-Thursday,March31,2016.txt" />
+    <Content Include="DEBUG\20160331\S-Thursday,March31,2016.WR-Thursday,March31,2016.debug-Thursday,March31,2016.txt" />
+    <Content Include="DEBUG\20160401\S-Friday,April1,2016.BPTlf-Friday,April1,2016.debug-Friday,April1,2016.txt" />
+    <Content Include="DEBUG\20160401\S-Friday,April1,2016.BR-Friday,April1,2016.debug-Friday,April1,2016.txt" />
+    <Content Include="DEBUG\20160401\S-Friday,April1,2016.NP-Friday,April1,2016.debug-Friday,April1,2016.txt" />
+    <Content Include="DEBUG\20160401\S-Friday,April1,2016.SR-Friday,April1,2016.debug-Friday,April1,2016.txt" />
+    <Content Include="DEBUG\20160401\S-Friday,April1,2016.TB-Friday,April1,2016.debug-Friday,April1,2016.txt" />
+    <Content Include="DEBUG\20160401\S-Friday,April1,2016.WR-Friday,April1,2016.debug-Friday,April1,2016.txt" />
+    <Content Include="DEBUG\20160404\S-Monday,April4,2016.AB-Monday,April4,2016.debug-Monday,April4,2016.txt" />
+    <Content Include="DEBUG\20160404\S-Monday,April4,2016.BR-Monday,April4,2016.debug-Monday,April4,2016.txt" />
+    <Content Include="DEBUG\20160404\S-Monday,April4,2016.NP-Monday,April4,2016.debug-Monday,April4,2016.txt" />
+    <Content Include="DEBUG\20160404\S-Monday,April4,2016.TB-Monday,April4,2016.debug-Monday,April4,2016.txt" />
+    <Content Include="DEBUG\20160404\S-Monday,April4,2016.WR-Monday,April4,2016.debug-Monday,April4,2016.txt" />
+    <Content Include="DEBUG\20160405\S-Tuesday,April5,2016.UOList-Tuesday,April5,2016.debug-Tuesday,April5,2016.txt" />
+    <Content Include="DEBUG\20160406\S-Wednesday,April6,2016.AB-Wednesday,April6,2016.debug-Wednesday,April6,2016.txt" />
+    <Content Include="DEBUG\20160406\S-Wednesday,April6,2016.BPTlf-Wednesday,April6,2016.debug-Wednesday,April6,2016.txt" />
+    <Content Include="DEBUG\20160406\S-Wednesday,April6,2016.TB-Wednesday,April6,2016.debug-Wednesday,April6,2016.txt" />
+    <Content Include="DEBUG\20160407\S-Thursday,April7,2016.AB-Thursday,April7,2016.debug-Thursday,April7,2016.txt" />
+    <Content Include="DEBUG\20160407\S-Thursday,April7,2016.TB-Thursday,April7,2016.debug-Thursday,April7,2016.txt" />
+    <Content Include="DEBUG\20160407\S788888-Thursday,April7,2016.CP-Thursday,April7,2016.debug-Thursday,April7,2016.txt" />
+    <Content Include="DEBUG\20160407\S78888855-Thursday,April7,2016.CP-Thursday,April7,2016.debug-Thursday,April7,2016.txt" />
+    <Content Include="DEBUG\20160408\S-Friday,April8,2016.TB-Friday,April8,2016.debug-Friday,April8,2016.txt" />
+    <Content Include="DEBUG\20160408\S-Friday,April8,2016.UOList-Friday,April8,2016.debug-Friday,April8,2016.txt" />
+    <Content Include="DEBUG\20160502\S-Monday,May2,2016.BPTlf-Monday,May2,2016.debug-Monday,May2,2016.txt" />
+    <Content Include="DEBUG\20160502\S-Monday,May2,2016.WR-Monday,May2,2016.debug-Monday,May2,2016.txt" />
+    <Content Include="DEBUG\20160520\S-Friday,May20,2016.AB-Friday,May20,2016.debug-Friday,May20,2016.txt" />
+    <Content Include="DEBUG\20160520\S-Friday,May20,2016.AC-Friday,May20,2016.debug-Friday,May20,2016.txt" />
+    <Content Include="DEBUG\20160520\S-Friday,May20,2016.BPTlf-Friday,May20,2016.debug-Friday,May20,2016.txt" />
+    <Content Include="DEBUG\20160520\S-Friday,May20,2016.SR-Friday,May20,2016.debug-Friday,May20,2016.txt" />
+    <Content Include="DEBUG\20160520\S-Friday,May20,2016.TB-Friday,May20,2016.debug-Friday,May20,2016.txt" />
+    <Content Include="DEBUG\20160520\S-Friday,May20,2016.WR-Friday,May20,2016.debug-Friday,May20,2016.txt" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\tahoma.eot" />
+    <Content Include="Content\fonts\tahoma.otf" />
+    <Content Include="Content\fonts\tahoma.ttf" />
+    <Content Include="Content\fonts\tahoma.woff" />
+    <Content Include="Content\fonts\tahomabd.eot" />
+    <Content Include="Content\fonts\tahomabd.otf" />
+    <Content Include="Content\fonts\tahomabd.ttf" />
+    <Content Include="Content\fonts\tahomabd.woff" />
+    <Content Include="DEBUG\20130712\SMAIL_SEND_FAILED" />
+    <Content Include="Content\fonts\OCRAStd.eot" />
+    <Content Include="Content\fonts\OCRAStd.ttf" />
+    <Content Include="Content\fonts\OCRAStd.woff" />
+    <Content Include="Content\fonts\IDAutomationOCRa.eot" />
+    <Content Include="Content\fonts\IDAutomationOCRa.otf" />
+    <Content Include="Content\fonts\IDAutomationOCRa.ttf" />
+    <Content Include="Content\fonts\IDAutomationOCRa.woff" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\COP2_Publish.pubxml" />
+    <None Include="Properties\PublishProfiles\FileSystemPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\LocalFolder_Sumi.pubxml" />
+    <None Include="Properties\PublishProfiles\localIIS File System.pubxml" />
+    <None Include="Properties\PublishProfiles\LocalIISDeploy.pubxml" />
+    <None Include="Properties\PublishProfiles\New175.pubxml" />
+    <None Include="Properties\PublishProfiles\NewLocation.pubxml" />
+    <Content Include="Helpers\XMLFile1.xml" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="TextDocumentsAndChangeLists\FileNameConflicts.txt" />
+    <Content Include="Views\Web\AccountInfo.aspx" />
+    <Content Include="Views\Web\AddressCheck.aspx" />
+    <Content Include="Views\Web\Balances\AccountBalanceCall.aspx" />
+    <Content Include="Views\Web\Balances\AccountBalancesNew.aspx" />
+    <Content Include="Views\Web\Balances\Balances.aspx" />
+    <Content Include="Views\Web\Balances\Parameters.htm" />
+    <Content Include="Views\Web\Balances\Payment.aspx" />
+    <Content Include="Views\Web\Balances\Payments.aspx" />
+    <Content Include="Views\Web\Balances\Status.htm" />
+    <Content Include="Views\Web\Balances\Zip_Apply01.htm" />
+    <Content Include="Views\Web\CreditCard\CCPageNew.aspx" />
+    <Content Include="Views\Web\Default.aspx" />
+    <Content Include="Views\Web\Inc\PreparerSectionNew.aspx" />
+    <Content Include="Views\Web\Menu\MenuNew1.aspx" />
+    <Content Include="Views\Web\PayCoupon\NTL_InitialNew.aspx" />
+    <Content Include="Views\Web\PayCoupon\NTL_ThankYouNew.aspx" />
+    <Content Include="Views\Web\PayCoupon\PayCouponNew.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTezReturn.aspx" />
+    <Content Include="Views\Web\Browser.htm" />
+    <Content Include="Views\Web\CreditCard\GetPage.aspx" />
+    <Content Include="Views\Web\PageMaintenance.htm" />
+    <Content Include="Views\Web\PayCoupon\CouponImageForm.htm" />
+    <Content Include="Views\Web\PayCoupon\PayCouponRecv.aspx" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponCreate.aspx" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponDisplay.htm" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageNew.aspx" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageTemplate.htm" />
+    <Content Include="Views\Web\ReturnServices\BPTezReturn_2014.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTezReturn_2015.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTezReturn_2016.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTlfReturn_2014.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTlfReturn_2015.aspx" />
+    <Content Include="Views\Web\ReturnServices\LiquorReturn.aspx" />
+    <Content Include="Views\Web\ReturnServices\NPTReturn_2015.aspx" />
+    <Content Include="Views\Web\Returns\13BIRTWrkShtN.htm" />
+    <Content Include="Views\Web\Returns\13BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPTez2013New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2015New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2016New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2015.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2016.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2016New.aspx" />
+    <Content Include="Views\Web\Returns\School2016New.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2016\16WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\NPT_ExemptedMsg.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2014.aspx" />
+    <Content Include="Views\Web\Returns\BPTezThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2014.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTlfReturn.aspx" />
+    <Content Include="Views\Web\Returns\ERN\ERN.asp" />
+    <Content Include="Views\Web\Returns\ERN\ERNReturn.asp" />
+    <Content Include="Views\Web\Returns\Liquor2013.aspx" />
+    <Content Include="Views\Web\Returns\LossCarryForward_dsNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13NPT_ExemptedMsg.htm" />
+    <Content Include="Views\Web\Returns\NPT\13Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkB.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkC.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkD.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkE.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkK.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkC.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkD.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkE.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkK.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2013NPT.aspx" />
+    <Content Include="Views\Web\Returns\School2013New.aspx" />
+    <Content Include="Views\Web\Returns\School2014New.aspx" />
+    <Content Include="Views\Web\Returns\School2015New.aspx" />
+    <Content Include="Views\Web\Returns\SchoolThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2013New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2014New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2015New.aspx" />
+    <Content Include="Views\Web\Returns\TobaccoThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\Wage2014New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2015.aspx" />
+    <Content Include="Views\Web\Returns\Wage2016New.aspx" />
+    <Content Include="Views\Web\Returns\WageThankYouNew.aspx" />
+    <Content Include="Views\Web\TestPages\SessionMutiUserTest.aspx" />
+    <Content Include="Views\Web\TestPages\table_design_test.aspx" />
+    <Content Include="Views\Web\ReturnServices\TobaccoReturn.aspx" />
+    <Content Include="Views\Web\ReturnServices\WageReturn.aspx" />
+    <Content Include="Views\Web\ReturnServices\SchoolReturn.aspx" />
+    <Content Include="Views\Web\E-check\Balances.aspx" />
+    <Content Include="Views\Web\E-check\Parameters.htm" />
+    <Content Include="Views\Web\E-check\Payment.aspx" />
+    <Content Include="Views\Web\E-check\Payments.aspx" />
+    <Content Include="Views\Web\E-check\Status.htm" />
+    <Content Include="Views\Web\E-check\Zip_Apply01.htm" />
+    <Content Include="Views\Web\ev.aspx" />
+    <Content Include="Views\Web\Header.htm" />
+    <Content Include="Views\Web\Inc\AppHeader.htm" />
+    <Content Include="Views\Web\Inc\HeaderInfo.htm" />
+    <Content Include="Views\Web\Inc\ispFunctionsSrv.vb.htm" />
+    <Content Include="Views\Web\Inc\ispRevFuncSrv.vb.htm" />
+    <Content Include="Views\Web\Inc\ispXmlProcSrv.js.htm" />
+    <Content Include="Views\Web\Inc\Progress.aspx" />
+    <Content Include="Views\Web\Is-Partner.htm" />
+    <Content Include="Views\Web\MailPIN.aspx" />
+    <Content Include="Views\Web\Maintenance.htm" />
+    <Content Include="Views\Web\Menu\Navigation.aspx" />
+    <Content Include="Views\Web\postinfo.html" />
+    <Content Include="Views\Web\ReadTaxForm.aspx" />
+    <Content Include="Views\Web\redirect.htm" />
+    <Content Include="Views\Web\Returns\BPTez.aspx" />
+    <Content Include="Views\Web\Returns\ERN\ERN.aspx" />
+    <Content Include="Views\Web\Returns\ERN\ERN.htm" />
+    <Content Include="Views\Web\Returns\ERN\ERN.js.htm" />
+    <Content Include="Views\Web\Returns\ERN\ERN2006.htm" />
+    <Content Include="Views\Web\Returns\ERN\ERNThankYou.htm" />
+    <Content Include="Views\Web\Returns\HelpPreviousPaidTax.htm" />
+    <Content Include="Views\Web\Returns\LossCarryForward.aspx" />
+    <Content Include="Views\Web\Returns\LossCarryForwardReturn.aspx" />
+    <Content Include="Views\Web\Returns\NPT\NPT.js.htm" />
+    <Content Include="Views\Web\ReturnServices\NPTReturn.aspx" />
+    <Content Include="Views\Web\Returns\Returns.aspx" />
+    <Content Include="Views\Web\Returns\School.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco.aspx" />
+    <Content Include="Views\Web\Returns\Wage.aspx" />
+    <Content Include="Views\Web\Returns\wagetax.htm" />
+    <Content Include="Views\Web\ThankYouNew.aspx" />
+    <Content Include="Views\Web\XML\ABAFILE.XML" />
+    <Content Include="Views\Web\XML\AcctInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\AcctTemplate.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\AddressCheck.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\AddressType.xml" />
+    <Content Include="Views\Web\XML\AddressType2.xml" />
+    <Content Include="Views\Web\XML\BPTezReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\BPTezReturn_2014.xml" />
+    <Content Include="Views\Web\XML\BPTezReturn_2015.xml" />
+    <Content Include="Views\Web\XML\BPTezReturn_2016.xml" />
+    <Content Include="Views\Web\XML\BPTlfReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\BPTlfReturn_2014.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\BPTlfReturn_2015.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\CCBilling.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\Code1.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\Code1AddressCheck.xml" />
+    <Content Include="Views\Web\XML\Cop Ed1.xml" />
+    <Content Include="Views\Web\XML\Cop Ed2.xml" />
+    <Content Include="Views\Web\XML\Cop Ed3.xml" />
+    <Content Include="Views\Web\XML\Cop Ed4.xml" />
+    <Content Include="Views\Web\XML\Cop Ed5.xml" />
+    <Content Include="Views\Web\XML\Cop Inq.xml" />
+    <Content Include="Views\Web\XML\Cop Tiffs1.xml" />
+    <Content Include="Views\Web\XML\CreditCard.xml" />
+    <Content Include="Views\Web\XML\DelinquentForm.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\EhdAcctTemplate.xml" />
+    <Content Include="Views\Web\XML\email.xml" />
+    <Content Include="Views\Web\XML\EntityType.xml" />
+    <Content Include="Views\Web\XML\EntityTypeCoupon.xml" />
+    <Content Include="Views\Web\XML\EntityTypePolice.xml" />
+    <Content Include="Views\Web\XML\ERNReturn.xml" />
+    <Content Include="Views\Web\XML\Ethnicity.xml" />
+    <Content Include="Views\Web\XML\LiquorReturn.xml" />
+    <Content Include="Views\Web\XML\LossCarryForward.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\NAIC.XML" />
+    <Content Include="Views\Web\XML\NPTReturn.xml" />
+    <Content Include="Views\Web\XML\NPTReturn_2015.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\OrgType.xml" />
+    <Content Include="Views\Web\XML\Output.xml" />
+    <Content Include="Views\Web\XML\PayCoupon.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\PoliceEntityType.xml" />
+    <Content Include="Views\Web\XML\Relationship.xml" />
+    <Content Include="Views\Web\XML\SchoolReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\Sex.xml" />
+    <Content Include="Views\Web\XML\Statezip.xml" />
+    <Content Include="Views\Web\XML\test.xml" />
+    <Content Include="Views\Web\XML\TobaccoReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\UOForm.xml" />
+    <Content Include="Views\Web\XML\UOFormNew.xml" />
+    <Content Include="Views\Web\XML\UOList.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\UOPdfReturn.xml" />
+    <Content Include="Views\Web\XML\UOReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\WageReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web References\RTTIE040_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\RTTIE040_SrvRef\RT01E040.wsdl" />
+    <Content Include="Web References\RTTIE040_SrvRef\RT01E040Response_EAMTS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE040_SrvRef\RT01E040Response_ENPT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE040_SrvRef\RT01E040Response_SERR.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE040_SrvRef\RT01E040Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE016_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\RTTIE016_SrvRef\RTTIE016.wsdl" />
+    <Content Include="Web References\RTTIE016_SrvRef\RTTIE016Response_EMI.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE016_SrvRef\RTTIE016Response_ETA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE016_SrvRef\RTTIE016Response_EWAGNTL.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE016_SrvRef\RTTIE016Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\SIT_RTTIE036_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\SIT_RTTIE036_SrvRef\RTTIE036.wsdl" />
+    <Content Include="Web References\SIT_RTTIE036_SrvRef\RTTIE036Response_EAMT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\SIT_RTTIE036_SrvRef\RTTIE036Response_ESIT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\SIT_RTTIE036_SrvRef\RTTIE036Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\TOBACCO_RTTIE028_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\TOBACCO_RTTIE028_SrvRef\RT01E028.wsdl" />
+    <Content Include="Web References\TOBACCO_RTTIE028_SrvRef\RT01E028Response_EAMT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\TOBACCO_RTTIE028_SrvRef\RT01E028Response_ETOB.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\TOBACCO_RTTIE028_SrvRef\RT01E028Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\UOForm_RTTIE035_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\UOForm_RTTIE035_SrvRef\RTTIE035.wsdl" />
+    <Content Include="Web References\UOForm_RTTIE035_SrvRef\RTTIE035Response_EAMTS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\UOForm_RTTIE035_SrvRef\RTTIE035Response_EUO3.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\UOForm_RTTIE035_SrvRef\RTTIE035Response_EUOL.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\UOForm_RTTIE035_SrvRef\RTTIE035Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE022_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\RTTIE022_SrvRef\RTTIE022.wsdl" />
+    <Content Include="Web References\RTTIE022_SrvRef\RTTIE022Response_EMI.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE022_SrvRef\RTTIE022Response_ETA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\RTTIE022_SrvRef\RTTIE022Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\UOList_RTTIE034_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\UOList_RTTIE034_SrvRef\RT01E034.wsdl" />
+    <Content Include="Web References\UOList_RTTIE034_SrvRef\RT01E034Response_ELIST.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\UOList_RTTIE034_SrvRef\RT01E034Response_EREQ.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\UOList_RTTIE034_SrvRef\RT01E034Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\WAGE_RTTIE027_SrvRef\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\WAGE_RTTIE027_SrvRef\RT01E027.wsdl" />
+    <Content Include="Web References\WAGE_RTTIE027_SrvRef\RT01E027Response_EAMT.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\WAGE_RTTIE027_SrvRef\RT01E027Response_EWAG.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\WAGE_RTTIE027_SrvRef\RT01E027Response_SERR.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\WAGE_RTTIE027_SrvRef\RT01E027Response_SMA.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Views\Web\Returns\Change_Form.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="CouponImages\" />
+    <Folder Include="LOG_PATH\201307\" />
+    <Folder Include="LOG_PATH\201412\" />
+    <Folder Include="LOG_PATH\201501\" />
+    <Folder Include="LOG_PATH\201505\" />
+    <Folder Include="LOG_PATH\201510\" />
+    <Folder Include="LOG_PATH\201511\" />
+    <Folder Include="LOG_PATH\201512\" />
+    <Folder Include="LOG_PATH\201601\" />
+    <Folder Include="LOG_PATH\201602\" />
+    <Folder Include="LOG_PATH\201603\" />
+    <Folder Include="LOG_PATH\201604\" />
+    <Folder Include="LOG_PATH\201605\" />
+    <Folder Include="Views\Mobile\" />
+    <Folder Include="Views\Web\Returns\BPT_LF\Images\" />
+    <Folder Include="Views\Web\Returns\School\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web\XML\vssver.scc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AspUtils\AspUtils.csproj">
+      <Project>{937a653a-8ec1-4cf9-aab1-7776048633ef}</Project>
+      <Name>AspUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\COPXmlFactory\COPXmlFactory.csproj">
+      <Project>{489f195c-4b1c-49a8-9d00-c0db08304f17}</Project>
+      <Name>COPXmlFactory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RT01E027%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WAGE_RTTIE027_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RT01E027%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_WAGE_RTTIE027_SrvRef_RT01E027</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RT01E028%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\TOBACCO_RTTIE028_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RT01E028%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_TOBACCO_RTTIE028_SrvRef_RT01E028</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RT01E034%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\UOList_RTTIE034_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RT01E034%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_UOList_RTTIE034_SrvRef_RT01E034</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RT01E037%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\BPTLFEZ_RT01E037_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RT01E037%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_BPTLFEZ_RT01E037_SrvRef_RT01E037</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RT01E040%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RTTIE040_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RT01E040%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_RTTIE040_SrvRef_RT01E040</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RT02E030%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RTTIE030_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RT02E030%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_RTTIE030_SrvRef_RT02E030</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RTTIE010%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RTTIE010_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RTTIE010%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_RTTIE010_SrvRef_RTTIE010</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RTTIE016%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RTTIE016_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RTTIE016%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_RTTIE016_SrvRef_RTTIE016</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RTTIE022%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RTTIE022_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RTTIE022%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_RTTIE022_SrvRef_RTTIE022</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RTTIE031%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LCF_RTTIE031_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RTTIE031%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_LCF_RTTIE031_SrvRef_RTTIE031</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RTTIE035%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\UOForm_RTTIE035_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RTTIE035%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_UOForm_RTTIE035_SrvRef_RTTIE035</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://istest.city.phila.local:10010/wsstack/services/RTTIE036%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SIT_RTTIE036_SrvRef\</RelPath>
+      <UpdateFromURL>http://istest.city.phila.local:10010/wsstack/services/RTTIE036%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CopRevenueGov2_SIT_RTTIE036_SrvRef_RTTIE036</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Code1_SrvRef\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4962</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4899/CopRevenue2Test/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

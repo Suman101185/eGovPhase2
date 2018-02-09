@@ -1,0 +1,154 @@
+<html>
+<head>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+<script src="../js/JqueryMin.js" type="text/javascript"></script>
+<script ID="clientEventHandlersJS" LANGUAGE="javascript">
+
+function DisplayWageThankYou() {
+
+	if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2002') {
+		$('#lblName').text( $('#lblName_02').text());
+		$('#lblAcctNo').text( $('#lblAcctId_02').text());
+	} else if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2003') {
+		$('#lblName').text($('#lblName_03').text());
+		$('#lblAcctNo').text( $('#lblAcctId_03').text());
+	} else if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2004') {
+		$('#lblName').text($('#lblName_04').text());
+		$('#lblAcctNo').text($('#lblAcctId_04').text());
+	} else if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2005') {
+		$('#lblName').text( $('#lblName_05').text());
+		$('#lblAcctNo').text( $('#lblAcctId_05').text());
+	} else if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2006') {
+		$('#lblName').text($('#lblName_05').text());
+		$('#lblAcctNo').text( $('#lblAcctId_05').text());
+	} else if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2007') {
+		$('#lblName').text( $('#lblName_05').text());
+		$('#lblAcctNo').text( $('#lblAcctId_05').text());
+	} else if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2008') {
+		$('#lblName').text( $('#lblName_08').text());
+		$('#lblAcctNo').text( $('#lblAcctId_08').text());
+	} else if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2009') {
+		$('#lblName').text( $('#lblName_08').text());
+		$('#lblAcctNo').text( $('#lblAcctId_08').text());
+	} else if (ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0) ==	'12/31/2010') {
+		$('#lblName').text( $('#lblName_08').text());
+		$('#lblAcctNo').text( $('#lblAcctId_08').text());
+	} else {
+		$('#lblName').text( $('#lblEntityName').text());
+		$('#lblAcctNo').text( $('#lblAcctId').text());
+	}		//if
+	$('#lblConfirmNo').text( 
+			ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO ADJ_REFNO_CONTROL', '', 0));
+	$('#divWageThankYou').css('display', 'block');
+	this.focus();
+	parent.MenuWin.gsInstructionItem = '';
+	$('#AppMessage').html('');
+	$('#AppHeader').html( txtHeader + '<Font class=hdrMedium>|thank you</Font>');
+	$('#ccFeeText').text( 'A user fee of 2.49% will be charged in addition to the amount of tax due.');
+}		//DisplayThankyou
+
+
+function DoThankYou() {
+var sEmailMsg;
+	if (txaComments.value != '') {
+		sEmailMsg = '<p align=middle><strong>Comments and Feedback</strong></p>';
+		sEmailMsg += '<p>The following comments or feedback was submitted by: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS NAME', '', 0) + '</p>';
+		sEmailMsg += '<p>Company: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS TRADE_NAME', '', 0) + '</p>';
+		sEmailMsg += '<p>E-mail address: ';
+		sEmailMsg += ispXmlGetFieldVal(parent.MenuWin.xmlAccount, 'NAME_ADDRESS EMAIL', '', 0) + '</p><br>';
+		sEmailMsg += '<p><strong>Message: </strong></p>';
+		sEmailMsg += '<p>' + txaComments.value + '</p>';
+		
+		sEmailMsg = ispReplace(sEmailMsg, '>', '&GT&');
+		sEmailMsg = ispReplace(sEmailMsg, '<', '&LT&');
+		
+		ispXmlSetFieldVal(parent.MenuWin.xmlEmail, 'COMMENT', 'FUNCTION', '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlEmail, sEmailMsg, 'DATA', '', 0);
+
+		oEmail = parent.MenuWin.getXmlDocObj();
+		
+		ispCallXMLForm(parent.MenuWin.xmlEmail, oEmail, '../MailPIN', '');
+	}		//if
+	parent.DocWin.location.href = '../Acct/ApplyMain.asp';
+}		//if
+
+//EOGVWEB-69 EDD Added function to print coupon
+function DoPrintCoupon() {
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, 'WAGE', 'COUPON_FORM CPN_FORM', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, '1', 'COUPON_FORM CPN_ACCOUNT_TYPE', '');
+  ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO ACCOUNT_ID', '', 0), 'COUPON_FORM CPN_ACCOUNT', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS NAME', '', '0'), 'COUPON_FORM CPN_NAME', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, lblName.innerText, 'COUPON_FORM CPN_ADDR', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS ADDRESS2', '', '0'), 'COUPON_FORM CPN_ADDR2', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, "", 'COUPON_FORM CPN_ADDR3', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS CITY', '', '0'), 'COUPON_FORM CPN_CITY', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS STATE', '', '0'), 'COUPON_FORM CPN_STATE', '')
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlAccount,'NAME_ADDRESS ZIP', '', '0'), 'COUPON_FORM CPN_ZIP_CODE', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0), 'COUPON_FORM CPN_PERIOD', '');
+	ispXmlSetFieldVal(parent.MenuWin.xmlPayCoupon, ispXmlGetFieldVal(parent.MenuWin.xmlWage, 'WAGE_INFO PERIOD', '', 0).substr(6,4), "COUPON_FORM CPN_YEAR", "");
+	ispDisplayProgress('', 'Creating Wage Tax Coupon');
+	SetupPassFields();
+	parent.DocWin.location.href = '../PayCoupon/PDFCouponCreate.asp?' + tempParameters;
+}		//DoPrintCoupon
+
+function ispReplace(sInput, sFind, sReplace){
+	return sInput.replace(sFind, sReplace);
+}
+
+</script>
+
+</head>
+<BODY>
+
+<DIV Id="divWageThankYou" Name="divWageThankYou" style="DISPLAY: none; VISIBILTY: visible">
+<table cellSpacing="0" cellPadding="1" width="95%" border="0"
+		 style="MARGIN-BOTTOM: 5px; MARGIN-LEFT: 4%"></TR>
+  <tr vAlign="top" align="left">
+    <td width=75%>
+      <p id=hdrThankYou name=hdrThankYou class="lblTextBlack">
+				Your Return is now being processed. <br>
+				You may want to print a copy of this page for your records.<br>
+				Thank you for filing your <%= cstr(cint(sCurrYear) - 1)%> 
+				Wage Tax Reconciliation Return Online.</p>
+			<p class='lblTextBlack' style="MARGIN-TOP:15px; MARGIN-BOTTOM: 0px" >Name: 
+				<label class='lblTextBlack' id='lblName'></label></p>
+			<p class='lblTextBlack' style="MARGIN-TOP:0px; MARGIN-BOTTOM: 0px" >Account No.: 
+				<label class='lblTextBlack' id='lblAcctNo'></label>.</p>
+			<p class='lblTextBlack' style="MARGIN-TOP:0px">Your Confirmation number is 
+				<label class='lblTextBlack' id='lblConfirmNo'></label>.</p>
+			<center><p class='lblTextBlack' style="MARGIN-TOP:15px"><b>Payment Options</b></p></center>
+			<!--#Include file="../CreditCard/CCPage.htm"-->
+			<p class='lblTextBlack' style="MARGIN-TOP:15px"><b>Coupon</b> - 
+<!--EGOVWEB-69 EDD Added the print coupon button-->
+			<input class="btnNormal" id="btnPrintCoupon" name="btnPrintCoupon" type="button" value="Print Coupon" onclick="DoPrintCoupon()">
+<!--				you can use the coupon from 
+				the bottom of the paper tax return that was sent to you. -->Attach a check for	the amount 
+				due, payable to the "City of Philadelphia" and mail the coupon and check to:</p>
+			<p class='lblTextBlack' style="MARGIN-TOP:15px; MARGIN-LEFT:30px">
+				Philadelphia Department of Revenue<br>
+				P.O. Box 1670<br>
+				Philadelphia, PA 19105-1670</p>
+			<p class='lblTextBlack'><b>Other</b> - if you do not want to pay by credit card and you do not
+				have a coupon, print a copy of this page to mail with your payment to the address noted
+				above.<br>
+				Mail the W-2's with your check. If no tax was due, still mail the W-2's to the above 
+				address.</p></td>
+</table>
+<table cellSpacing="0" cellPadding="0" width="80%" border="0" 
+		style="MARGIN-TOP: 15px; MARGIN-LEFT: 4%">	
+  <tr height=20>
+		<td><p class=lblTextBlack>We would appreciate your comments / feedback concerning your online experience.<br>
+						Please enter your comments / feedback below:</p>
+				<TEXTAREA id=txaComments style="WIDTH: 80%; height: 60px" name=txaComments></TEXTAREA>
+  <tr height=20 valign="bottom">
+		<td align="middle"><p><input class="btnNormal" id="btnWageThankYou" name="btnWageThankYou"
+			  type="submit" value="Thank You" onclick="DoThankYou()">
+			  </p></td></tr>
+</table>
+</DIV>
+
+</BODY>
+</html>

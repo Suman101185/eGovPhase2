@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+    <style>
+        .inpNormal, .inpReadOnlyRt, .inpError {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body onload='LoadError("WrkE")'>
+    <div id="NPT_WrkE" style="DISPLAY: none; VISIBILTY: hidden" name="NPT_WrkE">
+        <table class="tblShowBorder" id="TABLE1" style="MARGIN-LEFT: 4%" cellspacing="0"
+            cellpadding="0" width="90%" border="0">
+
+            <tr height="0">
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+                <td width="5%"></td>
+            </tr>
+            <tr class="rowDataEven">
+                <td colspan="20">
+                    <label class="lblInstrNormal"><u>Worksheet E: Summary of Payments and Other Credits</u></label></td>
+
+                <tr class="rowDataOdd">
+                    <td>
+                        <label class="lblInstrNormal">1.</label></td>
+                    <td colspan="16">
+                        <label class="lblInstrNormal">2010 Estimated Net Profits Tax Payments</label></td>
+                    <td colspan="3">
+                        <input class="inpNormal" id="txtNPT_WrkE_1" style="WIDTH: 100%"
+                            onfocus="SetFocus()" maxlength="10" onchange='ValidateWorksheet("WrkE")'></td>
+                </tr>
+            </tr>
+
+            <tr class="rowDataEven">
+                <td>
+                    <label class="lblInstrNormal">2.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">
+                        Payments of 2010 Net Profits Tax made with Application for Extension
+    of Time to File</label>
+                </td>
+                <td colspan="3">
+                    <input class="inpNormal" id="txtNPT_WrkE_2" style="WIDTH: 100%"
+                        onfocus="SetFocus()" maxlength="10" onchange='ValidateWorksheet("WrkE")'></td>
+            </tr>
+
+            <tr class="rowDataOdd">
+                <td>
+                    <label class="lblInstrNormal">3.</label></td>
+                <td colspan="16">
+                    <label class="lblInstrNormal">
+                        Overpayment of 2010 Business Privilege Tax or 2009 Net Profits Tax
+    to be applied to this tax return</label></td>
+                <td colspan="3">
+                    <input class="inpNormal" id="txtNPT_WrkE_3" style="WIDTH: 100%"
+                        onfocus="SetFocus()" maxlength="10" onchange='ValidateWorksheet("WrkE")'></td>
+            </tr>
+
+            <tr class="rowDataEven">
+                <td>
+                    <label class="lblInstrNormal">4.</label></td>
+                <td colspan="8">
+                    <label class="lblInstrNormal">Total of lines 1 through 3. Enter here and on Page 1, Line 6b</label></td>
+                <td align="right" colspan="8">
+                    <label class="lblInstrNormal">[Calculated - Add lines 1 through 3]&nbsp;</label></td>
+                <td colspan="3">
+                    <label class="inpReadOnlyRt" id="lblNPT_WrkE_4"
+                        style="WIDTH: 100%">
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <p></p>
+        <table style="MARGIN-LEFT: 4%" width="90%" border="0">
+            <tr>
+                <td>
+                    <input language="javascript" id="btnWrkEGoToPage1" onclick='ShowPage("Page1", "WrkE")' type="button" value="Return to Page 1"></td>
+            </tr>
+        </table>
+    </div>
+    <!--NPT_WrkE-->
+</body>
+</html>

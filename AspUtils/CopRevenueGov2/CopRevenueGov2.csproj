@@ -1,0 +1,1300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F10D0F40-110F-4C97-99A8-FBD14E20FB20}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CopRevenueGov2</RootNamespace>
+    <AssemblyName>CopRevenueGov2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PrecompileBeforePublish>false</PrecompileBeforePublish>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\..\..\eGov2\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\..\..\..\..\..\eGov2\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WinSCPnet">
+      <HintPath>\\192.168.32.34\Shared On 174\TestProject1\TestProject1\bin\Debug\WinSCPnet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AcctController.cs" />
+    <Compile Include="Controllers\BalancesController.cs" />
+    <Compile Include="Controllers\BPT_LFController.cs" />
+    <Compile Include="Controllers\CreditCardController.cs" />
+    <Compile Include="Controllers\EcheckController.cs" />
+    <Compile Include="Controllers\ERNController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NPTController.cs" />
+    <Compile Include="Controllers\PayCouponController.cs" />
+    <Compile Include="Controllers\ReturnsController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UOController.cs" />
+    <Compile Include="Controllers\XMLController.cs" />
+    <Compile Include="Helpers\CopMvcUtil.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\COPBaseController.cs" />
+    <Compile Include="Helpers\COPPaths.cs" />
+    <Compile Include="Helpers\COPServiceURLHelper.cs" />
+    <Compile Include="Helpers\COPSession.cs" />
+    <Compile Include="Helpers\COPAppSettings.cs" />
+    <Compile Include="Helpers\FuncSrv.cs" />
+    <Compile Include="Helpers\CopQueryString.cs" />
+    <Compile Include="Helpers\RevFuncSrv.cs" />
+    <Compile Include="Helpers\ServiceHelpers\Code1Service.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE016.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE022.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE027.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE029.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE030.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE030_2014.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE030_2015.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE035.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE010.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE028.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE031.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE034.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE035New.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE036.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE037.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE037_2014.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE037_2015.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE039.cs" />
+    <Compile Include="Helpers\ServiceHelpers\RTTIE039_2015.cs" />
+    <Compile Include="Helpers\ServiceHelpers\ServiceManager.cs" />
+    <Compile Include="Helpers\ServiceHelpers\ServiceManager2.cs" />
+    <Compile Include="Helpers\VB.cs" />
+    <Compile Include="Helpers\XMLUtil.cs" />
+    <Compile Include="Models\SessionMutiuserTestModel.cs" />
+    <Compile Include="Models\Web\Returns\BPF_LF\BPTLFThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\BPTezThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\UOThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\TobaccoThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\SchoolThankYouModel.cs" />
+    <Compile Include="Models\Web\Returns\UOThankYouModelNew.cs" />
+    <Compile Include="Models\Web\Returns\WageThankYouModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Code1_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE016_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE031_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE034_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE035_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE210_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE222_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE227_Srvref\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE228_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE229_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE230_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE236_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE237_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RTTIE239_SrvRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="14WorkNR_3.aspx" />
+    <Content Include="Content\DemoDocWinHtmls\BPTezForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\BPTlfForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\BPTlfSchB.html" />
+    <Content Include="Content\DemoDocWinHtmls\index.html" />
+    <Content Include="Content\DemoDocWinHtmls\Login.html" />
+    <Content Include="Content\DemoDocWinHtmls\LossCarryForward.html" />
+    <Content Include="Content\DemoDocWinHtmls\NPTForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\outstanding.html" />
+    <Content Include="Content\DemoDocWinHtmls\Profile.html" />
+    <Content Include="Content\DemoDocWinHtmls\SchoolForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\Thank you.html" />
+    <Content Include="Content\DemoDocWinHtmls\TobaccoForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\UoForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\UOList.html" />
+    <Content Include="Content\DemoDocWinHtmls\WageForm.html" />
+    <Content Include="Content\DemoDocWinHtmls\XMLFile1.xml" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\opensans-bold.svg" />
+    <Content Include="Content\fonts\opensans-regular.svg" />
+    <Content Include="Content\Images\1407844757_Silver_button.png" />
+    <Content Include="Content\Images\account_done.gif" />
+    <Content Include="Content\Images\account_opt.gif" />
+    <Content Include="Content\Images\account_tbd.gif" />
+    <Content Include="Content\Images\address_done.gif" />
+    <Content Include="Content\Images\address_opt.gif" />
+    <Content Include="Content\Images\address_tbd.gif" />
+    <Content Include="Content\Images\aProgress.gif" />
+    <Content Include="Content\Images\bg_grad.jpg" />
+    <Content Include="Content\Images\bg_grad2.jpg" />
+    <Content Include="Content\Images\blue_arrow.png" />
+    <Content Include="Content\Images\blue_tick.jpg" />
+    <Content Include="Content\Images\button_arrow.png" />
+    <Content Include="Content\Images\button_bg.png" />
+    <Content Include="Content\Images\button_bg2.jpg" />
+    <Content Include="Content\Images\button_bg_hover.png" />
+    <Content Include="Content\Images\button_gen.jpg" />
+    <Content Include="Content\Images\button_gen_hover.jpg" />
+    <Content Include="Content\Images\Capture.JPG" />
+    <Content Include="Content\Images\Capture1.JPG" />
+    <Content Include="Content\Images\card_amex.gif" />
+    <Content Include="Content\Images\check.gif" />
+    <Content Include="Content\Images\cityseal.gif" />
+    <Content Include="Content\Images\city_seal.gif" />
+    <Content Include="Content\Images\Copy of li_hover-bg.jpg" />
+    <Content Include="Content\Images\Copy of treeSplit.png" />
+    <Content Include="Content\Images\department_back.gif" />
+    <Content Include="Content\Images\discover.gif" />
+    <Content Include="Content\Images\e-check_done.gif" />
+    <Content Include="Content\Images\e-check_opt.gif" />
+    <Content Include="Content\Images\e-check_tbd.gif" />
+    <Content Include="Content\Images\electfile.gif" />
+    <Content Include="Content\Images\ePay.gif" />
+    <Content Include="Content\Images\footer_block.jpg" />
+    <Content Include="Content\Images\green_tick.jpg" />
+    <Content Include="Content\Images\header_stripe.jpg" />
+    <Content Include="Content\Images\ispDot.gif" />
+    <Content Include="Content\Images\ligtbutton_bg.jpg" />
+    <Content Include="Content\Images\ligtbutton_bg_hover.jpg" />
+    <Content Include="Content\Images\li_bg.jpg" />
+    <Content Include="Content\Images\li_hover-bg.jpg" />
+    <Content Include="Content\Images\lockup_ADMV175x30.gif" />
+    <Content Include="Content\Images\lockup_ADMV230x40.gif" />
+    <Content Include="Content\Images\lockup_ADMV350x60.gif" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\m1.gif" />
+    <Content Include="Content\Images\m1.jpg" />
+    <Content Include="Content\Images\m2.jpg" />
+    <Content Include="Content\Images\mastercardlogo.gif" />
+    <Content Include="Content\Images\menulink.png" />
+    <Content Include="Content\Images\monitor.jpg" />
+    <Content Include="Content\Images\no.cur" />
+    <Content Include="Content\Images\officer_done.gif" />
+    <Content Include="Content\Images\officer_opt.gif" />
+    <Content Include="Content\Images\officer_tbd.gif" />
+    <Content Include="Content\Images\our_site.gif" />
+    <Content Include="Content\Images\payment.jpg" />
+    <Content Include="Content\Images\PDF Printer.png" />
+    <Content Include="Content\Images\PDF scaling.png" />
+    <Content Include="Content\Images\Police_Header.jpg" />
+    <Content Include="Content\Images\print.jpg" />
+    <Content Include="Content\Images\print.png" />
+    <Content Include="Content\Images\profile_done.gif" />
+    <Content Include="Content\Images\profile_opt.gif" />
+    <Content Include="Content\Images\profile_tbd.gif" />
+    <Content Include="Content\Images\progress.gif" />
+    <Content Include="Content\Images\question.gif" />
+    <Content Include="Content\Images\question.jpg" />
+    <Content Include="Content\Images\question.png" />
+    <Content Include="Content\Images\quicklink_header.jpg" />
+    <Content Include="Content\Images\Revenue_Back.gif" />
+    <Content Include="Content\Images\revenue_header.gif" />
+    <Content Include="Content\Images\revenue_header_old.gif" />
+    <Content Include="Content\Images\revenue_top.gif" />
+    <Content Include="Content\Images\submit_done.gif" />
+    <Content Include="Content\Images\submit_opt.gif" />
+    <Content Include="Content\Images\submit_tbd.gif" />
+    <Content Include="Content\Images\taxtype_done.gif" />
+    <Content Include="Content\Images\taxtype_opt.gif" />
+    <Content Include="Content\Images\taxtype_tbd.gif" />
+    <Content Include="Content\Images\transparent.png" />
+    <Content Include="Content\Images\TRASH.BMP" />
+    <Content Include="Content\Images\treeSplit.png" />
+    <Content Include="Content\Images\visalogo.gif" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\grayscale.js" />
+    <Content Include="Content\js\iframe.js" />
+    <Content Include="Content\js\jPushMenu.js" />
+    <Content Include="Content\js\jquery.easing.min.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.nanoscroller.js" />
+    <Content Include="Content\js\npm.js" />
+    <Content Include="Content\js\treeMenu.js" />
+    <Content Include="Content\Scripts\Accounting.js" />
+    <Content Include="Content\Scripts\global.js" />
+    <Content Include="Content\Scripts\ispCoupon.js" />
+    <Content Include="Content\Scripts\ispFunctions.js" />
+    <Content Include="Content\Scripts\ispXmlProc.js" />
+    <Content Include="Content\Scripts\jquery-1.js" />
+    <Content Include="Content\Scripts\jquery.browser.min.js" />
+    <Content Include="Content\Scripts\JqueryMin.js" />
+    <Content Include="Content\Scripts\RegExpValidate.js" />
+    <Content Include="Content\Scripts\treeMenu.js" />
+    <Content Include="Content\Styles\bootstrap.css" />
+    <Content Include="Content\Styles\copegov.css" />
+    <Content Include="Content\Styles\Font.css" />
+    <Content Include="Content\Styles\framestyle.css" />
+    <Content Include="Content\Styles\framestyle1.css" />
+    <Content Include="Content\Styles\jPushMenu.css" />
+    <Content Include="Content\Styles\jqtree.css" />
+    <Content Include="Content\Styles\nanoscroller.css" />
+    <Content Include="Content\Styles\Object.css" />
+    <Content Include="Content\Styles\style.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\fonts\opensans-bold.eot" />
+    <Content Include="Content\fonts\opensans-bold.otf" />
+    <Content Include="Content\fonts\opensans-bold.ttf" />
+    <Content Include="Content\fonts\opensans-bold.woff" />
+    <Content Include="Content\fonts\opensans-regular.eot" />
+    <Content Include="Content\fonts\opensans-regular.otf" />
+    <Content Include="Content\fonts\opensans-regular.ttf" />
+    <Content Include="Content\fonts\opensans-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\COP2_Publish.pubxml" />
+    <None Include="Properties\PublishProfiles\FileSystemPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\LocalFolder_Sumi.pubxml" />
+    <None Include="Properties\PublishProfiles\localIIS File System.pubxml" />
+    <None Include="Properties\PublishProfiles\LocalIISDeploy.pubxml" />
+    <None Include="Properties\PublishProfiles\New175.pubxml" />
+    <None Include="Properties\PublishProfiles\NewLocation.pubxml" />
+    <Content Include="Helpers\XMLFile1.xml" />
+    <Content Include="Service References\Code1_SrvRef\service1.wsdl" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\Code1_SrvRef\service1.disco" />
+    <Content Include="Service References\Code1_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\Code1_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\Code1_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE016_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE016_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE016_SrvRef\CopRevenueGov2.RTTIE016_SrvRef.RTTIE216Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE016_SrvRef\CopRevenueGov2.RTTIE016_SrvRef.RTTIE216Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE016_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE031_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE031_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE031_SrvRef\CopRevenueGov2.RTTIE031_SrvRef.RTTIE231Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE031_SrvRef\CopRevenueGov2.RTTIE031_SrvRef.RTTIE231Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE031_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE034_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE034_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE034_SrvRef\CopRevenueGov2.RTTIE034_SrvRef.RTTIE234Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE034_SrvRef\CopRevenueGov2.RTTIE034_SrvRef.RTTIE234Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE034_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE035_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE035_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE035_SrvRef\CopRevenueGov2.RTTIE035_SrvRef.RTTIE235Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE035_SrvRef\CopRevenueGov2.RTTIE035_SrvRef.RTTIE235Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE035_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE210_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE210_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE210_SrvRef\CopRevenueGov2.RTTIE210_SrvRef.RTTIE210Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE210_SrvRef\CopRevenueGov2.RTTIE210_SrvRef.RTTIE210Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE210_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE222_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE222_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE222_SrvRef\CopRevenueGov2.RTTIE222_SrvRef.RTTIE2222Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE222_SrvRef\CopRevenueGov2.RTTIE222_SrvRef.RTTIE222Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE222_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE227_Srvref\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE227_Srvref\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE227_Srvref\CopRevenueGov2.RTTIE227_Srvref.RTTIE227Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE227_Srvref\CopRevenueGov2.RTTIE227_Srvref.RTTIE227Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE227_Srvref\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE228_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE228_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE228_SrvRef\CopRevenueGov2.RTTIE228_SrvRef.RTTIE228Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE228_SrvRef\CopRevenueGov2.RTTIE228_SrvRef.RTTIE228Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE228_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE229_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE229_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE229_SrvRef\CopRevenueGov2.RTTIE229_SrvRef.RTTIE229Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE229_SrvRef\CopRevenueGov2.RTTIE229_SrvRef.RTTIE229Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE229_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Service References\RTTIE230_SrvRef\configuration91.svcinfo" />
+    <None Include="Service References\RTTIE230_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE230_SrvRef\CopRevenueGov2.RTTIE230_SrvRef.RTTIE230Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE230_SrvRef\CopRevenueGov2.RTTIE230_SrvRef.RTTIE230Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\RTTIE230_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\RTTIE236_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE236_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE236_SrvRef\CopRevenueGov2.RTTIE236_SrvRef.RTTIE236Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE236_SrvRef\CopRevenueGov2.RTTIE236_SrvRef.RTTIE236Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE236_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE237_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE237_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE237_SrvRef\CopRevenueGov2.RTTIE237_SrvRef.RTTIE237Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE237_SrvRef\CopRevenueGov2.RTTIE237_SrvRef.RTTIE237Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE237_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\RTTIE239_SrvRef\configuration91.svcinfo" />
+    <Content Include="Service References\RTTIE239_SrvRef\configuration.svcinfo" />
+    <Content Include="Service References\RTTIE239_SrvRef\CopRevenueGov2.RTTIE239_SrvRef.RTTIE239Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE239_SrvRef\CopRevenueGov2.RTTIE239_SrvRef.RTTIE239Response1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\RTTIE239_SrvRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="TextDocumentsAndChangeLists\FileNameConflicts.txt" />
+    <Content Include="Views\Web\AccountInfo.aspx" />
+    <Content Include="Views\Web\Acct\AddressCorrection.htm" />
+    <Content Include="Views\Web\Acct\Addresses.htm" />
+    <Content Include="Views\Web\Acct\AddressesNew.aspx" />
+    <Content Include="Views\Web\Acct\old_AddressesNew.aspx" />
+    <Content Include="Views\Web\Acct\ApplyMain.aspx" />
+    <Content Include="Views\Web\Acct\Echeck.htm" />
+    <Content Include="Views\Web\Acct\NewEmail.htm" />
+    <Content Include="Views\Web\Acct\Partners-Officers.htm" />
+    <Content Include="Views\Web\Acct\old_Partners-OfficersNew.aspx" />
+    <Content Include="Views\Web\Acct\Partners-OfficersNew.aspx" />
+    <Content Include="Views\Web\Acct\Profile.htm" />
+    <Content Include="Views\Web\Acct\old_ProfileNew.aspx" />
+    <Content Include="Views\Web\Acct\copy_ProfileNew.aspx" />
+    <Content Include="Views\Web\Acct\ProfileNew.aspx" />
+    <Content Include="Views\Web\Acct\Taxes.htm" />
+    <Content Include="Views\Web\Acct\old_TaxesNew.aspx" />
+    <Content Include="Views\Web\Acct\TaxesNew.aspx" />
+    <Content Include="Views\Web\Acct\ThankYou.htm" />
+    <Content Include="Views\Web\Acct\ThankYouNew.aspx" />
+    <Content Include="Views\Web\Acct\XMLFile1.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\Acct\XMLFile2.xml" />
+    <Content Include="Views\Web\AddressCheck.aspx" />
+    <Content Include="Views\Web\Balances\AccountBalanceCall.aspx" />
+    <Content Include="Views\Web\Balances\AccountBalanceCall1.aspx" />
+    <Content Include="Views\Web\Balances\AccountBalances.aspx" />
+    <Content Include="Views\Web\Balances\AccountBalancesNew.aspx" />
+    <Content Include="Views\Web\Balances\AccountBalancesNew_OLD.aspx" />
+    <Content Include="Views\Web\Balances\Balances.aspx" />
+    <Content Include="Views\Web\Balances\Parameters.htm" />
+    <Content Include="Views\Web\Balances\Payment.aspx" />
+    <Content Include="Views\Web\Balances\Payments.aspx" />
+    <Content Include="Views\Web\Balances\Status.htm" />
+    <Content Include="Views\Web\Balances\Zip_Apply01.htm" />
+    <Content Include="Views\Web\CreditCard\CCPageNew.aspx" />
+    <Content Include="Views\Web\Default.aspx" />
+    <Content Include="Views\Web\Inc\old_PreparerSectionNew.aspx" />
+    <Content Include="Views\Web\Inc\PreparerSectionNew.aspx" />
+    <Content Include="Views\Web\Login\ApplyFirstNew.aspx" />
+    <Content Include="Views\Web\Login\ChangePinNew.aspx" />
+    <Content Include="Views\Web\Login\old_ApplyFirstNew.aspx" />
+    <Content Include="Views\Web\Login\old_ChangePinNew.aspx" />
+    <Content Include="Views\Web\Login\ForgotPinNew.aspx" />
+    <Content Include="Views\Web\Login\old_ForgotPinNew.aspx" />
+    <Content Include="Views\Web\Login\LoginNew.aspx" />
+    <Content Include="Views\Web\Login\old_LoginNew.aspx" />
+    <Content Include="Views\Web\Login\MainNew.aspx" />
+    <Content Include="Views\Web\Login\Old_MainNew.aspx" />
+    <Content Include="Views\Web\Login\old_paycouponNew.aspx" />
+    <Content Include="Views\Web\Login\old_PinApplyNew.aspx" />
+    <Content Include="Views\Web\Login\old_ThankYouNew.aspx" />
+    <Content Include="Views\Web\Login\paycouponNew.aspx" />
+    <Content Include="Views\Web\Login\PinApplyNew.aspx" />
+    <Content Include="Views\Web\Login\ThankYouNew.aspx" />
+    <Content Include="Views\Web\Login\XMLFile1.xml" />
+    <Content Include="Views\Web\Menu\MenuNew1.aspx" />
+    <Content Include="Views\Web\Menu\MenuNew1_OLD.aspx" />
+    <Content Include="Views\Web\PayCoupon\Login_paycoupon.asp" />
+    <Content Include="Views\Web\PayCoupon\NTL_InitialNew.aspx" />
+    <Content Include="Views\Web\PayCoupon\NTL_ThankYouNew.aspx" />
+    <Content Include="Views\Web\PayCoupon\PayCouponNew.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTezReturn.aspx" />
+    <Content Include="Views\Web\Browser.htm" />
+    <Content Include="Views\Web\CreditCard\CCPage.aspx" />
+    <Content Include="Views\Web\CreditCard\CCPage1.htm" />
+    <Content Include="Views\Web\CreditCard\GetPage.aspx" />
+    <Content Include="Views\Web\CreditCard\Initialize.aspx" />
+    <Content Include="Views\Web\PageMaintenance.htm" />
+    <Content Include="Views\Web\PayCoupon\CouponImage.aspx" />
+    <Content Include="Views\Web\PayCoupon\CouponImage.htm" />
+    <Content Include="Views\Web\PayCoupon\CouponImageForm.htm" />
+    <Content Include="Views\Web\PayCoupon\CouponImageInclude.htm" />
+    <Content Include="Views\Web\PayCoupon\NTL_Initial.aspx" />
+    <Content Include="Views\Web\PayCoupon\NTL_ThankYou.htm" />
+    <Content Include="Views\Web\PayCoupon\PayCoupon.aspx" />
+    <Content Include="Views\Web\PayCoupon\PayCouponRecv.aspx" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponCreate.aspx" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponDisplay.htm" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageNew.aspx" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageNew.htm" />
+    <Content Include="Views\Web\PayCoupon\PDFCouponImageTemplate.htm" />
+    <Content Include="Views\Web\ReturnServices\BPTezReturn_2014.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTezReturn_2015.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTlfReturn_2014.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTlfReturn_2015.aspx" />
+    <Content Include="Views\Web\ReturnServices\LiquorReturn.aspx" />
+    <Content Include="Views\Web\ReturnServices\NPTReturn_2015.aspx" />
+    <Content Include="Views\Web\Returns\13BIRTWrkShtN.htm" />
+    <Content Include="Views\Web\Returns\13BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPTez2010New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2011New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2012New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2013New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2015New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2015.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10BPTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11BPTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12BIRTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13BIRTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\BPTLFThankYou2New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_12SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_13BIRTlfNew.aspx.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdA.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdB.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdC1.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdD.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15SchdE.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\15WorkSheet5.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_14BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_14WorkSheet5.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_15BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\LossCarryForward_dsNew_OLD.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkANew_Old.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkBNew_Old.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkCNew_OLd.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkDNew_Old.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\15WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2011NPTNew_OLD.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2013NPTNew_Old.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2014NPT_Old.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2015NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\NPT_ExemptedMsg.aspx" />
+    <Content Include="Views\Web\Returns\NPT\odl_13NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\old_13WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\old_13WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\old_13WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\old_13WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\old_13WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\old_13WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\old_2013NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\old_NPTThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\Old_BPTez2010New.aspx" />
+    <Content Include="Views\Web\Returns\Old_BPTez2011New.aspx" />
+    <Content Include="Views\Web\Returns\Old_BPTez2012New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2013.aspx" />
+    <Content Include="Views\Web\Returns\Old_BPTez2013New.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2014.aspx" />
+    <Content Include="Views\Web\Returns\Old_BPTez2014.aspx" />
+    <Content Include="Views\Web\Returns\BPTezThankYou.aspx" />
+    <Content Include="Views\Web\Returns\BPTezThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ.aspx" />
+    <Content Include="Views\Web\Returns\BPTez_WorkSheetSEZ_2014.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10BPTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10BPTlf.js.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_10BPTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdA.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_10SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdB.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_10SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdC1.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_10SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdD.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_10SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\10SchdE.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_10SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11BPTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11BPTlf.js.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_11BPTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdA.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_11SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdB.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_11SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdC1.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_11SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdD.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_11SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\11SchdE.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_11SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12BIRTlf.js.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_12BIRTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdA.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdB.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_12SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdC1.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdD.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_12SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdE.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\12SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\12WrkShtN.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_13BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_13BIRTlfNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdA.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_13SchdANew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdB.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_13SchdBNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdC1.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_13SchdC1New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdD.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_13SchdDNew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13SchdE.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_13SchdENew.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\13WrkShtN.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\14BIRTlf.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14BIRTlf_js.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdA.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdB.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdC1.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdD.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14SchdE.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\14WorkSheet5.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\BPTlf.aspx" />
+    <Content Include="Views\Web\ReturnServices\BPTlfReturn.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\BPTlf.js09.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\BPTlf2009.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\BPTlfThankYou.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\BPTLFThankYou2.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\old_BPTLFThankYou2New.aspx" />
+    <Content Include="Views\Web\Returns\BPT_LF\SchdA09.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\SchdB09.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\SchdC109.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\SchdD09.htm" />
+    <Content Include="Views\Web\Returns\BPT_LF\SchdE09.htm" />
+    <Content Include="Views\Web\Returns\ERN\ERN.asp" />
+    <Content Include="Views\Web\Returns\ERN\ERNReturn.asp" />
+    <Content Include="Views\Web\Returns\Liquor2013.aspx" />
+    <Content Include="Views\Web\Returns\LossCarryForward_ds.aspx" />
+    <Content Include="Views\Web\Returns\LossCarryForward_dsNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\10WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\11WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\12WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13NPT_ExemptedMsg.htm" />
+    <Content Include="Views\Web\Returns\NPT\13NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkANew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkB.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkBNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkC.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkCNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkD.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkDNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkE.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkENew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\13WrkK.htm" />
+    <Content Include="Views\Web\Returns\NPT\13WrkKNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14NPT_js.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkA.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkB.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkC.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkD.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkE.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkExtension.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkK.aspx" />
+    <Content Include="Views\Web\Returns\NPT\14WrkNR_3.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2010NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2010NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2011NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2011NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2012NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2012NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2013NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2013NPTNew.aspx" />
+    <Content Include="Views\Web\Returns\NPT\2014NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\NPTThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\old_Wage2010New.aspx" />
+    <Content Include="Views\Web\Returns\old_Wage2011New.aspx" />
+    <Content Include="Views\Web\Returns\old_Wage2012New.aspx" />
+    <Content Include="Views\Web\Returns\old_Wage2013New.aspx" />
+    <Content Include="Views\Web\Returns\old_WageThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\School2010.aspx" />
+    <Content Include="Views\Web\Returns\Old_School2010New.aspx" />
+    <Content Include="Views\Web\Returns\School2010New.aspx" />
+    <Content Include="Views\Web\Returns\School2011.aspx" />
+    <Content Include="Views\Web\Returns\Old_School2011New.aspx" />
+    <Content Include="Views\Web\Returns\School2011New.aspx" />
+    <Content Include="Views\Web\Returns\School2012.aspx" />
+    <Content Include="Views\Web\Returns\Old_School2012New.aspx" />
+    <Content Include="Views\Web\Returns\School2012New.aspx" />
+    <Content Include="Views\Web\Returns\School2013.aspx" />
+    <Content Include="Views\Web\Returns\Old_School2013New.aspx" />
+    <Content Include="Views\Web\Returns\old_School2014New.aspx" />
+    <Content Include="Views\Web\Returns\School2013.htm" />
+    <Content Include="Views\Web\Returns\School2013New.aspx" />
+    <Content Include="Views\Web\Returns\School2014New.aspx" />
+    <Content Include="Views\Web\Returns\School2015New.aspx" />
+    <Content Include="Views\Web\Returns\Old_SchoolThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\SchoolThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2010.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2010New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2010New_OLD.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2011.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2011New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2012.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2012New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2013.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2013New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2014New.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco2015New.aspx" />
+    <Content Include="Views\Web\Returns\TobaccoThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UO2011Form.aspx" />
+    <Content Include="Views\Web\Returns\UO\UO2011FormNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UO2013Form.aspx" />
+    <Content Include="Views\Web\Returns\UO\UO2013Form.htm" />
+    <Content Include="Views\Web\Returns\UO\UO2013FormNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOFormCallNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOListNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOThankYou.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOThankYou1.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOThankYouNew.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOThankYouNew1.aspx" />
+    <Content Include="Views\Web\Returns\Wage2010.aspx" />
+    <Content Include="Views\Web\Returns\Wage2010New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2011.aspx" />
+    <Content Include="Views\Web\Returns\Wage2011New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2012.aspx" />
+    <Content Include="Views\Web\Returns\Wage2012New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2013.aspx" />
+    <Content Include="Views\Web\Returns\Wage2013New.aspx" />
+    <Content Include="Views\Web\Returns\old_Wage2014New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2014New.aspx" />
+    <Content Include="Views\Web\Returns\Wage2015.aspx" />
+    <Content Include="Views\Web\Returns\WageThankYouNew.aspx" />
+    <Content Include="Views\Web\TestPages\SessionMutiUserTest.aspx" />
+    <Content Include="Views\Web\TestPages\table_design_test.aspx" />
+    <Content Include="Views\Web\ReturnServices\TobaccoReturn.aspx" />
+    <Content Include="Views\Web\ReturnServices\WageReturn.aspx" />
+    <Content Include="Views\Web\ReturnServices\SchoolReturn.aspx" />
+    <Content Include="Views\Web\old_Default.aspx" />
+    <Content Include="Views\Web\E-check\Balances.aspx" />
+    <Content Include="Views\Web\E-check\Parameters.htm" />
+    <Content Include="Views\Web\E-check\Payment.aspx" />
+    <Content Include="Views\Web\E-check\Payments.aspx" />
+    <Content Include="Views\Web\E-check\Status.htm" />
+    <Content Include="Views\Web\E-check\Zip_Apply01.htm" />
+    <Content Include="Views\Web\ev.aspx" />
+    <Content Include="Views\Web\Header.htm" />
+    <Content Include="Views\Web\Inc\AppHeader.htm" />
+    <Content Include="Views\Web\Inc\HeaderInfo.htm" />
+    <Content Include="Views\Web\Inc\ispFunctionsSrv.vb.htm" />
+    <Content Include="Views\Web\Inc\ispRevFuncSrv.vb.htm" />
+    <Content Include="Views\Web\Inc\ispXmlProcSrv.js.htm" />
+    <Content Include="Views\Web\Inc\PreparerSection.aspx" />
+    <Content Include="Views\Web\Inc\Progress.aspx" />
+    <Content Include="Views\Web\Is-Partner.htm" />
+    <Content Include="Views\Web\Login\ApplyFirst.htm" />
+    <Content Include="Views\Web\Login\ChangePin.htm" />
+    <Content Include="Views\Web\Login\Email.htm" />
+    <Content Include="Views\Web\Login\ForgotPin.htm" />
+    <Content Include="Views\Web\Login\Login.htm" />
+    <Content Include="Views\Web\Login\Main.aspx" />
+    <Content Include="Views\Web\Login\Main.htm" />
+    <Content Include="Views\Web\Login\paycoupon.htm" />
+    <Content Include="Views\Web\Login\PinApply.htm" />
+    <Content Include="Views\Web\Login\ThankYou.htm" />
+    <Content Include="Views\Web\MailPIN.aspx" />
+    <Content Include="Views\Web\Maintenance.htm" />
+    <Content Include="Views\Web\Menu\Menu.htm" />
+    <Content Include="Views\Web\Menu\Navigation.aspx" />
+    <Content Include="Views\Web\postinfo.html" />
+    <Content Include="Views\Web\ReadTaxForm.aspx" />
+    <Content Include="Views\Web\redirect.htm" />
+    <Content Include="Views\Web\Returns\12BIRTWrkShtN.htm" />
+    <Content Include="Views\Web\Returns\12BIRT_19_3800Message.htm" />
+    <Content Include="Views\Web\Returns\BPTez.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2003.htm" />
+    <Content Include="Views\Web\Returns\BPTez2006.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2007.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2008.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2009.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2010.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2011.aspx" />
+    <Content Include="Views\Web\Returns\BPTez2012.aspx" />
+    <Content Include="Views\Web\Returns\BPTlf2009.aspx" />
+    <Content Include="Views\Web\Returns\ERN\ERN.aspx" />
+    <Content Include="Views\Web\Returns\ERN\ERN.htm" />
+    <Content Include="Views\Web\Returns\ERN\ERN.js.htm" />
+    <Content Include="Views\Web\Returns\ERN\ERN2006.htm" />
+    <Content Include="Views\Web\Returns\ERN\ERNThankYou.htm" />
+    <Content Include="Views\Web\Returns\HelpPreviousPaidTax.htm" />
+    <Content Include="Views\Web\Returns\LossCarryForward.aspx" />
+    <Content Include="Views\Web\Returns\LossCarryForwardReturn.aspx" />
+    <Content Include="Views\Web\Returns\NPTThankYou.htm" />
+    <Content Include="Views\Web\Returns\NPT\09NPT.js.htm" />
+    <Content Include="Views\Web\Returns\NPT\09Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\09WrkA.htm" />
+    <Content Include="Views\Web\Returns\NPT\09WrkB.htm" />
+    <Content Include="Views\Web\Returns\NPT\09WrkC.htm" />
+    <Content Include="Views\Web\Returns\NPT\09WrkD.htm" />
+    <Content Include="Views\Web\Returns\NPT\09WrkE.htm" />
+    <Content Include="Views\Web\Returns\NPT\09WrkK.htm" />
+    <Content Include="Views\Web\Returns\NPT\10NPT.js.htm" />
+    <Content Include="Views\Web\Returns\NPT\10Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\10WrkA.htm" />
+    <Content Include="Views\Web\Returns\NPT\10WrkB.htm" />
+    <Content Include="Views\Web\Returns\NPT\10WrkC.htm" />
+    <Content Include="Views\Web\Returns\NPT\10WrkD.htm" />
+    <Content Include="Views\Web\Returns\NPT\10WrkE.htm" />
+    <Content Include="Views\Web\Returns\NPT\10WrkK.htm" />
+    <Content Include="Views\Web\Returns\NPT\11NPT.js.htm" />
+    <Content Include="Views\Web\Returns\NPT\11Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\11WrkA.htm" />
+    <Content Include="Views\Web\Returns\NPT\11WrkB.htm" />
+    <Content Include="Views\Web\Returns\NPT\11WrkC.htm" />
+    <Content Include="Views\Web\Returns\NPT\11WrkD.htm" />
+    <Content Include="Views\Web\Returns\NPT\11WrkE.htm" />
+    <Content Include="Views\Web\Returns\NPT\11WrkK.htm" />
+    <Content Include="Views\Web\Returns\NPT\12NPT.js.htm" />
+    <Content Include="Views\Web\Returns\NPT\12Page4.htm" />
+    <Content Include="Views\Web\Returns\NPT\12WrkA.htm" />
+    <Content Include="Views\Web\Returns\NPT\12WrkB.htm" />
+    <Content Include="Views\Web\Returns\NPT\12WrkC.htm" />
+    <Content Include="Views\Web\Returns\NPT\12WrkD.htm" />
+    <Content Include="Views\Web\Returns\NPT\12WrkE.htm" />
+    <Content Include="Views\Web\Returns\NPT\12WrkK.htm" />
+    <Content Include="Views\Web\Returns\NPT\2009NPT.htm" />
+    <Content Include="Views\Web\Returns\NPT\2010NPT.htm" />
+    <Content Include="Views\Web\Returns\NPT\2011NPT.htm" />
+    <Content Include="Views\Web\Returns\NPT\NPT.aspx" />
+    <Content Include="Views\Web\Returns\NPT\NPT.js.htm" />
+    <Content Include="Views\Web\Returns\NPT\NPT.js07.htm" />
+    <Content Include="Views\Web\Returns\NPT\NPT.js08.htm" />
+    <Content Include="Views\Web\Returns\NPT\NPT2006.htm" />
+    <Content Include="Views\Web\Returns\NPT\NPT2007.htm" />
+    <Content Include="Views\Web\Returns\NPT\NPT2008.htm" />
+    <Content Include="Views\Web\ReturnServices\NPTReturn.aspx" />
+    <Content Include="Views\Web\Returns\NPT\NPTThankYou.htm" />
+    <Content Include="Views\Web\Returns\NPT\Page406.htm" />
+    <Content Include="Views\Web\Returns\NPT\Page407.htm" />
+    <Content Include="Views\Web\Returns\NPT\Page408.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkA06.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkA07.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkA08.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkB06.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkB07.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkB08.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkC06.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkC07.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkC08.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkD06.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkD07.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkD08.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkE06.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkE07.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkE08.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkK06.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkK07.htm" />
+    <Content Include="Views\Web\Returns\NPT\WrkK08.htm" />
+    <Content Include="Views\Web\Returns\Returns.aspx" />
+    <Content Include="Views\Web\Returns\School.aspx" />
+    <Content Include="Views\Web\Returns\School.htm" />
+    <Content Include="Views\Web\Returns\School2002.aspx" />
+    <Content Include="Views\Web\Returns\School2002.htm" />
+    <Content Include="Views\Web\Returns\School2003.htm" />
+    <Content Include="Views\Web\Returns\School2004.htm" />
+    <Content Include="Views\Web\Returns\School2005.htm" />
+    <Content Include="Views\Web\Returns\School2006.htm" />
+    <Content Include="Views\Web\Returns\School2007.htm" />
+    <Content Include="Views\Web\Returns\School2008.htm" />
+    <Content Include="Views\Web\Returns\School2009.htm" />
+    <Content Include="Views\Web\Returns\SchoolThankYou.aspx" />
+    <Content Include="Views\Web\Returns\Tobacco.aspx" />
+    <Content Include="Views\Web\Returns\TobaccoThankYou.aspx" />
+    <Content Include="Views\Web\Returns\UO\UO.aspx" />
+    <Content Include="Views\Web\Returns\UO\UO2011Form.htm" />
+    <Content Include="Views\Web\Returns\UO\UOFormCall.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOList.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOListCall.aspx" />
+    <Content Include="Views\Web\Returns\UO\UOThankYou.htm" />
+    <Content Include="Views\Web\Returns\Wage.aspx" />
+    <Content Include="Views\Web\Returns\Wage2002.aspx" />
+    <Content Include="Views\Web\Returns\Wage2002.htm" />
+    <Content Include="Views\Web\Returns\Wage2003.htm" />
+    <Content Include="Views\Web\Returns\Wage2004.htm" />
+    <Content Include="Views\Web\Returns\Wage2005.htm" />
+    <Content Include="Views\Web\Returns\Wage2006.htm" />
+    <Content Include="Views\Web\Returns\Wage2007.htm" />
+    <Content Include="Views\Web\Returns\Wage2008.htm" />
+    <Content Include="Views\Web\Returns\Wage2009.htm" />
+    <Content Include="Views\Web\Returns\wagetax.htm" />
+    <Content Include="Views\Web\Returns\WageThankYou.aspx" />
+    <Content Include="Views\Web\ThankYou.htm" />
+    <Content Include="Views\Web\ThankYouNew.aspx" />
+    <Content Include="Views\Web\XML\ABAFILE.XML" />
+    <Content Include="Views\Web\XML\AcctInfo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\AcctTemplate.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\AddressCheck.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\AddressType.xml" />
+    <Content Include="Views\Web\XML\AddressType2.xml" />
+    <Content Include="Views\Web\XML\BPTezReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\BPTezReturn_2014.xml" />
+    <Content Include="Views\Web\XML\BPTezReturn_2015.xml" />
+    <Content Include="Views\Web\XML\BPTlfReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\BPTlfReturn_2014.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\BPTlfReturn_2015.xml" />
+    <Content Include="Views\Web\XML\CCBilling.xml" />
+    <Content Include="Views\Web\XML\Code1.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\Code1AddressCheck.xml" />
+    <Content Include="Views\Web\XML\Cop Ed1.xml" />
+    <Content Include="Views\Web\XML\Cop Ed2.xml" />
+    <Content Include="Views\Web\XML\Cop Ed3.xml" />
+    <Content Include="Views\Web\XML\Cop Ed4.xml" />
+    <Content Include="Views\Web\XML\Cop Ed5.xml" />
+    <Content Include="Views\Web\XML\Cop Inq.xml" />
+    <Content Include="Views\Web\XML\Cop Tiffs1.xml" />
+    <Content Include="Views\Web\XML\Copy of OrgType.xml" />
+    <Content Include="Views\Web\XML\Copy of UOList.xml" />
+    <Content Include="Views\Web\XML\CreditCard.xml" />
+    <Content Include="Views\Web\XML\DelinquentForm.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\EhdAcctTemplate.xml" />
+    <Content Include="Views\Web\XML\email.xml" />
+    <Content Include="Views\Web\XML\EntityType.xml" />
+    <Content Include="Views\Web\XML\EntityTypeCoupon.xml" />
+    <Content Include="Views\Web\XML\EntityTypePolice.xml" />
+    <Content Include="Views\Web\XML\ERNReturn.xml" />
+    <Content Include="Views\Web\XML\Ethnicity.xml" />
+    <Content Include="Views\Web\XML\LiquorReturn.xml" />
+    <Content Include="Views\Web\XML\LossCarryForward.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\NAIC.XML" />
+    <Content Include="Views\Web\XML\NPTReturn.xml" />
+    <Content Include="Views\Web\XML\OrgType.xml" />
+    <Content Include="Views\Web\XML\Output.xml" />
+    <Content Include="Views\Web\XML\PayCoupon.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\PoliceEntityType.xml" />
+    <Content Include="Views\Web\XML\Relationship.xml" />
+    <Content Include="Views\Web\XML\SchoolReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\Sex.xml" />
+    <Content Include="Views\Web\XML\Statezip.xml" />
+    <Content Include="Views\Web\XML\test.xml" />
+    <Content Include="Views\Web\XML\TobaccoReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\UOForm.xml" />
+    <Content Include="Views\Web\XML\UOFormNew.xml" />
+    <Content Include="Views\Web\XML\UOList.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\UOPdfReturn.xml" />
+    <Content Include="Views\Web\XML\UOReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web\XML\WageReturn.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Service References\RTTIE210_SrvRef\RTTIE210WS.wsdl" />
+    <Content Include="Service References\RTTIE237_SrvRef\RTTIE237WS.wsdl" />
+    <None Include="Service References\RTTIE230_SrvRef\RTTIE230WS.wsdl" />
+    <Content Include="Service References\RTTIE222_SrvRef\RTTIE222WS.wsdl" />
+    <Content Include="Service References\RTTIE239_SrvRef\RTTIE239WS.wsdl" />
+    <Content Include="Service References\RTTIE227_Srvref\RTTIE227WS.wsdl" />
+    <Content Include="Service References\RTTIE236_SrvRef\RTTIE236WS.wsdl" />
+    <Content Include="Service References\RTTIE228_SrvRef\RTTIE228WS.wsdl" />
+    <Content Include="Service References\RTTIE034_SrvRef\RTTIE234WS.wsdl" />
+    <Content Include="Service References\RTTIE035_SrvRef\RTTIE235WS.wsdl" />
+    <Content Include="Service References\RTTIE229_SrvRef\RTTIE229WS.wsdl" />
+    <Content Include="Views\Web\Returns\BPT_LF\ve-C1A3.tmp" />
+    <Content Include="Service References\RTTIE031_SrvRef\RTTIE231WS.wsdl" />
+    <Content Include="Service References\RTTIE016_SrvRef\RTTIE216WS.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Mobile\" />
+    <Folder Include="Views\Web\Returns\BPT_LF\Images\" />
+    <Folder Include="Views\Web\Returns\School\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web\XML\vssver.scc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AspUtils\AspUtils.csproj">
+      <Project>{937a653a-8ec1-4cf9-aab1-7776048633ef}</Project>
+      <Name>AspUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\COPXmlFactory\COPXmlFactory.csproj">
+      <Project>{489f195c-4b1c-49a8-9d00-c0db08304f17}</Project>
+      <Name>COPXmlFactory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Code1_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE016_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE031_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE034_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE035_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE210_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE222_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE227_Srvref\" />
+    <WCFMetadataStorage Include="Service References\RTTIE228_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE229_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE230_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE236_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE237_SrvRef\" />
+    <WCFMetadataStorage Include="Service References\RTTIE239_SrvRef\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>4962</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4875/CopRevenue2Test/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

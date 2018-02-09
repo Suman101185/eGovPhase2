@@ -1,0 +1,178 @@
+﻿
+
+<html>
+	<head>
+	
+		<title></title>
+		
+		<script src="../../Scripts/JqueryMin.js" type="text/javascript"></script>
+		<script language="javascript" type="text/javascript">
+
+
+
+
+   
+//EOGVWEB-53 EDD Added if statement for calling print coupon from Tobacco
+			function DisplayCouponold() {
+				//alert('abcd  ' + parent.MenuWin.xmlPayCoupon.xml.xml);
+				//alert("xyz "  + $(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_FORM').text() );
+				if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'TOBACCO') {
+					CouponCnclBtn.value = 'Return to Tobacco Tax';
+//EOGVWEB-69 EDD Added if statement for calling print coupon from other Tax Forms
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'WAGE') {
+					CouponCnclBtn.value = 'Return to Wage Tax';
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'SCHOOL') {
+					CouponCnclBtn.value = 'Return to School Tax';
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'BPTEZ') {
+					CouponCnclBtn.value = 'Return to Business Income and Receipts Tax';
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'BPTLF') {
+					CouponCnclBtn.value = 'Return to Business Income and Receipts Tax';
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'NPT') {
+					CouponCnclBtn.value = 'Return to Net Profit Tax';
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'UO') {
+					CouponCnclBtn.value = 'Return to Use and Occupancy Tax';
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'DELBAL') {
+					CouponCnclBtn.value = 'Return to Delinquent Balances';
+				} 	//if
+				//parent.NavWin.lbl1.innerHTML = ''
+				//parent.NavWin.rowLabel.style.display = 'none' 
+				$(parent.NavWin.document).find('#rowLabel').first().text('');
+				$(parent.NavWin.document).find('#rowLabel').first().css("display", "none");
+			}  //DisplayCoupon
+function DisplayCoupon() {
+			var CPN_FORM;
+				if($(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_FORM')!='undefined' && $(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_FORM') != '')
+				{
+				CPN_FORM= $(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_FORM').text();
+				if (CPN_FORM == 'TOBACCO') {
+					CouponCnclBtn.value = 'Return to Tobacco Tax';
+//EOGVWEB-69 EDD Added if statement for calling print coupon from other Tax Forms
+				} else if (CPN_FORM == 'WAGE') {
+					CouponCnclBtn.value = 'Return to Wage Tax';
+				} else if (CPN_FORM== 'SCHOOL') {
+					CouponCnclBtn.value = 'Return to School Tax';
+				} else if (CPN_FORM== 'BPTEZ') {
+					CouponCnclBtn.value = 'Return to Business Income and Receipts Tax';
+				} else if (CPN_FORM== 'BPTLF') {
+					CouponCnclBtn.value = 'Return to Business Income and Receipts Tax';
+				} else if (CPN_FORM == 'NPT') {
+					CouponCnclBtn.value = 'Return to Net Profit Tax';
+				} else if (CPN_FORM== 'UO') {
+					CouponCnclBtn.value = 'Return to Use and Occupancy Tax';
+				} else if (CPN_FORM== 'DELBAL') {
+					CouponCnclBtn.value = 'Return to Delinquent Balances';
+				} 	//if
+				//parent.NavWin.lbl1.innerHTML = ''
+				//parent.NavWin.rowLabel.style.display = 'none' 
+				$(parent.NavWin.document).find('#rowLabel').first().text('');
+				$(parent.NavWin.document).find('#rowLabel').first().css("display", "none");
+				}
+				
+			}  //DisplayCoupon
+
+			function ReturnToSelectionOld() {
+				//ispCallXMLForm(parent.MenuWin.xmlTobacco, parent.MenuWin.xmlTobacco, "../TobaccoReturn.asp", "");
+				
+//EOGVWEB-89 EDD Added Current Year to return to the return the user was on when they left to print the coupon
+//alert(ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", ""));
+				var sCurrReturnYear = parseInt(ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_YEAR ", "")) + 1;
+			//	alert(sCurrReturnYear);
+			//	alert(ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", ""));
+//EOGVWEB-53 EDD Added if statement for calling print coupon from Tobacco
+				if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'TOBACCO') {
+					parent.DocWin.location.href = '../Returns/Tobacco.asp?y=' + sCurrReturnYear;
+//EOGVWEB-69 EDD Added if statement for calling print coupon from other Tax forms
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'WAGE') {
+					parent.DocWin.location.href = '../Returns/Wage.asp?y=' + sCurrReturnYear;
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'SCHOOL') {
+					parent.DocWin.location.href = '../Returns/School.asp?y=' + sCurrReturnYear;
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'BPTEZ') {
+					parent.DocWin.location.href = '../Returns/BPTez.asp?y=' + sCurrReturnYear;
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'BPTLF') {
+					parent.DocWin.location.href = '../Returns/BPT_LF/BPTlf.asp?y=' + sCurrReturnYear;
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'NPT') {
+					parent.DocWin.location.href = '../Returns/NPT/NPT.asp?y=' + sCurrReturnYear;
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'UO') {
+					var sCurrReturnYear = parseInt(ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_YEAR ", ""));
+					parent.DocWin.location.href = '../Returns/UO/UO.asp?y=' + sCurrReturnYear;
+				} else if (ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM CPN_FORM", "") == 'DELBAL') {
+//					var sCurrReturnYear = parseInt(ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM/CPN_YEAR ", ""))
+					parent.DocWin.location.href = '../Balances/AccountBalances.asp';
+				} else {
+					parent.DocWin.location.href = 'PayCoupon.asp';
+				} 	//if
+			}		//ReturnToSelection
+
+			function ReturnToSelection() {
+		var CPN_FORM;
+			var sCurrReturnYear;
+				if($(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_YEAR')!='undefined' && $(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_YEAR') != '')
+				{
+					 sCurrReturnYear = parseInt($(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_YEAR').text() ) + 1;
+				}
+				if($(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_FORM')!='undefined' && $(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_FORM') != '')
+				{
+					CPN_FORM= $(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_FORM').text();
+				}
+				
+//EOGVWEB-53 EDD Added if statement for calling print coupon from Tobacco
+				if (CPN_FORM == 'TOBACCO') {
+					parent.DocWin.location.href = '../Returns/Tobacco.asp?y=' + sCurrReturnYear;
+//EOGVWEB-69 EDD Added if statement for calling print coupon from other Tax forms
+				} else if (CPN_FORM == 'WAGE') {
+					parent.DocWin.location.href = '../Returns/Wage.asp?y=' + sCurrReturnYear;
+				} else if (CPN_FORM == 'SCHOOL') {
+					parent.DocWin.location.href = '../Returns/School.asp?y=' + sCurrReturnYear;
+				} else if (CPN_FORM == 'BPTEZ') {
+					parent.DocWin.location.href = '../Returns/BPTez.asp?y=' + sCurrReturnYear;
+				} else if (CPN_FORM == 'BPTLF') {
+					parent.DocWin.location.href = '../Returns/BPT_LF/BPTlf.asp?y=' + sCurrReturnYear;
+				} else if (CPN_FORM == 'NPT') {
+					parent.DocWin.location.href = '../Returns/NPT/NPT.asp?y=' + sCurrReturnYear;
+				} else if (CPN_FORM == 'UO') {
+					 sCurrReturnYear = parseInt($(parent.MenuWin.xmlPayCoupon.xml).find('COUPON_FORM CPN_YEAR').text()) ;
+					parent.DocWin.location.href = '../Returns/UO/UO.asp?y=' + sCurrReturnYear;
+				} else if (CPN_FORM == 'DELBAL') {
+//					var sCurrReturnYear = parseInt(ispXmlGetFieldVal(parent.MenuWin.xmlPayCoupon, "COUPON_FORM/CPN_YEAR ", ""))
+					parent.DocWin.location.href = '../Balances/AccountBalances.asp';
+				} else {
+					parent.DocWin.location.href = 'PayCoupon.asp';
+				} 	//if
+			}		//ReturnToSelection
+		</script>		
+	
+	</head>
+
+<body onload="DisplayCoupon()">
+	<table cellspacing="0" cellpadding="0"  border="0" style="margin-left: 0px; width: 90%; height: 100%; top: 0px" id="topPayCoupon">
+		<tr style="font-size: 10pt; font-family: Arial; height:0px" id="coup1" >
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>																																		
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td>
+			<td width="5%"><p>&nbsp;</p></td></tr>	
+		<tr style ="font-size: 14pt; height: .25in; padding-top:20px; padding-bottom:20px" id="coup2" >
+			<td colspan="8"><p>&nbsp;</p></td>
+<!--			<td colspan="3"><p><input id="CPrintCouponBtn" onclick="SubmitCoupon()" type="button" value="Print Coupon" style=" display:none" /></p></td>
+			<td colspan="4"><p>&nbsp;</p></td>-->
+			<td colspan="4" align="center"><p><input id="CouponCnclBtn" onclick="ReturnToSelection()" type="button" value="Return to Account Select" style=" display:block" /></p></td>
+   		<td colspan="8"><p>&nbsp;</p></td></tr>
+		<tr>
+			<td colspan="20">  <iframe id="ifrPdfView" src="{PDFFILE}" height="100%" width="100%"></iframe></td></tr>
+	</table>
+</body></html>

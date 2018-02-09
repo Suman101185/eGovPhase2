@@ -1,0 +1,9 @@
+<?xml version='1.0'?>            
+<ADDRESSTYPE>  
+   <DDOWN DESC='Select' CODE='999' />
+   <DDOWN DESC='Secondary' CODE='10' />
+   <DDOWN DESC='Business Location' CODE='100' />
+   <DDOWN DESC='Minor Business Location' CODE='101' />
+   <DDOWN DESC='Headquarters' CODE='102' />
+   <DDOWN DESC='Other' CODE='30' />
+</ADDRESSTYPE> 

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://ISDEV.city.phila.local/RTTIE229.service:RTTIE229WS" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:HDR1="urn:com-softwareag-entirex-rpc:TIPSACCD" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" name="RTTIE229WS" targetNamespace="http://ISDEV.city.phila.local/RTTIE229.service:RTTIE229WS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="urn:com-softwareag-entirex-rpc:TIPSACCD">
+      <xsd:import namespace="http://ISDEV.city.phila.local/RTTIE229.service:RTTIE229WS" />
+      <xsd:element name="RTTIE229" type="sn0:RTTIE229" />
+      <xsd:element name="RTTIE229Response" type="sn0:RTTIE229Response" />
+      <xsd:complexType name="RTTIE229">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_SMA" nillable="true" type="tns:_SMA" />
+          <xsd:element minOccurs="0" name="_E-LIQ" nillable="true" type="tns:_E-LIQ" />
+          <xsd:element minOccurs="0" name="_E-AMT" nillable="true" type="tns:_E-AMT" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE229Response">
+        <xsd:sequence>
+          <xsd:element name="_SMA" type="tns:_SMA2" />
+          <xsd:element name="_E-LIQ" type="tns:_E-LIQ2" />
+          <xsd:element name="_E-AMT" type="tns:_E-AMT2" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns:sn0="urn:com-softwareag-entirex-rpc:TIPSACCD" targetNamespace="http://ISDEV.city.phila.local/RTTIE229.service:RTTIE229WS">
+      <xsd:import namespace="urn:com-softwareag-entirex-rpc:TIPSACCD" />
+      <xsd:element name="RTTIE229" type="tns:RTTIE229" />
+      <xsd:element name="RTTIE229Response" type="tns:RTTIE229Response" />
+      <xsd:complexType name="RTTIE229">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE229" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="_PROGRAM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SYSTEM-ERROR" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="ERROR-LINE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="MESSAGE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LIQ">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ACCOUNT-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PERIOD-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="VERSION-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="RETURN-STATUS" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="LAST-UPDATE-DATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="USER-ID" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="RECORDING-DATE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="SEQUENCE-NUM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ADJUSTMENT-REFERENCE-NUM" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="RATE" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-NAME" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-PHONE" nillable="true" type="xsd:decimal" />
+          <xsd:element minOccurs="0" name="PREPARER-PHONE-EXT" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-IP-ADDRESS" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-EMAIL-ADDRESS" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="PREPARER-TYPE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-AMT">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="TOTAL-GROSS-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="FOOD-EXCLUSION-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="OTHER-EXCLUSION-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TOTAL-EXCLUSION-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TAXABLE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TOTAL-TAX-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TAX-PAID-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="NET-TAX-DUE-X" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TAX-OVERPAID-X" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RTTIE229Response">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="sn0:RTTIE229Response" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_SMA2">
+        <xsd:sequence>
+          <xsd:element name="_PROGRAM" type="xsd:string" />
+          <xsd:element name="SYSTEM-ERROR" type="xsd:decimal" />
+          <xsd:element name="ERROR-LINE" type="xsd:decimal" />
+          <xsd:element name="MESSAGE" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-LIQ2">
+        <xsd:sequence>
+          <xsd:element name="ACCOUNT-ID" type="xsd:string" />
+          <xsd:element name="PERIOD-X" type="xsd:string" />
+          <xsd:element name="VERSION-X" type="xsd:string" />
+          <xsd:element name="RETURN-STATUS" type="xsd:string" />
+          <xsd:element name="LAST-UPDATE-DATE-X" type="xsd:string" />
+          <xsd:element name="USER-ID" type="xsd:string" />
+          <xsd:element name="RECORDING-DATE-X" type="xsd:string" />
+          <xsd:element name="SEQUENCE-NUM" type="xsd:string" />
+          <xsd:element name="ADJUSTMENT-REFERENCE-NUM" type="xsd:string" />
+          <xsd:element name="RATE" type="xsd:string" />
+          <xsd:element name="PREPARER-NAME" type="xsd:string" />
+          <xsd:element name="PREPARER-PHONE" type="xsd:decimal" />
+          <xsd:element name="PREPARER-PHONE-EXT" type="xsd:string" />
+          <xsd:element name="PREPARER-IP-ADDRESS" type="xsd:string" />
+          <xsd:element name="PREPARER-EMAIL-ADDRESS" type="xsd:string" />
+          <xsd:element name="PREPARER-TYPE" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="_E-AMT2">
+        <xsd:sequence>
+          <xsd:element name="TOTAL-GROSS-X" type="xsd:string" />
+          <xsd:element name="FOOD-EXCLUSION-X" type="xsd:string" />
+          <xsd:element name="OTHER-EXCLUSION-X" type="xsd:string" />
+          <xsd:element name="TOTAL-EXCLUSION-X" type="xsd:string" />
+          <xsd:element name="TAXABLE-X" type="xsd:string" />
+          <xsd:element name="TOTAL-TAX-X" type="xsd:string" />
+          <xsd:element name="TAX-PAID-X" type="xsd:string" />
+          <xsd:element name="NET-TAX-DUE-X" type="xsd:string" />
+          <xsd:element name="TAX-OVERPAID-X" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RTTIE229WS_PortType_RTTIE229">
+    <wsdl:part name="parameters" element="tns:RTTIE229" />
+  </wsdl:message>
+  <wsdl:message name="RTTIE229WS_PortType_RTTIE229Response">
+    <wsdl:part name="parameters" element="tns:RTTIE229Response" />
+  </wsdl:message>
+  <wsdl:portType name="RTTIE229WS_PortType">
+    <wsdl:operation name="RTTIE229">
+      <wsdl:input message="tns:RTTIE229WS_PortType_RTTIE229" />
+      <wsdl:output message="tns:RTTIE229WS_PortType_RTTIE229Response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RTTIE229_service_RTTIE229WS_Binder" type="tns:RTTIE229WS_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RTTIE229">
+      <soap:operation soapAction="RTTIE229_service_RTTIE229WS_Binder_RTTIE229" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RTTIE229.service.RTTIE229WS">
+    <wsdl:port name="RTTIE229_service_RTTIE229WS_Port" binding="tns:RTTIE229_service_RTTIE229WS_Binder">
+      <soap:address location="http://ISDEV.city.phila.local:5555/ws/RTTIE229.service.RTTIE229WS/RTTIE229_service_RTTIE229WS_Port" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

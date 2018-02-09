@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html>
+<head>
+
+<style>
+	.inpNormal, .inpReadOnlyRt, .inpError { text-align: right; }
+</style>
+</head>
+
+<BODY onload='LoadError("WrkD")'>
+<DIV id=NPT_WrkD style="DISPLAY: none; VISIBILTY: hidden" Name="NPT_WrkD">
+<TABLE class=tblShowBorder id=TABLE1 style="MARGIN-LEFT: 4%" cellSpacing=0 
+cellPadding=0 width="90%" border=0>
+  
+  <TR height=0>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD></TR>
+  <TR class=rowDataEven>
+    <TD colSpan=20><LABEL class=lblInstrNormal><U><b>Worksheet D:</U> Allocation of business privilege tax 
+      credit for partnerships, etc., with corporate members (this schedule is to 
+      be used only by partnerships, joint ventures and associations which are 
+      composed of one or more corporate partners, corporate joint ventures, or 
+      corporate associates.)</B>
+    </LABEL></TD> 
+  
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>1.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Enter the portion of taxable income on which 2009 Business Privilege
+    Tax has been paid, AND which represents the distributive shares of ALL CORPORATE MEMBERS</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtNPT_WrkD_1 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("WrkD")'></TD></TR>
+  
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>2.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Enter the total taxable income of the taxpayer on which 2009
+    Business Privilege Tax has been paid</LABEL> </TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtNPT_WrkD_2 style="WIDTH: 100%" 
+      onfocus=SetFocus() maxLength=10 onchange='ValidateWorksheet("WrkD")'></TD></TR>
+  
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>3.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Divide Line 1 by 2 and enter the percentage here and on Page 1</LABEL></TD>
+    <TD colSpan=2><LABEL class=inpReadOnlyRt id=lblNPT_WrkD_3 
+      style="WIDTH: 100%"></LABEL></TD>
+    <TD align=right >%</TD></TR>
+  
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>4.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Enter the amount from Page 3, Worksheet K, Line 2</LABEL>
+    <label class="lblLink" style="FONT-SIZE: 7pt" onclick='ShowPage("WrkK")'>Click here for Worksheet K</label></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkD_4 
+      style="WIDTH: 100%"></LABEL></TD></TR>
+  
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>5.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Multiply the amount on Line 4 by the percentage on Line 3</LABEL></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkD_5
+      style="WIDTH: 100%"></LABEL></TD></TR>
+  
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>6.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Subtract Line 5 from Line 4</LABEL></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkD_6 
+      style="WIDTH: 100%"></LABEL></TD></TR>
+  
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>7.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Enter the amount from Page 1, Line 5</LABEL></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkD_7
+      style="WIDTH: 100%"></LABEL></TD></TR>
+
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>8.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal><b>Business Privilege Tax Credit allowed.</b> Enter
+    the lesser of Line 6 or Line 7 here, and on Page 1, Line 6a</LABEL></TD>
+    <TD colSpan=3><LABEL class=inpReadOnlyRt id=lblNPT_WrkD_8 
+      style="WIDTH: 100%"></LABEL></TD></TR>
+</TABLE>
+<P></P>
+<TABLE style="MARGIN-LEFT: 4%" width="90%" border=0>
+  <TR>
+    <TD><INPUT language=javascript id=btnGoToPage1 onclick='ShowPage("Page1","WrkD")' type=button value="Return to Page 1"></TD>
+  </TR>
+</TABLE>
+</DIV><!--NPT_WrkD-->
+</BODY>
+</HTML>

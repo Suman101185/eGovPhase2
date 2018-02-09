@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Styles/framestyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" language="javascript" src="../Scripts/JqueryMin.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/global.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/ispXmlProc.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/jquery-1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".tab_content:first").show(); //Show first tab content
+        });
+    </script>
+</head>
+<body>
+    <div class="tab_Tcontainer">
+
+
+        <div class="tab_container">
+            <div style="display: block;" id="tab1" class="tab_content">
+                <h2>Tax Payer Information  |   <span>Wage tax return for 2013</span>  </h2>
+
+                <div class="thankyou">
+                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gallery of type and scrambled it to make a type specimen book. It has survived not only five centuries</h4>
+
+                    <div class="school_form">
+
+
+                        <form class="school_page_form">
+
+                            <!--<div class="greytopbox">
+                    	<div class="bluetxt">Name :</div>
+                        <div class="bluetxt">SSN :</div>
+                        <div class="bluetxt">Address :</div>
+                        
+                        <div class="clear"></div>
+                    </div>-->
+
+
+
+                            <div class="account_greybox">
+
+                                <p><strong>Name :</strong> <label>Michael Adams</label> </p>
+
+                                <p><strong>SSN :</strong> &nbsp; </p>
+                                <div class="clear"></div>
+                                <p><strong>Address :</strong> &nbsp; </p>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+
+                            <div class="form_segment">
+
+
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabularform">
+                                    <tr>
+                                        <th width="22%" scope="col" valign="middle" align="left" class="here_input_table">
+                                            <input type="checkbox" />
+                                            Check if amended return. </th>
+                                   </tr>
+                                </table>
+                            </div>
+                            <div class="form_segment">
+                                <table summary="Employee Pay Sheet" id="hor-zebra">
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td width="70%">A. Enter the number of Philadelphia Residents for whom 
+				wage tax was remitted for the pay period including March 12, 2013.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>B. Enter the number of <strong>nonresidents</strong> (employees living 
+				outside Philadelphia city limits) for whom wage tax was remitted for the pay period
+				including March 12, 2013.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">C. Total number of employees <strong>for all company locations</strong> 
+				reported on the Employer's Federal Quarterly Tax Return for the first 
+				quarter of 2012 (for the pay period including March 12, 2013).</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>D. Number of employees working <strong>at company locations within
+				Philadelphia city limits</strong>, for the pay period including March 12, 2013.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">1. Gross Compensation per W-2 forms for all employees</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2. Non-Taxable Gross Compensation include in line 1
+				(Paid to non-residents working outside of Philadelphia)</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">3. Gross Compensation per W-2 forms on 
+				which Philadelphia Wage Tax was withheld or due</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4. Taxable Gross Compensation paid to <U>residents</U>      of 
+				Philadelphia (1/1/2013 to 06/30/2013)</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">5. Tax Due [Calculated - line 4 X .039280]</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6. Taxable Gross Compensation paid to <U>residents</U>      of 
+				Philadelphia (7/1/2013 to 12/31/2013)</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">7. Tax Due [Calculated - line 6 X .039240]</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>8. Taxable Gross Compensation paid to <U>non-residents</U> of Philadelphia (1/1/2013 to 06/30/2013)</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">9. Tax Due [Calculated - line&nbsp;8 X .034985]</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>10. Taxable Gross Compensation paid to <U>non-residents</U> of Philadelphia (7/1/2013 to 12/31/2013)</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">11. Tax Due [Calculated - line 10 X .034950]</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>13. Total Tax Due [Calculated - lines 5, 7, 9 and 11]</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">13. Tax previously paid for 2013 - This amount may not yet include	your most recent payment.
+						<br>Click on link for more information.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>14. ADDITIONAL TAX DUE If line 12 is greater than line 13, enter the amount here.</td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td width="70%">15. TAX OVERPAID If line 12 is less than line 13, enter the amount here. See instructions for filing a Refund Petition.</td></td>
+                                            <td align="center" class="no_border_right">
+                                                <input type="text" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="clear"></div>
+
+                            </div>
+
+
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filled by *</label>
+                                <div class="small_divs">
+                                    <input type="radio" name="n1" />
+                                    Tax Payer
+                                </div>
+                                <div class="small_divs">
+                                    <input type="radio" name="n2" checked="" />
+                                    Prepayer
+                                </div>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filler Name *</label>
+                                <span class="small_divs2">&nbsp;</span>
+
+                                <div class="here_input_table">
+                                    Filler Phone *
+                                    <input type="text" class="input_size7" /><input type="text" class="input_size7" /><input type="text" class="input_size7" />
+                                    <span class="here_alert">Ext : </span>
+                                    <input type="text" class="input_size7" />
+                                </div>
+
+                                <div class="clear"></div>
+
+                            </div>
+
+                            <div class="form_segment lessspac_element">
+
+                                <label>Filler Name *</label>
+
+                                <div class="here_input_table">
+                                    <input type="text" class="input_size9" /></div>
+
+                                <div class="clear"></div>
+                            </div>
+
+
+                            <div class="form_segment">
+
+
+
+                                <div class="here_input_table">
+                                    <input type="checkbox" class="" /></div>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+                    
+                     <div class="clear"></div>
+                            </div>
+
+
+                            <div class="form_segment here_input_table" align="right">
+                                <input type="submit" value="Print" class="submit_button_light" />
+                                <input type="submit" value="Submit" class="submit_button" />
+                            </div>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+                <div class="quicklink_btm_gen"></div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

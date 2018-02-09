@@ -1,0 +1,6 @@
+<?xml version='1.0'?>            
+<RELATIONSHIP>  
+   <DDOWN DESC='Select' CODE='999' />
+   <DDOWN DESC='Officer/Corporation' CODE='8' />
+   <DDOWN DESC='Partner/Partnership' CODE='19' />
+</RELATIONSHIP> 

@@ -1,0 +1,288 @@
+<!--BPT_SchA-->
+<script language='javascript' type="text/javascript">
+var arrSchdAErr = new Array();
+var xSecScA = 'BPT_SCH_A '; // this ending space is required
+var xFldScALi1 = xSecScA + 'NI_LOSS';
+var xFldScALi2 = xSecScA + 'NI_PORT_ACTIVIES';
+var xFldScALi3 = xSecScA + 'NI_PUC_ICC';
+var xFldScALi4 = xSecScA + 'NI_PUBLIC_LAW';
+var xFldScALi5 = xSecScA + 'I_APPORTIONED';
+var xFldScALi6 = xSecScA + 'I_APPORTIONED_PERCENT';
+var xFldScALi7 = xSecScA + 'I_APPORTIONED_PHILA';
+var xFldScALi8 = xSecScA + 'I_NONBUS_PHILA';
+var xFldScALi9 = xSecScA + 'I_CURRENT_YEAR';
+var xFldScALi10 = xSecScA + 'LOSS_CARRY_FORWARD';
+var xFldScALi11 = xSecScA + 'I_TAXABLE';
+var xFldScALi12 = xSecScA + 'TAX_DUE';
+
+function LoadErrorBPTlfSchdA(){
+	var i=0;
+	arrSchdAErr[i++] = [txtBPT_SchA_1, 'txtBPT_SchA_1.value == ""', 'Answer Question 1'];
+	arrSchdAErr[i++] = [txtBPT_SchA_1, 'ispValue(txtBPT_SchA_1.value) == false', 'Value for Question 1 must be numeric'];
+	arrSchdAErr[i++] = [txtBPT_SchA_2, 'txtBPT_SchA_2.value == ""', 'Answer Question 2'];
+	arrSchdAErr[i++] = [txtBPT_SchA_2, 'ispValue(txtBPT_SchA_2.value) == false', 'Value for Question 2 must be numeric'];
+	arrSchdAErr[i++] = [txtBPT_SchA_3, 'txtBPT_SchA_3.value == ""', 'Answer Question 3'];
+	arrSchdAErr[i++] = [txtBPT_SchA_3, 'ispValue(txtBPT_SchA_3.value) == false', 'Value for Question 3 must be numeric'];
+	arrSchdAErr[i++] = [txtBPT_SchA_4, 'txtBPT_SchA_4.value == ""', 'Answer Question 4'];
+	arrSchdAErr[i++] = [txtBPT_SchA_4, 'ispValue(txtBPT_SchA_4.value) == false', 'Value for Question 4 must be numeric'];
+	arrSchdAErr[i++] = [txtBPT_SchA_8, 'txtBPT_SchA_8.value == ""', 'Answer Question 8'];
+	arrSchdAErr[i++] = [txtBPT_SchA_8, 'ispValue(txtBPT_SchA_8.value) == false', 'Value for Question 8 must be numeric'];
+	arrSchdAErr[i++] = [txtBPT_SchA_10, 'txtBPT_SchA_10.value == ""', 'Answer Question 10'];
+	arrSchdAErr[i++] = [txtBPT_SchA_10, 'ispValue(txtBPT_SchA_10.value) == false', 'Value for Question 10 must be numeric'];
+	arrSchdAErr[i++] = [txtBPT_SchA_10, 'ispNegativeNumber(txtBPT_SchA_10.value) == false', 'Value for Question 10 must NOT be negative'];
+}		//LoadErrorBPTlfSchdA
+
+function ClearBPTlfSchdA() {
+
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi1, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi2, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi3, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi4, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi5, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi6, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi7, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi8, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi9, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi10, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi11, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, 0, xFldScALi12, '', 0);
+
+}		//ClearBPTlfSchdA
+
+function PopulateXmlBPTlfSchdA(){
+
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency(txtBPT_SchA_1.value), xFldScALi1, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency(txtBPT_SchA_2.value), xFldScALi2, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency(txtBPT_SchA_3.value), xFldScALi3, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency(txtBPT_SchA_4.value), xFldScALi4, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency($('#lblBPT_SchA_5').text()), xFldScALi5, '', 0);
+//EGOVWEB-63
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, parseFloat($('#lblBPT_SchA_6').text()).toFixed(6), xFldScALi6, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency($('#lblBPT_SchA_7').text()), xFldScALi7, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency(txtBPT_SchA_8.value), xFldScALi8, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency($('#lblBPT_SchA_9').text()), xFldScALi9, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency(txtBPT_SchA_10.value), xFldScALi10, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency($('#lblBPT_SchA_11').text()), xFldScALi11, '', 0);
+		ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency($('#lblBPT_SchA_12').text()), xFldScALi12, '', 0);
+//Carry to Page 1
+		//ispXmlSetFieldVal(parent.MenuWin.xmlBPTlf, stripCurrency($('#lblBPT_SchA_12').text()), 'BPT_PG1 NET_INCOME', '', 0);
+
+}		//PopulateBPTlfXMLSchdA
+
+function PopulateBPTlfSchdA(){
+
+		txtBPT_SchA_1.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi1, '', 0), 0);
+		txtBPT_SchA_2.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi2, '', 0), 0);
+		txtBPT_SchA_3.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi3, '', 0), 0);
+		txtBPT_SchA_4.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi4, '', 0), 0);
+
+		//alert('before change : ' + ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi5, '', 0), 0));
+
+		$('#lblBPT_SchA_5').text( ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi5, '', 0), 0));
+
+		//alert('after set : ' + $('#lblBPT_SchA_5').text());
+
+		$('#lblBPT_SchA_6').text( ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi6, '', 0) * 100);
+		$('#lblBPT_SchA_7').text( ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi7, '', 0), 0));
+		txtBPT_SchA_8.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi8, '', 0), 0);
+		$('#lblBPT_SchA_9').text(ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi9, '', 0), 0));
+		txtBPT_SchA_10.value = ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi10, '', 0), 0);
+		$('#lblBPT_SchA_11').text( ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi11, '', 0), 0));
+		$('#lblBPT_SchA_12').text( ispFormatMoney(ispXmlGetFieldVal(parent.MenuWin.xmlBPTlf, xFldScALi12, '', 0), 0));
+
+//alert(dBPTNetRate)
+	$('#msgBPT_SchA_12').text( $('#msgBPT_SchA_12').text().replace('###', dBPTNetRate));
+}		//PopulateBPTlfSchdA
+
+function ResetBPTlfSchdA(){
+	txtBPT_SchA_1.value = ispFormatMoney(0, 0);
+	txtBPT_SchA_2.value = ispFormatMoney(0, 0);
+	txtBPT_SchA_3.value = ispFormatMoney(0, 0);
+	txtBPT_SchA_4.value = ispFormatMoney(0, 0);
+	$('#lblBPT_SchA_5').text( ispFormatMoney(0, 0));
+	$('#lblBPT_SchA_6').text(  0);
+	$('#lblBPT_SchA_7').text(  ispFormatMoney(0, 0));
+	txtBPT_SchA_8.value = ispFormatMoney(0, 0);
+	$('#lblBPT_SchA_9').text(  ispFormatMoney(0, 0));
+	txtBPT_SchA_10.value = ispFormatMoney(0, 0);
+	$('#lblBPT_SchA_11').text(  ispFormatMoney(0, 0));
+	$('#lblBPT_SchA_12').text( ispFormatMoney(0, 0));
+
+	$('#msgBPT_SchA_12').text( $('#msgBPT_SchA_12').text().replace('###', dBPTNetRate));
+}		//ResetBPTlfSchdA
+
+function FieldLockBPTlfSchdA(bDisabled){
+	$('#txtBPT_SchA_1').attr('disabled', bDisabled);
+	$('#txtBPT_SchA_2').attr('disabled', bDisabled);
+	$('#txtBPT_SchA_3').attr('disabled', bDisabled);
+	$('#txtBPT_SchA_4').attr('disabled', bDisabled);
+	$('#lblBPT_SchA_5').attr('disabled', bDisabled);
+	$('#lblBPT_SchA_6').attr('disabled', bDisabled);
+	$('#lblBPT_SchA_7').attr('disabled', bDisabled);
+	$('#txtBPT_SchA_8').attr('disabled', bDisabled);
+	$('#lblBPT_SchA_9').attr('disabled', bDisabled);
+	$('#txtBPT_SchA_10').attr('disabled', bDisabled);
+	$('#lblBPT_SchA_11').attr('disabled', bDisabled);
+	$('#lblBPT_SchA_12').attr('disabled', bDisabled);
+}		//FieldLockBPTlfSchdA
+
+function PerformCalcsBPTlfSchdA(){
+	if(getActiveElement().id == 'txtBPT_SchA_1' && PrepForMath(txtBPT_SchB_1.value) != 0){
+		ResetBPTlfSchdB();
+	}		//if
+	if ($('#AppError').text() == ""){
+		CalcBPTlfSchdALine5();
+		CalcBPTlfSchdALine7();
+		CalcBPTlfSchdALine9();
+		CalcBPTlfSchdALine11();
+	}		//if
+}		//PerformCalcsBPTlfSchdA
+
+function CalcBPTlfSchdALine5(){
+	if (txtBPT_SchA_1.value != '' && txtBPT_SchA_2.value != '' &&
+			txtBPT_SchA_3.value != '' && txtBPT_SchA_4.value != '')	{
+		$('#lblBPT_SchA_5').text( ispFormatMoney(PrepForMath(txtBPT_SchA_1.value) - 
+				(PrepForMath(txtBPT_SchA_2.value) + PrepForMath(txtBPT_SchA_3.value) + PrepForMath(txtBPT_SchA_4.value)), 0));
+	}		//if
+//EGOVWEB-63
+//EGOVWEB-102
+//	if (PrepForMath(lblBPT_SchC1_12.innerText) != '0') {
+		$('#lblBPT_SchA_6').text( parseFloat($('#lblBPT_SchC1_12').text()).toFixed(6));
+//		if (lblBPT_SchA_6.text == '' || PrepForMath(lblBPT_SchA_6.text) == '0') {
+//			lblBPT_SchA_6.text = '1.0'
+//		}		//if
+//	} else {
+//		if (PrepForMath(lblBPT_SchA_5.text) < 0) {
+//			lblBPT_SchA_6.text = '0.0'
+//		} else {
+//			lblBPT_SchA_6.text = '1.0'
+//		}		//if
+//	}		//if
+}		//CalcBPTlfSchdALine5
+
+function CalcBPTlfSchdALine7(){
+	if ($('#lblBPT_SchA_5').text() != '' && $('#lblBPT_SchA_6').text() != '')	{
+		//chayan
+		if ($('#lblBPT_SchA_6').text() != '' && PrepForMath($('#lblBPT_SchA_6').text()) == 0 && 
+				$('#BPT_SchdA').css('display') == 'block') {
+			alert('Schedule C needs to be completed');
+		}		//if
+		$('#lblBPT_SchA_7').text( ispFormatMoney(PrepForMath($('#lblBPT_SchA_5').text()) * 
+				PrepForMath($('#lblBPT_SchA_6').text()), 0));
+	}		//if
+}		//CalcBPTlfSchdALine7
+
+function CalcBPTlfSchdALine9(){
+	if ($('#lblBPT_SchA_7').text() != '' && txtBPT_SchA_8.value != '')	{
+		$('#lblBPT_SchA_9').text( ispFormatMoney(PrepForMath($('#lblBPT_SchA_7').text()) + 
+				PrepForMath(txtBPT_SchA_8.value), 0));
+	}		//if
+}		//CalcBPTlfSchdALine9
+
+function CalcBPTlfSchdALine11(){
+	if ($('#lblBPT_SchA_9').text() != '' && txtBPT_SchA_10.value != '')	{
+		$('#lblBPT_SchA_11').text( ispFormatMoney(PrepForMath($('#lblBPT_SchA_9').text()) - 
+				PrepForMath(txtBPT_SchA_10.value), 0));
+		$('#lblBPT_SchA_12').text( ispFormatMoney(PrepForMath($('#lblBPT_SchA_11').text()) * dBPTNetRate, 0));
+		if (PrepForMath($('#lblBPT_SchA_12').text()) < 0) {
+			$('#lblBPT_SchA_12').text( ispFormatMoney(0, 0));
+		}		//if
+	}		//if
+}		//CalcBPTlfSchdALine11
+</script>
+
+<DIV id=BPT_SchdA style="DISPLAY: none; VISIBILTY: visible" Name="BPT_SchdA"><BR>
+<TABLE class=tblShowBorder id=TABLE1 style="MARGIN-LEFT: 4%" cellSpacing=0 cellPadding=0 width="90%" border=0>
+  <TR height=0>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD>
+    <TD width="5%"></TD></TR>
+  <TR class=rowDataEven>
+    <TD colSpan=20><LABEL class=lblInstrNormal><B><U>2011 BPT Schedule A: Computation of Tax On Net Income(Method I)</U></B><BR></LABEL></TD> 
+  <TR class=rowDataOdd>
+    <TD valign=Top><LABEL class=lblInstrNormal>1.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Net Income (Loss) per accounting system used plus income taxes
+				deducted in arriving at Net Income, less total nonbusiness income.</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchA_1 style="WIDTH: 100%" 
+				onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("BPT_SchdA")></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>2.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Net Income (Loss) from certain port related activities.</LABEL> </TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchA_2 style="WIDTH: 100%" 
+				onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("BPT_SchdA")></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>3.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Net Income (Loss) from specific PUC and ICC business
+				activities.</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchA_3 style="WIDTH: 100%" 
+				onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("BPT_SchdA")></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>4.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Net Income (Loss) from Public Law 86-272 activities</LABEL></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchA_4 style="WIDTH: 100%" 
+				onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("BPT_SchdA")></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>5.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>Income (Loss) to be apportioned</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Line 1 minus 2, 3, and 4]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchA_5 
+				style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>6.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Average of Apportionment Factors (from </LABEL>
+				<label id="lnkSchC1" class="lblLink" style="FONT-SIZE: 7pt" 
+				onclick=ShowPage("SchdC1")>Click here for Schedule C-1, Line 12</label>
+				<LABEL class=lblInstrNormal>).</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchA_6 
+				style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>7.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>Income (Loss) apportioned to Philadelphia</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Multiply Line 5 by Line 6]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL  id=lblBPT_SchA_7	style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+	<TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>8.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Nonbusiness Income (Loss) allocated to Philadelphia</LABEL><label class="lblLink" style="FONT-SIZE: 7pt"></label></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchA_8 style="WIDTH: 100%" 
+				onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("BPT_SchdA")></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>9.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>Current year Income (Loss)</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Line 7 plus Line 8]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchA_9 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+	<TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>10.</LABEL></TD>
+    <TD colSpan=16><LABEL class=lblInstrNormal>Loss Carry Forward, if any. </LABEL><label class="lblLink" style="FONT-SIZE: 7pt"></label></TD>
+    <TD colSpan=3><INPUT class=inpNormal id=txtBPT_SchA_10 style="WIDTH: 100%" 
+				onfocus=SetFocus() maxLength=10 onchange=ValidateWorksheet("BPT_SchdA")></TD></TR>
+  <TR class=rowDataOdd>
+    <TD><LABEL class=lblInstrNormal>11.</LABEL></TD>
+    <TD colSpan=8><LABEL class=lblInstrNormal>Taxable Income (Loss)</LABEL></TD>
+    <TD align=right colSpan=8><LABEL class=lblInstrNormal>[Calculated - Line 9 minus Line 10]&nbsp;</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchA_11 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR class=rowDataEven>
+    <TD><LABEL class=lblInstrNormal>12.</LABEL></TD>
+    <TD colSpan=16><LABEL id=msgBPT_SchA_12 class=lblInstrNormal><B>TAX DUE</B> (Multiply Line 11 by ###) If Line 11 is a loss, enter zero</LABEL></TD>
+    <TD colSpan=3 class=inpReadOnlyRtTD><DIV><LABEL id=lblBPT_SchA_12 style="WIDTH: 100%"></LABEL></DIV></TD></TR>
+  <TR>
+    <TD colspan=20 align=middle><br><INPUT language=javascript id=btnGoToPage1 onclick=ShowPage("Pg1") type=button value="Return to Page 1"></TD>
+  </TR>
+</TABLE>
+<br style='PAGE-BREAK-AFTER: always'></DIV>

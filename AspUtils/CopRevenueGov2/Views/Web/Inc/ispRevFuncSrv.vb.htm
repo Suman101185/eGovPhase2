@@ -1,0 +1,427 @@
+<script language="vbscript" runat="server">
+'with Response
+'	.CacheControl = "no-cache"
+'	.AddHeader "Pragma", "no-cache"
+'	.Expires = 0
+'	.ContentType = "text/xml"
+'end with
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+Sub CreateXmlBufferObj(objXML, xmlData, bAsnyc)
+
+	set objXML = Server.CreateObject("Microsoft.XMLDOM")
+	objXML.async = bAsnyc
+	objXML.load(xmlData)
+end sub
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+function Pad0(sInput)
+	if len(sInput) = 1 then
+		Pad0 = "0" & sInput
+	else
+		Pad0 = sInput
+	end if
+end function
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+sub LogInformation(byVal xmlObj, sApp, sStatus)
+	dim sSystem, sEntityId, sTime, sDate, sMessage, sFunction, sFile
+
+	sCurrent = Now()
+	sDate = Year(sCurrent) & "-" & Pad0(Month(sCurrent)) & "-" & Pad0(Day(sCurrent))
+	sTime = Pad0(Hour(sCurrent)) & ":" & Pad0(Minute(sCurrent)) & ":" & Pad0(Second(sCurrent))
+
+	sSystem = session("ENVIRONMENT")
+	sEntityId = inAcctNo
+	sMessage = parent.$x.ispXmlGetFieldVal(xmlObj, "ERROR_INFO/MESSAGE", "", 0)
+	if sApp = "AI" then
+		sFunction = parent.$x.ispXmlGetFieldVal(xmlObj, "ENTITY_INFO/FUNCTION_CODE", "", 0)
+	elseif sApp = "SR" then
+		sFunction = parent.$x.ispXmlGetFieldVal(xmlObj, "SCHOOL_INFO/RETURN_STATUS", "", 0)
+	elseif sApp = "WR" then
+		sFunction = parent.$x.ispXmlGetFieldVal(xmlObj, "WAGE_INFO/RETURN_STATUS", "", 0)
+	end if
+	
+	if ucase(sStatus) <> "ERROR" then
+		if sApp = "AI" then
+			select case sFunction
+				case "I"
+					sMessage = "Inquire"
+				case "A"
+					sMessage = "Add"
+				case "U"
+					sMessage = "Update"
+				case "2"
+					sMessage = "Generate Pin"
+				case "3"
+					sMessage = "Change Pin"
+				case "4"
+					sMessage = "Forgot Pin"
+				case else
+					sMessage = "Inquire"
+			end select
+		elseif sApp = "WR" or sApp = "SR" then
+			select case sFunction
+				case "INQ"
+					sMessage = "Inquire"
+				case else
+					sMessage = "Add/Update"
+			end select
+		end if
+	end if
+	
+	WriteLogFile sDate, chr(34) & sEntityId & chr(34) & "," & chr(34) & sTime & chr(34) & "," _
+			& chr(34) & sApp & chr(34) & "," & chr(34) & sStatus & chr(34) & "," _
+			& chr(34) & sMessage & chr(34) & "," & chr(34) & sFunction & chr(34) & "," _
+			& chr(34) & sDate & chr(34) & "," & chr(34) & sSystem & chr(34)
+end sub
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+function CheckForSubDirectory(sDirectory, sInterval)
+'sDirectory - the parent directory's currently are LOG, EMAIL or DEBUG
+'sInterval  - M for Monthly, D for Daily
+'Returns    - The current path for files
+	dim fso, sDate, f
+	on error resume next
+	
+	sDate = date()
+	if ucase(sInterval) = "D" then
+		sDate = Year(sDate) & Pad0(Month(sDate)) & Pad0(Day(sDate))
+	elseif ucase(sInterval) = "M" then
+		sDate = Year(sDate) & Pad0(Month(sDate))
+	end if
+	
+	Set fso = Server.CreateObject("Scripting.FileSystemObject")
+
+	If instr(sDirectory, sDate) > 0 Then
+	else
+		f = fso.CreateFolder(sDirectory & sDate)
+		sDirectory = sDirectory & sDate & "\"
+  End If
+  CheckForSubDirectory = sDirectory
+end function
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+sub WriteLogFile(sDate, sOutPut)
+'exit sub
+	dim fso, fLogFile, sFileName, lDate, objEmail
+	on error resume next
+
+	session("LOG_PATH") = CheckForSubDirectory(session("LOG_PATH"),"M")
+
+	Set fso = Server.CreateObject("Scripting.FileSystemObject")
+	lDate = Dateadd("d", -1, sDate)
+	lDate = Year(lDate) & "-" & Pad0(Month(lDate)) & "-" & Pad0(Day(lDate))
+	if not(fso.FileExists(Session("LOG_PATH") & sDate & ".txt")) then
+		Set objEmail = CreateObject("Persits.MailSender")
+		with objEmail
+			.Host = Session("EMAIL_IP_ADDR")
+			.From =	Session("EMAIL_FROM")
+
+			temp = split(Session("EMAIL_LOG_TO"), ",")
+			for i = 0 to ubound(temp)
+				.AddAddress temp(i)
+			next
+			
+			temp = split(Session("EMAIL_LOG_CC"), ",")
+			for i = 0 to ubound(temp)
+				.AddCC temp(i)
+			next
+
+			.Subject = "Revenue Web Log"
+			.Body = "Log file is attached..."
+			.AddAttachment Session("LOG_PATH") & lDate & ".txt"
+			.Send
+		end with
+	end if
+
+	Set fLogFile = fso.OpenTextFile(Session("LOG_PATH") & sDate & ".txt", forAppending, true)
+	fLogFile.WriteLine(sOutPut)
+	fLogFile.Close
+end sub
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+sub WriteDebugFile(sFileName, sOutPut)
+'exit sub
+	dim fso, sDriveLetter, sTemp, strFileToSend, DebugFile
+	
+	session("DEBUG_PATH") = CheckForSubDirectory(session("DEBUG_PATH"),"D")
+
+	if session("DEBUG") = true then
+		Set fso = Server.CreateObject("Scripting.FileSystemObject")
+		sTemp = replace(FormatDateTime(now(), vbLongTime), ":", "")
+		sTemp = replace(sTemp, " ", "")
+		sFileName = session("ENVIRONMENT") & Replace(sFileName, ".", "-" & sTemp & ".", 1, 1)
+
+		strFileToSend = session("DEBUG_PATH") & sFileName
+
+		Set DebugFile = fso.CreateTextFile(strFileToSend, True)
+		DebugFile.WriteLine(sOutPut)
+		DebugFile.Close
+	end if
+end sub
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+function WriteEmailFile(sFileName, sOutPut)
+'exit function
+	dim fso, sDriveLetter, sTemp, strFileToSend, EmailFile
+
+	session("EMAIL_PATH") = CheckForSubDirectory(session("EMAIL_PATH"),"M")
+	
+	Set fso = Server.CreateObject("Scripting.FileSystemObject")
+	sTemp = replace(FormatDateTime(now(), vbLongTime), ":", "")
+	sTemp = replace(sTemp, " ", "")
+	sFileName = session("ENVIRONMENT") & Replace(sFileName, ".", "-" & sTemp & ".", 1, 1)
+	strFileToSend =  replace(session("EMAIL_PATH"), "I:", "\\Isp_Domain_nt\data") & sFileName
+
+	Set EmailFile = fso.CreateTextFile(strFileToSend, True)
+	EmailFile.WriteLine(sOutPut)
+	EmailFile.Close
+	WriteEmailFile = strFileToSend
+end function
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+Sub PopulateBuffer(oXML, sSection, vData)
+dim i, j, k, lTmplXML, lChildNode, sTemp, sData, liSectCounter
+dim lYear, lMonth, lDay
+'on error resume next
+
+	set lTmplXML = Server.CreateObject("Microsoft.XMLDOM")
+
+	lTmplXML.loadXML(parent.$x.ispXmlGetRecordXml(oXML, sSection, 0))
+	liSectCounter = parent.$x.ispXmlGetRecCount(OXML, sSection, "")
+	for j = 0 to lTmplXML.documentElement.getAttributeNode("OCCURS").text - 1
+		sTemp = ""
+		sData = ""
+		if j => liSectCounter then
+			sData = sData & space(lTmplXML.documentElement.getAttributeNode("LENGTH").text)
+		else
+			for k = 0 to lTmplXML.documentElement.childNodes.length - 1
+				set lChildNode = lTmplXML.documentElement.childNodes.item(k)
+				sTemp = ucase(trim(oXML.documentElement. _
+						getElementsByTagName(sSection).item(j) _
+						.childNodes.item(k).text))
+				if lChildNode.attributes.getNamedItem("TYPE").text = "N" then
+					sData = sData & string(lChildNode.attributes.getNamedItem("LENGTH").text - len(sTemp),"0") _
+							& sTemp
+				elseif  lChildNode.attributes.getNamedItem("TYPE").text = "C" then
+'					if IsNumeric(sTemp) then
+'						if sTemp <> 0 then
+							stemp = Replace(stemp, ".", "")
+							stemp = Replace(stemp, ",", "")
+							stemp = Replace(stemp, "$", "")
+'							sTemp = mid(FormatCurrency(sTemp, 2, false, false,  0), 0)
+'						end if
+'					end if
+					sData = sData & string(lChildNode.attributes.getNamedItem("LENGTH").text - len(sTemp),"0") _
+							& sTemp
+'					sData = sData & sTemp _
+'							& space(lChildNode.attributes.getNamedItem("LENGTH").text - len(sTemp))
+				elseif  lChildNode.attributes.getNamedItem("TYPE").text = "D" then
+					if IsDate(sTemp) then
+						lYear = Year(stemp)
+						lMonth = Month(stemp)
+						lDay = Day(stemp)
+							
+						if len(lYear) < 4 then
+							if lYear < 20 then
+								lYear = "20" & lYear
+							else
+								lYear = "19" & lYear
+							end if
+						end if
+							
+						if len(lMonth) < 2 then
+							lMonth = "0" & lMonth
+						end	if
+							
+						if len(lDay) < 2 then
+							lDay = "0" & lDay
+						end	if
+						sTemp = lYear & lMonth & lDay
+					else
+						sTemp = ""
+					end if
+					sData = sData & sTemp _
+							& space(lChildNode.attributes.getNamedItem("LENGTH").text - len(sTemp))
+				else
+					sData = sData & sTemp _
+							& space(lChildNode.attributes.getNamedItem("LENGTH").text - len(sTemp))
+				end if
+			next
+		end if
+
+		if IsArray(vData) then
+			redim preserve vdata(j)
+			gsDebugUp = gsDebugUp & sData
+			vData(j) = sData
+		else
+			gsDebugUp = gsDebugUp & sData
+			vData = sData
+		end if
+	next
+end sub
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+Sub PopulateXML(sSection, vData, oTmplXML, oDataXML)
+	dim sTemp, iCounter, i, j, sTemp1, lobjXML, lNodeName, lData()
+	dim lStrLen, lTotalStrLen, lStrLenSum, lXML
+	on error resume next
+
+	set lobjXML = Server.CreateObject("Microsoft.XMLDOM")
+	lobjXML.loadXML(parent.$x.ispXmlGetRecordXml(oTmplXML, sSection, 0))
+
+	if IsArray(vData)	then
+		redim ldata(ubound(vdata))
+		for i = 0 to ubound(vdata) - 1
+			lData(i) = vdata(i)
+		next
+	else
+		redim lData(0)
+		lData(0) = vData
+	end if
+
+	iCounter = ubound(ldata)
+
+	for i = 0 to iCounter
+		lStrLenSum = 1
+		lTotalStrLen = len(lData(i))
+		lData(i) = lData(i) + _
+				space(lobjXML.documentElement.attributes.getNamedItem("LENGTH").text - len(lData(i)))
+		gsDebug = gsDebug + lData(i)
+
+		for j = 0 to lobjXML.documentElement.childNodes.length - 1
+			set lChildNode = lobjXML.documentElement.childNodes.item(j)
+			lChildNode.text = ""
+		next
+			
+		if lTotalStrLen <> 0 then
+			for j = 0 to lobjXML.documentElement.childNodes.length - 1
+				set lChildNode = lobjXML.documentElement.childNodes.item(j)
+				lStrLen = lChildNode.attributes.getNamedItem("LENGTH").text			
+				lChildNode.text = trim(mid(lData(i), lStrLenSum, lStrLen))
+
+				if lChildNode.attributes.getNamedItem("TYPE").text = "N" _
+						and IsNumeric(lChildNode.text) then
+					if lChildNode.attributes.getNamedItem("PERCISION") then
+						lPercision = lChildNode.attributes.getNamedItem("PERCISION").text
+						lChildNode.text = cdbl(Left(lChildNode.text, lStrLen - lPercision) & "." _
+								& Right(lChildNode.text, lPercision))
+					else
+						lChildNode.text = Cdbl(lChildNode.text)
+					end if
+				elseif lChildNode.attributes.getNamedItem("TYPE").text = "D" then		
+					if CSng(lChildNode.text) = 0 then
+						lChildNode.text = ""
+					else
+						lChildNode.text = FormatDate(lChildNode.text)
+					end if			
+				elseif lChildNode.attributes.getNamedItem("TYPE").text = "C" then
+					if instr(1, lChildNode.text, "-") > 0 then
+						lChildNode.text = replace(lChildNode.text, "-", "")
+						lChildNode.text = "-" & lChildNode.text
+					end if
+
+'if instr(1, lChildNode.text, "-") <> 0 then
+'Response.Write "<test1>" & instr(1, lChildNode.text, "-") & "</test1>"
+'Response.End
+'end if
+'dim a
+'sTemp = string(lChildNode.attributes.getNamedItem("LENGTH").text - len(sTemp),"0") & sTemp
+'sTemp = replace(sTemp, "-", "")
+'sTemp = sTemp & "-"
+'sData = sData & sTemp
+					
+					if CSng(lChildNode.text) = 0 then
+						lChildNode.text = ""
+					else
+						if InStr(1, lChildNode.text, ".") = 0 then
+							lChildNode.text = Left(lChildNode.text, lStrLen - 2) & "." & Right(lChildNode.text, 2)
+						end if
+						lChildNode.text = FormatCurrency(lChildNode.text, 2, false, true, true)
+					end if			
+				elseif lChildNode.attributes.getNamedItem("TYPE").text = "P" _
+						and IsNumeric(lChildNode.text) then
+					if CSng(lChildNode.text) = 0 then
+						lChildNode.text = ""
+					else
+						lChildNode.text = Clng(lChildNode.text)
+					end if
+				end if
+				lStrLenSum = lStrLenSum + lStrLen
+			next
+		end if
+		if (lTotalStrLen = 0 and i = 0) or lTotalStrLen <> 0 then
+			if i = 0 then
+				parent.$x.ispXmlReplaceNode oDataXML, sSection, i, lobjXML, sSection, i
+			else
+				parent.$x.ispAppendNodeXml oDataXML, "*", 0, lobjXML, sSection, 0
+			end if
+		end if
+	next
+End Sub
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+sub DoError(sProgram, sErrorNo, sLine, sMessage, byval xmlObj, sApp)
+	dim objEmail, sTemp
+	
+	if inAcctNo = "" then
+		inAcctNo = "9999999"
+	end if
+
+	parent.$x.ispXmlSetFieldVal xmlObj, sProgram, "ERROR_INFO/PROGRAM", "", 0
+	parent.$x.ispXmlSetFieldVal xmlObj, sErrorNo, "ERROR_INFO/ERROR", "", 0
+	parent.$x.ispXmlSetFieldVal xmlObj, sLine, "ERROR_INFO/LINE", "", 0
+	parent.$x.ispXmlSetFieldVal xmlObj, sMessage, "ERROR_INFO/MESSAGE", "", 0
+
+	LogInformation xmlObj, sApp, "Error"
+	
+	Set objEmail = CreateObject("Persits.MailSender")
+
+	if objEmail is nothing then
+		parent.$x.ispXmlSetFieldVal xmlObj, sProgram, "ERROR_INFO/PROGRAM", "", 0
+		parent.$x.ispXmlSetFieldVal xmlObj, "5010002", "ERROR_INFO/ERROR", "", 0
+		parent.$x.ispXmlSetFieldVal xmlObj, sLine, "ERROR_INFO/LINE", "", 0
+		parent.$x.ispXmlSetFieldVal xmlObj, "Object not loaded: 'Persits.MailSender'", "ERROR_INFO/MESSAGE", "", 0
+
+		LogInformation xmlObj, sApp, "Error"
+	else
+		with objEmail
+			.Host = Session("EMAIL_IP_ADDR")
+			.From = Session("EMAIL_FROM")
+			temp = split(Session("EMAIL_ERROR_TO"), ",")
+			for i = 0 to ubound(temp)
+				.AddAddress temp(i)
+			next
+				
+			temp = split(Session("EMAIL_ERROR_CC"), ",")
+			for i = 0 to ubound(temp)
+				.AddCC temp(i)
+			next
+
+			.Subject = "Revenue Web Error - " & Session("ENVIRONMENT")
+			sErrorHeader = sErrorHeader _
+						& "Program: " & parent.$x.ispXmlGetFieldVal(xmlObj, "ERROR_INFO/PROGRAM", "", 0) & vbCrLf _
+						& "Error: " & parent.$x.ispXmlGetFieldVal(xmlObj, "ERROR_INFO/ERROR", "", 0) & vbCrLf _
+						& "Line: " & parent.$x.ispXmlGetFieldVal(xmlObj, "ERROR_INFO/LINE", "", 0) & vbCrLf _
+						& "Message: " & parent.$x.ispXmlGetFieldVal(xmlObj, "ERROR_INFO/MESSAGE", "", 0)
+			.Body = sErrorHeader
+			sTemp = WriteEmailFile("Error.txt", sErrorHeader)
+			.Send		
+		end with
+	End if
+
+	WriteDebugFile inAcctNo & "." & sApp & ".ERROR.req.xml", xmlReqDoc.xml
+	WriteDebugFile inAcctNo & "." & sApp & ".ERROR.resp.xml", xmlObj.xml
+	WriteDebugFile inAcctNo & "." & sApp & ".ERROR.raw.req.txt", gsDebugUp
+	WriteDebugFile inAcctNo & "." & sApp & ".ERROR.raw.resp.txt", gsDebug
+
+'EHD 2004-01-05 Text Change per Tom
+'			"System is busy... Please try again, if continues please try later.", _
+	parent.$x.ispXmlSetFieldVal xmlObj, _
+			"System is busy... Please try again, If still not successful, please try later.", _
+			"ERROR_INFO/MESSAGE", "", 0
+	Response.Write xmlObj.xml
+	ExitAsp
+end sub
+</script>
